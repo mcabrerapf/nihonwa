@@ -13,6 +13,26 @@ const defaultWord = [
 
  const ADJECTIVES  = [
     {
+        kana: 'ちいさい',
+        kanji: '',
+        en: ['Small','Little'],
+        sound: 'chiisaii',
+        tags: ['size'],
+        types: ['adjective'],
+        notes: [],
+        difficulty: 1,
+    },
+    {
+        kana: 'おおき',
+        kanji: '',
+        en: ['Big','Large'],
+        sound: 'ooki',
+        tags: ['size'],
+        types: ['adjective'],
+        notes: [],
+        difficulty: 1,
+    },
+    {
         kana: 'おいしい',
         kanji: '',
         en: ['Tasty', 'Good','Delicious'],

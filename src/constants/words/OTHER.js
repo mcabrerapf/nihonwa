@@ -13,6 +13,36 @@ const defaultWord = [
 
  const OTHER  = [
     {
+        kana: 'か',
+        kanji: '',
+        en: ['Is it?','That','Or'],
+        sound: 'ka',
+        tags: [],
+        types: ['other'],
+        notes: ['Used at the end to ask something'],
+        difficulty: 1,
+    },
+    {
+        kana: 'はい',
+        kanji: '',
+        en: ['Yes'],
+        sound: 'hai',
+        tags: [],
+        types: ['other'],
+        notes: [],
+        difficulty: 1,
+    },
+    {
+        kana: 'いいえ',
+        kanji: '',
+        en: ['No'],
+        sound: 'iie',
+        tags: [],
+        types: ['other'],
+        notes: [],
+        difficulty: 1,
+    },
+    {
         kana: 'は',
         kanji: '',
         en: ['Is','With','Regarding'],
@@ -65,7 +95,7 @@ const defaultWord = [
     {
         kana: 'これ',
         kanji: '',
-        en: ['This'],
+        en: ['This', 'This (one)','It'],
         sound: 'kore',
         tags: [],
         types: ['other'],
@@ -75,7 +105,7 @@ const defaultWord = [
     {
         kana: 'それ',
         kanji: '',
-        en: ['That'],
+        en: ['That', 'That (one)'],
         sound: 'sore',
         tags: [],
         types: ['other'],
@@ -85,7 +115,7 @@ const defaultWord = [
     {
         kana: 'あれ',
         kanji: '',
-        en: ['That over there'],
+        en: ['That over there', 'That (one) over there'],
         sound: 'are',
         tags: [],
         types: ['other'],

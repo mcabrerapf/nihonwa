@@ -27,7 +27,8 @@ const WordModal = ({ closeModal, wordData }) => {
               : wordValue;
             const parsedKey = `${capitalizeFirstLetter(key)}:`;
             if(key === 'kana' && !hasKanji) return null;
-            
+            if(key === 'kanji' && hasKanji) return null;
+
             return (
               <div key={`${key}-${value}`} className="word-modal-content-item">
                 <span className="word-modal-content-item-header">

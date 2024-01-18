@@ -13,6 +13,16 @@ const defaultWord = [
 
  const NOUNS  = [
     {
+        kana: 'にほん',
+        kanji: '日本',
+        en: ['Japan'],
+        sound: 'nihon',
+        tags: ['country','place'],
+        types: ['noun'],
+        notes: [],
+        difficulty: 1,
+    },
+    {
         kana: 'だいがく',
         kanji: '',
         en: ['University','College'],

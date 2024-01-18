@@ -12,6 +12,37 @@ const defaultWord = [
 ]
 
  const FOREIGN  = [
+    //LAST ONE
+    {
+        kana: 'アメリカ',
+        kanji: '',
+        en: ['America'],
+        sound: 'amerika',
+        tags: ['country','place'],
+        types: ['foreign'],
+        notes: [],
+        difficulty: 1,
+    },
+    {
+        kana: 'ケーキ',
+        kanji: '',
+        en: ['Cake'],
+        sound: 'keeki',
+        tags: ['food'],
+        types: ['foreign'],
+        notes: [],
+        difficulty: 1,
+    },
+    {
+        kana: 'ピザ',
+        kanji: '',
+        en: ['Pizza'],
+        sound: 'piza',
+        tags: ['food'],
+        types: ['foreign'],
+        notes: [],
+        difficulty: 1,
+    },
     {
         kana: 'ラーメン',
         kanji: '',
