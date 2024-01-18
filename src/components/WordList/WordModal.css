@@ -1,0 +1,38 @@
+.word-modal {
+    height: 40rem;
+    width: 30rem;
+    background-color: #282c34;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.word-modal-header {
+    font-size: 3rem;
+}
+
+.word-modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1.5rem;
+    padding-top: 1rem;
+    padding-left: 1.5rem;
+    gap: 1rem;
+}
+
+.word-modal-content-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.word-modal-content-item span {
+    font-size: 2rem;
+}
+
+.word-modal-content-item-header {
+    border-bottom: 1px solid;
+    font-size: 1.2rem!important;
+    font-weight: 700;
+}
