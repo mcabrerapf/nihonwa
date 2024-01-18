@@ -1,0 +1,38 @@
+.filters-modal {
+    width: 25rem;
+    background-color: #282c34;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+
+.filters-modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 2rem;
+    gap: 1rem;
+}
+
+.filters-options-label {
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.filters-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.filters-options button {
+    font-size: 1.5rem;
+}
+

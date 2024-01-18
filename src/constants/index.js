@@ -1,25 +1,28 @@
 import NOUNS from "./words/NOUNS";
-import OTHER from "./words/OTHER";
+import OTHERS from "./words/OTHERS";
 import VERBS from "./words/VERBS";
-import FOREIGN from "./words/FOREIGN";
+import FOREIGNS from "./words/FOREIGNS";
 import ADJECTIVES from "./words/ADJECTIVES";
 import { HIRAGANA, KATAKANA } from "./KANAS";
+import SENTENCES from "./sentences";
 
 const WORDS = [
-    ...OTHER,
+    ...OTHERS,
     ...NOUNS,
     ...VERBS,
     ...ADJECTIVES,
-    ...FOREIGN
+    ...FOREIGNS
 ];
 
 export default WORDS;
 export {
-    FOREIGN,
     ADJECTIVES,
-    OTHER,
+    FOREIGNS,
     NOUNS,
+    OTHERS,
+    SENTENCES,
     VERBS,
     HIRAGANA,
-    KATAKANA
+    KATAKANA,
+    WORDS
 };

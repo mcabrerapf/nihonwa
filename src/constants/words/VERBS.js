@@ -1,3 +1,6 @@
+import { FOOD, LITERATURE, LOCATION, MUSIC, SPORT } from "../TAGS";
+import { KANJI, VERB } from "../TYPES";
+
 const defaultWord = [
     {
         kana: '',
@@ -5,7 +8,7 @@ const defaultWord = [
         en: [],
         sound: '',
         tags: [],
-        types: ['verb'],
+        types: [VERB],
         notes: [],
         difficulty: 1,
     },
@@ -13,22 +16,33 @@ const defaultWord = [
 
  const VERBS  = [
     {
+        kana: 'すんでいます',
+        kanji: '',
+        en: ['Lives'],
+        sound: 'sundeimasu',
+        tags: [LOCATION],
+        types: [VERB],
+        notes: [],
+        difficulty: 1,
+    },
+    {
         kana: 'ききます',
         kanji: '',
-        en: ['Plays'],
+        en: ['Listens'],
         sound: 'kikimasu',
-        tags: ['music', 'sports'],
-        types: ['verb'],
+        tags: [MUSIC],
+        types: [VERB],
         notes: [],
         difficulty: 1,
     },
     {
         kana: 'みます',
+        furi: ['み'],
         kanji: '見ます',
         en: ['Looks'],
         sound: 'mimasu',
         tags: [],
-        types: ['verb'],
+        types: [VERB, KANJI],
         notes: [],
         difficulty: 1,
     },
@@ -37,18 +51,28 @@ const defaultWord = [
         kanji: '',
         en: ['Eats'],
         sound: 'tabemasu',
-        tags: ['food'],
-        types: ['verb'],
+        tags: [FOOD],
+        types: [VERB],
         notes: [],
         difficulty: 1,
     },
     {
         kana: 'よみます',
+        furi: ['よ'],
         kanji: '読みます',
         en: ['Reads'],
         sound: 'yomimasu',
-        tags: ['book'],
-        types: ['verb'],
+        tags: [LITERATURE],
+        types: [VERB, KANJI],
+        notes: [],
+        difficulty: 1,
+    },
+    {
+        kana: 'します',
+        en: ['Plays'],
+        sound: 'shimasu',
+        tags: [LITERATURE],
+        types: [VERB, KANJI],
         notes: [],
         difficulty: 1,
     }

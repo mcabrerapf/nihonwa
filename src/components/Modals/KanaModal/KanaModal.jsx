@@ -22,9 +22,6 @@ const KanaModal = ({ closeModal, kanaMode }) => {
       <div className="kana-modal">
         <div className="kana-modal-header">
           <span>{header}</span>
-          <div className="kana-modal-header-buttons">
-            <button onClick={handleKanaToggle}>{kanaModalButtonText}</button>
-          </div>
         </div>
         <div className="kana-modal-content">
           <div className="kana-group">
@@ -49,6 +46,9 @@ const KanaModal = ({ closeModal, kanaMode }) => {
               );
             })}
           </div>
+        </div>
+        <div className="kana-modal-footer">
+          <button onClick={handleKanaToggle}>{kanaModalButtonText}</button>
         </div>
       </div>
     </ModalWrapper>
