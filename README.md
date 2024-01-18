@@ -1,3 +1,3 @@
-# Getting Started with Create React App
+# 日本語
 
 Simple japanese practice list
