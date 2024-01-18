@@ -2,7 +2,7 @@ const defaultWord = [
     {
         kana: '',
         kanji: '',
-        en: '',
+        en: [],
         sound: '',
         tags: [],
         types: ['verb'],
@@ -15,7 +15,7 @@ const defaultWord = [
     {
         kana: 'ききます',
         kanji: '',
-        en: 'Plays',
+        en: ['Plays'],
         sound: 'kikimasu',
         tags: ['music', 'sports'],
         types: ['verb'],
@@ -25,7 +25,7 @@ const defaultWord = [
     {
         kana: 'みます',
         kanji: '見ます',
-        en: 'Looks',
+        en: ['Looks'],
         sound: 'mimasu',
         tags: [],
         types: ['verb'],
@@ -35,7 +35,7 @@ const defaultWord = [
     {
         kana: 'たべます',
         kanji: '',
-        en: 'Eats',
+        en: ['Eats'],
         sound: 'tabemasu',
         tags: ['food'],
         types: ['verb'],
@@ -45,7 +45,7 @@ const defaultWord = [
     {
         kana: 'よみます',
         kanji: '読みます',
-        en: 'Reads',
+        en: ['Reads'],
         sound: 'yomimasu',
         tags: ['book'],
         types: ['verb'],

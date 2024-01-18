@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./KanaModal.css";
-import ModalWrapper from "../ModalWrapper/ModalWrapper";
-import { HIRAGANA, KATAKANA } from "../../constants";
+import ModalWrapper from "../../ModalWrapper/ModalWrapper";
+import { HIRAGANA, KATAKANA } from "../../../constants";
 
 const KanaModal = ({ closeModal, kanaMode }) => {
   const [view, setView] = useState(kanaMode || "hi");

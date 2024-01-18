@@ -29,6 +29,7 @@
 
 .word-modal-content-item span {
     font-size: 2rem;
+    text-align: left;
 }
 
 .word-modal-content-item-header {

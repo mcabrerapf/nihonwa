@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "./WordList.css";
 import WORDS from "../../constants";
-import WordModal from "./WordModal";
-import KanaModal from "./KanaModal";
-
+import { KanaModal, WordModal } from "../Modals";
 
 const WordList = () => {
   const [showWordModal, setShowWordModal] = useState(false);
@@ -38,6 +36,7 @@ const WordList = () => {
       <ul className="word-list">
         {WORDS.map((word) => {
           const { kanji, kana } = word;
+          if(!kana && !kanji) return null;
           return (
             <li
               key={word.kana}
