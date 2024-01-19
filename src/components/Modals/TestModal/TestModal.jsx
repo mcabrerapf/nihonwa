@@ -1,24 +1,7 @@
 import React, { useState } from "react";
 import "./TestModal.css";
 import ModalWrapper from "../../ModalWrapper/ModalWrapper";
-import { WORDS } from "../../../constants";
-import { generateRandomNumber } from "../../../utils";
-
-const getQuestions = (limit) => {
-  const indexes = [];
-  for (let index = 0; index < limit; index += 1) {
-    const rIndex = generateRandomNumber(0, WORDS.length, indexes);
-    indexes.push(rIndex);
-  }
-  return indexes.map((index) => {
-    return {
-      ...WORDS[index],
-      hits: 0,
-      misses: 0,
-      correct: false,
-    };
-  });
-};
+import { buildQuestions } from "./helpers";
 
 const TestModal = ({ closeModal }) => {
   const [questionLimit, setQuestionLimit] = useState(10);
@@ -28,28 +11,31 @@ const TestModal = ({ closeModal }) => {
   const [view, setView] = useState("setup");
 
   const handleTestStart = () => {
-    const builtQuestions = getQuestions(questionLimit);
+    const builtQuestions = buildQuestions(questionLimit);
     setQuestions(builtQuestions);
     setView("inprogress");
   };
 
   const handleUpdateQuestion = (hit) => {
-    const updatedQuestions = questions.map((question) => {
+    const updatedQuestions = questions.map((question, index) => {
+      if (currentQuestionIndex !== index) return question;
       return {
         ...question,
         correct: !!hit,
       };
     });
     setQuestions(updatedQuestions);
+    setCurrentQuestionIndex(0);
     setShowAnswer(false);
-    console.log(currentQuestionIndex, questions.length);
+    
     if (currentQuestionIndex + 1 === questions.length) {
       setView("done");
-    } else setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } 
+    else setCurrentQuestionIndex(currentQuestionIndex + 1);
   };
 
   const currentQuestion = questions[currentQuestionIndex];
-  console.log({ questions });
+  
   return (
     <ModalWrapper closeModal={closeModal}>
       <div className="test-modal">
@@ -125,6 +111,7 @@ const TestModal = ({ closeModal }) => {
           )}
           {view === "done" && (
             <>
+            <button onClick={() => setView("setup")}>R</button>
               <button onClick={closeModal}>O</button>
             </>
           )}

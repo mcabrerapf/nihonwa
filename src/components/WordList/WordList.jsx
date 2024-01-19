@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./WordList.css";
 import WORDS from "../../constants";
 import { generateRandomNumber } from "../../utils";
-import { FiltersModal, KanaModal, SortModal, TestModal, WordModal } from "../Modals";
+import {
+  FiltersModal,
+  KanaModal,
+  SortModal,
+  TestModal,
+  WordModal,
+} from "../Modals";
 
 const sortBy = (items, lan, dir) => {
   return items.sort((a, b) => {
@@ -17,9 +23,11 @@ const sortBy = (items, lan, dir) => {
 const hasTextMatch = (text, item) => {
   if (!text) return true;
   const { en, sound } = item;
+  const hasMeaningMatch = !!en.find(
+    (meaning) => meaning.toLowerCase().indexOf(text.toLowerCase()) !== -1
+  );
   return (
-    en.toLowerCase().indexOf(text.toLowerCase()) !== -1 ||
-    sound.toLowerCase().indexOf(text.toLowerCase()) !== -1
+    hasMeaningMatch || sound.toLowerCase().indexOf(text.toLowerCase()) !== -1
   );
 };
 
@@ -62,6 +70,14 @@ const WordList = () => {
     setWordList(orderedList);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleSearchTextChange = (e) => {
+    const filteredList = filterBy(WORDS, { ...filters, text: e.target.value });
+    const orderedList = sortBy(filteredList, sort[0], sort[1]);
+    setWordList(orderedList);
+    setFilters({ ...filters, text: e.target.value });
+  };
+
   const noActiveFilters = !filters.tags.length && !filters.types.length;
 
   return (
@@ -80,9 +96,7 @@ const WordList = () => {
         />
       )}
       {showTestModal && (
-        <TestModal
-          closeModal={() => setShowTestModal(false)}
-        />
+        <TestModal closeModal={() => setShowTestModal(false)} />
       )}
       {showSortModal && (
         <SortModal
@@ -129,24 +143,34 @@ const WordList = () => {
           <button onClick={() => setShowKanaModal("hi")}>か</button>
           <button onClick={() => setShowKanaModal("ka")}>カ</button>
         </div>
+        <div className="word-list-search-input">
+          <input
+            autoComplete="off"
+            type={"search"}
+            value={filters.text}
+            onChange={handleSearchTextChange}
+          />
+        </div>
       </div>
-      <ul className="word-list">
-        {wordList.map((word, i) => {
-          const { kanji, kana, sound } = word;
-          if (!kana && !kanji) return null;
-          return (
-            <li
-              key={`${kana}-${kanji}-${sound}`}
-              className="word-list-item"
-              onClick={() => setSelectedWordIndex(i)}
-            >
-              <span>{kanji || kana}</span>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="word-list-content">
+        <ul className="word-list">
+          {wordList.map((word, i) => {
+            const { kanji, kana, sound } = word;
+            if (!kana && !kanji) return null;
+            return (
+              <li
+                key={`${kana}-${kanji}-${sound}`}
+                className="word-list-item"
+                onClick={() => setSelectedWordIndex(i)}
+              >
+                <span>{kanji || kana}</span>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
       <div className="word-list-footer-buttons">
-      <button
+        <button
           onClick={() => {
             setShowTestModal(true);
           }}
