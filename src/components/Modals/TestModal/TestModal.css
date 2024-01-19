@@ -56,11 +56,13 @@
 
 .current-question-question {
   font-size: 4rem;
+  user-select: none;
 }
 
 .current-question-answer {
   display: flex;
   flex-direction: column;
+  user-select: none;
 }
 
 .test-modal-results {
@@ -75,6 +77,7 @@
 .test-modal-results-result {
   display: flex;
   gap: 1rem;
+  user-select: none;
 }
 
 .test-modal-footer {

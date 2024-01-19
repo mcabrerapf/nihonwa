@@ -191,7 +191,7 @@ const defaultWord = [
     },
     {
         kana: 'ブラジルじん',
-        en: ['Brazzilian nationality'],
+        en: ['Brazilian nationality'],
         tags: [COUNTRY,PLACE,PERSON,NATIONALITY],
         types: [FOREIGN],
         notes: [],

@@ -288,7 +288,10 @@ const defaultWord = [
         en: ['Four'],
         tags: [],
         types: [NOUN, KANJI],
-        notes: [],
+        notes: [
+            'Can also be pronounced shi',
+            'But best avoid'
+        ],
         difficulty: 1,
     },
     {
@@ -364,7 +367,7 @@ const defaultWord = [
         en: ['Red'],
         tags: [COLOR],
         types: [NOUN],
-        notes: [],
+        notes: ['Test note'],
         difficulty: 1,
     },
     {

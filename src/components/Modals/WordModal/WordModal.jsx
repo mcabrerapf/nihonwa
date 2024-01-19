@@ -16,7 +16,7 @@ const buildWithFuri = (kanji, kana, furi = []) => {
     const currentKana = furiMatch || char;
     const nextKana = furi[i + 1] || character[i + 1];
     const prevKana = furi[i - 1] || character[i - 1];
-    const enChar = kanaToEnglishChar(currentKana, nextKana,prevKana);
+    const enChar = kanaToEnglishChar(currentKana, nextKana, prevKana);
 
     return (
       <div className="kanji-with-furi" key={`${char}-${i}`}>
@@ -35,7 +35,9 @@ const WordModal = ({ closeModal, wordIndex, words }) => {
   const listLength = listToUse.length;
   const wordData = listToUse[selectedWordIndex] || {};
   const isLastItem = selectedWordIndex + 1 === listLength;
-  const jpWord = wordData.kanji || wordData.kana;
+  const { kanji, kana, furi, en, tags, types, notes } = wordData;
+  const jpWord = kanji || kana;
+  const header = buildWithFuri(kanji, kana, furi);
 
   const wordSentences = SENTENCES.map((sentence) => {
     if (!sentence.jp.find((word) => word === jpWord)) return null;
@@ -43,9 +45,16 @@ const WordModal = ({ closeModal, wordIndex, words }) => {
       <div key={`${sentence.en}-${sentence.jp}`} className="word-sentence">
         <div className="word-sentence-jp">
           {sentence.jp.map((word, i) => {
-            const wordClassName = word === jpWord ? "word-sentence-jp-word word-match" : "word-sentence-jp-word";
+            const wordClassName =
+              word === jpWord
+                ? "word-sentence-jp-word word-match"
+                : "word-sentence-jp-word";
 
-            return <span key={`${word}-${i}`} className={wordClassName}>{word}</span>;
+            return (
+              <span key={`${word}-${i}`} className={wordClassName}>
+                {word}
+              </span>
+            );
           })}
         </div>
         <span>{sentence.en}</span>
@@ -64,44 +73,70 @@ const WordModal = ({ closeModal, wordIndex, words }) => {
     }
   };
 
-  const { kanji, kana, furi } = wordData;
-  const header = buildWithFuri(kanji, kana, furi);
+  const handleCharacterCopy = () => {
+    navigator.clipboard.writeText(jpWord);
+  };
+  const hasNotes = notes && !!notes.length;
+  const hasSentences = wordSentences && wordSentences.length;
 
   return (
     <ModalWrapper closeModal={closeModal}>
       <div className="word-modal">
-        <div className="word-modal-header">{header}</div>
+        <div className="word-modal-header" onClick={handleCharacterCopy}>
+          {header}
+        </div>
         <div className="word-modal-content">
-          {view === "general" &&
-            Object.keys(wordData).map((key) => {
-              const wordValue = wordData[key];
-              if (!wordValue) return null;
-              if (wordValue && !wordValue.length) return null;
-              const value = Array.isArray(wordValue)
-                ? wordValue.join(", ")
-                : wordValue;
-              const parsedKey = `${capitalizeFirstLetter(key)}:`;
-              if (key === "kana") return null;
-              if (key === "kanji") return null;
-              if (key === "furi") return null;
-
-              return (
-                <div
-                  key={`${key}-${value}`}
-                  className="word-modal-content-item"
-                >
-                  {key !== "en" && (
-                    <span className="word-modal-content-item-header">
-                      {parsedKey}
+          {view === "general" && (
+            <>
+              <div className="word-modal-content-meanings">
+                {en.map((meaning) => {
+                  return <span>- {meaning}</span>;
+                })}
+              </div>
+              <div className="word-modal-tags-types">
+                {!!types.length && (
+                  <div className="word-modal-content-item-list">
+                    <span className="word-modal-content-item-list-header">
+                      Types
                     </span>
-                  )}
-                  <span>{value}</span>
-                </div>
-              );
-            })}
-          {view === "sentences" && <div className="word-sentences">
-            {wordSentences}
-            </div>}
+                    <div className="word-modal-content-item-list-items">
+                      {types.map((type) => (
+                        <span>{type}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {!!tags.length && (
+                  <div className="word-modal-content-item-list">
+                    <span className="word-modal-content-item-list-header">
+                      Tags
+                    </span>
+                    <div className="word-modal-content-item-list-items">
+                      {tags.map((tag) => (
+                        <span>{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </>
+          )}
+          {view === "sentences" && (
+            <div className="word-sentences">{wordSentences}</div>
+          )}
+          {view === "notes" && (
+            <div className="word-notes">
+              {notes &&
+                !!notes.length &&
+                notes.map((note) => {
+                  return (
+                    <div className="word-note">
+                      <span>- {note}</span>
+                    </div>
+                  );
+                })}
+            </div>
+          )}
         </div>
         <div className="word-modal-footer">
           <div>
@@ -110,18 +145,32 @@ const WordModal = ({ closeModal, wordIndex, words }) => {
               onClick={() => handleCardChange()}
             >{`<`}</button>
           </div>
-          <div>
-            {!!wordSentences.length && (
-              <button
-                onClick={() => {
-                  view === "general"
-                    ? setView("sentences")
-                    : setView("general");
-                }}
-              >
-                {view === "general" ? "S" : "G"}
-              </button>
-            )}
+          <div className="word-modal-view-buttons">
+            <button
+              className={`${hasNotes ? "" : "disabled"}`}
+              onClick={() => {
+                hasNotes && setView("notes");
+              }}
+            >
+              N
+            </button>
+
+            <button
+              onClick={() => {
+                setView("general");
+              }}
+            >
+              G
+            </button>
+
+            <button
+              className={`${hasSentences ? "" : "disabled"}`}
+              onClick={() => {
+                hasSentences && setView("sentences");
+              }}
+            >
+              S
+            </button>
           </div>
           <div>
             <button

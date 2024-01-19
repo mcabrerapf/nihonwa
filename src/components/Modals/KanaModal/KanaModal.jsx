@@ -14,8 +14,7 @@ const KanaModal = ({ closeModal, kanaMode }) => {
     else setView("ka");
   };
   const kanaToUse = isInHiraganaMode ? HIRAGANA : KATAKANA;
-  const mainKana = kanaToUse.slice(0, 8);
-  const subKana = kanaToUse.slice(8);
+  const mainKana = kanaToUse[0]
 
   return (
     <ModalWrapper closeModal={closeModal}>
@@ -26,17 +25,6 @@ const KanaModal = ({ closeModal, kanaMode }) => {
         <div className="kana-modal-content">
           <div className="kana-group">
             {mainKana.map((kanas, i) => {
-              return (
-                <div key={i} className="kana-list">
-                  {kanas.map((kana, i) => (
-                    <span key={`${kana}-${i}`}>{kana}</span>
-                  ))}
-                </div>
-              );
-            })}
-          </div>
-          <div className="kana-group">
-            {subKana.map((kanas, i) => {
               return (
                 <div key={i} className="kana-list">
                   {kanas.map((kana, i) => (
