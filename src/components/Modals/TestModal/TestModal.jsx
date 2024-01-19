@@ -85,7 +85,7 @@ const TestModal = ({ closeModal }) => {
               {questions.map((question) => {
                 return (
                   <div
-                    key={`${question.kanji}-${question.kana}-${question.sound}`}
+                    key={`${question.kanji}-${question.kana}`}
                     className="test-modal-results-result"
                   >
                     <span>{question.correct ? "O" : "X"}</span>

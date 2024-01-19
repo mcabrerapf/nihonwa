@@ -24,10 +24,21 @@ const FiltersModal = ({ closeModal, filters }) => {
   const { tags, types } = selectedFilters;
 
   return (
-    <ModalWrapper closeModal={() => closeModal(selectedFilters)}>
+    <ModalWrapper closeModal={closeModal}>
       <div className="filters-modal">
         <div className="filters-modal-content">
-          <div className="filters-options-label">Types</div>
+          <div className="filters-options-label">
+            <span>Types</span>
+            {!!selectedFilters.types.length && (
+              <button
+                onClick={() =>
+                  setSelectedFilters({ ...selectedFilters, types: [] })
+                }
+              >
+                X
+              </button>
+            )}
+          </div>
           <div className="filters-options">
             {TYPES.map((type) => {
               const isSelected = types.find(
@@ -45,7 +56,18 @@ const FiltersModal = ({ closeModal, filters }) => {
               );
             })}
           </div>
-          <div className="filters-options-label">Tags</div>
+          <div className="filters-options-label">
+            <span>Tags</span>
+            {!!selectedFilters.tags.length && (
+              <button
+                onClick={() =>
+                  setSelectedFilters({ ...selectedFilters, tags: [] })
+                }
+              >
+                X
+              </button>
+            )}
+          </div>
           <div className="filters-options">
             {TAGS.map((tag) => {
               const isSelected = tags.find(
@@ -63,6 +85,9 @@ const FiltersModal = ({ closeModal, filters }) => {
               );
             })}
           </div>
+        </div>
+        <div className="filters-modal-footer">
+          <button onClick={() => closeModal(selectedFilters)}>O</button>
         </div>
       </div>
     </ModalWrapper>

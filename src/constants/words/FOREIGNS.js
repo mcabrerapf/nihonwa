@@ -4,9 +4,7 @@ import { FOREIGN } from "../TYPES";
 const defaultWord = [
     {
         kana: '',
-        kanji: '',
         en: [],
-        sound: '',
         tags: [],
         types: [FOREIGN],
         notes: [],
@@ -17,9 +15,7 @@ const defaultWord = [
  const FOREIGNS  = [
     {
         kana: 'コーヒー',
-        kanji: '',
         en: ['Coffee'],
-        sound: 'koohii',
         tags: [FOOD, THING,DRINK],
         types: [FOREIGN],
         notes: [],
@@ -27,9 +23,7 @@ const defaultWord = [
     },
     {
         kana: 'ジュース',
-        kanji: '',
         en: ['Juice'],
-        sound: 'juice',
         tags: [FOOD, THING,DRINK],
         types: [FOREIGN],
         notes: [],
@@ -37,9 +31,7 @@ const defaultWord = [
     },
     {
         kana: 'パン',
-        kanji: '',
         en: ['Bread'],
-        sound: 'pan',
         tags: [FOOD, THING],
         types: [FOREIGN],
         notes: [],
@@ -47,9 +39,7 @@ const defaultWord = [
     },
     {
         kana: 'サンドイッチ',
-        kanji: '',
         en: ['Sandwich'],
-        sound: 'sandoicchi',
         tags: [FOOD, THING],
         types: [FOREIGN],
         notes: [],
@@ -57,9 +47,7 @@ const defaultWord = [
     },
     {
         kana: 'Jポップ',
-        kanji: '',
         en: ['J pop'],
-        sound: 'jpoppu',
         tags: [ENTERTAINMENT,MUSIC],
         types: [FOREIGN],
         notes: [],
@@ -67,9 +55,7 @@ const defaultWord = [
     },
     {
         kana: 'アニメ',
-        kanji: '',
         en: ['Anime'],
-        sound: 'anime',
         tags: [ENTERTAINMENT],
         types: [FOREIGN],
         notes: [],
@@ -77,19 +63,15 @@ const defaultWord = [
     },
     {
         kana: 'ニュース',
-        kanji: '',
         en: ['News'],
-        sound: 'nyuusu',
         tags: [ENTERTAINMENT],
         types: [FOREIGN],
         notes: [],
         difficulty: 1,
     },
     {
-        kana: 'ロㇱク',
-        kanji: '',
+        kana: 'ロック',
         en: ['Rock'],
-        sound: 'rokku',
         tags: [MUSIC],
         types: [FOREIGN],
         notes: [],
@@ -97,9 +79,7 @@ const defaultWord = [
     },
     {
         kana: 'ジャズ',
-        kanji: '',
         en: ['Jazz'],
-        sound: 'jyazu',
         tags: [MUSIC],
         types: [FOREIGN],
         notes: [],
@@ -107,9 +87,7 @@ const defaultWord = [
     },
     {
         kana: 'サッカー',
-        kanji: '',
         en: ['Soccer'],
-        sound: 'sakkaa',
         tags: [SPORT],
         types: [FOREIGN],
         notes: [],
@@ -117,9 +95,7 @@ const defaultWord = [
     },
     {
         kana: 'バスケットボール',
-        kanji: '',
         en: ['Basketball'],
-        sound: 'basukettobooru',
         tags: [SPORT],
         types: [FOREIGN],
         notes: [],
@@ -127,9 +103,7 @@ const defaultWord = [
     },
     {
         kana: 'テレビ',
-        kanji: '',
         en: ['TV'],
-        sound: 'terebi',
         tags: [TECH],
         types: [FOREIGN],
         notes: [],
@@ -138,7 +112,6 @@ const defaultWord = [
     {
         kana: 'インジニア',
         en: ['Engineer'],
-        sound: 'injinia',
         tags: [PERSON, OCCUPATION],
         types: [FOREIGN],
         notes: [],
@@ -146,9 +119,7 @@ const defaultWord = [
     },
     {
         kana: 'ニューヨーク',
-        kanji: '',
         en: ['New York'],
-        sound: 'nyuuyooku',
         tags: [PLACE],
         types: [FOREIGN],
         notes: [],
@@ -156,9 +127,7 @@ const defaultWord = [
     },
     {
         kana: 'パスポート',
-        kanji: '',
         en: ['Passport'],
-        sound: 'pasupooto',
         tags: [TRANSPORT,  THING],
         types: [FOREIGN],
         notes: [],
@@ -166,9 +135,7 @@ const defaultWord = [
     },
     {
         kana: 'スマホ',
-        kanji: '',
         en: ['Smartphone'],
-        sound: 'sumaho',
         tags: [TECH, THING],
         types: [FOREIGN],
         notes: [],
@@ -176,9 +143,7 @@ const defaultWord = [
     },
     {
         kana: 'コート',
-        kanji: '',
         en: ['Coat(s)'],
-        sound: 'kooto',
         tags: [CLOTHES],
         types: [FOREIGN],
         notes: [],
@@ -186,9 +151,7 @@ const defaultWord = [
     },
     {
         kana: 'デパート',
-        kanji: '',
         en: ['Department store'],
-        sound: 'depaato',
         tags: [LOCATION],
         types: [FOREIGN],
         notes: [],
@@ -196,9 +159,7 @@ const defaultWord = [
     },
     {
         kana: 'バステい',
-        kanji: '',
         en: ['Bus stop'],
-        sound: 'basutei',
         tags: [TRANSPORT],
         types: [FOREIGN],
         notes: [],
@@ -206,9 +167,7 @@ const defaultWord = [
     },
     {
         kana: 'ホテル',
-        kanji: '',
         en: ['Hotel'],
-        sound: 'hoteru',
         tags: [LOCATION,VACATION],
         types: [FOREIGN],
         notes: [],
@@ -216,9 +175,7 @@ const defaultWord = [
     },
     {
         kana: 'コンビニ',
-        kanji: '',
         en: ['Convenience store'],
-        sound: 'konbini',
         tags: [FOOD, LOCATION],
         types: [FOREIGN],
         notes: [],
@@ -226,9 +183,7 @@ const defaultWord = [
     },
     {
         kana: 'ブラジル',
-        kanji: '',
         en: ['Brazil'],
-        sound: 'burajiru',
         tags: [COUNTRY,PLACE],
         types: [FOREIGN],
         notes: [],
@@ -236,9 +191,7 @@ const defaultWord = [
     },
     {
         kana: 'ブラジルじん',
-        kanji: '',
         en: ['Brazzilian nationality'],
-        sound: 'burajiru',
         tags: [COUNTRY,PLACE,PERSON,NATIONALITY],
         types: [FOREIGN],
         notes: [],
@@ -246,9 +199,7 @@ const defaultWord = [
     },
     {
         kana: 'カナダ',
-        kanji: '',
         en: ['Canada'],
-        sound: 'kanada',
         tags: [COUNTRY,PLACE],
         types: [FOREIGN],
         notes: [],
@@ -256,9 +207,7 @@ const defaultWord = [
     },
     {
         kana: 'カナダじん',
-        kanji: '',
         en: ['Canadian nationality'],
-        sound: 'kanadajin',
         tags: [COUNTRY,PLACE,PERSON,NATIONALITY],
         types: [FOREIGN],
         notes: [],
@@ -266,9 +215,7 @@ const defaultWord = [
     },
     {
         kana: 'イギリス',
-        kanji: '',
         en: ['England'],
-        sound: 'igirisu',
         tags: [COUNTRY,PLACE],
         types: [FOREIGN],
         notes: [],
@@ -276,9 +223,7 @@ const defaultWord = [
     },
     {
         kana: 'イギリスじん',
-        kanji: '',
         en: ['English nationality'],
-        sound: 'igirisu',
         tags: [COUNTRY,PLACE,PERSON,NATIONALITY],
         types: [FOREIGN],
         notes: [],
@@ -286,9 +231,7 @@ const defaultWord = [
     },
     {
         kana: 'アメリカ',
-        kanji: '',
         en: ['America'],
-        sound: 'amerika',
         tags: [COUNTRY,PLACE],
         types: [FOREIGN],
         notes: [],
@@ -296,9 +239,7 @@ const defaultWord = [
     },
     {
         kana: 'アメリカじん',
-        kanji: '',
         en: ['American nationality'],
-        sound: 'amerikajin',
         tags: [COUNTRY,PLACE,PERSON,NATIONALITY],
         types: [FOREIGN],
         notes: [],
@@ -306,9 +247,7 @@ const defaultWord = [
     },
     {
         kana: 'ケーキ',
-        kanji: '',
         en: ['Cake'],
-        sound: 'keeki',
         tags: [FOOD],
         types: [FOREIGN],
         notes: [],
@@ -316,9 +255,7 @@ const defaultWord = [
     },
     {
         kana: 'ピザ',
-        kanji: '',
         en: ['Pizza'],
-        sound: 'piza',
         tags: [FOOD],
         types: [FOREIGN],
         notes: [],
@@ -326,9 +263,7 @@ const defaultWord = [
     },
     {
         kana: 'ラーメン',
-        kanji: '',
         en: ['Ramen'],
-        sound: 'ramen',
         tags: [FOOD],
         types: [FOREIGN],
         notes: [],
@@ -336,9 +271,7 @@ const defaultWord = [
     },
     {
         kana: 'カレー',
-        kanji: '',
         en: ['Curry'],
-        sound: 'karee',
         tags: [FOOD],
         types: [FOREIGN],
         notes: [],

@@ -1,8 +1,5 @@
 .filters-modal {
-    width: 25rem;
-    background-color: #282c34;
-    border-radius: 1rem;
-    padding: 1rem;
+    width: 30rem;
 }
 
 
@@ -13,15 +10,26 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
     font-size: 2rem;
     gap: 1rem;
 }
 
 .filters-options-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1.75rem;
     font-weight: 600;
+    width: 100%;
+}
+
+.filters-options-label button {
+    position: fixed;
+    background-color: transparent;
+    box-shadow: none;
+    font-size: 1.5rem;
+    margin-left: 8rem;
+    margin-top: 0.3rem;
 }
 
 .filters-options {
@@ -29,6 +37,8 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
     gap: 1rem;
 }
 
@@ -36,3 +46,10 @@
     font-size: 1.5rem;
 }
 
+.filters-modal-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 4rem;
+    width: 100%;
+}

@@ -4,9 +4,7 @@ import { KANJI, VERB } from "../TYPES";
 const defaultWord = [
     {
         kana: '',
-        kanji: '',
         en: [],
-        sound: '',
         tags: [],
         types: [VERB],
         notes: [],
@@ -17,9 +15,7 @@ const defaultWord = [
  const VERBS  = [
     {
         kana: 'すんでいます',
-        kanji: '',
         en: ['Lives'],
-        sound: 'sundeimasu',
         tags: [LOCATION],
         types: [VERB],
         notes: [],
@@ -27,9 +23,7 @@ const defaultWord = [
     },
     {
         kana: 'ききます',
-        kanji: '',
         en: ['Listens'],
-        sound: 'kikimasu',
         tags: [MUSIC],
         types: [VERB],
         notes: [],
@@ -39,8 +33,7 @@ const defaultWord = [
         kana: 'みます',
         furi: ['み'],
         kanji: '見ます',
-        en: ['Looks'],
-        sound: 'mimasu',
+        en: ['Watches'],
         tags: [],
         types: [VERB, KANJI],
         notes: [],
@@ -48,20 +41,16 @@ const defaultWord = [
     },
     {
         kana: 'たべます',
-        kanji: '',
         en: ['Eats'],
-        sound: 'tabemasu',
         tags: [FOOD],
         types: [VERB],
         notes: [],
         difficulty: 1,
     },
     {
-        kana: 'よみます',
         furi: ['よ'],
         kanji: '読みます',
         en: ['Reads'],
-        sound: 'yomimasu',
         tags: [LITERATURE],
         types: [VERB, KANJI],
         notes: [],
@@ -70,7 +59,6 @@ const defaultWord = [
     {
         kana: 'します',
         en: ['Plays'],
-        sound: 'shimasu',
         tags: [LITERATURE],
         types: [VERB, KANJI],
         notes: [],

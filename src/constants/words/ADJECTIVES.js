@@ -6,7 +6,6 @@ const defaultWord = [
         kana: '',
         kanji: '',
         en: [],
-        sound: '',
         tags: [],
         types: [ADJECTIVE],
         notes: [],
@@ -17,9 +16,7 @@ const defaultWord = [
  const ADJECTIVES  = [
     {
         kana: 'おしゃれ',
-        kanji: '',
         en: ['Fashionable'],
-        sound: 'oshare',
         tags: [CLOTHES],
         types: [ADJECTIVE],
         notes: [],
@@ -27,9 +24,7 @@ const defaultWord = [
     },
     {
         kana: 'ときどき',
-        kanji: '',
         en: ['Sometimes'],
-        sound: 'tokidoki',
         tags: [],
         types: [ADJECTIVE],
         notes: [],
@@ -37,9 +32,7 @@ const defaultWord = [
     },
     {
         kana: 'よく',
-        kanji: '',
         en: ['Often'],
-        sound: 'yoku',
         tags: [],
         types: [ADJECTIVE],
         notes: [],
@@ -47,9 +40,7 @@ const defaultWord = [
     },
     {
         kana: 'あたまがいい',
-        kanji: '',
         en: ['Smart'],
-        sound: 'atamagaii',
         tags: [],
         types: [ADJECTIVE],
         notes: [],
@@ -57,9 +48,7 @@ const defaultWord = [
     },
     {
         kana: 'ゆうめい',
-        kanji: '',
         en: ['Famous'],
-        sound: 'yuumei',
         tags: [],
         types: [ADJECTIVE],
         notes: [],
@@ -67,9 +56,7 @@ const defaultWord = [
     },
     {
         kana: 'うるさい',
-        kanji: '',
         en: ['Noisy'],
-        sound: 'urusai',
         tags: [],
         types: [ADJECTIVE],
         notes: [],
@@ -77,9 +64,7 @@ const defaultWord = [
     },
     {
         kana: 'いそがしい',
-        kanji: '',
         en: ['Busy'],
-        sound: 'isogashii',
         tags: [],
         types: [ADJECTIVE],
         notes: [],
@@ -88,7 +73,6 @@ const defaultWord = [
     {
         kana: 'とても',
         en: ['Very'],
-        sound: 'totemo',
         tags: [],
         types: [ADJECTIVE],
         notes: [],
@@ -97,7 +81,6 @@ const defaultWord = [
     {
         kana: 'きれい',
         en: ['Clean'],
-        sound: 'kirei',
         tags: [],
         types: [ADJECTIVE],
         notes: [],
@@ -106,7 +89,6 @@ const defaultWord = [
     {
         kana: 'しずか',
         en: ['Quiet'],
-        sound: 'shizuka',
         tags: [],
         types: [ADJECTIVE],
         notes: [],
@@ -115,7 +97,6 @@ const defaultWord = [
     {
         kana: 'にぎやか',
         en: ['Lively'],
-        sound: 'nigiyaka',
         tags: [],
         types: [ADJECTIVE],
         notes: [],
@@ -124,9 +105,7 @@ const defaultWord = [
     //TODO
     {
         kana: 'おもしろい',
-        kanji: '',
         en: ['Fun','funny','interesting'],
-        sound: 'omoshiroi',
         tags: [],
         types: [ADJECTIVE],
         notes: [],
@@ -134,9 +113,7 @@ const defaultWord = [
     },
     {
         kana: 'あかるい',
-        kanji: '',
         en: ['Cheerfull'],
-        sound: 'akarui',
         tags: [],
         types: [ADJECTIVE],
         notes: [],
@@ -144,9 +121,7 @@ const defaultWord = [
     },
     {
         kana: 'かわいい',
-        kanji: '',
         en: ['Cute', 'Cuter', 'Pretty'],
-        sound: 'kawaii',
         tags: [],
         types: [ADJECTIVE],
         notes: [],
@@ -154,9 +129,7 @@ const defaultWord = [
     },
     {
         kana: 'ちいさい',
-        kanji: '',
         en: ['Small','Little'],
-        sound: 'chiisaii',
         tags: [SIZE],
         types: [ADJECTIVE],
         notes: [],
@@ -164,9 +137,7 @@ const defaultWord = [
     },
     {
         kana: 'おおき',
-        kanji: '',
         en: ['Big','Large'],
-        sound: 'ooki',
         tags: [SIZE],
         types: [ADJECTIVE],
         notes: [],
@@ -174,9 +145,7 @@ const defaultWord = [
     },
     {
         kana: 'おいしい',
-        kanji: '',
         en: ['Tasty', 'Good','Delicious'],
-        sound: 'oishii',
         tags: [FOOD],
         types: [ADJECTIVE],
         notes: [],
@@ -184,9 +153,7 @@ const defaultWord = [
     },
     {
         kana: 'かっこいい',
-        kanji: '',
         en: ['Cool','Good-looking','Stylish'],
-        sound: 'kakkoii',
         tags: [],
         types: [ADJECTIVE],
         notes: [],
@@ -194,9 +161,7 @@ const defaultWord = [
     },
     {
         kana: 'やさしい',
-        kanji: '',
         en: ['Kind','Easy','Nice'],
-        sound: 'yasashii',
         tags: [],
         types: [ADJECTIVE],
         notes: [],

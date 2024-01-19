@@ -3,7 +3,7 @@ import WordList from './components/WordList';
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <WordList />
     </div>
   );

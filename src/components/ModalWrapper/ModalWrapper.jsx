@@ -28,7 +28,9 @@ function ModalWrapper({ children, closeModal }) {
       onTouchMove={stopPropagation}
       onTouchEnd={stopPropagation}
     >
-      <div ref={wrapperRef}>{children}</div>
+      <div ref={wrapperRef} className="modal-wrapper">
+        {children}
+      </div>
     </div>
   );
 }
