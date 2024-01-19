@@ -41,14 +41,17 @@
 
 .word-list-search-input {
   width: 100%;
+  margin-left: 2rem;
+  height: 3rem;
+  gap: 0.5rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .word-list-search-input  input{
-  width: 90%;
-  height: 2.5rem;
+  width: 80%;
+  height: 2.0rem;
 }
 
 .word-list-content {

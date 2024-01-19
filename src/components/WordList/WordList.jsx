@@ -54,6 +54,8 @@ const filterBy = (items, filters) => {
   });
 };
 
+const FILTERS_INIT_VAL = { text: "", tags: [], types: [] };
+
 const WordList = () => {
   const [wordList, setWordList] = useState([]);
   const [selectedWordIndex, setSelectedWordIndex] = useState(null);
@@ -62,7 +64,7 @@ const WordList = () => {
   const [showTestModal, setShowTestModal] = useState(false);
   const [showFiltersModal, setShowFiltersModal] = useState(false);
   const [sort, setSort] = useState(["jp", "desc"]);
-  const [filters, setFilters] = useState({ text: "", tags: [], types: [] });
+  const [filters, setFilters] = useState(FILTERS_INIT_VAL);
 
   useEffect(() => {
     const filteredList = filterBy(WORDS, filters);
@@ -76,6 +78,16 @@ const WordList = () => {
     const orderedList = sortBy(filteredList, sort[0], sort[1]);
     setWordList(orderedList);
     setFilters({ ...filters, text: e.target.value });
+  };
+
+  const handleFiltersChange = (newFilters) => {
+    if (newFilters) {
+      const filteredList = filterBy(WORDS, newFilters);
+      const orderedList = sortBy(filteredList, sort[0], sort[1]);
+      setWordList(orderedList);
+      setFilters(newFilters);
+    }
+    setShowFiltersModal(false);
   };
 
   const noActiveFilters = !filters.tags.length && !filters.types.length;
@@ -112,18 +124,7 @@ const WordList = () => {
         />
       )}
       {showFiltersModal && (
-        <FiltersModal
-          closeModal={(newFilters) => {
-            if (newFilters) {
-              const filteredList = filterBy(WORDS, newFilters);
-              const orderedList = sortBy(filteredList, sort[0], sort[1]);
-              setWordList(orderedList);
-              setFilters(newFilters);
-            }
-            setShowFiltersModal(false);
-          }}
-          filters={filters}
-        />
+        <FiltersModal closeModal={handleFiltersChange} filters={filters} />
       )}
       <div className="word-list-header">
         <div className="word-list-filters-buttons">
@@ -134,6 +135,11 @@ const WordList = () => {
           >
             F
           </button>
+          {!noActiveFilters && (
+            <button onClick={() => handleFiltersChange(FILTERS_INIT_VAL)}>
+              X
+            </button>
+          )}
         </div>
         <div className="word-list-header-text">
           <span>言葉</span>
@@ -146,10 +152,18 @@ const WordList = () => {
         <div className="word-list-search-input">
           <input
             autoComplete="off"
-            type={"search"}
+            type="text"
             value={filters.text}
             onChange={handleSearchTextChange}
           />
+          {!!filters.text && (
+            <button
+              className="no-shadow"
+              onClick={() => handleSearchTextChange({ target: { value: "" } })}
+            >
+              X
+            </button>
+          )}
         </div>
       </div>
       <div className="word-list-content">
