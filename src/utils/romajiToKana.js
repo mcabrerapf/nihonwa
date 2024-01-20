@@ -20,7 +20,7 @@ const supportedConsonants = [
 const romajiToKana = (romaji, kana) => {
   if (!romaji) return "";
   const kanaToUse = kana === 'hi' ? EN_HIRAGANA_MATCHES : EN_KATAKANA_MATCHES;
-  let wordToParse = romaji;
+  let wordToParse = romaji.toLocaleLowerCase();
   Object.keys(kanaToUse).forEach((romajiChar) => {
     if (wordToParse.indexOf(romajiChar) !== -1) {
       wordToParse = wordToParse.replaceAll(
