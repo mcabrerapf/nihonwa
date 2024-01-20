@@ -3,7 +3,7 @@ import { OTHER, PARTICLE,KANJI } from "../TYPES";
 
 const defaultWord = [
     {
-        kana: '',
+        jp: '',
         en: [],
         tags: [],
         types: [OTHER],
@@ -14,7 +14,23 @@ const defaultWord = [
 
  const OTHERS  = [
     {
-        kana: 'ごろ',
+        jp: 'じゃないです',
+        en: ['Is not'],
+        tags: [],
+        types: [OTHER],
+        notes: [],
+        difficulty: 1,
+    },
+    {
+        jp: 'です',
+        en: ['Is'],
+        tags: [],
+        types: [OTHER],
+        notes: [],
+        difficulty: 1,
+    },
+    {
+        jp: 'ごろ',
         en: ['Similar', 'Like'],
         tags: [],
         types: [OTHER],
@@ -22,7 +38,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'さよなら',
+        jp: 'さよなら',
         en: ['Bye'],
         tags: [GREETING],
         types: [OTHER],
@@ -30,7 +46,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'またあした',
+        jp: 'またあした',
         en: ['See you tomorrow'],
         tags: [GREETING],
         types: [OTHER],
@@ -38,7 +54,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'おなまえは',
+        jp: 'おなまえは',
         en: ['Whats your name'],
         tags: [],
         types: [OTHER],
@@ -46,7 +62,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'はじめまして',
+        jp: 'はじめまして',
         en: ['Nice to meet you'],
         tags: [GREETING],
         types: [OTHER],
@@ -54,7 +70,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'どうぞよろしく',
+        jp: 'どうぞよろしく',
         en: ['Nice to meet you'],
         tags: [GREETING],
         types: [OTHER],
@@ -62,7 +78,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'しゅっしん',
+        jp: 'しゅっしん',
         en: ['Being from', 'is from'],
         tags: [LOCATION],
         types: [OTHER],
@@ -71,7 +87,7 @@ const defaultWord = [
     },
     {
         furi: ['はん'],
-        kanji: '半',
+        jp: '半',
         en: ['Thirty', 'Half'],
         tags: [TIME, NUMBER],
         types: [KANJI, OTHER],
@@ -80,7 +96,7 @@ const defaultWord = [
     },
     {
         furi: ['く','じ'],
-        kanji: '九時',
+        jp: '九時',
         en: ['Nine o clock'],
         tags: [TIME,NUMBER],
         types: [KANJI, OTHER],
@@ -89,7 +105,7 @@ const defaultWord = [
     },
     {
         furi: ['しち','じ'],
-        kanji: '七時',
+        jp: '七時',
         en: ['Seven o clock'],
         tags: [TIME,NUMBER],
         types: [KANJI, OTHER],
@@ -98,7 +114,7 @@ const defaultWord = [
     },
     {
         furi: ['なん'],
-        kanji:'何',
+        jp:'何',
         en: ['What'],
         tags: [],
         types: [OTHER, KANJI],
@@ -106,7 +122,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'じん',
+        jp: 'じん',
         en: ['Nationality'],
         tags: [PERSON],
         types: [OTHER],
@@ -115,7 +131,7 @@ const defaultWord = [
     },
     {
         furi: ['じ'],
-        kanji: '時',
+        jp: '時',
         en: ['o clock'],
         tags: [TIME],
         types: [KANJI, OTHER],
@@ -123,7 +139,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'まいあさ',
+        jp: 'まいあさ',
         en: ['Every morning'],
         tags: [TIME],
         types: [OTHER],
@@ -131,7 +147,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'まいにち',
+        jp: 'まいにち',
         en: ['Every day'],
         tags: [TIME],
         types: [OTHER],
@@ -139,7 +155,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'まいばん',
+        jp: 'まいばん',
         en: ['Every night'],
         tags: [TIME],
         types: [OTHER],
@@ -147,7 +163,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'を',
+        jp: 'を',
         en: ['Through', 'With', 'For'],
         tags: [],
         types: [OTHER],
@@ -155,7 +171,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'さい',
+        jp: 'さい',
         en: ['Years old', '(n) of age'],
         tags: [],
         types: [OTHER],
@@ -163,7 +179,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ようこそ',
+        jp: 'ようこそ',
         en: ['Welcome'],
         tags: [FORMALITY],
         types: [OTHER],
@@ -171,7 +187,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'いらっしゃいませ',
+        jp: 'いらっしゃいませ',
         en: ['Welcome'],
         tags: [GREETING, FORMALITY],
         types: [OTHER],
@@ -179,7 +195,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'おはようございます',
+        jp: 'おはようございます',
         en: ['Good morning'],
         tags: [FORMALITY],
         types: [OTHER],
@@ -187,7 +203,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'すみません',
+        jp: 'すみません',
         en: ['Excuse me'],
         tags: [FORMALITY],
         types: [OTHER],
@@ -195,7 +211,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'いま',
+        jp: 'いま',
         en: ['Now', 'Current'],
         tags: [TIME],
         types: [OTHER],
@@ -203,7 +219,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'どう',
+        jp: 'どう',
         en: ['What about', 'How is'],
         tags: [],
         types: [OTHER],
@@ -211,7 +227,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'も',
+        jp: 'も',
         en: ['Also', 'Even', 'Any'],
         tags: [],
         types: [OTHER],
@@ -220,7 +236,7 @@ const defaultWord = [
     },
     {
         furi: ['わたし'],
-        kanji: '私',
+        jp: '私',
         en: ['I'],
         tags: [],
         types: [OTHER, PARTICLE, KANJI],
@@ -228,7 +244,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'か',
+        jp: 'か',
         en: ['Is it?','That','Or'],
         tags: [],
         types: [OTHER, PARTICLE],
@@ -236,7 +252,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'はい',
+        jp: 'はい',
         en: ['Yes'],
         tags: [],
         types: [OTHER],
@@ -244,7 +260,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'いいえ',
+        jp: 'いいえ',
         en: ['No'],
         tags: [],
         types: [OTHER],
@@ -252,7 +268,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'じゃあね',
+        jp: 'じゃあね',
         en: ['Bye'],
         tags: [GREETING],
         types: [OTHER],
@@ -260,7 +276,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'さん',
+        jp: 'さん',
         en: ['Mr','Miss','Mrs'],
         tags: [FORMALITY],
         types: [OTHER],
@@ -268,7 +284,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'こんにちは',
+        jp: 'こんにちは',
         en: ['Hello'],
         tags: [GREETING],
         types: [OTHER],
@@ -276,7 +292,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'は',
+        jp: 'は',
         en: ['Is','With','Regarding'],
         tags: [],
         types: [OTHER,PARTICLE],
@@ -284,7 +300,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'に',
+        jp: 'に',
         en: ['To', 'In', 'As (a)'],
         tags: [],
         types: [OTHER,PARTICLE],
@@ -292,7 +308,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'と',
+        jp: 'と',
         en: ['And', 'That', 'Door'],
         tags: [],
         types: [OTHER, PARTICLE],
@@ -300,7 +316,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'の',
+        jp: 'の',
         en: ['Of','One'],
         tags: [],
         types: [OTHER, PARTICLE],
@@ -308,7 +324,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'この',
+        jp: 'この',
         en: ['This'],
         tags: [],
         types: [OTHER],
@@ -316,7 +332,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'その',
+        jp: 'その',
         en: ['The','That','Its'],
         tags: [],
         types: [OTHER],
@@ -324,7 +340,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'これ',
+        jp: 'これ',
         en: ['This', 'This (one)','It'],
         tags: [],
         types: [OTHER],
@@ -332,7 +348,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'それ',
+        jp: 'それ',
         en: ['That', 'That (one)'],
         tags: [],
         types: [OTHER],
@@ -340,7 +356,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'あれ',
+        jp: 'あれ',
         en: ['That over there', 'That (one) over there'],
         tags: [],
         types: [OTHER],
@@ -348,7 +364,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ここ',
+        jp: 'ここ',
         en: ['Here'],
         tags: [LOCATION],
         types: [OTHER],
@@ -356,7 +372,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'そこ',
+        jp: 'そこ',
         en: ['There'],
         tags: [LOCATION],
         types: [OTHER],
@@ -364,7 +380,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'あそこ',
+        jp: 'あそこ',
         en: ['Over there'],
         tags: [LOCATION],
         types: [OTHER],
@@ -372,7 +388,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'どこ',
+        jp: 'どこ',
         en: ['Where'],
         tags: [LOCATION],
         types: [OTHER],
@@ -380,7 +396,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ください',
+        jp: 'ください',
         en: ['Please'],
         tags: [FORMALITY],
         types: [OTHER],

@@ -6,6 +6,7 @@ import TAGS from "../../../constants/TAGS";
 
 const FiltersModal = ({ closeModal, filters }) => {
   const [selectedFilters, setSelectedFilters] = useState(filters);
+  const { tags, types } = selectedFilters;
 
   const updateFilters = (value, key) => {
     const filterToUpdate = selectedFilters[key];
@@ -20,8 +21,6 @@ const FiltersModal = ({ closeModal, filters }) => {
     if (!wasSelected) updatedTags.push(value);
     setSelectedFilters({ ...selectedFilters, [key]: updatedTags });
   };
-
-  const { tags, types } = selectedFilters;
 
   return (
     <ModalWrapper closeModal={closeModal}>

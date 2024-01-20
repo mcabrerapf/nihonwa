@@ -4,16 +4,16 @@ import ModalWrapper from "../../ModalWrapper/ModalWrapper";
 
 const SortModal = ({ closeModal, sort }) => {
   const [selectedSort, setSelectedSort] = useState(sort);
-  const [selectedLan, selectedDir] = selectedSort;
+  const [selectedSortLanguage, selectedSortDirection] = selectedSort;
 
-  const updateSortLan = (lan) => {
-    if (lan === selectedLan) return;
-    setSelectedSort([lan, selectedDir]);
+  const updateSortLan = (language) => {
+    if (language === selectedSortLanguage) return;
+    setSelectedSort([language, selectedSortDirection]);
   };
 
-  const updateSortDir = (dir) => {
-    if (dir === selectedDir) return;
-    setSelectedSort([selectedLan, dir]);
+  const updateSortDir = (direction) => {
+    if (direction === selectedSortDirection) return;
+    setSelectedSort([selectedSortLanguage, direction]);
   };
 
   return (
@@ -22,13 +22,13 @@ const SortModal = ({ closeModal, sort }) => {
         <div className="sort-modal-content">
           <div className="sort-options">
             <button
-              className={`${selectedLan !== "en" ? "disabled" : ""}`}
+              className={`${selectedSortLanguage !== "en" ? "disabled" : ""}`}
               onClick={() => updateSortLan("en")}
             >
               Abc
             </button>
             <button
-              className={`${selectedLan !== "jp" ? "disabled" : ""}`}
+              className={`${selectedSortLanguage !== "jp" ? "disabled" : ""}`}
               onClick={() => updateSortLan("jp")}
             >
               日本
@@ -36,13 +36,15 @@ const SortModal = ({ closeModal, sort }) => {
           </div>
           <div className="sort-options">
             <button
-              className={`${selectedDir !== "asc" ? "disabled" : ""}`}
+              className={`${selectedSortDirection !== "asc" ? "disabled" : ""}`}
               onClick={() => updateSortDir("asc")}
             >
               Asc
             </button>
             <button
-              className={`${selectedDir !== "desc" ? "disabled" : ""}`}
+              className={`${
+                selectedSortDirection !== "desc" ? "disabled" : ""
+              }`}
               onClick={() => updateSortDir("desc")}
             >
               Desc

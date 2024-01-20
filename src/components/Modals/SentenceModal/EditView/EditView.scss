@@ -1,0 +1,27 @@
+.sentence-modal-edit-view {
+  .edit-view-header {
+    height: 2rem;
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+  }
+  .edit-view-content {
+    height: 30rem;
+
+    .sentence-modal-sentence {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .sentence-modal-sentence-jp {
+      font-size: 2rem;
+      border-bottom: 1px solid white;
+      padding-bottom: 1rem;
+    }
+
+    .sentence-modal-sentence-en {
+      font-size: 1.5rem;
+      padding-bottom: 1rem;
+    }
+  }
+}

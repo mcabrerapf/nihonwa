@@ -3,7 +3,7 @@ import { FOREIGN } from "../TYPES";
 
 const defaultWord = [
     {
-        kana: '',
+        jp: '',
         en: [],
         tags: [],
         types: [FOREIGN],
@@ -14,7 +14,7 @@ const defaultWord = [
 
  const FOREIGNS  = [
     {
-        kana: 'コーヒー',
+        jp: 'コーヒー',
         en: ['Coffee'],
         tags: [FOOD, THING,DRINK],
         types: [FOREIGN],
@@ -22,7 +22,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ジュース',
+        jp: 'ジュース',
         en: ['Juice'],
         tags: [FOOD, THING,DRINK],
         types: [FOREIGN],
@@ -30,7 +30,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'パン',
+        jp: 'パン',
         en: ['Bread'],
         tags: [FOOD, THING],
         types: [FOREIGN],
@@ -38,7 +38,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'サンドイッチ',
+        jp: 'サンドイッチ',
         en: ['Sandwich'],
         tags: [FOOD, THING],
         types: [FOREIGN],
@@ -46,7 +46,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'Jポップ',
+        jp: 'Jポップ',
         en: ['J pop'],
         tags: [ENTERTAINMENT,MUSIC],
         types: [FOREIGN],
@@ -54,7 +54,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'アニメ',
+        jp: 'アニメ',
         en: ['Anime'],
         tags: [ENTERTAINMENT],
         types: [FOREIGN],
@@ -62,7 +62,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ニュース',
+        jp: 'ニュース',
         en: ['News'],
         tags: [ENTERTAINMENT],
         types: [FOREIGN],
@@ -70,7 +70,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ロック',
+        jp: 'ロック',
         en: ['Rock'],
         tags: [MUSIC],
         types: [FOREIGN],
@@ -78,7 +78,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ジャズ',
+        jp: 'ジャズ',
         en: ['Jazz'],
         tags: [MUSIC],
         types: [FOREIGN],
@@ -86,7 +86,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'サッカー',
+        jp: 'サッカー',
         en: ['Soccer'],
         tags: [SPORT],
         types: [FOREIGN],
@@ -94,7 +94,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'バスケットボール',
+        jp: 'バスケットボール',
         en: ['Basketball'],
         tags: [SPORT],
         types: [FOREIGN],
@@ -102,7 +102,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'テレビ',
+        jp: 'テレビ',
         en: ['TV'],
         tags: [TECH],
         types: [FOREIGN],
@@ -110,7 +110,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'インジニア',
+        jp: 'インジニア',
         en: ['Engineer'],
         tags: [PERSON, OCCUPATION],
         types: [FOREIGN],
@@ -118,7 +118,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ニューヨーク',
+        jp: 'ニューヨーク',
         en: ['New York'],
         tags: [PLACE],
         types: [FOREIGN],
@@ -126,7 +126,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'パスポート',
+        jp: 'パスポート',
         en: ['Passport'],
         tags: [TRANSPORT,  THING],
         types: [FOREIGN],
@@ -134,7 +134,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'スマホ',
+        jp: 'スマホ',
         en: ['Smartphone'],
         tags: [TECH, THING],
         types: [FOREIGN],
@@ -142,7 +142,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'コート',
+        jp: 'コート',
         en: ['Coat(s)'],
         tags: [CLOTHES],
         types: [FOREIGN],
@@ -150,7 +150,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'デパート',
+        jp: 'デパート',
         en: ['Department store'],
         tags: [LOCATION],
         types: [FOREIGN],
@@ -158,7 +158,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'バステい',
+        jp: 'バステい',
         en: ['Bus stop'],
         tags: [TRANSPORT],
         types: [FOREIGN],
@@ -166,7 +166,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ホテル',
+        jp: 'ホテル',
         en: ['Hotel'],
         tags: [LOCATION,VACATION],
         types: [FOREIGN],
@@ -174,7 +174,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'コンビニ',
+        jp: 'コンビニ',
         en: ['Convenience store'],
         tags: [FOOD, LOCATION],
         types: [FOREIGN],
@@ -182,7 +182,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ブラジル',
+        jp: 'ブラジル',
         en: ['Brazil'],
         tags: [COUNTRY,PLACE],
         types: [FOREIGN],
@@ -190,7 +190,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ブラジルじん',
+        jp: 'ブラジルじん',
         en: ['Brazilian nationality'],
         tags: [COUNTRY,PLACE,PERSON,NATIONALITY],
         types: [FOREIGN],
@@ -198,7 +198,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'カナダ',
+        jp: 'カナダ',
         en: ['Canada'],
         tags: [COUNTRY,PLACE],
         types: [FOREIGN],
@@ -206,7 +206,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'カナダじん',
+        jp: 'カナダじん',
         en: ['Canadian nationality'],
         tags: [COUNTRY,PLACE,PERSON,NATIONALITY],
         types: [FOREIGN],
@@ -214,7 +214,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'イギリス',
+        jp: 'イギリス',
         en: ['England'],
         tags: [COUNTRY,PLACE],
         types: [FOREIGN],
@@ -222,7 +222,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'イギリスじん',
+        jp: 'イギリスじん',
         en: ['English nationality'],
         tags: [COUNTRY,PLACE,PERSON,NATIONALITY],
         types: [FOREIGN],
@@ -230,7 +230,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'アメリカ',
+        jp: 'アメリカ',
         en: ['America'],
         tags: [COUNTRY,PLACE],
         types: [FOREIGN],
@@ -238,7 +238,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'アメリカじん',
+        jp: 'アメリカじん',
         en: ['American nationality'],
         tags: [COUNTRY,PLACE,PERSON,NATIONALITY],
         types: [FOREIGN],
@@ -246,7 +246,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ケーキ',
+        jp: 'ケーキ',
         en: ['Cake'],
         tags: [FOOD],
         types: [FOREIGN],
@@ -254,7 +254,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ピザ',
+        jp: 'ピザ',
         en: ['Pizza'],
         tags: [FOOD],
         types: [FOREIGN],
@@ -262,7 +262,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ラーメン',
+        jp: 'ラーメン',
         en: ['Ramen'],
         tags: [FOOD],
         types: [FOREIGN],
@@ -270,7 +270,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'カレー',
+        jp: 'カレー',
         en: ['Curry'],
         tags: [FOOD],
         types: [FOREIGN],

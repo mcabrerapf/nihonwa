@@ -1,0 +1,26 @@
+.test-modal-progress-content {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.current-question {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.current-question-question {
+  font-size: 4rem;
+  user-select: none;
+}
+
+.current-question-answer {
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}

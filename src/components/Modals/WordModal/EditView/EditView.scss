@@ -1,0 +1,16 @@
+.word-modal-edit-view {
+  .edit-view-header {
+    height: 1.5rem;
+    padding-bottom: 1rem;
+  }
+
+  .edit-view-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: auto;
+    height: 42rem;
+    font-size: 1.5rem;
+    gap: 1rem;
+  }
+}

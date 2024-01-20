@@ -1,10 +1,10 @@
-import './App.css';
-import WordList from './components/WordList';
+import "./App.css";
+import { MainList } from "./components";
 
 function App() {
   return (
     <div className="app">
-      <WordList />
+      <MainList />
     </div>
   );
 }

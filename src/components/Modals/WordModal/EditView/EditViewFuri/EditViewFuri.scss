@@ -1,0 +1,66 @@
+.edit-view-furi {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+
+  .edit-view-furi-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    font-size: 3rem;
+    width: 100%;
+    height: 20rem;
+
+    .kana-with-furi {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .kana-with-furi button {
+      box-shadow: none;
+      position: fixed;
+      width: 1.5rem !important;
+      height: 1.5rem !important;
+      font-size: 1.5rem;
+      margin-bottom: 10rem;
+    }
+
+    .kana {
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .furi {
+      font-size: 1.2rem;
+      height: 1.5rem;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .selected-kana {
+      box-shadow: 0rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .edit-view-furi-input {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    padding-bottom: 1rem;
+
+    input {
+      width: 21rem;
+    }
+
+    .edit-view-furi-input-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+}

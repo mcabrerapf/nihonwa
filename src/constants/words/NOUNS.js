@@ -3,7 +3,7 @@ import { KANJI, NOUN } from "../TYPES";
 
 const defaultWord = [
     {
-        kana: '',
+        jp: '',
         en: [],
         tags: [],
         types: [NOUN],
@@ -14,7 +14,7 @@ const defaultWord = [
 
  const NOUNS  = [
     {
-        kana: 'べんとう',
+        jp: 'べんとう',
         en: ['Boxed lunch'],
         tags: [FOOD],
         types: [NOUN],
@@ -22,7 +22,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'あさごはん',
+        jp: 'あさごはん',
         en: ['Breakfast'],
         tags: [FOOD],
         types: [NOUN],
@@ -30,7 +30,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ひるごはん',
+        jp: 'ひるごはん',
         en: ['Lunch'],
         tags: [FOOD],
         types: [NOUN],
@@ -38,7 +38,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ばんごはん',
+        jp: 'ばんごはん',
         en: ['Dinner'],
         tags: [FOOD],
         types: [NOUN],
@@ -46,7 +46,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'まんが',
+        jp: 'まんが',
         en: ['Manga'],
         tags: [ENTERTAINMENT],
         types: [NOUN],
@@ -54,7 +54,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'やきゅう',
+        jp: 'やきゅう',
         en: ['Baseball'],
         tags: [SPORT],
         types: [NOUN],
@@ -62,7 +62,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ざっし',
+        jp: 'ざっし',
         en: ['magazine'],
         tags: [ENTERTAINMENT, THING],
         types: [NOUN],
@@ -71,7 +71,7 @@ const defaultWord = [
     },
     {
         furi: ['ほん'],
-        kanji: '本',
+        jp: '本',
         en: ['Books'],
         tags: [ENTERTAINMENT, THING],
         types: [NOUN, KANJI],
@@ -79,7 +79,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'おんがく',
+        jp: 'おんがく',
         en: ['Music'],
         tags: [MUSIC, ENTERTAINMENT],
         types: [NOUN],
@@ -87,7 +87,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'えいが',
+        jp: 'えいが',
         en: ['Movies'],
         tags: [ENTERTAINMENT],
         types: [NOUN],
@@ -95,7 +95,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'かいしゃいん',
+        jp: 'かいしゃいん',
         en: ['Office worker'],
         tags: [OCCUPATION,PERSON],
         types: [NOUN],
@@ -103,7 +103,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'かんごし',
+        jp: 'かんごし',
         en: ['Nurse'],
         tags: [OCCUPATION,PERSON, MEDICINE],
         types: [NOUN],
@@ -112,7 +112,7 @@ const defaultWord = [
     },
     //FAMILY
     {
-        kana: 'かぞく',
+        jp: 'かぞく',
         en: ['Family'],
         tags: [PERSON, FAMILY],
         types: [NOUN],
@@ -120,7 +120,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'つま',
+        jp: 'つま',
         en: ['Wife'],
         tags: [PERSON, FAMILY],
         types: [NOUN],
@@ -128,7 +128,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'おっと',
+        jp: 'おっと',
         en: ['Husband'],
         tags: [PERSON, FAMILY],
         types: [NOUN],
@@ -136,7 +136,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'むすめ',
+        jp: 'むすめ',
         en: ['Daughter'],
         tags: [PERSON, FAMILY],
         types: [NOUN],
@@ -144,7 +144,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'むすこ',
+        jp: 'むすこ',
         en: ['Son'],
         tags: [PERSON, FAMILY],
         types: [NOUN],
@@ -152,7 +152,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'いもうと',
+        jp: 'いもうと',
         en: ['Younger sister'],
         tags: [PERSON, FAMILY],
         types: [NOUN],
@@ -160,7 +160,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'あね',
+        jp: 'あね',
         en: ['Older sister'],
         tags: [PERSON, FAMILY],
         types: [NOUN],
@@ -168,7 +168,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'おとうと',
+        jp: 'おとうと',
         en: ['Younger brother'],
         tags: [PERSON, FAMILY],
         types: [NOUN],
@@ -176,7 +176,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'あに',
+        jp: 'あに',
         en: ['Older brother'],
         tags: [PERSON, FAMILY],
         types: [NOUN],
@@ -185,7 +185,7 @@ const defaultWord = [
     },
     {
         furi: ['ちち'],
-        kanji: '父',
+        jp: '父',
         en: ['Dad'],
         tags: [PERSON, FAMILY],
         types: [NOUN,KANJI],
@@ -194,7 +194,7 @@ const defaultWord = [
     },
     {
         furi: ['はは'],
-        kanji: '母',
+        jp: '母',
         en: ['Mom'],
         tags: [PERSON, FAMILY],
         types: [NOUN,KANJI],
@@ -202,7 +202,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'まち',
+        jp: 'まち',
         en: ['Town', 'Wait', 'City'],
         tags: [PLACE],
         types: [NOUN],
@@ -210,7 +210,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'とし',
+        jp: 'とし',
         en: ['City'],
         tags: [PLACE],
         types: [NOUN],
@@ -218,7 +218,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'おおさか',
+        jp: 'おおさか',
         en: ['Osaka'],
         tags: [PLACE],
         types: [NOUN],
@@ -227,7 +227,7 @@ const defaultWord = [
     },
     {
         furi: ['きょう','と'],
-        kanji: '京都',
+        jp: '京都',
         en: ['Kyoto'],
         tags: [PLACE],
         types: [NOUN, KANJI],
@@ -235,7 +235,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'かばん',
+        jp: 'かばん',
         en: ['bag'],
         tags: [THING],
         types: [NOUN],
@@ -243,7 +243,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kanji: '田中',
+        jp: '田中',
         furi:['た','なか'],
         en: ['Tanaka last name'],
         tags: [PERSON],
@@ -253,9 +253,9 @@ const defaultWord = [
     },
     //Numbers
     {
-        kana: 'いち',
+        jp: 'いち',
         furi:['いち'],
-        kanji: '一',
+        jp: '一',
         en: ['One','An', 'A'],
         tags: [],
         types: [NOUN, KANJI],
@@ -263,9 +263,9 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'に',
+        jp: 'に',
         furi:['に'],
-        kanji: '二',
+        jp: '二',
         en: ['Two'],
         tags: [],
         types: [NOUN, KANJI],
@@ -273,9 +273,9 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'さん',
+        jp: 'さん',
         furi:['さん'],
-        kanji: '三',
+        jp: '三',
         en: ['Three', 'Third'],
         tags: [],
         types: [NOUN, KANJI],
@@ -284,7 +284,7 @@ const defaultWord = [
     },
     {
         furi:['よん'],
-        kanji: '四',
+        jp: '四',
         en: ['Four'],
         tags: [],
         types: [NOUN, KANJI],
@@ -295,9 +295,9 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ご',
+        jp: 'ご',
         furi:['ご'],
-        kanji: '五',
+        jp: '五',
         en: ['Five'],
         tags: [],
         types: [NOUN, KANJI],
@@ -305,9 +305,9 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ろく',
+        jp: 'ろく',
         furi:['ろく'],
-        kanji: '六',
+        jp: '六',
         en: ['Six'],
         tags: [],
         types: [NOUN, KANJI],
@@ -315,9 +315,9 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'なな',
+        jp: 'なな',
         furi:['なな'],
-        kanji: '七',
+        jp: '七',
         en: ['Seven'],
         tags: [],
         types: [NOUN, KANJI],
@@ -325,9 +325,9 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'はち',
+        jp: 'はち',
         furi:['はち'],
-        kanji: '八',
+        jp: '八',
         en: ['Eight'],
         tags: [],
         types: [NOUN, KANJI],
@@ -335,9 +335,9 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'きゅう',
+        jp: 'きゅう',
         furi:['きゅう'],
-        kanji: '九',
+        jp: '九',
         en: ['Nine'],
         tags: [],
         types: [NOUN, KANJI],
@@ -345,9 +345,9 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'じゅう',
+        jp: 'じゅう',
         furi:['じゅう'],
-        kanji: '十',
+        jp: '十',
         en: ['Ten'],
         tags: [],
         types: [NOUN, KANJI],
@@ -355,7 +355,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'しろい',
+        jp: 'しろい',
         en: ['White'],
         tags: [COLOR],
         types: [NOUN],
@@ -363,7 +363,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'あかい',
+        jp: 'あかい',
         en: ['Red'],
         tags: [COLOR],
         types: [NOUN],
@@ -371,7 +371,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ぼうし',
+        jp: 'ぼうし',
         en: ['Hat(s)'],
         tags: [CLOTHES],
         types: [NOUN],
@@ -379,7 +379,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'えき',
+        jp: 'えき',
         en: ['Station(s)','Train station(s)'],
         tags: [TRANSPORT],
         types: [NOUN],
@@ -387,9 +387,9 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'にほん',
+        jp: 'にほん',
         furi: ['に','ほん'],
-        kanji: '日本',
+        jp: '日本',
         en: ['Japan'],
         tags: [COUNTRY,PLACE],
         types: [NOUN,KANJI],
@@ -397,9 +397,9 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'にほんじん',
+        jp: 'にほんじん',
         furi: ['に','ほん'],
-        kanji: '日本じん',
+        jp: '日本じん',
         en: ['Japanese nationality'],
         tags: [COUNTRY,PLACE,PERSON,NATIONALITY],
         types: [NOUN,KANJI],
@@ -407,7 +407,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'だいがく',
+        jp: 'だいがく',
         en: ['University','College'],
         tags: [SCHOOL],
         types: [NOUN],
@@ -415,7 +415,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'だいがくせい',
+        jp: 'だいがくせい',
         en: ['College student','College students'],
         tags: [SCHOOL],
         types: [NOUN],
@@ -423,7 +423,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'がくせい',
+        jp: 'がくせい',
         en: ['Student','Students'],
         tags: [SCHOOL],
         types: [NOUN],
@@ -431,7 +431,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ひと',
+        jp: 'ひと',
         en: ['Person', 'People'],
         tags: [],
         types: [NOUN],
@@ -439,7 +439,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'べんごし',
+        jp: 'べんごし',
         en: ['Lawyer', 'Lawyers'],
         tags: [OCCUPATION],
         types: [NOUN],
@@ -447,7 +447,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'せんせい',
+        jp: 'せんせい',
         en: ['Teacher', 'Teachers','Professor'],
         tags: [OCCUPATION],
         types: [NOUN],
@@ -455,7 +455,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'いしゃ',
+        jp: 'いしゃ',
         en: ['Doctor','Doctors'],
         tags: [OCCUPATION],
         types: [NOUN],
@@ -463,7 +463,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ちかてつ',
+        jp: 'ちかてつ',
         en: ['Subway'],
         tags: [TRANSPORT],
         types: [NOUN],
@@ -471,7 +471,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'かさ',
+        jp: 'かさ',
         en: ['Umbrella'],
         tags: [THING, RAIN],
         types: [NOUN],
@@ -479,7 +479,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {     
-        kana: 'きっぷ',    
+        jp: 'きっぷ',    
         en: ['Ticket'],
         tags: [TRANSPORT, THING],
         types: [NOUN],
@@ -487,7 +487,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'くつ',
+        jp: 'くつ',
         en: ['Shoe(s)'],
         tags: [CLOTHES,HOUSE],
         types: [NOUN],
@@ -495,7 +495,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ちず',
+        jp: 'ちず',
         en: ['Map'],
         tags: [TRANSPORT, THING],
         types: [NOUN],
@@ -503,7 +503,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'くうこう',
+        jp: 'くうこう',
         en: ['Airport'],
         tags: [TRANSPORT],
         types: [NOUN],
@@ -511,7 +511,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'みず',
+        jp: 'みず',
         en: ['Water', 'Waters'],
         tags: [DRINK],
         types: [NOUN],
@@ -519,7 +519,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'おちゃ',
+        jp: 'おちゃ',
         en: ['Green tea','Tea'],
         tags: [DRINK],
         types: [NOUN],
@@ -527,7 +527,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ごはん',
+        jp: 'ごはん',
         en: ['Rice','Meal','Meals'],
         tags: [FOOD],
         types: [NOUN],
@@ -535,7 +535,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'すし',
+        jp: 'すし',
         en: ['Sushi'],
         tags: [FOOD],
         types: [NOUN],

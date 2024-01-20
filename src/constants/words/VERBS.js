@@ -3,7 +3,7 @@ import { KANJI, VERB } from "../TYPES";
 
 const defaultWord = [
     {
-        kana: '',
+        jp: '',
         en: [],
         tags: [],
         types: [VERB],
@@ -14,7 +14,7 @@ const defaultWord = [
 
  const VERBS  = [
     {
-        kana: 'すんでいます',
+        jp: 'すんでいます',
         en: ['Lives'],
         tags: [LOCATION],
         types: [VERB],
@@ -22,7 +22,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ききます',
+        jp: 'ききます',
         en: ['Listens'],
         tags: [MUSIC],
         types: [VERB],
@@ -30,9 +30,9 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'みます',
+        jp: 'みます',
         furi: ['み'],
-        kanji: '見ます',
+        jp: '見ます',
         en: ['Watches'],
         tags: [],
         types: [VERB, KANJI],
@@ -40,7 +40,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'たべます',
+        jp: 'たべます',
         en: ['Eats'],
         tags: [FOOD],
         types: [VERB],
@@ -49,7 +49,7 @@ const defaultWord = [
     },
     {
         furi: ['よ'],
-        kanji: '読みます',
+        jp: '読みます',
         en: ['Reads'],
         tags: [LITERATURE],
         types: [VERB, KANJI],
@@ -57,7 +57,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'します',
+        jp: 'します',
         en: ['Plays'],
         tags: [LITERATURE],
         types: [VERB, KANJI],

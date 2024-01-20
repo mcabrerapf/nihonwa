@@ -1,0 +1,27 @@
+.word-modal-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  font-size: 3rem;
+
+  .kana-with-furi {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .kana {
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .furi {
+      display: flex;
+      align-items: flex-end;
+      font-size: 1.2rem;
+      height: 1.5rem;
+    }
+  }
+}

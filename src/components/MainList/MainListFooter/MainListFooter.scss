@@ -1,0 +1,14 @@
+.main-list-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  width: 100%;
+}
+
+.main-list-footer-buttons {
+  display: flex;
+  gap: 1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}

@@ -1,0 +1,33 @@
+.edit-view-meaning {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+
+  .edit-view-meaning-display {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    overflow: auto;
+    width: 100%;
+    height: 25rem;
+    font-size: 2rem;
+  }
+
+  .edit-view-meaning-display span {
+    cursor: pointer;
+  }
+
+  .edit-view-meaning-input {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    height: 3rem;
+  }
+
+  .edit-view-meaning-input input {
+    width: 100%;
+  }
+}

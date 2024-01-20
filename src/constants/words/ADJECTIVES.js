@@ -1,10 +1,9 @@
-import { CLOTHES, FOOD, SIZE, TIME } from "../TAGS";
-import { ADJECTIVE, KANJI } from "../TYPES";
+import { CLOTHES, FOOD, SIZE } from "../TAGS";
+import { ADJECTIVE } from "../TYPES";
 
 const defaultWord = [
     {
-        kana: '',
-        kanji: '',
+        jp:'',
         en: [],
         tags: [],
         types: [ADJECTIVE],
@@ -15,7 +14,7 @@ const defaultWord = [
 
  const ADJECTIVES  = [
     {
-        kana: 'おしゃれ',
+        jp: 'おしゃれ',
         en: ['Fashionable'],
         tags: [CLOTHES],
         types: [ADJECTIVE],
@@ -23,7 +22,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ときどき',
+        jp: 'ときどき',
         en: ['Sometimes'],
         tags: [],
         types: [ADJECTIVE],
@@ -31,7 +30,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'よく',
+        jp: 'よく',
         en: ['Often'],
         tags: [],
         types: [ADJECTIVE],
@@ -39,7 +38,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'あたまがいい',
+        jp: 'あたまがいい',
         en: ['Smart'],
         tags: [],
         types: [ADJECTIVE],
@@ -47,7 +46,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ゆうめい',
+        jp: 'ゆうめい',
         en: ['Famous'],
         tags: [],
         types: [ADJECTIVE],
@@ -55,7 +54,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'うるさい',
+        jp: 'うるさい',
         en: ['Noisy'],
         tags: [],
         types: [ADJECTIVE],
@@ -63,7 +62,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'いそがしい',
+        jp: 'いそがしい',
         en: ['Busy'],
         tags: [],
         types: [ADJECTIVE],
@@ -71,7 +70,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'とても',
+        jp: 'とても',
         en: ['Very'],
         tags: [],
         types: [ADJECTIVE],
@@ -79,7 +78,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'きれい',
+        jp: 'きれい',
         en: ['Clean'],
         tags: [],
         types: [ADJECTIVE],
@@ -87,7 +86,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'しずか',
+        jp: 'しずか',
         en: ['Quiet'],
         tags: [],
         types: [ADJECTIVE],
@@ -95,7 +94,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'にぎやか',
+        jp: 'にぎやか',
         en: ['Lively'],
         tags: [],
         types: [ADJECTIVE],
@@ -104,7 +103,7 @@ const defaultWord = [
     },
     //TODO
     {
-        kana: 'おもしろい',
+        jp: 'おもしろい',
         en: ['Fun','funny','interesting'],
         tags: [],
         types: [ADJECTIVE],
@@ -112,7 +111,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'あかるい',
+        jp: 'あかるい',
         en: ['Cheerfull'],
         tags: [],
         types: [ADJECTIVE],
@@ -120,7 +119,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'かわいい',
+        jp: 'かわいい',
         en: ['Cute', 'Cuter', 'Pretty'],
         tags: [],
         types: [ADJECTIVE],
@@ -128,7 +127,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'ちいさい',
+        jp: 'ちいさい',
         en: ['Small','Little'],
         tags: [SIZE],
         types: [ADJECTIVE],
@@ -136,7 +135,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'おおき',
+        jp: 'おおき',
         en: ['Big','Large'],
         tags: [SIZE],
         types: [ADJECTIVE],
@@ -144,7 +143,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'おいしい',
+        jp: 'おいしい',
         en: ['Tasty', 'Good','Delicious'],
         tags: [FOOD],
         types: [ADJECTIVE],
@@ -152,7 +151,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'かっこいい',
+        jp: 'かっこいい',
         en: ['Cool','Good-looking','Stylish'],
         tags: [],
         types: [ADJECTIVE],
@@ -160,7 +159,7 @@ const defaultWord = [
         difficulty: 1,
     },
     {
-        kana: 'やさしい',
+        jp: 'やさしい',
         en: ['Kind','Easy','Nice'],
         tags: [],
         types: [ADJECTIVE],
