@@ -18,3 +18,9 @@
     padding: 1rem 1rem 1rem 1rem;
   }
 }
+
+@media (max-height: 50rem) {
+  .modal-bg {
+    justify-content: flex-end!important;
+  }
+}
