@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import "./ModalWrapper.css";
+import "./ModalWrapper.scss";
 
 function ModalWrapper({ children, closeModal }) {
   const wrapperRef = useRef(null);

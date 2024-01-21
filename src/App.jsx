@@ -1,20 +1,19 @@
-import "./App.css";
+import "./App.scss";
 import { MainList } from "./components";
-// import { Amplify, AuthModeStrategyType } from "aws-amplify";
-// import awsExports from "./aws-exports";
-//AWS
-// Amplify.configure({
-//   ...awsExports,
-//   aws_appsync_authenticationType: "AMAZON_COGNITO_USER_POOLS",
-//   DataStore: {
-//     authModeStrategyType: AuthModeStrategyType.MULTI_AUTH,
-//   },
-// });
+import { Authenticator } from "@aws-amplify/ui-react";
+import { Amplify } from "aws-amplify";
+import awsExports from "./aws-exports";
+
+Amplify.configure(awsExports);
 
 const App = () => {
   return (
     <div className="app">
-      <MainList />
+      <Authenticator>
+        {({ signOut, user }) => (
+          <MainList />
+        )}
+      </Authenticator>
     </div>
   );
 };

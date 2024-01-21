@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import "./FiltersModal.css";
-import ModalWrapper from "../../ModalWrapper/ModalWrapper";
+import "./FiltersModal.scss";
+import ModalWrapper from "../../ModalWrapper";
 import TYPES from "../../../constants/TYPES";
 import TAGS from "../../../constants/TAGS";
+import Button from "../../Button";
 
 const FiltersModal = ({ closeModal, filters }) => {
   const [selectedFilters, setSelectedFilters] = useState(filters);
@@ -29,13 +30,14 @@ const FiltersModal = ({ closeModal, filters }) => {
           <div className="filters-options-label">
             <span>Types</span>
             {!!selectedFilters.types.length && (
-              <button
+              <Button
+                modifier={"ghost"}
                 onClick={() =>
                   setSelectedFilters({ ...selectedFilters, types: [] })
                 }
               >
                 X
-              </button>
+              </Button>
             )}
           </div>
           <div className="filters-options">
@@ -58,13 +60,14 @@ const FiltersModal = ({ closeModal, filters }) => {
           <div className="filters-options-label">
             <span>Tags</span>
             {!!selectedFilters.tags.length && (
-              <button
+              <Button
+                modifier={"ghost"}
                 onClick={() =>
                   setSelectedFilters({ ...selectedFilters, tags: [] })
                 }
               >
                 X
-              </button>
+              </Button>
             )}
           </div>
           <div className="filters-options">
@@ -74,19 +77,19 @@ const FiltersModal = ({ closeModal, filters }) => {
               );
 
               return (
-                <button
+                <Button
                   key={tag}
-                  className={`${!isSelected ? "disabled" : ""}`}
+                  isNotSelected={!isSelected}
                   onClick={() => updateFilters(tag, "tags")}
                 >
                   {tag}
-                </button>
+                </Button>
               );
             })}
           </div>
         </div>
         <div className="filters-modal-footer">
-          <button onClick={() => closeModal(selectedFilters)}>O</button>
+          <Button onClick={() => closeModal(selectedFilters)}>O</Button>
         </div>
       </div>
     </ModalWrapper>

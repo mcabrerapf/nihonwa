@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./TestModal.css";
-import ModalWrapper from "../../ModalWrapper/ModalWrapper";
+import "./TestModal.scss";
+import ModalWrapper from "../../ModalWrapper";
 import TestSetupContent from "./TestSetupContent";
 import TestProgressContent from "./TestProgressContent";
 import TestResultsContent from "./TestResultsContent";

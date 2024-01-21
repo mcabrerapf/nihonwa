@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./MainList.scss";
+import { generateClient } from "aws-amplify/api";
 import { SENTENCES, WORDS } from "../../constants";
 import { filterBy, sortBy } from "../../utils";
 import {
@@ -13,10 +14,13 @@ import {
 import MainListFooter from "./MainListFooter";
 import MainListHeader from "./MainListHeader";
 import MainListContent from "./MainListContent";
+import { GET_ALL_WORDS_QUERY } from "../../graphql/querys";
+import { CREATE_WORD } from "../../graphql/mutations";
 
 const FILTERS_INIT_VAL = { text: "", tags: [], types: [] };
 
 const MainList = () => {
+  const client = generateClient();
   const [mainList, setMainList] = useState([]);
   const [selectedList, setSelectedList] = useState("w");
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
@@ -31,6 +35,22 @@ const MainList = () => {
   const listLength = mainList.length;
 
   useEffect(() => {
+    const tt = async () => {
+      //TODO ADD INITIAL LOAD
+      // const result = await client.graphql({ query: GET_ALL_WORDS_QUERY });
+      // const result = await client.graphql({
+      //   query: CREATE_WORD,
+      //   variables: {
+      //     input: {
+      //       jp:"tokidoki",
+      //       en:['test'],
+      //       types:['kanji']
+      //     }
+      //   }
+      // });
+      // console.log({result})
+    };
+    // tt();
     const filteredList = filterBy(WORDS, filters);
     const orderedList = sortBy(filteredList, sort[0], sort[1]);
     setMainList(orderedList);

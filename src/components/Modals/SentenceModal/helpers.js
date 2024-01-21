@@ -1,13 +1,15 @@
 const initSentenceData = (data = {}) => {
   const initData = {
-    jpWords: data.jpWords || [],
-    en: data.en || "",
+    jpWords: data.jpWords || [""],
+    en: data.en || [],
     furi: data.furi || [],
     notes: data.notes || [],
     types: data.types || [],
     tags: data.tags || [],
+    hits: data.hits || 1,
+    misses: data.misses || 1,
+    difficulty: data.difficulty || 1,
   };
-
   if (data.id) initData.id = data.id;
   return initData;
 };
@@ -15,7 +17,7 @@ const initSentenceData = (data = {}) => {
 const checkIfCanProceed = (step, data) => {
   switch (step) {
     case 0:
-      return !!data.jpWords && !!data.jpWords.length;
+      return !!data.jpWords && !!data.jpWords.length && !!data.jpWords[0];
     case 1:
       return !!data.en && !!data.en.length;
     case 3:

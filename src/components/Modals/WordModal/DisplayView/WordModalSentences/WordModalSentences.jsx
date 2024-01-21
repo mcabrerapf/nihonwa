@@ -1,14 +1,19 @@
 import React from "react";
-import "./WordModalSentences.css";
+import "./WordModalSentences.scss";
+import { copyToClipboard } from "../../../../../utils";
 
 const WordModalSentences = ({ jpWord, wordSentences }) => {
   return (
     <div className="word-sentences">
       {wordSentences.map((sentence, i) => {
+        const { jpWords } = sentence;
         return (
           <div key={i} className="word-sentence">
-            <div className="word-sentence-jp">
-              {sentence.jpWords.map((word, i) => {
+            <div
+              className="word-sentence-jp"
+              onClick={() => copyToClipboard(jpWords.join(" "))}
+            >
+              {jpWords.map((word, i) => {
                 const wordClassName =
                   word === jpWord
                     ? "word-sentence-jp-word word-match"

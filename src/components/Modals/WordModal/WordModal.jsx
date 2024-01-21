@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./WordModal.scss";
-import ModalWrapper from "../../ModalWrapper/ModalWrapper";
-import WORDS from "../../../constants";
-import DisplayView from "./DisplayView/DisplayView";
+import ModalWrapper from "../../ModalWrapper";
+import DisplayView from "./DisplayView";
 import EditView from "./EditView";
+import WORDS from "../../../constants";
+
 
 const WordModal = ({ closeModal, wordIndex, words }) => {
   const isNewItem = wordIndex === -1;

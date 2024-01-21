@@ -1,0 +1,33 @@
+.edit-word {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+
+  .edit-word-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    font-size: 3rem;
+    width: 100%;
+    height: 20rem;
+  }
+
+  .edit-word-input {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .edit-word-input input {
+    width: 100%;
+  }
+
+  .edit-word-input-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+}

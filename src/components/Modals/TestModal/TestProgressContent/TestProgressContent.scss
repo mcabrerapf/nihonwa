@@ -1,0 +1,50 @@
+.test-modal-progress-content {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+
+  .current-question {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    .current-question-question {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      user-select: none;
+      font-size: 4rem;
+
+      .kana-with-furi {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .kana {
+          display: flex;
+          align-items: flex-end;
+        }
+
+        .furi {
+          display: flex;
+          align-items: flex-end;
+          font-size: 1.2rem;
+          height: 1.5rem;
+        }
+      }
+    }
+
+    .current-question-answer {
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      padding-top: 1rem;
+      font-size: 1.5rem;
+    }
+  }
+}

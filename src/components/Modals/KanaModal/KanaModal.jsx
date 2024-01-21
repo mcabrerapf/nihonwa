@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "./KanaModal.css";
-import ModalWrapper from "../../ModalWrapper/ModalWrapper";
+import "./KanaModal.scss";
+import ModalWrapper from "../../ModalWrapper";
+import Button from "../../Button";
 import { HIRAGANA, KATAKANA } from "../../../constants";
 
 const KanaModal = ({ closeModal, kanaMode }) => {
@@ -14,7 +15,7 @@ const KanaModal = ({ closeModal, kanaMode }) => {
     else setView("ka");
   };
   const kanaToUse = isInHiraganaMode ? HIRAGANA : KATAKANA;
-  const mainKana = kanaToUse[0]
+  const mainKana = kanaToUse[0];
 
   return (
     <ModalWrapper closeModal={closeModal}>
@@ -36,7 +37,7 @@ const KanaModal = ({ closeModal, kanaMode }) => {
           </div>
         </div>
         <div className="kana-modal-footer">
-          <button onClick={handleKanaToggle}>{kanaModalButtonText}</button>
+          <Button onClick={handleKanaToggle}>{kanaModalButtonText}</Button>
         </div>
       </div>
     </ModalWrapper>

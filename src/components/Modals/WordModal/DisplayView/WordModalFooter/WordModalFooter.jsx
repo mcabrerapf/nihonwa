@@ -1,5 +1,6 @@
 import React from "react";
 import "./WordModalFooter.scss";
+import Button from "../../../../Button";
 
 const WordModalFooter = ({
   isLastItem,
@@ -15,50 +16,48 @@ const WordModalFooter = ({
     <div className="word-modal-footer">
       <div className="arrow-container">
         {!isFirstItem && (
-          <button
-            className={`${isFirstItem ? "disabled" : ""}`}
+          <Button
+            isDisabled={isFirstItem}
             onClick={() => handleWordChange()}
-          >{`<`}</button>
+          >{`<`}</Button>
         )}
       </div>
       <div className="word-modal-view-buttons">
         {modalView !== "edit" && (
-          <button className="edit-button" onClick={() => setModalView("edit")}>
-            E
-          </button>
+          <Button onClick={() => setModalView("edit")}>E</Button>
         )}
-        <button
-          className={`${hasNotes ? "" : "disabled"}`}
+        <Button
+          isDisabled={!hasNotes}
           onClick={() => {
             hasNotes && setView("notes");
           }}
         >
           N
-        </button>
+        </Button>
 
-        <button
+        <Button
           onClick={() => {
             setView("general");
           }}
         >
           G
-        </button>
+        </Button>
 
-        <button
-          className={`${hasSentences ? "" : "disabled"}`}
+        <Button
+          isDisabled={!hasSentences}
           onClick={() => {
             hasSentences && setView("sentences");
           }}
         >
           S
-        </button>
+        </Button>
       </div>
       <div className="arrow-container">
         {!isLastItem && (
-          <button
-            className={`${isLastItem ? "disabled" : ""}`}
+          <Button
+            isDisabled={isLastItem}
             onClick={() => handleWordChange(true)}
-          >{`>`}</button>
+          >{`>`}</Button>
         )}
       </div>
     </div>

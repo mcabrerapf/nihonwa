@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import "./EditView.scss";
-import EditViewNotes from "./EditViewNotes";
-import EditViewTypes from "./EditViewTypes";
-import EditViewTags from "./EditViewTags";
+import {
+  EditMeanings,
+  EditNotes,
+  EditSentence,
+  EditTags,
+  EditTypes,
+} from "../../../EditComponents";
 import EditViewFooter from "./EditViewFooter";
 import DisplayView from "../DisplayView";
 import { initSentenceData } from "../helpers";
 import { EDIT_STEP_HEADERS } from "./constants";
-import EditViewSentence from "./EditViewSentence";
-import EditViewMeaning from "./EditViewMeaning";
 
 const EditView = ({ closeModal, sentenceData }) => {
   const [currentEditStep, setCurrentEditStep] = useState(0);
-  const [currentData, setCurrentData] = useState(initSentenceData(sentenceData));
+  const [currentData, setCurrentData] = useState(
+    initSentenceData(sentenceData)
+  );
   const headerText = EDIT_STEP_HEADERS[currentEditStep];
 
   return (
@@ -20,34 +24,31 @@ const EditView = ({ closeModal, sentenceData }) => {
       <div className="edit-view-header">{headerText}</div>
       <div className="edit-view-content">
         {currentEditStep === 0 && (
-          <EditViewSentence
+          <EditSentence
             currentData={currentData}
             setCurrentData={setCurrentData}
           />
         )}
         {currentEditStep === 1 && (
-          <EditViewMeaning
+          <EditMeanings
             currentData={currentData}
             setCurrentData={setCurrentData}
           />
         )}
         {currentEditStep === 2 && (
-          <EditViewNotes
+          <EditNotes
             currentData={currentData}
             setCurrentData={setCurrentData}
           />
         )}
         {currentEditStep === 3 && (
-          <EditViewTypes
+          <EditTypes
             currentData={currentData}
             setCurrentData={setCurrentData}
           />
         )}
         {currentEditStep === 4 && (
-          <EditViewTags
-            currentData={currentData}
-            setCurrentData={setCurrentData}
-          />
+          <EditTags currentData={currentData} setCurrentData={setCurrentData} />
         )}
         {currentEditStep === 5 && (
           <DisplayView

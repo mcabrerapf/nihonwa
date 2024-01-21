@@ -1,5 +1,6 @@
 import React from "react";
 import "./EditViewFooter.scss";
+import Button from "../../../../Button";
 import { checkIfCanProceed } from "../../helpers";
 
 const EditViewFooter = ({
@@ -11,24 +12,25 @@ const EditViewFooter = ({
   const isFirstStep = currentEditStep === 0;
   const isLastStep = currentEditStep === 6;
   const canProceed = checkIfCanProceed(currentEditStep, currentData);
+
   const handleChangeEditStep = (increase) => {
-    if (increase) canProceed && setCurrentEditStep(currentEditStep + 1);
-    if (!increase) !isFirstStep && setCurrentEditStep(currentEditStep - 1);
+    if (increase) setCurrentEditStep(currentEditStep + 1);
+    if (!increase) setCurrentEditStep(currentEditStep - 1);
   };
 
   return (
     <footer className="edit-view-footer">
-      <button
-        className={`${isFirstStep ? "disabled" : ""}`}
+      <Button
+        isDisabled={isFirstStep}
         onClick={() => handleChangeEditStep()}
-      >{`<`}</button>
+      >{`<`}</Button>
       {!isLastStep && (
-        <button
-          className={`${canProceed ? "" : "disabled"}`}
+        <Button
+          isDisabled={!canProceed}
           onClick={() => handleChangeEditStep(true)}
-        >{`>`}</button>
+        >{`>`}</Button>
       )}
-      {isLastStep && <button onClick={() => closeModal()}>O</button>}
+      {isLastStep && <Button onClick={() => closeModal()}>O</Button>}
     </footer>
   );
 };

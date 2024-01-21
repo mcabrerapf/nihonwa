@@ -1,5 +1,6 @@
 import React from "react";
-import "./TestSetupContent.css";
+import "./TestSetupContent.scss";
+import Button from "../../../Button";
 import { buildQuestions } from "../helpers";
 
 const TestSetupContent = ({
@@ -38,24 +39,24 @@ const TestSetupContent = ({
     <>
       <div className="test-modal-setup-content">
         <div className="question-limit">
-          <button
-            className={`${reachedMin ? "disabled" : ""}`}
+          <Button
+            isDisabled={reachedMin}
             onClick={() => handleQuestionLimitChange()}
           >
             -
-          </button>
+          </Button>
           <span>{questionLimit}</span>
-          <button
-            className={`${reachedMax ? "disabled" : ""}`}
+          <Button
+            isDisabled={reachedMax}
             onClick={() => handleQuestionLimitChange(true)}
           >
             +
-          </button>
+          </Button>
         </div>
       </div>
       <footer className="test-modal-footer">
-        <button onClick={closeModal}>X</button>
-        <button onClick={handleBuildQuestions}>O</button>
+        <Button onClick={closeModal}>X</Button>
+        <Button onClick={handleBuildQuestions}>O</Button>
       </footer>
     </>
   );

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import "./TestProgressContent.css";
+import "./TestProgressContent.scss";
+import Button from "../../../Button";
+import { getCharWithFuri } from "../../../../utils";
 
 const TestProgressContent = ({ questions, setQuestions, setView }) => {
   const [showAnswer, setShowAnswer] = useState(false);
@@ -23,7 +25,8 @@ const TestProgressContent = ({ questions, setQuestions, setView }) => {
     } else setCurrentQuestionIndex(currentQuestionIndex + 1);
   };
 
-  const { jp, en } = currentQuestion;
+  const { jp, en, furi } = currentQuestion;
+  const questionCharacters = getCharWithFuri(jp, furi, true);
 
   return (
     <>
@@ -34,7 +37,19 @@ const TestProgressContent = ({ questions, setQuestions, setView }) => {
             if (!showAnswer) setShowAnswer(true);
           }}
         >
-          <div className="current-question-question">{jp}</div>
+          <div className="current-question-question">
+            {questionCharacters.map((questionChar, i) => {
+              const [char, furiChar, enChar] = questionChar;
+
+              return (
+                <div className="kana-with-furi" key={`${char}-${i}`}>
+                  {showAnswer && <span className="furi">{furiChar}</span>}
+                  <span className="kana">{char}</span>
+                  {showAnswer && <span className="furi">{enChar}</span>}
+                </div>
+              );
+            })}
+          </div>
           {showAnswer && (
             <div className="current-question-answer">
               {en.map((answer) => (
@@ -47,8 +62,8 @@ const TestProgressContent = ({ questions, setQuestions, setView }) => {
       <footer className="test-modal-footer">
         {showAnswer && (
           <>
-            <button onClick={() => handleUpdateQuestion()}>X</button>
-            <button onClick={() => handleUpdateQuestion(true)}>O</button>
+            <Button onClick={() => handleUpdateQuestion()}>X</Button>
+            <Button onClick={() => handleUpdateQuestion(true)}>O</Button>
           </>
         )}
       </footer>

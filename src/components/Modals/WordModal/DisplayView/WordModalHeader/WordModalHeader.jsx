@@ -1,12 +1,12 @@
 import React from "react";
 import "./WordModalHeader.scss";
-import { getCharWithFuri } from "../../../../../utils";
+import { copyToClipboard, getCharWithFuri } from "../../../../../utils";
 
 const WordModalHeader = ({ text, furi }) => {
   const headerCharacters = getCharWithFuri(text, furi, true);
 
   const handleCharacterCopy = () => {
-    navigator.clipboard.writeText(text);
+    copyToClipboard(text);
   };
 
   return (

@@ -1,6 +1,7 @@
 import React from "react";
 import "./MainListFooter.scss";
 import { generateRandomNumber } from "../../../utils";
+import Button from "../../Button";
 
 const MainListFooter = ({
   listLength,
@@ -17,20 +18,20 @@ const MainListFooter = ({
   return (
     <footer className="main-list-footer">
       <div className="main-list-footer-buttons">
-        <button onClick={handleListChange}>{isWordsList ? "S" : "W"}</button>
+        <Button onClick={handleListChange}>{isWordsList ? "S" : "W"}</Button>
       </div>
       <div className="main-list-footer-buttons">
-        <button onClick={() => setSelectedItemIndex(-1)}>+</button>
+        <Button onClick={() => setSelectedItemIndex(-1)}>+</Button>
       </div>
       <div className="main-list-footer-buttons">
-        <button
+        <Button
           onClick={() => {
             setShowTestModal(true);
           }}
         >
           T
-        </button>
-        <button onClick={handleRandomItemClick}>R</button>
+        </Button>
+        <Button onClick={handleRandomItemClick}>R</Button>
       </div>
     </footer>
   );

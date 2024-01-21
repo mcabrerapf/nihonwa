@@ -1,0 +1,53 @@
+.filters-modal {
+  width: 30rem;
+
+  .filters-modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 2rem;
+    gap: 1rem;
+  }
+
+  .filters-options-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    font-size: 1.75rem;
+    font-weight: 600;
+    width: 100%;
+  }
+
+  .filters-options-label button {
+    position: fixed;
+    font-size: 1.5rem;
+    margin-left: 8rem;
+    margin-top: 0.3rem;
+  }
+
+  .filters-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+    gap: 1rem;
+  }
+
+  .filters-options button {
+    font-size: 1.5rem;
+  }
+
+  .filters-modal-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 4rem;
+    width: 100%;
+  }
+}

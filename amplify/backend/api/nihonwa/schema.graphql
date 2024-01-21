@@ -1,0 +1,19 @@
+type SentenceModel @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  jpWords: [String!]
+  en: String!
+  types: [String!]
+  tags: [String]
+  notes: [String]
+  furi: [String]
+}
+
+type WordModel @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  jp: String!
+  en: [String!]
+  types: [String!]
+  tags: [String]
+  furi: [String]
+  notes: [String]
+}

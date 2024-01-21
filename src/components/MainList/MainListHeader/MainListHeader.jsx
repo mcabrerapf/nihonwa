@@ -1,16 +1,17 @@
 import React from "react";
-import "./MainListHeader.css";
+import "./MainListHeader.scss";
+import Button from "../../Button";
 
 const FILTERS_INIT_VAL = { text: "", tags: [], types: [] };
 
 const MainListHeader = ({
   filters,
   listLength,
+  handleFiltersChange,
+  handleSearchTextChange,
+  setShowKanaModal,
   setShowSortModal,
   setShowFiltersModal,
-  handleFiltersChange,
-  setShowKanaModal,
-  handleSearchTextChange,
 }) => {
   const hasActiveFilters = !!filters.tags.length || !!filters.types.length;
 
@@ -18,29 +19,30 @@ const MainListHeader = ({
     <header className="main-list-header">
       <div className="main-list-header-main-content">
         <div className="main-list-filters-buttons">
-          <button onClick={() => setShowSortModal(true)}>S</button>
-          <button
-            className={`${hasActiveFilters ? "" : "disabled"}`}
+          <Button onClick={() => setShowSortModal(true)}>S</Button>
+          <Button
+            isNotSelected={!hasActiveFilters}
             onClick={() => setShowFiltersModal(true)}
           >
             F
-          </button>
+          </Button>
           {hasActiveFilters && (
-            <button
-              className="reset-filters-button"
+            <Button
+              modifier="reset-filters-button ghost"
               onClick={() => handleFiltersChange(FILTERS_INIT_VAL)}
             >
               X
-            </button>
+            </Button>
           )}
         </div>
         <div className="main-list-header-text">
+          {/* TODO CHANGE THIS HEADER TO BE DYNAMIC */}
           <span>言葉</span>
           <span className="main-list-count">{listLength}</span>
         </div>
         <div className="main-list-kana-buttons">
-          <button onClick={() => setShowKanaModal("hi")}>か</button>
-          <button onClick={() => setShowKanaModal("ka")}>カ</button>
+          <Button onClick={() => setShowKanaModal("hi")}>か</Button>
+          <Button onClick={() => setShowKanaModal("ka")}>カ</Button>
         </div>
       </div>
       <div className="main-list-search-input">
@@ -51,12 +53,12 @@ const MainListHeader = ({
           onChange={handleSearchTextChange}
         />
         {!!filters.text && (
-          <button
-            className="no-shadow"
+          <Button
+            modifier="ghost"
             onClick={() => handleSearchTextChange({ target: { value: "" } })}
           >
             X
-          </button>
+          </Button>
         )}
       </div>
     </header>

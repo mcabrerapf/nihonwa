@@ -1,5 +1,6 @@
 import React from "react";
-import "./TestResultsContent.css";
+import "./TestResultsContent.scss";
+import Button from "../../../Button";
 
 const TestResultsContent = ({ questions, setView, closeModal }) => {
   return (
@@ -20,8 +21,8 @@ const TestResultsContent = ({ questions, setView, closeModal }) => {
         </div>
       </div>
       <footer className="test-modal-footer">
-        <button onClick={() => setView("setup")}>R</button>
-        <button onClick={closeModal}>O</button>
+        <Button onClick={() => setView("setup")}>R</Button>
+        <Button onClick={closeModal}>O</Button>
       </footer>
     </>
   );

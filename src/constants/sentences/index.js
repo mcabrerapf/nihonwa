@@ -1,17 +1,27 @@
 const SENTENCES = [
   {
-    jpWords: ["わたし", "の", "あかい", "コート", "は", "どこ", "です", "か", "。"],
-    en: "Where is my red coat?",
+    jpWords: [
+      "わたし",
+      "の",
+      "あかい",
+      "コート",
+      "は",
+      "どこ",
+      "です",
+      "か",
+      "。",
+    ],
+    en: ["Where is my red coat?"],
     notes: [],
     types: [],
-    tags:[]
+    tags: [],
   },
   {
     jpWords: ["おもしろい", "えいが", "を", "見ます", "か", "。"],
-    en: "Do you watch funy movies?",
+    en: ["Do you watch funy movies?"],
     notes: [],
     types: [],
-    tags:[]
+    tags: [],
   },
   {
     jpWords: [
@@ -25,46 +35,55 @@ const SENTENCES = [
       "たべます",
       "。",
     ],
-    en: "Mr. Nakayama eats a sandwich at eleven o clock.",
+    en: ["Mr. Nakayama eats a sandwich at eleven o clock."],
     notes: [],
     types: [],
-    tags:[]
+    tags: [],
   },
   {
-    jpWords:['はい','、','よく','ジャズ','を','ききます','。'],
-    en:'Yes, I often listen to jazz.',
+    jpWords: ["はい", "、", "よく", "ジャズ", "を", "ききます", "。"],
+    en: ["Yes, I often listen to jazz."],
     notes: [],
     types: [],
-    tags:[]
+    tags: [],
   },
   {
-    jpWords:['なおみ','さん','は','ときどき','アニメ','を','見ます','。'],
-    en:'Naomi sometimes watches anime',
+    jpWords: [
+      "なおみ",
+      "さん",
+      "は",
+      "ときどき",
+      "アニメ",
+      "を",
+      "見ます",
+      "。",
+    ],
+    en: ["Naomi sometimes watches anime"],
     notes: [],
     types: [],
-    tags:[]
+    tags: [],
   },
   {
-    jpWords:['中山','さん','は','よく','やきゅう','を','します','。'],
-    en:'Ms. Nakayama often plays baseball',
+    jpWords: ["中山", "さん", "は", "よく", "やきゅう", "を", "します", "。"],
+    en: ["Ms. Nakayama often plays baseball"],
     notes: [],
     types: [],
-    tags:[]
+    tags: [],
   },
   {
-    jpWords:['これ','は','バスケットボール','じゃないです','。'],
-    en: `This isn't basketball.`,
+    jpWords: ["これ", "は", "バスケットボール", "じゃないです", "。"],
+    en: [`This isn't basketball.`],
     notes: [],
     types: [],
-    tags:[]
+    tags: [],
   },
   {
-    jpWords:['まいにち','おいしい','パン','を','たべます','。'],
-    en:'I eat tasty bread every day',
+    jpWords: ["まいにち", "おいしい", "パン", "を", "たべます", "。"],
+    en: ["I eat tasty bread every day"],
     notes: [],
     types: [],
-    tags:[]
-  }
+    tags: [],
+  },
 ];
 
 export default SENTENCES;

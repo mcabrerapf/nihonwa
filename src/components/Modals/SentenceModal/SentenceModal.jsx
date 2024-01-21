@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SentenceModal.scss";
-import ModalWrapper from "../../ModalWrapper/ModalWrapper";
+import ModalWrapper from "../../ModalWrapper";
 import DisplayView from "./DisplayView";
 import EditView from "./EditView";
 

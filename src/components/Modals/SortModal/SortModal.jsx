@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "./SortModal.css";
-import ModalWrapper from "../../ModalWrapper/ModalWrapper";
+import "./SortModal.scss";
+import ModalWrapper from "../../ModalWrapper";
+import Button from "../../Button";
 
 const SortModal = ({ closeModal, sort }) => {
   const [selectedSort, setSelectedSort] = useState(sort);
@@ -21,34 +22,32 @@ const SortModal = ({ closeModal, sort }) => {
       <div className="sort-modal">
         <div className="sort-modal-content">
           <div className="sort-options">
-            <button
-              className={`${selectedSortLanguage !== "en" ? "disabled" : ""}`}
+            <Button
+              isNotSelected={selectedSortLanguage !== "en"}
               onClick={() => updateSortLan("en")}
             >
               Abc
-            </button>
-            <button
-              className={`${selectedSortLanguage !== "jp" ? "disabled" : ""}`}
+            </Button>
+            <Button
+              isNotSelected={selectedSortLanguage !== "jp"}
               onClick={() => updateSortLan("jp")}
             >
               日本
-            </button>
+            </Button>
           </div>
           <div className="sort-options">
-            <button
-              className={`${selectedSortDirection !== "asc" ? "disabled" : ""}`}
+            <Button
+              isNotSelected={selectedSortDirection !== "asc"}
               onClick={() => updateSortDir("asc")}
             >
               Asc
-            </button>
-            <button
-              className={`${
-                selectedSortDirection !== "desc" ? "disabled" : ""
-              }`}
+            </Button>
+            <Button
+              isNotSelected={selectedSortDirection !== "desc"}
               onClick={() => updateSortDir("desc")}
             >
               Desc
-            </button>
+            </Button>
           </div>
         </div>
       </div>
