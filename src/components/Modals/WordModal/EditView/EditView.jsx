@@ -3,15 +3,14 @@ import "./EditView.scss";
 import {
   EditWord,
   EditWordFuri,
-  EditMeanings,
-  EditNotes,
-  EditTags,
-  EditTypes,
+  EditListString,
+  EditSelectOptions,
 } from "../../../EditComponents";
 import EditViewFooter from "./EditViewFooter";
 import DisplayView from "../DisplayView/DisplayView";
 import { EDIT_STEP_HEADERS } from "./constants";
 import { initWordData } from "../../../../utils";
+import { TAGS, TYPES } from "../../../../constants";
 
 const EditView = ({ closeModal, wordData, updateWordsList }) => {
   const [currentEditStep, setCurrentEditStep] = useState(0);
@@ -37,25 +36,34 @@ const EditView = ({ closeModal, wordData, updateWordsList }) => {
           />
         )}
         {currentEditStep === 2 && (
-          <EditMeanings
+          <EditListString
             currentData={currentData}
             setCurrentData={setCurrentData}
+            listKey={"en"}
           />
         )}
         {currentEditStep === 3 && (
-          <EditNotes
+          <EditListString
             currentData={currentData}
             setCurrentData={setCurrentData}
+            listKey={"notes"}
           />
         )}
         {currentEditStep === 4 && (
-          <EditTypes
+          <EditSelectOptions
             currentData={currentData}
             setCurrentData={setCurrentData}
+            optionKey={"types"}
+            options={TYPES}
           />
         )}
         {currentEditStep === 5 && (
-          <EditTags currentData={currentData} setCurrentData={setCurrentData} />
+          <EditSelectOptions
+            currentData={currentData}
+            setCurrentData={setCurrentData}
+            optionKey={"tags"}
+            options={TAGS}
+          />
         )}
         {currentEditStep === 6 && (
           <DisplayView

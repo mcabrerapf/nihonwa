@@ -1,17 +1,13 @@
-import EditMeanings from "./EditMeanings";
-import EditNotes from "./EditNotes";
+import EditListString from "./EditListString";
 import EditSentence from "./EditSentence";
-import EditTags from "./EditTags";
-import EditTypes from "./EditTypes";
+import EditSelectOptions from "./EditSelectOptions";
 import EditWord from "./EditWord";
 import EditWordFuri from "./EditWordFuri";
 
 export {
-  EditMeanings,
-  EditNotes,
+  EditListString,
   EditSentence,
-  EditTags,
-  EditTypes,
+  EditSelectOptions,
   EditWord,
   EditWordFuri,
 };

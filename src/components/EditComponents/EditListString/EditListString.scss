@@ -1,11 +1,11 @@
-.edit-notes {
+.edit-list-string {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
   width: 100%;
 
-  .edit-notes-display {
+  .edit-list-string-display {
     display: flex;
     flex-direction: column;
     user-select: none;
@@ -13,31 +13,28 @@
     width: 100%;
     height: 100%;
     margin-bottom: 1rem;
+    gap: 0.5rem;
   }
 
-  .edit-notes-meaning {
+  .edit-list-string-item {
     display: flex;
     gap: 1;
     align-items: center;
   }
 
-  .edit-notes-meaning span {
-    cursor: pointer;
-  }
-
-  .edit-notes-meaning button {
+  .edit-list-string-item button.delete-item-button {
     box-shadow: none;
     font-size: 1.2rem;
   }
 
-  .edit-notes-input {
+  .edit-list-string-input {
     display: flex;
     width: 100%;
     gap: 1rem;
     padding-bottom: 1rem;
   }
 
-  .edit-notes-input input {
+  .edit-list-string-input input {
     width: 100%;
   }
 
