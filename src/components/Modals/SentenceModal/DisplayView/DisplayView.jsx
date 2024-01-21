@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./DisplayView.scss";
 import SentenceModalFooter from "./SentenceModalFooter";
+import { copyToClipboard } from "../../../../utils";
 
 const DisplayView = ({
   isFirstItem,
@@ -17,9 +18,14 @@ const DisplayView = ({
     handleSentenceChange(forward);
   };
 
+  const handleCopySentence = () => {
+    const parsedSentence = jpWords.join("");
+    copyToClipboard(parsedSentence);
+  };
+
   return (
     <div className="sentence-display-view">
-      <header className="sentence-header">
+      <header className="sentence-header" onClick={() => handleCopySentence()}>
         {jpWords.map((word, i) => {
           return (
             <span
