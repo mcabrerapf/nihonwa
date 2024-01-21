@@ -6,11 +6,11 @@ const MainListRender = ({ mainList, setSelectedItemIndex }) => {
     <div className="main-list-content">
       <ul className="main-list">
         {mainList.map((listItem, i) => {
-          const { jp = "", jpWords = [] } = listItem;
+          const { jp = "", jpWords = [], id } = listItem;
           if (!jp && !jpWords.length) return null;
           return (
             <li
-              key={`${jp}-${i}`}
+              key={id}
               className="main-list-item"
               onClick={() => setSelectedItemIndex(i)}
             >

@@ -5,6 +5,7 @@ import Button from "../../Button";
 const FILTERS_INIT_VAL = { text: "", tags: [], types: [] };
 
 const MainListHeader = ({
+  isWordsList,
   filters,
   listLength,
   handleFiltersChange,
@@ -14,6 +15,7 @@ const MainListHeader = ({
   setShowFiltersModal,
 }) => {
   const hasActiveFilters = !!filters.tags.length || !!filters.types.length;
+  const headerText = isWordsList ? "言葉" : "文";
 
   return (
     <header className="main-list-header">
@@ -36,8 +38,7 @@ const MainListHeader = ({
           )}
         </div>
         <div className="main-list-header-text">
-          {/* TODO CHANGE THIS HEADER TO BE DYNAMIC */}
-          <span>言葉</span>
+          <span>{headerText}</span>
           <span className="main-list-count">{listLength}</span>
         </div>
         <div className="main-list-kana-buttons">

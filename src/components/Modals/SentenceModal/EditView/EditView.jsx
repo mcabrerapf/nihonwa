@@ -9,15 +9,20 @@ import {
 } from "../../../EditComponents";
 import EditViewFooter from "./EditViewFooter";
 import DisplayView from "../DisplayView";
-import { initSentenceData } from "../helpers";
 import { EDIT_STEP_HEADERS } from "./constants";
+import { initSentenceData } from "../../../../utils";
 
-const EditView = ({ closeModal, sentenceData }) => {
+const EditView = ({ closeModal, sentenceData, updateSentencesList }) => {
   const [currentEditStep, setCurrentEditStep] = useState(0);
   const [currentData, setCurrentData] = useState(
     initSentenceData(sentenceData)
   );
   const headerText = EDIT_STEP_HEADERS[currentEditStep];
+
+  const handleSave = () => {
+    updateSentencesList(currentData);
+    closeModal();
+  };
 
   return (
     <div className="sentence-modal-edit-view">
@@ -62,7 +67,7 @@ const EditView = ({ closeModal, sentenceData }) => {
       <EditViewFooter
         currentEditStep={currentEditStep}
         currentData={currentData}
-        closeModal={closeModal}
+        handleSave={handleSave}
         setCurrentEditStep={setCurrentEditStep}
       />
     </div>

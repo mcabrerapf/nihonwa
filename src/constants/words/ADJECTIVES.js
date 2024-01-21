@@ -101,7 +101,6 @@ const defaultWord = [
         notes: [],
         difficulty: 1,
     },
-    //TODO
     {
         jp: 'おもしろい',
         en: ['Fun','funny','interesting'],

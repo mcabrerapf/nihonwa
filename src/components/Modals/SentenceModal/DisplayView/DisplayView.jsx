@@ -6,8 +6,6 @@ const DisplayView = ({
   isFirstItem,
   isLastItem,
   handleSentenceChange,
-  modalView,
-  setModalView,
   sentenceData,
 }) => {
   const [view, setView] = useState("general");
@@ -37,8 +35,8 @@ const DisplayView = ({
         {view === "general" && (
           <div className="sentence-display-view-general">
             <div className="sentence-modal-sentence-meanings">
-              {en.map((meaning) => (
-                <span>- {meaning}</span>
+              {en.map((meaning, i) => (
+                <span key={i}>- {meaning}</span>
               ))}
             </div>
             {!!types.length && (
@@ -48,7 +46,7 @@ const DisplayView = ({
                 </span>
                 <div className="sentence-display-view-general-item-list">
                   {types.map((type) => (
-                    <span>{type}</span>
+                    <span key={type}>{type}</span>
                   ))}
                 </div>
               </div>
@@ -60,7 +58,7 @@ const DisplayView = ({
                 </span>
                 <div className="sentence-display-view-general-item-list">
                   {tags.map((tag) => (
-                    <span>{tag}</span>
+                    <span key={tag}>{tag}</span>
                   ))}
                 </div>
               </div>
@@ -83,8 +81,6 @@ const DisplayView = ({
         isFirstItem={isFirstItem}
         isLastItem={isLastItem}
         hasNotes={hasNotes}
-        modalView={modalView}
-        setModalView={setModalView}
         setView={setView}
         handleSentenceChange={handleSentenceChangeReset}
       />

@@ -7,7 +7,7 @@ const EditViewFooter = ({
   currentData,
   currentEditStep,
   setCurrentEditStep,
-  closeModal,
+  handleSave,
 }) => {
   const isFirstStep = currentEditStep === 0;
   const isLastStep = currentEditStep === 6;
@@ -30,7 +30,7 @@ const EditViewFooter = ({
           onClick={() => handleChangeEditStep(true)}
         >{`>`}</Button>
       )}
-      {isLastStep && <Button onClick={() => closeModal()}>O</Button>}
+      {isLastStep && <Button onClick={handleSave}>O</Button>}
     </footer>
   );
 };

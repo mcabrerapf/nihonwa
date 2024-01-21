@@ -4,11 +4,13 @@ import ModalWrapper from "../../ModalWrapper";
 import DisplayView from "./DisplayView";
 import EditView from "./EditView";
 import WORDS from "../../../constants";
+import Button from "../../Button";
+import { deleteWord } from "../../../Services";
 
-
-const WordModal = ({ closeModal, wordIndex, words }) => {
+const WordModal = ({ closeModal, wordIndex, words, updateWordsList }) => {
   const isNewItem = wordIndex === -1;
   const [selectedWordIndex, setSelectedWordIndex] = useState(wordIndex);
+  const [canDelete, setCanDelete] = useState(true);
   const [modalView, setModalView] = useState(isNewItem ? "edit" : "display");
   const listToUse = words || WORDS || [];
   const listLength = listToUse.length;
@@ -27,18 +29,33 @@ const WordModal = ({ closeModal, wordIndex, words }) => {
     }
   };
 
+  const handleDelete = async () => {
+    setCanDelete(false);
+    await deleteWord(wordData);
+    updateWordsList();
+    closeModal();
+  };
+
   return (
     <ModalWrapper closeModal={closeModal}>
       <div className="word-modal">
         {modalView === "display" && (
-          <DisplayView
-            isLastItem={isLastItem}
-            isFirstItem={isFirstItem}
-            wordData={wordData}
-            modalView={modalView}
-            setModalView={setModalView}
-            handleWordChange={handleWordChange}
-          />
+          <>
+            <div className="word-actions-buttons">
+              <Button isDisabled={!canDelete} onClick={handleDelete}>
+                D
+              </Button>
+              <Button onClick={() => setModalView("edit")}>E</Button>
+            </div>
+            <DisplayView
+              isLastItem={isLastItem}
+              isFirstItem={isFirstItem}
+              wordData={wordData}
+              modalView={modalView}
+              setModalView={setModalView}
+              handleWordChange={handleWordChange}
+            />
+          </>
         )}
         {modalView === "edit" && (
           <EditView
@@ -47,6 +64,7 @@ const WordModal = ({ closeModal, wordIndex, words }) => {
             wordData={wordData}
             closeModal={closeModal}
             handleWordChange={handleWordChange}
+            updateWordsList={updateWordsList}
           />
         )}
       </div>

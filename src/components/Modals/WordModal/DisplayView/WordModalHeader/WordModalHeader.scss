@@ -1,6 +1,7 @@
 .word-modal-header {
   display: flex;
   align-items: flex-end;
+  flex-wrap: wrap;
   justify-content: center;
   cursor: pointer;
   user-select: none;

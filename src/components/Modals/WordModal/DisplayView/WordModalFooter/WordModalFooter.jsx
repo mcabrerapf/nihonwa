@@ -7,8 +7,6 @@ const WordModalFooter = ({
   isFirstItem,
   hasNotes,
   hasSentences,
-  modalView,
-  setModalView,
   setView,
   handleWordChange,
 }) => {
@@ -23,9 +21,6 @@ const WordModalFooter = ({
         )}
       </div>
       <div className="word-modal-view-buttons">
-        {modalView !== "edit" && (
-          <Button onClick={() => setModalView("edit")}>E</Button>
-        )}
         <Button
           isDisabled={!hasNotes}
           onClick={() => {

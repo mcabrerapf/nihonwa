@@ -7,6 +7,8 @@ import getWordPronunciation from "./getWordPronunciation";
 import getWordSentences from "./getWordSentences";
 import hasFilterMatch from "./hasFilterMatch";
 import hasTextMatch from "./hasTextMatch";
+import initSentenceData from "./initSentenceData";
+import initWordData from "./initWordData";
 import kanaToEnglishChar from "./kanaToEnglishChar";
 import romajiToKana from "./romajiToKana";
 import sortBy from "./sortBy";
@@ -22,6 +24,8 @@ export {
   getWordSentences,
   hasTextMatch,
   hasFilterMatch,
+  initSentenceData,
+  initWordData,
   kanaToEnglishChar,
   sortBy,
 };

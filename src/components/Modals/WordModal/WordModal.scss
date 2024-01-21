@@ -1,4 +1,15 @@
 .word-modal {
   width: 30rem;
-}
 
+  .word-actions-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    button {
+      font-size: 1.2rem;
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+}

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./MainList.scss";
-import { generateClient } from "aws-amplify/api";
-import { SENTENCES, WORDS } from "../../constants";
 import { filterBy, sortBy } from "../../utils";
 import {
   FiltersModal,
@@ -14,48 +12,38 @@ import {
 import MainListFooter from "./MainListFooter";
 import MainListHeader from "./MainListHeader";
 import MainListContent from "./MainListContent";
-import { GET_ALL_WORDS_QUERY } from "../../graphql/querys";
-import { CREATE_WORD } from "../../graphql/mutations";
+import { FILTERS_INIT_VAL } from "./constants";
 
-const FILTERS_INIT_VAL = { text: "", tags: [], types: [] };
-
-const MainList = () => {
-  const client = generateClient();
+const MainList = ({
+  wordsList,
+  sentencesList,
+  updateWordsList,
+  updateSentencesList,
+}) => {
   const [mainList, setMainList] = useState([]);
   const [selectedList, setSelectedList] = useState("w");
+  const [sort, setSort] = useState(["jp", "desc"]);
+  const [filters, setFilters] = useState(FILTERS_INIT_VAL);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
   const [showKanaModal, setShowKanaModal] = useState(null);
   const [showSortModal, setShowSortModal] = useState(false);
   const [showTestModal, setShowTestModal] = useState(false);
   const [showFiltersModal, setShowFiltersModal] = useState(false);
-  const [sort, setSort] = useState(["jp", "desc"]);
-  const [filters, setFilters] = useState(FILTERS_INIT_VAL);
+
   const isWordsList = selectedList === "w";
-  const listToFilter = isWordsList ? WORDS : SENTENCES;
+  const listToFilter = isWordsList ? wordsList : sentencesList;
   const listLength = mainList.length;
 
   useEffect(() => {
-    const tt = async () => {
-      //TODO ADD INITIAL LOAD
-      // const result = await client.graphql({ query: GET_ALL_WORDS_QUERY });
-      // const result = await client.graphql({
-      //   query: CREATE_WORD,
-      //   variables: {
-      //     input: {
-      //       jp:"tokidoki",
-      //       en:['test'],
-      //       types:['kanji']
-      //     }
-      //   }
-      // });
-      // console.log({result})
-    };
-    // tt();
-    const filteredList = filterBy(WORDS, filters);
-    const orderedList = sortBy(filteredList, sort[0], sort[1]);
-    setMainList(orderedList);
+    async function initList() {
+      const filteredList = filterBy(listToFilter, filters);
+      const orderedList = sortBy(filteredList, sort[0], sort[1]);
+      setMainList(orderedList);
+    }
+
+    initList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [wordsList, sentencesList]);
 
   const handleSearchTextChange = (e) => {
     const filteredList = filterBy(listToFilter, {
@@ -77,14 +65,14 @@ const MainList = () => {
     setShowFiltersModal(false);
   };
 
-  const handleListChange = () => {
+  const handleListChange = async () => {
     if (isWordsList) {
-      const filteredList = filterBy(SENTENCES, filters);
+      const filteredList = filterBy(sentencesList, filters);
       const orderedList = sortBy(filteredList, sort[0], sort[1]);
       setMainList(orderedList);
       setSelectedList("s");
     } else {
-      const filteredList = filterBy(WORDS, filters);
+      const filteredList = filterBy(wordsList, filters);
       const orderedList = sortBy(filteredList, sort[0], sort[1]);
       setMainList(orderedList);
       setSelectedList("w");
@@ -101,6 +89,8 @@ const MainList = () => {
           sentenceIndex={selectedItemIndex}
           words={mainList}
           sentences={mainList}
+          updateWordsList={updateWordsList}
+          updateSentencesList={updateSentencesList}
         />
       )}
       {showKanaModal && (
@@ -129,6 +119,7 @@ const MainList = () => {
         <FiltersModal closeModal={handleFiltersChange} filters={filters} />
       )}
       <MainListHeader
+        isWordsList={isWordsList}
         filters={filters}
         listLength={listLength}
         handleSearchTextChange={handleSearchTextChange}

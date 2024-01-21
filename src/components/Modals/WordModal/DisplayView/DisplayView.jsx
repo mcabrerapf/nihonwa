@@ -11,8 +11,6 @@ const DisplayView = ({
   isLastItem,
   isFirstItem,
   wordData,
-  modalView,
-  setModalView,
   handleWordChange,
 }) => {
   const [view, setView] = useState("general");
@@ -46,10 +44,8 @@ const DisplayView = ({
         isFirstItem={isFirstItem}
         hasNotes={hasNotes}
         hasSentences={hasSentences}
-        modalView={modalView}
         handleWordChange={handleWordChangeReset}
         setView={setView}
-        setModalView={setModalView}
       />
     </div>
   );
