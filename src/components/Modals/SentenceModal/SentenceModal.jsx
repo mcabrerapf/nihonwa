@@ -42,10 +42,20 @@ const SentenceModal = ({
   return (
     <ModalWrapper closeModal={closeModal}>
       <div className="sentence-modal">
+        {modalView === "delete" && (
+          <div className="sentence-modal-delete-view">
+            <Button isDisabled={!canDelete} onClick={handleDelete}>
+              D
+            </Button>
+          </div>
+        )}
         {modalView === "display" && (
           <>
             <div className="sentence-actions-buttons">
-              <Button isDisabled={!canDelete} onClick={handleDelete}>
+              <Button
+                isDisabled={!canDelete}
+                onClick={() => setModalView("delete")}
+              >
                 D
               </Button>
               <Button onClick={() => setModalView("edit")}>E</Button>

@@ -12,4 +12,12 @@
       height: 2rem;
     }
   }
+
+  .sentence-modal-delete-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 15rem;
+  }
 }
