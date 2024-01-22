@@ -1,0 +1,20 @@
+.edit-view-footer {
+    width: 100%;
+    gap: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .edit-view-step-indicator {
+        display: flex;
+        font-size: 2rem;
+        align-items: center;
+
+        button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+        }
+    }
+}

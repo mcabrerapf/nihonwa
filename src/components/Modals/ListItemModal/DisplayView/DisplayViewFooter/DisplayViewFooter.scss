@@ -1,0 +1,20 @@
+.display-view-modal-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+
+  .arrow-container {
+    height: 3rem;
+    width: 3rem;
+  }
+
+  .display-view-modal-view-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+}
+

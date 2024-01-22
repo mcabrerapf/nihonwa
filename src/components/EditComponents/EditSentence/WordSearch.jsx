@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Button from "../../Button";
 import { hasTextMatch } from "../../../utils";
 
-const WordSearch = ({ handleSelectWord, wordsList }) => {
+const WordSearch = ({ handleSelectWord, allWords }) => {
   const [currentString, setCurrentString] = useState("");
 
-  const filteredWords = wordsList.filter((word) =>
+  const filteredWords = allWords.filter((word) =>
     hasTextMatch(currentString, word)
   );
 

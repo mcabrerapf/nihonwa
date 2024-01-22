@@ -27,10 +27,12 @@
     }
 
     span {
+      text-align: start;
       font-size: 1.7rem;
       min-width: 3rem;
       min-height: 3rem;
-      text-align: start;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
     }
 
     .selected-item {

@@ -1,0 +1,23 @@
+.list-item-modal {
+  width: 30rem;
+
+  .list-item-actions-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    button {
+      font-size: 1.2rem;
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  .list-item-modal-delete-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 15rem;
+  }
+}

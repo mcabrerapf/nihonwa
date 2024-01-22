@@ -11,14 +11,17 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
   const hasOnlyOneItem = listValues.length <= 1;
 
   useEffect(() => {
-    if (!listValues.length) setCurrentData({ ...currentData, [listKey]: [""] });
-    else {
+    if (!listValues.length) {
+      setCurrentData({ ...currentData, [listKey]: [""] });
+      setSelectedItemIndex(0);
+    } else {
       const updatedListValues = [...listValues, ""];
       setCurrentData({ ...currentData, [listKey]: updatedListValues });
       setSelectedItemIndex(updatedListValues.length - 1);
     }
+    setCurrentString("");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [listKey]);
 
   const handleUpdateItem = () => {
     if (!currentString) return;

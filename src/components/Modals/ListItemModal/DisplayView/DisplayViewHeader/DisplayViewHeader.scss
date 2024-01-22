@@ -1,0 +1,36 @@
+.display-view-modal-header {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+
+  .kana-with-furi {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .kana {
+      display: flex;
+      align-items: flex-end;
+      font-size: 3rem;
+    }
+    
+    .kana.s {
+      font-size: 2rem;
+    }
+
+    .kana.xs {
+      font-size: 1.75rem;
+    }
+
+    .furi {
+      display: flex;
+      align-items: flex-end;
+      font-size: 1.2rem;
+      height: 1.5rem;
+    }
+  }
+}

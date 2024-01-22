@@ -1,6 +1,6 @@
 const initSentenceData = (data = {}) => {
   const initData = {
-    jpWords: data.jpWords || [],
+    jpWords: data.jpWords || [''],
     en: data.en || [],
     furi: data.furi || [],
     notes: data.notes || [],

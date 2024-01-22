@@ -4,7 +4,12 @@ import Button from "../../Button";
 import { romajiToKana } from "../../../utils";
 import WordSearch from "./WordSearch";
 
-const EditSentence = ({ currentData, setCurrentData, wordsList }) => {
+const EditSentence = ({
+  currentData,
+  setCurrentData,
+  allWords,
+  itemAlreadyExists,
+}) => {
   const inputRef = useRef(null);
   const { jpWords } = currentData;
   const [currentString, setCurrentString] = useState(jpWords.join(""));
@@ -36,8 +41,9 @@ const EditSentence = ({ currentData, setCurrentData, wordsList }) => {
     handleParseWord(kana);
   };
 
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
       handleParseWord();
     }
   };
@@ -52,11 +58,18 @@ const EditSentence = ({ currentData, setCurrentData, wordsList }) => {
   return (
     <>
       {view === "words" && (
-        <WordSearch handleSelectWord={handleSelectWord} wordsList={wordsList} />
+        <WordSearch handleSelectWord={handleSelectWord} allWords={allWords} />
       )}
       {view === "sentence" && (
         <div className="edit-sentence">
-          <div className="edit-sentence-display">{jpWords.join("")}</div>
+          <div className="edit-sentence-display">
+            <span>{jpWords.join("")}</span>
+            {itemAlreadyExists && (
+              <span className="edit-sentence-error-message">
+                Sentence already exists
+              </span>
+            )}
+          </div>
           <div className="edit-sentence-input">
             <Button
               onClick={() => {

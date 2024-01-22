@@ -4,10 +4,9 @@ import { filterBy, sortBy } from "../../utils";
 import {
   FiltersModal,
   KanaModal,
-  SentenceModal,
+  ListItemModal,
   SortModal,
   TestModal,
-  WordModal,
 } from "../Modals";
 import MainListFooter from "./MainListFooter";
 import MainListHeader from "./MainListHeader";
@@ -79,21 +78,20 @@ const MainList = ({
     }
   };
 
-  const ListModal = isWordsList ? WordModal : SentenceModal;
+  const listItemType = selectedList === "w" ? "word" : "sentence";
 
   return (
     <div className="main-list-container">
       {selectedItemIndex !== null && (
-        <ListModal
-          closeModal={() => setSelectedItemIndex(null)}
-          wordIndex={selectedItemIndex}
-          sentenceIndex={selectedItemIndex}
-          words={mainList}
-          sentences={mainList}
+        <ListItemModal
+          listItemType={listItemType}
+          listItemIndex={selectedItemIndex}
+          listData={mainList}
+          allWords={wordsList}
           allSentences={sentencesList}
           updateWordsList={updateWordsList}
           updateSentencesList={updateSentencesList}
-          wordsList={wordsList}
+          closeModal={() => setSelectedItemIndex(null)}
         />
       )}
       {showKanaModal && (

@@ -3,7 +3,7 @@ import "./EditWord.scss";
 import Button from "../../Button";
 import { romajiToKana } from "../../../utils";
 
-const EditWord = ({ currentData, setCurrentData }) => {
+const EditWord = ({ currentData, setCurrentData, itemAlreadyExists }) => {
   const [currentString, setCurrentString] = useState(currentData.jp);
   const [selectedKana, setSelectedKana] = useState("hi");
   const { jp } = currentData;
@@ -30,6 +30,9 @@ const EditWord = ({ currentData, setCurrentData }) => {
     <div className="edit-word">
       <div className="edit-word-display">
         <span>{jp}</span>
+        {itemAlreadyExists && (
+          <span className="edit-word-error-message">Word already exists</span>
+        )}
       </div>
       <div className="edit-word-input">
         <input

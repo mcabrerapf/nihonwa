@@ -7,14 +7,23 @@
 
   .edit-sentence-display {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     user-select: none;
-    flex-wrap: wrap;
-    overflow-y: auto;
-    width: 95%;
-    font-size: 3rem;
     max-height: 30rem;
     gap: 1rem;
+
+    span {
+      flex-wrap: wrap;
+      width: 95%;
+      font-size: 3rem;
+    }
+
+    .edit-sentence-error-message {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-decoration: underline;
+    }
   }
 
   .edit-sentence-input {
