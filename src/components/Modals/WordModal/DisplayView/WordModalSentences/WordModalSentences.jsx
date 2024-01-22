@@ -14,16 +14,7 @@ const WordModalSentences = ({ jpWord, wordSentences }) => {
               onClick={() => copyToClipboard(jpWords.join(" "))}
             >
               {jpWords.map((word, i) => {
-                const wordClassName =
-                  word === jpWord
-                    ? "word-sentence-jp-word word-match"
-                    : "word-sentence-jp-word";
-
-                return (
-                  <span key={`${word}-${i}`} className={wordClassName}>
-                    {word}
-                  </span>
-                );
+                return <span key={`${word}-${i}`}>{word}</span>;
               })}
             </div>
             <span>{sentence.en}</span>

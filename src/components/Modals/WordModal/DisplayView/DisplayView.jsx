@@ -11,11 +11,12 @@ const DisplayView = ({
   isLastItem,
   isFirstItem,
   wordData,
+  allSentences,
   handleWordChange,
 }) => {
   const [view, setView] = useState("general");
   const { jp, furi, en, tags, types, notes } = wordData;
-  const wordSentences = getWordSentences(jp);
+  const wordSentences = getWordSentences(jp, allSentences);
   const hasSentences = wordSentences && wordSentences.length;
   const hasNotes = notes && !!notes.length;
 
@@ -26,10 +27,7 @@ const DisplayView = ({
 
   return (
     <div className="word-modal-display-view">
-      <WordModalHeader
-        text={jp}
-        furi={furi}
-      />
+      <WordModalHeader text={jp} furi={furi} />
       <div className="word-modal-content">
         {view === "general" && (
           <WordModalGeneral tags={tags} types={types} en={en} />

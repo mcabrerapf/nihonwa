@@ -3,16 +3,21 @@ import "./WordModal.scss";
 import ModalWrapper from "../../ModalWrapper";
 import DisplayView from "./DisplayView";
 import EditView from "./EditView";
-import WORDS from "../../../constants";
 import Button from "../../Button";
 import { deleteWord } from "../../../Services";
 
-const WordModal = ({ closeModal, wordIndex, words, updateWordsList }) => {
+const WordModal = ({
+  closeModal,
+  wordIndex,
+  words,
+  allSentences,
+  updateWordsList,
+}) => {
   const isNewItem = wordIndex === -1;
   const [selectedWordIndex, setSelectedWordIndex] = useState(wordIndex);
   const [canDelete, setCanDelete] = useState(true);
   const [modalView, setModalView] = useState(isNewItem ? "edit" : "display");
-  const listToUse = words || WORDS || [];
+  const listToUse = words || [];
   const listLength = listToUse.length;
   const wordData = listToUse[selectedWordIndex] || {};
   const isLastItem = selectedWordIndex + 1 >= listLength;
@@ -60,6 +65,7 @@ const WordModal = ({ closeModal, wordIndex, words, updateWordsList }) => {
             <DisplayView
               isLastItem={isLastItem}
               isFirstItem={isFirstItem}
+              allSentences={allSentences}
               wordData={wordData}
               modalView={modalView}
               setModalView={setModalView}

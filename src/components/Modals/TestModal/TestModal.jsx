@@ -8,7 +8,7 @@ import TestResultsContent from "./TestResultsContent";
 const TEST_SETUP_INIT_STATE = {
   questionLimit: 5,
 };
-const TestModal = ({ closeModal }) => {
+const TestModal = ({ closeModal, wordsList, sentencesList }) => {
   const [view, setView] = useState("setup");
   const [questions, setQuestions] = useState([]);
   const [testSetupOptions, setTestSetupOptions] = useState(
@@ -26,6 +26,8 @@ const TestModal = ({ closeModal }) => {
         {view === "setup" && (
           <TestSetupContent
             testSetupOptions={testSetupOptions}
+            wordsList={wordsList}
+            sentencesList={sentencesList}
             setTestSetupOptions={setTestSetupOptions}
             handleTestStart={handleTestStart}
             closeModal={closeModal}

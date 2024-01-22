@@ -1,10 +1,10 @@
-import { SENTENCES } from "../constants";
-
-const getWordSentences = (jpWord) => {
-  return SENTENCES.map((sentence) => {
-    if (!sentence.jpWords.find((word) => word === jpWord)) return null;
-    return sentence;
-  }).filter(Boolean);
+const getWordSentences = (jpWord, sentences) => {  
+  return sentences
+    .filter((sentence) => {
+      const parsedWords = sentence.jpWords.join("");
+      return parsedWords.indexOf(jpWord.toLowerCase()) !== -1
+      
+    })
 };
 
 export default getWordSentences;

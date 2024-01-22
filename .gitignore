@@ -22,6 +22,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+src/constants/SENTENCES_MOCK.js
+src/constants/WORDS_MOCK.js
+
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*

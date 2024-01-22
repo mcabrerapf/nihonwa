@@ -5,6 +5,8 @@ import { buildQuestions } from "../helpers";
 
 const TestSetupContent = ({
   testSetupOptions,
+  wordsList,
+  sentencesList,
   setTestSetupOptions,
   handleTestStart,
   closeModal,
@@ -14,7 +16,7 @@ const TestSetupContent = ({
   const reachedMin = questionLimit <= 5;
 
   const handleBuildQuestions = () => {
-    const builtQuestions = buildQuestions(testSetupOptions);
+    const builtQuestions = buildQuestions(testSetupOptions, wordsList);
     handleTestStart(builtQuestions);
   };
 

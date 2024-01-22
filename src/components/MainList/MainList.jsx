@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./MainList.scss";
-import { filterBy, sortBy } from "../../utils";
+import { copyToClipboard, filterBy, sortBy } from "../../utils";
 import {
   FiltersModal,
   KanaModal,
@@ -66,6 +66,7 @@ const MainList = ({
   };
 
   const handleListChange = async () => {
+    copyToClipboard(JSON.stringify(sentencesList));
     if (isWordsList) {
       const filteredList = filterBy(sentencesList, filters);
       const orderedList = sortBy(filteredList, sort[0], sort[1]);
@@ -89,6 +90,7 @@ const MainList = ({
           sentenceIndex={selectedItemIndex}
           words={mainList}
           sentences={mainList}
+          allSentences={sentencesList}
           updateWordsList={updateWordsList}
           updateSentencesList={updateSentencesList}
           wordsList={wordsList}
@@ -101,7 +103,11 @@ const MainList = ({
         />
       )}
       {showTestModal && (
-        <TestModal closeModal={() => setShowTestModal(false)} />
+        <TestModal
+          closeModal={() => setShowTestModal(false)}
+          wordsList={wordsList}
+          sentencesList={sentencesList}
+        />
       )}
       {showSortModal && (
         <SortModal
