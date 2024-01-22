@@ -3,6 +3,16 @@
   width: 100%;
 }
 
+input,
+textarea,
+button,
+select,
+li,
+div,
+span a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 li {
   list-style: none;
   padding: 0;
@@ -16,4 +26,3 @@ ul {
   padding: 0;
   margin: 0;
 }
-
