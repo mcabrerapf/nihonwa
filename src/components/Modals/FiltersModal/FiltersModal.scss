@@ -4,9 +4,6 @@
   .filters-modal-content {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    align-items: center;
     height: 100%;
     font-size: 2rem;
     gap: 1rem;
@@ -32,7 +29,6 @@
   .filters-options {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
     padding-top: 0.5rem;
     padding-bottom: 1rem;
