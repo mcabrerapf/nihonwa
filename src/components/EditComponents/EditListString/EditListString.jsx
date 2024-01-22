@@ -7,8 +7,7 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
   const [currentString, setCurrentString] = useState("");
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
   const { [listKey]: listValues } = currentData;
-  const hasLastItemEmpty = listValues[listValues.length - 1];
-  const hasOnlyOneItem = listValues.length <= 1;
+  const hasLastItemEmpty = listValues[listValues.length - 1] !==  '';
 
   useEffect(() => {
     if (!listValues.length) {
@@ -73,7 +72,6 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
             <div key={`${value}-${i}`} className="edit-list-string-item">
               <Button
                 modifier="delete-item-button"
-                isDisabled={hasOnlyOneItem || (i === 0 && !listValues[1])}
                 onClick={() => handleDelete(i)}
               >
                 X
