@@ -2,12 +2,13 @@ import getWordPronunciation from "./getWordPronunciation";
 
 const hasTextMatch = (text, item) => {
   if (!text) return true;
-  const { en, jp, jpWords, notes, tags, types } = item;
+  const { jp, jpWords, en, notes, tags, types } = item;
   const parsedJpWords = jpWords ? jpWords.join("") : "";
   const parsedNotes = notes.join("");
+  const parsedMeanings = en ? en.join("") : "";
   const parsedTags = tags.join("");
   const parsedTypes = types.join("");
-  const parsedMeanings = en ? en.join("") : "";
+  const parsedPronunciation = getWordPronunciation(item);
 
   const hasJpMatch = !!jp && jp.indexOf(text.toLowerCase()) !== -1;
   const hasSentenceMatch = parsedJpWords.indexOf(text.toLowerCase()) !== -1;
@@ -16,15 +17,17 @@ const hasTextMatch = (text, item) => {
   const hasNotesMatch = parsedNotes.indexOf(text.toLowerCase()) !== -1;
   const hasTypesMatch = parsedTypes.indexOf(text.toLowerCase()) !== -1;
   const hasTagsMatch = parsedTags.indexOf(text.toLowerCase()) !== -1;
+  const hasPronunciationMarch =
+    parsedPronunciation.indexOf(text.toLowerCase()) !== -1;
 
   return (
-    hasSentenceMatch ||
     hasJpMatch ||
+    hasSentenceMatch ||
     hasMeaningMatch ||
+    hasPronunciationMarch ||
     hasNotesMatch ||
     hasTagsMatch ||
-    hasTypesMatch ||
-    getWordPronunciation(item).indexOf(text.toLowerCase()) !== -1
+    hasTypesMatch
   );
 };
 

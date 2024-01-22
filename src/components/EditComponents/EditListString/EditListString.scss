@@ -20,11 +20,22 @@
     display: flex;
     gap: 1;
     align-items: center;
-  }
 
-  .edit-list-string-item button.delete-item-button {
-    box-shadow: none;
-    font-size: 1.2rem;
+    button.delete-item-button {
+      box-shadow: none;
+      font-size: 1.2rem;
+    }
+
+    span {
+      font-size: 1.7rem;
+      min-width: 3rem;
+      min-height: 3rem;
+      text-align: center;
+    }
+
+    .selected-item {
+      box-shadow: 0rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+    }
   }
 
   .edit-list-string-input {

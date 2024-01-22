@@ -1,14 +1,15 @@
 import kanaToEnglishChar from "./kanaToEnglishChar";
 
-const getWordPronunciation = ({ jp, furi = [] }) => {
-  if (!jp) return "";
-
-  return jp
+const getWordPronunciation = ({ jp, jpWords, furi = [] }) => {
+  if (!jp && !jpWords) return "";
+  const stringToCheck = jp || jpWords.join("");
+  
+  return stringToCheck
     .split("")
     .map((kana, i) => {
       const currentKana = furi[i] || kana;
-      const nextKana = furi[i + 1] || jp[i + 1];
-      const prevKana = furi[i - 1] || jp[i - 1];
+      const nextKana = furi[i + 1] || stringToCheck[i + 1];
+      const prevKana = furi[i - 1] || stringToCheck[i - 1];
       return kanaToEnglishChar(currentKana, nextKana, prevKana);
     })
     .flat()

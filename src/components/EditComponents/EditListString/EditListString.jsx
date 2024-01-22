@@ -13,7 +13,9 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
   useEffect(() => {
     if (!listValues.length) setCurrentData({ ...currentData, [listKey]: [""] });
     else {
-      handleAddItem();
+      const updatedListValues = [...listValues, ""];
+      setCurrentData({ ...currentData, [listKey]: updatedListValues });
+      setSelectedItemIndex(updatedListValues.length - 1);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -31,12 +33,16 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
     const updatedListValues = [...listValues, ""];
     setCurrentData({ ...currentData, [listKey]: updatedListValues });
     setSelectedItemIndex(updatedListValues.length - 1);
+    setCurrentString("");
     if (inputRef.current) inputRef.current.focus();
   };
 
   const handleDelete = (valueIndex) => {
     const updatedListValues = listValues.filter((_, i) => i !== valueIndex);
-    setCurrentData({ ...currentData, [listKey]: updatedListValues.filter(Boolean) });
+    setCurrentData({
+      ...currentData,
+      [listKey]: updatedListValues.filter(Boolean),
+    });
   };
 
   const handleKeyPress = (event) => {
@@ -70,12 +76,12 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
                 X
               </Button>
 
-              <Button
-                modifier={`${isItemSelected ? "" : " ghost"}`}
+              <span
+                className={`${isItemSelected ? "selected-item" : ""}`}
                 onClick={() => handleItemClick(i, value)}
               >
                 {value}
-              </Button>
+              </span>
             </div>
           );
         })}

@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import "./EditSentence.scss";
 import Button from "../../Button";
 import { romajiToKana } from "../../../utils";
+import WordSearch from "./WordSearch";
 
 const EditSentence = ({ currentData, setCurrentData, wordsList }) => {
   const inputRef = useRef(null);
@@ -18,6 +19,10 @@ const EditSentence = ({ currentData, setCurrentData, wordsList }) => {
   };
 
   const handleSelectWord = (word) => {
+    if (!word) {
+      setView("sentence");
+      return;
+    }
     const firstPart = currentString.slice(0, cursorPosition);
     const secondPart = currentString.slice(cursorPosition);
     const resultString = firstPart + word + secondPart;
@@ -44,51 +49,47 @@ const EditSentence = ({ currentData, setCurrentData, wordsList }) => {
     }
   };
 
-  const words = wordsList.map(({ jp }) => jp);
-
   return (
-    <div className="edit-sentence">
-      <div className="edit-sentence-display">
-        {view === "sentence" && jpWords.join("")}
-        {view === "words" &&
-          words.map((word) => (
-            <Button key={word} onClick={() => handleSelectWord(word)}>
-              {word}
+    <>
+      {view === "words" && (
+        <WordSearch handleSelectWord={handleSelectWord} wordsList={wordsList} />
+      )}
+      {view === "sentence" && (
+        <div className="edit-sentence">
+          <div className="edit-sentence-display">{jpWords.join("")}</div>
+          <div className="edit-sentence-input">
+            <Button
+              onClick={() => {
+                getCursorPosition();
+                setView("words");
+              }}
+            >
+              W
             </Button>
-          ))}
-      </div>
-      <div className="edit-sentence-input">
-        <Button
-          isNotSelected={selectedKana !== "hi"}
-          onClick={() => {
-            getCursorPosition();
-            view === "words" ? setView("sentence") : setView("words");
-          }}
-        >
-          {view === "words" ? "S" : "W"}
-        </Button>
-        <input
-          ref={inputRef}
-          onChange={(e) => setCurrentString(e.target.value)}
-          onKeyDown={handleKeyPress}
-          value={currentString}
-        />
-        <div className="edit-sentence-input-buttons">
-          <Button
-            isNotSelected={selectedKana !== "hi"}
-            onClick={() => handleKanaClick("hi")}
-          >
-            か
-          </Button>
-          <Button
-            isNotSelected={selectedKana !== "ka"}
-            onClick={() => handleKanaClick("ka")}
-          >
-            カ
-          </Button>
+            <textarea
+              ref={inputRef}
+              onChange={(e) => setCurrentString(e.target.value)}
+              onKeyDown={handleKeyPress}
+              value={currentString}
+            />
+            <div className="edit-sentence-input-buttons">
+              <Button
+                isNotSelected={selectedKana !== "hi"}
+                onClick={() => handleKanaClick("hi")}
+              >
+                か
+              </Button>
+              <Button
+                isNotSelected={selectedKana !== "ka"}
+                onClick={() => handleKanaClick("ka")}
+              >
+                カ
+              </Button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
