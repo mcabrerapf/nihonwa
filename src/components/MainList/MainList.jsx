@@ -91,6 +91,7 @@ const MainList = ({
           sentences={mainList}
           updateWordsList={updateWordsList}
           updateSentencesList={updateSentencesList}
+          wordsList={wordsList}
         />
       )}
       {showKanaModal && (

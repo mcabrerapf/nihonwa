@@ -5,6 +5,7 @@ import { checkIfCanProceed } from "../../helpers";
 
 const EditViewFooter = ({
   currentData,
+  setCurrentData,
   currentEditStep,
   setCurrentEditStep,
   handleSave,
@@ -14,6 +15,14 @@ const EditViewFooter = ({
   const canProceed = checkIfCanProceed(currentEditStep, currentData);
 
   const handleChangeEditStep = (increase) => {
+    const updatedData = {};
+    Object.keys(currentData).forEach((key) => {
+      const currentValue = currentData[key];
+      if (Array.isArray(currentValue)) {
+        updatedData[key] = currentValue.filter(Boolean);
+      } else updatedData[key] = currentValue;
+    });
+    setCurrentData(updatedData);
     if (increase) setCurrentEditStep(currentEditStep + 1);
     if (!increase) setCurrentEditStep(currentEditStep - 1);
   };

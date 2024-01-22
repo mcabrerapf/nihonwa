@@ -10,6 +10,7 @@ const SentenceModal = ({
   closeModal,
   sentenceIndex,
   sentences,
+  wordsList,
   updateSentencesList,
 }) => {
   const isNewItem = sentenceIndex === -1;
@@ -75,6 +76,7 @@ const SentenceModal = ({
             sentenceData={currentSentence}
             closeModal={closeModal}
             updateSentencesList={updateSentencesList}
+            wordsList={wordsList}
           />
         )}
       </div>

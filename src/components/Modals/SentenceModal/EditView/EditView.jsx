@@ -11,7 +11,7 @@ import { EDIT_STEP_HEADERS } from "./constants";
 import { initSentenceData } from "../../../../utils";
 import { TAGS, TYPES } from "../../../../constants";
 
-const EditView = ({ closeModal, sentenceData, updateSentencesList }) => {
+const EditView = ({ closeModal, sentenceData, updateSentencesList,wordsList }) => {
   const [currentEditStep, setCurrentEditStep] = useState(0);
   const [currentData, setCurrentData] = useState(
     initSentenceData(sentenceData)
@@ -31,6 +31,7 @@ const EditView = ({ closeModal, sentenceData, updateSentencesList }) => {
           <EditSentence
             currentData={currentData}
             setCurrentData={setCurrentData}
+            wordsList={wordsList}
           />
         )}
         {currentEditStep === 1 && (
@@ -75,6 +76,7 @@ const EditView = ({ closeModal, sentenceData, updateSentencesList }) => {
       <EditViewFooter
         currentEditStep={currentEditStep}
         currentData={currentData}
+        setCurrentData={setCurrentData}
         handleSave={handleSave}
         setCurrentEditStep={setCurrentEditStep}
       />

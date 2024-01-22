@@ -3,7 +3,7 @@ const checkIfCanProceed = (step, data) => {
     case 0:
       return !!data.jpWords && !!data.jpWords.length && !!data.jpWords[0];
     case 1:
-      return !!data.en && !!data.en.length;
+      return !!data.en && !!data.en.length && !!data.en[0];
     case 3:
       return !!data.types && !!data.types.length;
     default:

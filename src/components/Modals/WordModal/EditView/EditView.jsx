@@ -78,6 +78,7 @@ const EditView = ({ closeModal, wordData, updateWordsList }) => {
       <EditViewFooter
         currentEditStep={currentEditStep}
         currentData={currentData}
+        setCurrentData={setCurrentData}
         handleSave={handleSave}
         setCurrentEditStep={setCurrentEditStep}
       />

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./EditListString.scss";
 import Button from "../../Button";
 
@@ -9,10 +9,18 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
   const { [listKey]: listValues } = currentData;
   const hasLastItemEmpty = listValues[listValues.length - 1];
   const hasOnlyOneItem = listValues.length <= 1;
-  
+
+  useEffect(() => {
+    if (!listValues.length) setCurrentData({ ...currentData, [listKey]: [""] });
+    else {
+      handleAddItem();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleUpdateItem = () => {
     if (!currentString) return;
-    const updatedListValues = [...listValues, ''];
+    const updatedListValues = [...listValues, ""];
     updatedListValues[selectedItemIndex] = currentString;
     setCurrentData({ ...currentData, [listKey]: updatedListValues });
     setSelectedItemIndex(updatedListValues.length - 1);
@@ -28,7 +36,7 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
 
   const handleDelete = (valueIndex) => {
     const updatedListValues = listValues.filter((_, i) => i !== valueIndex);
-    setCurrentData({ ...currentData, [listKey]: updatedListValues });
+    setCurrentData({ ...currentData, [listKey]: updatedListValues.filter(Boolean) });
   };
 
   const handleKeyPress = (event) => {
@@ -54,15 +62,14 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
 
           return (
             <div key={`${value}-${i}`} className="edit-list-string-item">
-     
-                <Button
-                  modifier="delete-item-button"
-                  isDisabled={hasOnlyOneItem}
-                  onClick={() => handleDelete(i)}
-                >
-                  X
-                </Button>
-     
+              <Button
+                modifier="delete-item-button"
+                isDisabled={hasOnlyOneItem || (i === 0 && !listValues[1])}
+                onClick={() => handleDelete(i)}
+              >
+                X
+              </Button>
+
               <Button
                 modifier={`${isItemSelected ? "" : " ghost"}`}
                 onClick={() => handleItemClick(i, value)}
@@ -81,11 +88,6 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
           ref={inputRef}
           onChange={(e) => setCurrentString(e.target.value)}
           onKeyDown={handleKeyPress}
-          onBlur={() => {
-            if(hasOnlyOneItem) return;
-            const updatedListValues = listValues.filter(Boolean);
-            setCurrentData({ ...currentData, [listKey]: updatedListValues });
-          }}
           value={currentString}
         />
         <div className="edit-list-string-input-buttons">
