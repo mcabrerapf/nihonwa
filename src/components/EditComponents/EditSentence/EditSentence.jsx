@@ -14,9 +14,7 @@ const EditSentence = ({ currentData, setCurrentData, wordsList }) => {
 
   const handleParseWord = (kanaKey) => {
     const kana = romajiToKana(currentString, kanaKey);
-    const updatedWords = [...jpWords];
-    updatedWords[0] = kana;
-    setCurrentData({ ...currentData, jpWords: updatedWords });
+    setCurrentData({ ...currentData, jpWords: [kana] });
     setCurrentString(kana);
   };
 
