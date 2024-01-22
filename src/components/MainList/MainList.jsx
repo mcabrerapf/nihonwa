@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./MainList.scss";
-import { copyToClipboard, filterBy, sortBy } from "../../utils";
+import { filterBy, sortBy } from "../../utils";
 import {
   FiltersModal,
   KanaModal,
@@ -66,7 +66,6 @@ const MainList = ({
   };
 
   const handleListChange = async () => {
-    copyToClipboard(JSON.stringify(sentencesList));
     if (isWordsList) {
       const filteredList = filterBy(sentencesList, filters);
       const orderedList = sortBy(filteredList, sort[0], sort[1]);
@@ -79,6 +78,7 @@ const MainList = ({
       setSelectedList("w");
     }
   };
+
   const ListModal = isWordsList ? WordModal : SentenceModal;
 
   return (
