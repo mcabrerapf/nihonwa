@@ -45,14 +45,14 @@ const Main = () => {
   if (!allLists) return null;
 
   return (
-    <main className="main-container">
+    // <main className="main-container">
       <MainList
         wordsList={allLists[0]}
         sentencesList={allLists[1]}
         updateWordsList={updateWordsList}
         updateSentencesList={updateSentencesList}
       />
-    </main>
+    // </main>
   );
 };
 
