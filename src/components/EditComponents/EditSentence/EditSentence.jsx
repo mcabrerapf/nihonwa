@@ -24,6 +24,7 @@ const EditSentence = ({ currentData, setCurrentData, wordsList }) => {
     const firstPart = currentString.slice(0, cursorPosition);
     const secondPart = currentString.slice(cursorPosition);
     const resultString = firstPart + word + secondPart;
+    setCurrentData({ ...currentData, jpWords: [resultString] });
     setCurrentString(resultString);
     setView("sentence");
   };
