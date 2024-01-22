@@ -134,6 +134,7 @@ const MainList = ({
         setShowKanaModal={setShowKanaModal}
       />
       <MainListContent
+        selectedList={selectedList}
         mainList={mainList}
         setSelectedItemIndex={setSelectedItemIndex}
       />

@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./MainListContent.scss";
 
-const MainListRender = ({ mainList, setSelectedItemIndex }) => {
+const MainListRender = ({ selectedList, mainList, setSelectedItemIndex }) => {
+  const listRef = useRef(null);
+  
+  useEffect(() => {
+    if (listRef.current) {
+      listRef.current.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [selectedList]);
+
   return (
-    <div className="main-list-content">
+    <div ref={listRef} className="main-list-content">
       <ul className="main-list">
         {mainList.map((listItem, i) => {
           const { jp = "", jpWords = [], id } = listItem;
@@ -18,6 +26,7 @@ const MainListRender = ({ mainList, setSelectedItemIndex }) => {
             </li>
           );
         })}
+        <div className="seprator">.</div>
       </ul>
     </div>
   );
