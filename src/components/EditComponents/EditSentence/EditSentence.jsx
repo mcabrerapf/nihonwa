@@ -5,14 +5,13 @@ import { romajiToKana } from "../../../utils";
 
 const EditSentence = ({ currentData, setCurrentData, wordsList }) => {
   const inputRef = useRef(null);
-  const [currentString, setCurrentString] = useState("");
+  const { jpWords } = currentData;
+  const [currentString, setCurrentString] = useState(jpWords.join(""));
   const [selectedKana, setSelectedKana] = useState("hi");
   const [cursorPosition, setCursorPosition] = useState(0);
   const [view, setView] = useState("sentence");
 
-  const { jpWords } = currentData;
-
-  const handleParseWord = (kanaKey) => {
+  const handleParseWord = (kanaKey = selectedKana) => {
     const kana = romajiToKana(currentString, kanaKey);
     setCurrentData({ ...currentData, jpWords: [kana] });
     setCurrentString(kana);
@@ -50,7 +49,7 @@ const EditSentence = ({ currentData, setCurrentData, wordsList }) => {
   return (
     <div className="edit-sentence">
       <div className="edit-sentence-display">
-        {view === "sentence" && jpWords[0]}
+        {view === "sentence" && jpWords.join("")}
         {view === "words" &&
           words.map((word) => (
             <Button key={word} onClick={() => handleSelectWord(word)}>
