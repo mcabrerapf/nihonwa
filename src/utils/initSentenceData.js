@@ -1,16 +1,16 @@
 //TODO remove this once all types removed
 
-const getUpdatedTags = (data)=> {
-  const {tags, types} = data;
-  if(!types && !types.length) return tags || [];
-  const aaa = tags? [...tags,...types]:[...types];
+const getUpdatedTags = (data) => {
+  const { tags, types } = data;
+  if (!types || !types.length) return tags || [];
+  const aaa = tags ? [...tags, ...types] : [...types];
   const uniqueArray = [...new Set(aaa)];
-  return uniqueArray
-}
+  return uniqueArray;
+};
 
 const initSentenceData = (data = {}) => {
   const initData = {
-    jpWords: data.jpWords || [''],
+    jpWords: data.jpWords || [""],
     en: data.en || [],
     furi: data.furi || [],
     notes: data.notes || [],

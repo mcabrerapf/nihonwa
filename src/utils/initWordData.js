@@ -1,12 +1,12 @@
 //TODO remove this once all types removed
 
-const getUpdatedTags = (data)=> {
-  const {tags, types} =data;
-  if(!types && !types.length) return tags || [];
-  const aaa = tags? [...tags,...types]:[...types];
+const getUpdatedTags = (data) => {
+  const { tags, types } = data;
+  if (!types || !types.length) return tags || [];
+  const aaa = tags ? [...tags, ...types] : [...types];
   const uniqueArray = [...new Set(aaa)];
-  return uniqueArray
-}
+  return uniqueArray;
+};
 
 const initWordData = (data = {}) => {
   const initData = {
