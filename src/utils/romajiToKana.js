@@ -38,38 +38,31 @@ const romajiToKana = (romaji, kana) => {
     })
     .join("");
 
-
   let finalWord = wordToParse;
   let parsedToIndex = 0;
 
   wordToParse.split("").forEach((char, i) => {
     if (i !== 0 && i <= parsedToIndex) return;
-
-    const nextChar = wordToParse[i + 1];
+    const nextChar = wordToParse[i + 1] || "";
+    const nextNextChar = wordToParse[i + 2] || "";
+    const nextNextString = `${char}${nextChar}${nextNextChar}`;
+    const nextString = `${char}${nextChar}`;
+    
+    if (!!nextNextChar && kanaToUse[nextNextString]) {
+      finalWord = finalWord.replace(nextNextString, kanaToUse[nextNextString]);
+      parsedToIndex = i + 2;
+      return;
+    }
+    if (!!nextChar && kanaToUse[nextString]) {
+      finalWord = finalWord.replace(nextString, kanaToUse[nextString]);
+      parsedToIndex = i + 1;
+      return;
+    }
     if (kanaToUse[char]) {
       finalWord = finalWord.replace(char, kanaToUse[char]);
       parsedToIndex = i;
       return;
     }
-
-    const syllable = [char, nextChar].join("");
-
-    if (kanaToUse[syllable]) {
-      finalWord = finalWord.replace(syllable, kanaToUse[syllable]);
-      parsedToIndex = i + 1;
-      return;
-    }
-    
-    const nextNextChar = wordToParse[i + 2];
-    if (!nextNextChar) return;
-    const finalSyllable = [char, nextChar, nextNextChar].join("");
-
-    if (kanaToUse[finalSyllable]) {
-      finalWord = finalWord.replace(finalSyllable, kanaToUse[finalSyllable]);
-      parsedToIndex = i + 2;
-      return;
-    }
-
   });
 
   return finalWord;
