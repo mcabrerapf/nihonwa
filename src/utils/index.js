@@ -5,6 +5,7 @@ import deepCompare from "./deepCompare";
 import filterBy from "./filterBy";
 import generateRandomNumber from "./generateRandomNumber";
 import getCharWithFuri from "./getCharWithFuri";
+import getEnglishCharacters from "./getEnglishCharacters";
 import getWordPronunciation from "./getWordPronunciation";
 import getWordSentences from "./getWordSentences";
 import hasFilterMatch from "./hasFilterMatch";
@@ -25,6 +26,7 @@ export {
   filterBy,
   generateRandomNumber,
   getCharWithFuri,
+  getEnglishCharacters,
   getWordPronunciation,
   getWordSentences,
   hasTextMatch,

@@ -29,50 +29,39 @@
 
   .edit-sentence-input {
     display: flex;
-    height: 7rem;
+    flex-direction: column;
     width: 100%;
     gap: 1rem;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
 
     .word-search-suggestions-container {
-      position: fixed;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column-reverse;
-      width: 25rem;
-      height: 10rem;
-      margin-top: -10.5rem;
-    }
-
-    textarea {
-      width: 100%;
-      resize: none;
-      height: 100%;
-    }
-
-    .edit-sentence-input-buttons {
       display: flex;
       flex-direction: column;
+      justify-content: flex-end;
+      background-color: #282c34;
+      width: 25rem;
+      max-height: 10rem;
+
+      ul {
+        overflow-y: auto;
+      }
+    }
+
+    .word-search-textarea-cotainer {
+      display: flex;
       gap: 1rem;
-    }
-  }
+      padding-bottom: 1rem;
 
-  .word-search-input {
-    display: flex;
-    width: 100%;
-    gap: 1rem;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
+      textarea {
+        width: 100%;
+        resize: none;
+        height: 100%;
+      }
 
-    input {
-      width: 100%;
-    }
-
-    .search-delete-button {
-      position: fixed;
-      color: black;
-      margin-left: 27rem;
+      .edit-sentence-input-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
     }
   }
 }

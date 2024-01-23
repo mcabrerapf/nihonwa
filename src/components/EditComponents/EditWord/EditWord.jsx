@@ -17,6 +17,12 @@ const EditWord = ({
     if (event.key === "Enter") {
       handleParseWord();
     }
+
+    if (event.key === "Tab") {
+      event.preventDefault();
+      selectedKana === "hi" ? setSelectedKana("ka") : setSelectedKana("hi");
+      return;
+    }
   };
 
   const handleParseWord = (kanaKey) => {
@@ -49,7 +55,7 @@ const EditWord = ({
             isDisabled={!itemAlreadyExists && !jp}
             onClick={handleGoToFuriEditStep}
           >
-            Add furi
+            振り仮名
           </Button>
         </div>
         <div className="edit-word-input">

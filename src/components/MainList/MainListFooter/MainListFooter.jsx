@@ -18,7 +18,7 @@ const MainListFooter = ({
   return (
     <footer className="main-list-footer">
       <div className="main-list-footer-buttons">
-        <Button onClick={handleListChange}>{isWordsList ? "S" : "W"}</Button>
+        <Button onClick={handleListChange}>{isWordsList ? "文" : "言葉"}</Button>
       </div>
       <div className="main-list-footer-buttons">
         <Button onClick={() => setSelectedItemIndex(-1)}>+</Button>

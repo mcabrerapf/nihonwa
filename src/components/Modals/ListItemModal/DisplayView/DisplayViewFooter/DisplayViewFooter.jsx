@@ -52,11 +52,12 @@ const DisplayViewFooter = ({
         )}
         {hasKanji && (
           <Button
+            modifier="kanji-footer-button"
             onClick={() => {
               setView("kanji");
             }}
           >
-            K
+            漢字
           </Button>
         )}
       </div>
