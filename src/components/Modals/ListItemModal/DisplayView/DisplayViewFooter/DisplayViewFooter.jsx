@@ -6,10 +6,11 @@ const DisplayViewFooter = ({
   listItemType,
   isLastItem,
   isFirstItem,
+  hasKanji,
   hasNotes,
   hasSentences,
   setView,
-  handleListItemChangeReset,
+  handleListItemChange,
 }) => {
   return (
     <div className="display-view-modal-footer">
@@ -17,7 +18,7 @@ const DisplayViewFooter = ({
         {!isFirstItem && (
           <Button
             isDisabled={isFirstItem}
-            onClick={() => handleListItemChangeReset()}
+            onClick={() => handleListItemChange()}
           >{`<`}</Button>
         )}
       </div>
@@ -43,10 +44,19 @@ const DisplayViewFooter = ({
           <Button
             isDisabled={!hasSentences}
             onClick={() => {
-              hasSentences && setView("sentences");
+              setView("sentences");
             }}
           >
             S
+          </Button>
+        )}
+        {hasKanji && (
+          <Button
+            onClick={() => {
+              setView("kanji");
+            }}
+          >
+            K
           </Button>
         )}
       </div>
@@ -54,7 +64,7 @@ const DisplayViewFooter = ({
         {!isLastItem && (
           <Button
             isDisabled={isLastItem}
-            onClick={() => handleListItemChangeReset(true)}
+            onClick={() => handleListItemChange(true)}
           >{`>`}</Button>
         )}
       </div>

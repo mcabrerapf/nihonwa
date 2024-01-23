@@ -23,6 +23,7 @@ const EditView = ({
     updateListService(currentData);
     closeModal();
   };
+  
   const word = currentData.jpWords
     ? currentData.jpWords.join("")
     : currentData.jp;

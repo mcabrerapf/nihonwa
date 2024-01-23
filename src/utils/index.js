@@ -1,4 +1,5 @@
 import capitalizeFirstLetter from "./capitalizeFirstLetter";
+import checkIfCharIsKanji from "./checkIfCharIsKanji";
 import copyToClipboard from "./copyToClipboard";
 import deepCompare from "./deepCompare";
 import filterBy from "./filterBy";
@@ -17,6 +18,7 @@ import sortBy from "./sortBy";
 
 export {
   capitalizeFirstLetter,
+  checkIfCharIsKanji,
   copyToClipboard,
   deepCompare,
   romajiToKana,
