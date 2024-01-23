@@ -3,6 +3,7 @@ import "./KanaModal.scss";
 import ModalWrapper from "../../ModalWrapper";
 import Button from "../../Button";
 import { HIRAGANA, KATAKANA } from "../../../constants";
+import { copyToClipboard } from "../../../utils";
 
 const KanaModal = ({ closeModal, kanaMode }) => {
   const [view, setView] = useState(kanaMode || "hi");
@@ -29,7 +30,13 @@ const KanaModal = ({ closeModal, kanaMode }) => {
               return (
                 <div key={i} className="kana-list">
                   {kanas.map((kana, i) => (
-                    <span key={`${kana}-${i}`}>{kana}</span>
+                    <Button
+                      key={`${kana}-${i}`}
+                      modifier="ghost"
+                      onClick={() => copyToClipboard(kana)}
+                    >
+                      {kana}
+                    </Button>
                   ))}
                 </div>
               );

@@ -8,9 +8,8 @@ const filterBy = (items, filters) => {
   return items.filter((item) => {
     const hasTextSearchMatch = hasTextMatch(text, item);
     const hasTagMatch = hasFilterMatch(tags, "tags", item);
-    const hasTypeMatch = hasFilterMatch(types, "types", item);
 
-    return hasTagMatch && hasTypeMatch && hasTextSearchMatch;
+    return hasTagMatch && hasTextSearchMatch;
   });
 };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./MainList.scss";
 import { filterBy, sortBy } from "../../utils";
 import {
@@ -20,7 +20,6 @@ const MainList = ({
   updateWordsList,
   updateSentencesList,
 }) => {
-  const [mainList, setMainList] = useState([]);
   const [selectedList, setSelectedList] = useState("w");
   const [sort, setSort] = useState(["jp", "desc"]);
   const [filters, setFilters] = useState(FILTERS_INIT_VAL);
@@ -32,34 +31,16 @@ const MainList = ({
 
   const isWordsList = selectedList === "w";
   const listToFilter = isWordsList ? wordsList : sentencesList;
-  const listLength = mainList.length;
-
-  useEffect(() => {
-    async function initList() {
-      const filteredList = filterBy(listToFilter, filters);
-      const orderedList = sortBy(filteredList, sort[0], sort[1]);
-      setMainList(orderedList);
-    }
-
-    initList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wordsList, sentencesList]);
-
+  const filteredList = filterBy(listToFilter, filters);
+  const orderedList = sortBy(filteredList, sort[0], sort[1]);
+  const listLength = orderedList.length;
+  
   const handleSearchTextChange = (e) => {
-    const filteredList = filterBy(listToFilter, {
-      ...filters,
-      text: e.target.value,
-    });
-    const orderedList = sortBy(filteredList, sort[0], sort[1]);
-    setMainList(orderedList);
     setFilters({ ...filters, text: e.target.value });
   };
 
   const handleFiltersChange = (newFilters) => {
     if (newFilters) {
-      const filteredList = filterBy(listToFilter, newFilters);
-      const orderedList = sortBy(filteredList, sort[0], sort[1]);
-      setMainList(orderedList);
       setFilters(newFilters);
     }
     setShowFiltersModal(false);
@@ -67,14 +48,8 @@ const MainList = ({
 
   const handleListChange = async () => {
     if (isWordsList) {
-      const filteredList = filterBy(sentencesList, filters);
-      const orderedList = sortBy(filteredList, sort[0], sort[1]);
-      setMainList(orderedList);
       setSelectedList("s");
     } else {
-      const filteredList = filterBy(wordsList, filters);
-      const orderedList = sortBy(filteredList, sort[0], sort[1]);
-      setMainList(orderedList);
       setSelectedList("w");
     }
   };
@@ -89,7 +64,7 @@ const MainList = ({
           <ListItemModal
             listItemType={listItemType}
             listItemIndex={selectedItemIndex}
-            listData={mainList}
+            listData={orderedList}
             allWords={wordsList}
             allSentences={sentencesList}
             updateWordsList={updateWordsList}
@@ -115,8 +90,8 @@ const MainList = ({
         <SortModal
           closeModal={(newSort) => {
             if (newSort) {
-              const orderedList = sortBy(mainList, newSort[0], newSort[1]);
-              setMainList(orderedList);
+              // const orderedList = sortBy(mainList, newSort[0], newSort[1]);
+              // setMainList(orderedList);
               setSort(newSort);
             }
             setShowSortModal(false);
@@ -130,6 +105,7 @@ const MainList = ({
       <MainListHeader
         isWordsList={isWordsList}
         filters={filters}
+        listToFilter={listToFilter}
         listLength={listLength}
         handleSearchTextChange={handleSearchTextChange}
         handleFiltersChange={handleFiltersChange}
@@ -139,7 +115,7 @@ const MainList = ({
       />
       <MainListContent
         selectedList={selectedList}
-        mainList={mainList}
+        mainList={orderedList}
         setSelectedItemIndex={setSelectedItemIndex}
       />
       <MainListFooter
