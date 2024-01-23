@@ -1,6 +1,4 @@
-body, #root {
-  position: fixed;
-  overflow: hidden; /* Avoiding overflow */
+html {
   background-color: #282c34;
   color: white;
   margin: 0;
@@ -8,6 +6,15 @@ body, #root {
   height: 100%;
   width: 100%;
   font-size: 10px;
+}
+
+body, html, #root {
+  position: fixed;
+  overflow: hidden; /* Avoiding overflow */
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
 body {
