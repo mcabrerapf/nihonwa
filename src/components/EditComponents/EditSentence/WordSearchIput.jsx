@@ -20,12 +20,14 @@ const WordSearchIput = ({ parsedWords, allWords, handleUpdateData }) => {
     wordToParse = currentValue,
     kanaToUse = selectedKana
   ) => {
+    if(wordToParse === parsedWords) return;
     const kana = romajiToKana(wordToParse, kanaToUse);
     handleUpdateData(kana);
   };
 
   const handleKanaClick = (kanaKey) => {
     setSelectedKana(kanaKey);
+    if(currentValue === parsedWords) return;
     const kana = romajiToKana(currentValue, kanaKey);
     handleUpdateData(kana);
   };
