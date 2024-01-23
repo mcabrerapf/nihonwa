@@ -1,7 +1,7 @@
 import React from "react";
 import "./DisplayViewGeneral.scss";
 
-const DisplayViewGeneral = ({ en = [], types = [], tags  = [] }) => {
+const DisplayViewGeneral = ({ en = [], tags  = [] }) => {
   return (
     <div className="display-view-general">
       <div className="display-view-content-meanings">
@@ -10,16 +10,6 @@ const DisplayViewGeneral = ({ en = [], types = [], tags  = [] }) => {
         })}
       </div>
       <div className="display-view-tags-types">
-        {!!types.length && (
-          <div className="display-view-content-item-list">
-            <span className="display-view-content-item-list-header">Types</span>
-            <div className="display-view-content-item-list-items">
-              {types.map((type) => (
-                <span key={type}>{type}</span>
-              ))}
-            </div>
-          </div>
-        )}
         {!!tags.length && (
           <div className="display-view-content-item-list">
             <span className="display-view-content-item-list-header">Tags</span>

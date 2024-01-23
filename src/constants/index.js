@@ -1,5 +1,5 @@
 import TAGS from "./TAGS";
-import TYPES from "./TYPES";
+
 import {
   HIRAGANA,
   KATAKANA,
@@ -15,5 +15,4 @@ export {
   KATAKANA,
   KANA_EN_MATCHES,
   TAGS,
-  TYPES,
 };

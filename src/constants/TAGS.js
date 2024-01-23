@@ -1,20 +1,28 @@
+const ADJECTIVE = 'adjective';
 const CLOTHES = 'clothes';
 const COUNTRY = 'country';
 const COLOR = 'color';
 const DRINK = 'drink';
 const ENTERTAINMENT = 'entertainment';
-const FOOD = 'food';
 const FAMILY='family';
+const FOOD = 'food';
+const FOREIGN = 'foreign';
 const FORMALITY='formality';
 const GREETING = 'greeting';
+const HIRAGANA = 'hiragana';
 const HOUSE = 'house';
+const KANJI = 'kanji';
+const KATAKANA = 'katakana';
 const LITERATURE = 'literature';
 const LOCATION = 'location';
 const MEDICINE = 'medicine';
 const MUSIC = 'music';
 const NATIONALITY = 'nationality';
+const NOUN = 'noun';
 const NUMBER = 'number';
 const OCCUPATION = 'occupation';
+const OTHER = 'other';
+const PARTICLE = 'particle';
 const PLACE = 'place';
 const PERSON = 'person';
 const RAIN = 'rain';
@@ -26,8 +34,10 @@ const THING  = 'thing';
 const TIME = 'time';
 const TRANSPORT = 'transport';
 const VACATION = 'vacation';
+const VERB = 'verb';
 
 const TAGS = [
+    ADJECTIVE,
     CLOTHES,
     COUNTRY,
     COLOR,
@@ -35,16 +45,23 @@ const TAGS = [
     ENTERTAINMENT,
     FAMILY,
     FOOD,
+    FOREIGN,
     FORMALITY,
     GREETING,
+    HIRAGANA,
     HOUSE,
+    KANJI,
+    KATAKANA,
     LITERATURE,
     LOCATION,
     MEDICINE,
     MUSIC,
     NATIONALITY,
+    NOUN,
     NUMBER,
     OCCUPATION,
+    OTHER,
+    PARTICLE,
     PERSON,
     PLACE,
     RAIN,
@@ -55,7 +72,8 @@ const TAGS = [
     THING,
     TIME,
     TRANSPORT,
-    VACATION
+    VACATION,
+    VERB
 ];
 
 export default TAGS;

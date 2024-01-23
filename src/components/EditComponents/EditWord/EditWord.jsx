@@ -3,7 +3,12 @@ import "./EditWord.scss";
 import Button from "../../Button";
 import { romajiToKana } from "../../../utils";
 
-const EditWord = ({ currentData, setCurrentData, itemAlreadyExists }) => {
+const EditWord = ({
+  currentData,
+  setCurrentData,
+  itemAlreadyExists,
+  setCurrentEditStep,
+}) => {
   const [currentString, setCurrentString] = useState(currentData.jp);
   const [selectedKana, setSelectedKana] = useState("hi");
   const { jp } = currentData;
@@ -26,6 +31,10 @@ const EditWord = ({ currentData, setCurrentData, itemAlreadyExists }) => {
     handleParseWord(kana);
   };
 
+  const handleGoToFuriEditStep = () => {
+    setCurrentEditStep(1);
+  };
+
   return (
     <div className="edit-word">
       <div className="edit-word-display">
@@ -34,25 +43,35 @@ const EditWord = ({ currentData, setCurrentData, itemAlreadyExists }) => {
           <span className="edit-word-error-message">Word already exists</span>
         )}
       </div>
-      <div className="edit-word-input">
-        <input
-          onChange={(e) => setCurrentString(e.target.value)}
-          onKeyDown={handleKeyPress}
-          value={currentString}
-        />
-        <div className="edit-word-input-buttons">
+      <div className="edit-word-actions">
+        <div className="add-furi-button">
           <Button
-            isNotSelected={selectedKana !== "hi"}
-            onClick={() => handleKanaClick("hi")}
+            isDisabled={!itemAlreadyExists && !jp}
+            onClick={handleGoToFuriEditStep}
           >
-            か
+            Add furi
           </Button>
-          <Button
-            isNotSelected={selectedKana !== "ka"}
-            onClick={() => handleKanaClick("ka")}
-          >
-            カ
-          </Button>
+        </div>
+        <div className="edit-word-input">
+          <input
+            onChange={(e) => setCurrentString(e.target.value)}
+            onKeyDown={handleKeyPress}
+            value={currentString}
+          />
+          <div className="edit-word-input-buttons">
+            <Button
+              isNotSelected={selectedKana !== "hi"}
+              onClick={() => handleKanaClick("hi")}
+            >
+              か
+            </Button>
+            <Button
+              isNotSelected={selectedKana !== "ka"}
+              onClick={() => handleKanaClick("ka")}
+            >
+              カ
+            </Button>
+          </div>
         </div>
       </div>
     </div>

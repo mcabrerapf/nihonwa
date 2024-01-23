@@ -12,6 +12,7 @@ import MainListFooter from "./MainListFooter";
 import MainListHeader from "./MainListHeader";
 import MainListContent from "./MainListContent";
 import { FILTERS_INIT_VAL } from "./constants";
+import ModalWrapper from "../ModalWrapper";
 
 const MainList = ({
   wordsList,
@@ -83,16 +84,19 @@ const MainList = ({
   return (
     <div className="main-list-container">
       {selectedItemIndex !== null && (
-        <ListItemModal
-          listItemType={listItemType}
-          listItemIndex={selectedItemIndex}
-          listData={mainList}
-          allWords={wordsList}
-          allSentences={sentencesList}
-          updateWordsList={updateWordsList}
-          updateSentencesList={updateSentencesList}
-          closeModal={() => setSelectedItemIndex(null)}
-        />
+        //TODO improve this warpper bit
+        <ModalWrapper closeModal={() => setSelectedItemIndex(null)}>
+          <ListItemModal
+            listItemType={listItemType}
+            listItemIndex={selectedItemIndex}
+            listData={mainList}
+            allWords={wordsList}
+            allSentences={sentencesList}
+            updateWordsList={updateWordsList}
+            updateSentencesList={updateSentencesList}
+            closeModal={() => setSelectedItemIndex(null)}
+          />
+        </ModalWrapper>
       )}
       {showKanaModal && (
         <KanaModal

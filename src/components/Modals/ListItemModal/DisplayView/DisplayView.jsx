@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./DisplayView.scss";
 import { getWordSentences } from "../../../../utils";
 import DisplayViewHeader from "./DisplayViewHeader";
@@ -16,7 +16,7 @@ const DisplayView = ({
   handleListItemChange,
 }) => {
   const [view, setView] = useState("general");
-  const { jp, jpWords, furi, en, tags, types, notes } = listItemData;
+  const { jp, jpWords, furi, en, tags, notes } = listItemData;
   const wordSentences = getWordSentences(jp, allSentences);
   const hasSentences = wordSentences && wordSentences.length;
   const hasNotes = notes && !!notes.length;
@@ -32,7 +32,7 @@ const DisplayView = ({
       <DisplayViewHeader text={headerText} furi={furi} />
       <div className="list-item-modal-content">
         {view === "general" && (
-          <DisplayViewGeneral tags={tags} types={types} en={en} />
+          <DisplayViewGeneral tags={tags} en={en} />
         )}
         {view === "sentences" && (
           <DisplayViewSentences jpWord={jp} wordSentences={wordSentences} />

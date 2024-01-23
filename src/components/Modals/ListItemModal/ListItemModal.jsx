@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./ListItemModal.scss";
-import ModalWrapper from "../../ModalWrapper";
 import DisplayView from "./DisplayView";
 import EditView from "./EditView";
 import Button from "../../Button";
 import { deleteSentence, deleteWord } from "../../../Services";
 import { initItemData } from "../../../utils";
+import { ModalWrapperContext } from "../../ModalWrapper/ModalWrapperContext";
 
 const ListItemModal = ({
   listItemType,
@@ -17,6 +17,7 @@ const ListItemModal = ({
   updateSentencesList,
   closeModal,
 }) => {
+  const { setCloseOnBgClick } = useContext(ModalWrapperContext);
   const isNewItem = listItemIndex === -1;
   const [selectedItemIndex, setSelectedItemIndex] = useState(listItemIndex);
   const [canDelete, setCanDelete] = useState(true);
@@ -32,6 +33,12 @@ const ListItemModal = ({
   const deleteService = listItemType === "word" ? deleteWord : deleteSentence;
   const updateListService =
     listItemType === "word" ? updateWordsList : updateSentencesList;
+
+  useEffect(() => {
+    if (modalView === "edit") {
+      setCloseOnBgClick(false);
+    }
+  }, [modalView, setCloseOnBgClick]);
 
   const handleListItemChange = (next) => {
     if (next && !isLastItem) {
@@ -83,7 +90,6 @@ const ListItemModal = ({
   }, [isLastItem, isFirstItem, selectedItemIndex, modalView, closeModal]);
 
   return (
-    <ModalWrapper closeModal={closeModal}>
       <div className="list-item-modal">
         {modalView === "delete" && (
           <div className="list-item-modal-delete-view">
@@ -126,7 +132,7 @@ const ListItemModal = ({
           />
         )}
       </div>
-    </ModalWrapper>
+
   );
 };
 

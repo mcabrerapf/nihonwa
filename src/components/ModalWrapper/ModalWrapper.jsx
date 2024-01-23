@@ -1,11 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./ModalWrapper.scss";
+import { ModalWrapperContextProvider } from "./ModalWrapperContext";
 
 function ModalWrapper({ children, closeModal }) {
   const wrapperRef = useRef(null);
+  const [closeOnBgClick, setCloseOnBgClick] = useState(true);
 
   useEffect(() => {
     function handleClickOutside({ target }) {
+      if (!closeOnBgClick) return;
       const shouldHideModal =
         wrapperRef.current && !wrapperRef.current.contains(target);
       if (shouldHideModal) closeModal();
@@ -15,7 +18,7 @@ function ModalWrapper({ children, closeModal }) {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [wrapperRef, closeModal]);
+  }, [wrapperRef, closeModal, closeOnBgClick]);
 
   const stopPropagation = (e) => {
     e.stopPropagation();
@@ -29,7 +32,13 @@ function ModalWrapper({ children, closeModal }) {
       onTouchEnd={stopPropagation}
     >
       <div ref={wrapperRef} className="modal-wrapper">
-        {children}
+        <ModalWrapperContextProvider
+          value={{
+            setCloseOnBgClick,
+          }}
+        >
+          {children}
+        </ModalWrapperContextProvider>
       </div>
     </div>
   );

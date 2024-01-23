@@ -1,4 +1,4 @@
-import { TAGS, TYPES } from "../../../../constants";
+import { TAGS } from "../../../../constants";
 import {
   EditListString,
   EditSelectOptions,
@@ -28,12 +28,8 @@ const getWordEditStepComponent = (step, props) => {
     case 3:
       return <EditListString {...props} listKey={"notes"} />;
     case 4:
-      return (
-        <EditSelectOptions {...props} optionKey={"types"} options={TYPES} />
-      );
-    case 5:
       return <EditSelectOptions {...props} optionKey={"tags"} options={TAGS} />;
-    case 6:
+    case 5:
       return (
         <DisplayView {...props} modalView={"edit"} isFirstItem isLastItem />
       );
@@ -52,12 +48,8 @@ const getSentenceEditStepComponent = (step, props) => {
     case 2:
       return <EditListString {...props} listKey={"notes"} />;
     case 3:
-      return (
-        <EditSelectOptions {...props} optionKey={"types"} options={TYPES} />
-      );
-    case 4:
       return <EditSelectOptions {...props} optionKey={"tags"} options={TAGS} />;
-    case 5:
+    case 4:
       return (
         <DisplayView {...props} modalView={"edit"} isFirstItem isLastItem />
       );

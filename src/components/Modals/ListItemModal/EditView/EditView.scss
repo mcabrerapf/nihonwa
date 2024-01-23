@@ -1,7 +1,20 @@
 .list-item-modal-edit-view {
   .edit-view-header {
-    height: 1.5rem;
-    padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    height: 3rem;
+
+    span {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 1.3rem;
+    }
+
+    .edit-view-header-close-button {
+      font-size: 1.5rem;
+    }
   }
 
   .edit-view-content {
@@ -9,7 +22,6 @@
     flex-direction: column;
     justify-content: space-between;
     overflow: auto;
-    // height: 40rem;
     height: 37rem;
     font-size: 1.5rem;
     gap: 1rem;

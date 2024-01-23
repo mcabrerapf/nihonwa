@@ -13,28 +13,45 @@
     user-select: none;
     font-size: 3rem;
     width: 100%;
-    max-height: 20rem;
+    height: 100%;
 
     .edit-word-error-message {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 700;
       text-decoration: underline;
     }
   }
 
-  .edit-word-input {
+  .edit-word-actions {
     display: flex;
-    width: 100%;
-    gap: 1rem;
-    padding-bottom: 1rem;
+    flex-direction: column;
 
-    input {
+    .add-furi-button {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 1rem;
       width: 100%;
+
+      button {
+        font-size: 1.6rem;
+        width: 7.4rem;
+      }
     }
 
-    .edit-word-input-buttons {
+    .edit-word-input {
       display: flex;
+      width: 100%;
       gap: 1rem;
+      padding-bottom: 1rem;
+
+      input {
+        width: 100%;
+      }
+
+      .edit-word-input-buttons {
+        display: flex;
+        gap: 1rem;
+      }
     }
   }
 }

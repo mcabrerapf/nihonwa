@@ -1,5 +1,6 @@
 import capitalizeFirstLetter from "./capitalizeFirstLetter";
 import copyToClipboard from "./copyToClipboard";
+import deepCompare from "./deepCompare";
 import filterBy from "./filterBy";
 import generateRandomNumber from "./generateRandomNumber";
 import getCharWithFuri from "./getCharWithFuri";
@@ -17,6 +18,7 @@ import sortBy from "./sortBy";
 export {
   capitalizeFirstLetter,
   copyToClipboard,
+  deepCompare,
   romajiToKana,
   filterBy,
   generateRandomNumber,

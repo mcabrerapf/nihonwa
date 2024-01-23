@@ -1,5 +1,5 @@
-const WORD_HEADERS = ["Word", "Furi", "Meanings", "Notes", "Types", "Tags"];
-const SENTENCE_HEADERS = ["Sentence", "Meanings", "Notes", "Types", "Tags"];
+const WORD_HEADERS = ["Word", "Furi", "Meanings", "Notes", "Tags"];
+const SENTENCE_HEADERS = ["Sentence", "Meanings", "Notes", "Tags"];
 
 const EDIT_STEP_HEADERS = {
   word: WORD_HEADERS,

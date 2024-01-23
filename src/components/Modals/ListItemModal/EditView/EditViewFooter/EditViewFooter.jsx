@@ -38,6 +38,12 @@ const EditViewFooter = ({
     handleChangeEditStep(indicatorIndex);
   };
 
+  const handleGoForwardClick = () => {
+    if (listItemType === "word" && isFirstStep)
+      handleChangeEditStep(currentEditStep + 2);
+    else handleChangeEditStep(currentEditStep + 1);
+  };
+
   return (
     <footer className="edit-view-footer">
       <Button
@@ -60,7 +66,7 @@ const EditViewFooter = ({
       {!isLastStep && (
         <Button
           isDisabled={!canProceed || itemAlreadyExists}
-          onClick={() => handleChangeEditStep(currentEditStep + 1)}
+          onClick={handleGoForwardClick}
         >{`>`}</Button>
       )}
       {isLastStep && <Button onClick={handleSave}>O</Button>}

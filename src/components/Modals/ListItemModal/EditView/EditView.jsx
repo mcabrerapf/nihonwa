@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./EditView.scss";
 import EditViewFooter from "./EditViewFooter";
 import { getEditStepHeaderText, renderEditStepComponent } from "./helpers";
+import Button from "../../../Button";
+import { deepCompare } from "../../../../utils";
 
 const EditView = ({
   listItemData,
@@ -16,6 +18,8 @@ const EditView = ({
   const [itemAlreadyExists, setItemAlreadyExists] = useState("");
 
   const handleSave = () => {
+    // TODO enable after updating all types
+    // if (deepCompare(listItemData, currentData)) return closeModal();
     updateListService(currentData);
     closeModal();
   };
@@ -35,6 +39,7 @@ const EditView = ({
     handleListItemChange: () => {},
     currentData,
     setCurrentData,
+    setCurrentEditStep,
     allSentences,
     allWords,
   };
@@ -43,17 +48,22 @@ const EditView = ({
     if (!word) setItemAlreadyExists(false);
     const listToCheck = listItemType === "word" ? allWords : allSentences;
     const alreadyExists = !!listToCheck.find((itemToCheck) => {
-      if(itemToCheck.id === currentData.id) return false;
+      if (itemToCheck.id === currentData.id) return false;
       if (listItemType === "word") return itemToCheck.jp === word;
       else return itemToCheck.jpWords[0] === word;
     });
     setItemAlreadyExists(alreadyExists);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [word]);
-  
+
   return (
     <div className="list-item-modal-edit-view">
-      <div className="edit-view-header">{headerText}</div>
+      <div className="edit-view-header">
+        <span>{headerText}</span>
+        <Button className="edit-view-header-close-button" onClick={closeModal}>
+          x
+        </Button>
+      </div>
       <div className="edit-view-content">
         {renderEditStepComponent(
           listItemType,

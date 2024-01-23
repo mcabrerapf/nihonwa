@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./FiltersModal.scss";
 import ModalWrapper from "../../ModalWrapper";
-import TYPES from "../../../constants/TYPES";
 import TAGS from "../../../constants/TAGS";
 import Button from "../../Button";
 
@@ -27,36 +26,6 @@ const FiltersModal = ({ closeModal, filters }) => {
     <ModalWrapper closeModal={closeModal}>
       <div className="filters-modal">
         <div className="filters-modal-content">
-          <div className="filters-options-label">
-            <span>Types</span>
-            {!!selectedFilters.types.length && (
-              <Button
-                modifier={"ghost"}
-                onClick={() =>
-                  setSelectedFilters({ ...selectedFilters, types: [] })
-                }
-              >
-                X
-              </Button>
-            )}
-          </div>
-          <div className="filters-options">
-            {TYPES.map((type) => {
-              const isSelected = types.find(
-                (selectedType) => selectedType === type
-              );
-
-              return (
-                <button
-                  key={type}
-                  className={`${!isSelected ? "disabled" : ""}`}
-                  onClick={() => updateFilters(type, "types")}
-                >
-                  {type}
-                </button>
-              );
-            })}
-          </div>
           <div className="filters-options-label">
             <span>Tags</span>
             {!!selectedFilters.tags.length && (

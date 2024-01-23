@@ -19,8 +19,8 @@
   }
 }
 
-// @media (max-height: 40rem) {
-//   .modal-bg {
-//     justify-content: flex-end!important;
-//   }
-// }
+@media (max-height: 40svh) {
+  .modal-bg {
+    justify-content: flex-end!important;
+  }
+}
