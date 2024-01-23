@@ -19,7 +19,7 @@ const WordSearchIput = ({ parsedWords, allWords, handleUpdateData }) => {
     if (wordToParse === parsedWords) return;
     const kana = romajiToKana(wordToParse, kanaToUse);
     handleUpdateData(kana);
-    setSearchValue('')
+    setSearchValue("");
   };
 
   const handleKanaClick = (kanaKey) => {
@@ -27,7 +27,7 @@ const WordSearchIput = ({ parsedWords, allWords, handleUpdateData }) => {
     if (currentValue === parsedWords) return;
     const kana = romajiToKana(currentValue, kanaKey);
     handleUpdateData(kana);
-    setSearchValue('')
+    setSearchValue("");
   };
 
   const handleSelectWord = (word) => {
@@ -49,12 +49,8 @@ const WordSearchIput = ({ parsedWords, allWords, handleUpdateData }) => {
   };
 
   const handleKeyDown = (e) => {
-    const { key, keyCode } = e;
-    const supportedKey =
-      (keyCode >= 65 && keyCode <= 90) ||
-      (keyCode >= 97 && keyCode <= 122) ||
-      key === "Backspace";
-
+    const { key } = e;
+    const supportedKey = /^[a-zA-Z]$/.test(key);
     if (key === "Enter") {
       e.preventDefault();
       handleParseWord();
@@ -66,13 +62,17 @@ const WordSearchIput = ({ parsedWords, allWords, handleUpdateData }) => {
       selectedKana === "hi" ? setSelectedKana("ka") : setSelectedKana("hi");
       return;
     }
-    if (!supportedKey) return;
+
     let newSearch = searchValue;
+    console.log(key);
     if (key === "Backspace") {
       newSearch = searchValue.substring(0, searchValue.length - 1);
-    } else {
-      newSearch = `${searchValue}${e.key}`;
+      setSearchValue(newSearch);
+      return;
     }
+    if (!supportedKey) return;
+
+    newSearch = `${searchValue}${e.key}`;
 
     setSearchValue(newSearch);
   };
