@@ -8,7 +8,21 @@
   .main-list-footer-buttons {
     display: flex;
     gap: 1rem;
-    padding-right: 1rem;
-    padding-left: 1rem;
+    width: 9rem;
+
+    &.l {
+      justify-content: flex-start;
+      padding-left: 1rem;
+    }
+
+    &.c {
+      justify-content: center;
+    }
+
+    &.r {
+      justify-content: flex-end;
+      padding-right: 1rem;
+    }
   }
+
 }

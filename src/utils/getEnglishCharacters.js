@@ -1,5 +1,5 @@
 function getEnglishCharacters(string) {
-  if (!string) return;
+  if (!string) return '';
   const englishCharactersOnly = string.replace(/[^a-zA-Z]/g, "");
   return englishCharactersOnly;
 }

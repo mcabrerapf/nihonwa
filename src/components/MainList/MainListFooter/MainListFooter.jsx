@@ -17,13 +17,13 @@ const MainListFooter = ({
 
   return (
     <footer className="main-list-footer">
-      <div className="main-list-footer-buttons">
+      <div className="main-list-footer-buttons l">
         <Button onClick={handleListChange}>{isWordsList ? "文" : "言葉"}</Button>
       </div>
-      <div className="main-list-footer-buttons">
+      <div className="main-list-footer-buttons c">
         <Button onClick={() => setSelectedItemIndex(-1)}>+</Button>
       </div>
-      <div className="main-list-footer-buttons">
+      <div className="main-list-footer-buttons r">
         <Button
           onClick={() => {
             setShowTestModal(true);
