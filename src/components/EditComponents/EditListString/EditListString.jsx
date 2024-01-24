@@ -91,7 +91,8 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
         </div>
       </div>
       <div className="edit-list-string-input">
-        <input
+        {/* TODO check why not rendering equaly to text area word */}
+        <textarea
           ref={inputRef}
           onChange={(e) => setCurrentString(e.target.value)}
           onKeyDown={handleKeyPress}
