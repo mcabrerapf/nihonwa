@@ -12,9 +12,10 @@ const EditSentence = ({
   const parsedWords = jpWords.join("");
 
   const handleUpdateData = (newSentence) => {
+    console.log({newSentence})
     setCurrentData({ ...currentData, jpWords: [newSentence] });
   };
-
+console.log(currentData)
   return (
     <>
       <div className="edit-sentence">
@@ -28,7 +29,7 @@ const EditSentence = ({
         </div>
         <div className="edit-sentence-input">
           <WordSearchIput
-            parsedWords={parsedWords}
+            jpWords={jpWords}
             allWords={allWords}
             handleUpdateData={handleUpdateData}
           />
