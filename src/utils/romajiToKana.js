@@ -55,12 +55,12 @@ const romajiToKana = (romaji, kana) => {
     const nextString = `${lowerCaseChar}${nextChar}`;
 
     if (!!nextNextChar && kanaToUse[nextNextString]) {
-      finalWord = finalWord.replace(nextNextString, kanaToUse[nextNextString]);
+      finalWord = finalWord.replace(`${char}${wordToParse[i + 1]}${wordToParse[i + 2]}`, kanaToUse[nextNextString]);
       parsedToIndex = i + 2;
       return;
     }
     if (!!nextChar && kanaToUse[nextString]) {
-      finalWord = finalWord.replace(nextString, kanaToUse[nextString]);
+      finalWord = finalWord.replace(`${char}${wordToParse[i + 1]}`, kanaToUse[nextString]);
       parsedToIndex = i + 1;
       return;
     }
