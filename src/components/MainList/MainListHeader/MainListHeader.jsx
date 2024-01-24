@@ -3,8 +3,6 @@ import "./MainListHeader.scss";
 import Button from "../../Button";
 import { copyToClipboard } from "../../../utils";
 
-const FILTERS_INIT_VAL = { text: "", tags: [], types: [] };
-
 const MainListHeader = ({
   isWordsList,
   filters,
@@ -18,7 +16,7 @@ const MainListHeader = ({
 }) => {
   const [isLongPress, setIsLongPress] = useState(false);
   const pressTimer = useRef(null);
-  const hasActiveFilters = !!filters.tags.length || !!filters.types.length;
+  const hasActiveFilters = !!filters.tags.length;
   const headerText = isWordsList ? "言葉" : "文";
 
   useEffect(() => {
@@ -58,7 +56,7 @@ const MainListHeader = ({
           {hasActiveFilters && (
             <Button
               modifier="reset-filters-button ghost"
-              onClick={() => handleFiltersChange(FILTERS_INIT_VAL)}
+              onClick={() => handleFiltersChange({ ...filters, tags: [] })}
             >
               X
             </Button>

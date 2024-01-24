@@ -8,19 +8,17 @@ const EditSentence = ({
   allWords,
   itemAlreadyExists,
 }) => {
-  const { jpWords } = currentData;
-  const parsedWords = jpWords.join("");
+  const { jp } = currentData;
 
   const handleUpdateData = (newSentence) => {
-    console.log({newSentence})
-    setCurrentData({ ...currentData, jpWords: [newSentence] });
+    setCurrentData({ ...currentData, jp: newSentence });
   };
-console.log(currentData)
+
   return (
     <>
       <div className="edit-sentence">
         <div className="edit-sentence-display">
-          <span>{parsedWords}</span>
+          <span>{jp}</span>
           {itemAlreadyExists && (
             <span className="edit-sentence-error-message">
               Sentence already exists
@@ -29,7 +27,7 @@ console.log(currentData)
         </div>
         <div className="edit-sentence-input">
           <WordSearchIput
-            jpWords={jpWords}
+            sentence={jp}
             allWords={allWords}
             handleUpdateData={handleUpdateData}
           />

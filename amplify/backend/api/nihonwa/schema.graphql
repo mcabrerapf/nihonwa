@@ -1,23 +1,24 @@
 type Sentence @model @auth(rules: [{allow: public}]) {
   id: ID!
-  jpWords: [String!]
-  en: [String!]
+  jp: String
+  en: [String]
   furi: [String]
   notes: [String]
-  types: [String!]
+  types: [String]
   tags: [String]
   hits: Int!
   misses: Int!
   difficulty: Int!
+  jpWords: [String]
 }
 
 type Word @model @auth(rules: [{allow: public}]) {
   id: ID!
-  jp: String!
-  en: [String!]
+  jp: String
+  en: [String]
   furi: [String]
   notes: [String]
-  types: [String!]
+  types: [String]
   tags: [String]
   hits: Int!
   misses: Int!

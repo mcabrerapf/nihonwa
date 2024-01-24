@@ -14,9 +14,8 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
       setCurrentData({ ...currentData, [listKey]: [""] });
       setSelectedItemIndex(0);
     } else {
-      const updatedListValues = [...listValues, ""];
-      setCurrentData({ ...currentData, [listKey]: updatedListValues });
-      setSelectedItemIndex(updatedListValues.length - 1);
+      setCurrentData({ ...currentData, [listKey]: listValues });
+      setSelectedItemIndex(listValues.length - 1);
     }
     setCurrentString("");
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -25,6 +24,7 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
   const handleUpdateItem = () => {
     if (!currentString) return;
     const updatedListValues = [...listValues, ""];
+    console.log({updatedListValues})
     updatedListValues[selectedItemIndex] = currentString;
     setCurrentData({ ...currentData, [listKey]: updatedListValues });
     setSelectedItemIndex(updatedListValues.length - 1);
@@ -61,7 +61,7 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
     setSelectedItemIndex(i);
     if (inputRef.current) inputRef.current.focus();
   };
-
+  console.log(selectedItemIndex)
   return (
     <div className="edit-list-string">
       <div className="edit-list-string-display">
@@ -92,7 +92,7 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
       </div>
       <div className="edit-list-string-input">
         {/* TODO check why not rendering equaly to text area word */}
-        <textarea
+        <input
           ref={inputRef}
           onChange={(e) => setCurrentString(e.target.value)}
           onKeyDown={handleKeyPress}

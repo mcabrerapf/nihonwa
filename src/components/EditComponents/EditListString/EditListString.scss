@@ -42,14 +42,12 @@
   .edit-list-string-input {
     display: flex;
     width: 100%;
-    height: 9rem;
+    // height: 3rem;
     gap: 1rem;
     padding-bottom: 1rem;
 
-    textarea {
+    input {
       width: 100%;
-      height: 100%;
-      resize: none;
     }
 
     .edit-meaning-input-buttons {

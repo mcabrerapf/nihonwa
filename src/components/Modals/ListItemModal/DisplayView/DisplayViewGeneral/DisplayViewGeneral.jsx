@@ -9,7 +9,7 @@ const DisplayViewGeneral = ({ en = [], tags  = [] }) => {
           return <span key={`${i}-${meaning}`}>- {meaning}</span>;
         })}
       </div>
-      <div className="display-view-tags-types">
+      <div className="display-view-tags-tags">
         {!!tags.length && (
           <div className="display-view-content-item-list">
             <span className="display-view-content-item-list-header">Tags</span>

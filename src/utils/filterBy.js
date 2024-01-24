@@ -2,8 +2,8 @@ import hasFilterMatch from "./hasFilterMatch";
 import hasTextMatch from "./hasTextMatch";
 
 const filterBy = (items, filters) => {
-  const { text, tags, types } = filters;
-  if (!text && !tags.length && !types.length) return items;
+  const { text, tags } = filters;
+  if (!text && !tags.length) return items;
 
   return items.filter((item) => {
     const hasTextSearchMatch = hasTextMatch(text, item);

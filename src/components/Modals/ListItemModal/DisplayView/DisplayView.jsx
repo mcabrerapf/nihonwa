@@ -18,21 +18,21 @@ const DisplayView = ({
   handleListItemChange,
 }) => {
   const [view, setView] = useState("general");
-  const { jp, jpWords, furi, en, tags, notes } = listItemData;
-  const wordSentences = getWordSentences(jp, allSentences);
+  const { jp, furi, en, tags, notes } = listItemData;
+  const wordSentences =
+    listItemType === "word" ? getWordSentences(jp, allSentences) : [];
   const hasSentences = wordSentences && wordSentences.length;
   const hasNotes = notes && !!notes.length;
-  const headerText = jp || jpWords.join("");
   const kanjis = getKanjiFromString(jp);
   const hasKanji = !!kanjis;
-  
+
   useEffect(() => {
     setView("general");
   }, [listItemData]);
 
   return (
     <div className="list-item-modal-display-view">
-      <DisplayViewHeader text={headerText} furi={furi} />
+      <DisplayViewHeader text={jp} furi={furi} />
       <div className="list-item-modal-content">
         {view === "general" && <DisplayViewGeneral tags={tags} en={en} />}
         {view === "sentences" && (

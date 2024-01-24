@@ -1,42 +1,33 @@
 import React, { useState, useRef, useEffect } from "react";
-import {
-  getEnglishCharacters,
-  getWordPronunciation,
-  romajiToKana,
-} from "../../../utils";
+import { getWordPronunciation, romajiToKana } from "../../../utils";
 import Button from "../../Button";
 
-const WordSearchIput = ({ jpWords, allWords, handleUpdateData }) => {
+const WordSearchIput = ({ sentence, allWords, handleUpdateData }) => {
   const inputRef = useRef(null);
+  const [currentValue, setCurrentValue] = useState(sentence);
   const [selectedKana, setSelectedKana] = useState("hi");
-  const [currentValue, setCurrentValue] = useState("");
   const [selectedWordIndex, setSelectedWordIndex] = useState(0);
-  const [cursorPosition, setCursorPosition] = useState(0);
-  const searchValue = getEnglishCharacters(
-    currentValue.substring(cursorPosition)
+  const [cursorStartPosition, setCursorStartPosition] = useState(0);
+  const [cursorEndPosition, setCursorEndPosition] = useState(0);
+
+  const searchValue = currentValue.substring(
+    cursorStartPosition,
+    cursorEndPosition
   );
-console.log({currentValue, searchValue})
+
   const filteredWords = allWords.filter((word) => {
     const parsedPronunciation = getWordPronunciation(word);
-    // console.log(searchValue.substring(cursorPosition))
     return parsedPronunciation.indexOf(searchValue.toLowerCase()) !== -1;
   });
 
   useEffect(() => {
-    const parsedWords = jpWords.join('')
-    console.log({jpWords, parsedWords})
-    setCurrentValue(parsedWords);
-  }, [jpWords]);
-
-  useEffect(() => {
-    if (selectedWordIndex > filteredWords.length)
-      setSelectedWordIndex(filteredWords.length - 1);
+    if (selectedWordIndex > filteredWords.length - 1) setSelectedWordIndex(0);
   }, [filteredWords, selectedWordIndex]);
 
   useEffect(() => {
-    if (cursorPosition > currentValue.length)
-      setCursorPosition(currentValue.length);
-  }, [currentValue, cursorPosition]);
+    if (cursorStartPosition > currentValue.length)
+      setCursorStartPosition(currentValue.length);
+  }, [currentValue, cursorStartPosition]);
 
   const getCurrentCursorPosition = () => {
     if (inputRef.current) return inputRef.current.selectionStart;
@@ -45,61 +36,60 @@ console.log({currentValue, searchValue})
 
   const updateCursorPosition = () => {
     const currentCursorPosition = getCurrentCursorPosition();
-    setCursorPosition(currentCursorPosition);
+    setCursorStartPosition(currentCursorPosition);
+    setCursorEndPosition(currentCursorPosition);
   };
 
-  const handleParseWord = (
-    wordToParse = searchValue,
-    kanaToUse = selectedKana
-  ) => {
-    if (wordToParse === searchValue) return;
-    console.log({wordToParse})
-    const kana = romajiToKana(wordToParse, kanaToUse);
-    const resultString = currentValue.replace(searchValue, `${kana} `);
-    console.log({resultString})
-    handleUpdateData(resultString);
+  const handleParseWord = () => {
+    const kana = romajiToKana(searchValue, selectedKana);
+    const resultString = currentValue.replace(searchValue, `${kana}`);
+
+    setCurrentValue(resultString);
     setSelectedWordIndex(0);
-    if (inputRef.current) inputRef.current.focus();
+    setCursorStartPosition(resultString.length);
+    setCursorEndPosition(resultString.length);
+    handleUpdateData(resultString);
   };
 
   const handleKanaClick = (kanaKey) => {
+    const resultString = romajiToKana(currentValue, kanaKey);
     setSelectedKana(kanaKey);
-    const kana = romajiToKana(currentValue, kanaKey);
-    handleUpdateData(kana);
+    setCurrentValue(resultString);
     setSelectedWordIndex(0);
+    handleUpdateData(resultString);
     if (inputRef.current) inputRef.current.focus();
   };
 
   const handleSelectWord = (word) => {
     if (!word) return;
     const resultString = currentValue.replace(searchValue, `${word} `);
+    setCurrentValue(resultString);
+    setCursorStartPosition(resultString.length);
+    setCursorEndPosition(resultString.length);
     handleUpdateData(resultString);
   };
 
   const handleOnChange = ({ target: { value } }) => {
     const currentCursorPosition = getCurrentCursorPosition();
-    console.log({ cursorPosition, currentCursorPosition });
+    if (currentCursorPosition < cursorStartPosition)
+      setCursorStartPosition(currentCursorPosition);
+    setCursorEndPosition(currentCursorPosition);
     setCurrentValue(value);
   };
 
   const handleKeyPress = (e) => {
     const { key } = e;
-    // const currentCursorPosition = getCurrentCursorPosition();
-    // const isBackspace = key === 'Backspace'
-    console.log({ key });
-    // console.log({ currentCursorPosition, cursorPosition });
-    // if (currentCursorPosition < cursorPosition)
-    //   setCursorPosition(currentCursorPosition);
+
+    if (key === " ") handleParseWord();
 
     if (key === "Enter") {
       e.preventDefault();
       const wordMatch = filteredWords[selectedWordIndex];
-      console.log({ wordMatch });
       !!wordMatch ? handleSelectWord(wordMatch.jp) : handleParseWord();
     }
 
-    if (key === " ") {
-      handleParseWord();
+    if (key === "Backspace" && cursorEndPosition > 0) {
+      setCursorEndPosition(cursorEndPosition - 1);
     }
 
     if (key === "Tab") {
@@ -108,15 +98,16 @@ console.log({currentValue, searchValue})
     }
 
     if (key === "ArrowUp" && selectedWordIndex > 0) {
+      e.preventDefault();
       setSelectedWordIndex(selectedWordIndex - 1);
     }
 
     if (key === "ArrowDown" && selectedWordIndex < filteredWords.length - 1) {
+      e.preventDefault();
       setSelectedWordIndex(selectedWordIndex + 1);
     }
   };
 
-  console.log(cursorPosition);
   return (
     <>
       <div className="word-search-suggestions-container">
@@ -141,7 +132,7 @@ console.log({currentValue, searchValue})
           value={currentValue}
           onChange={handleOnChange}
           onKeyDown={handleKeyPress}
-          onFocus={updateCursorPosition}
+          // onFocus={updateCursorPosition}
           onClick={updateCursorPosition}
         />
         <div className="edit-sentence-input-buttons">

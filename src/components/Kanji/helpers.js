@@ -15,7 +15,7 @@ return HanziWriter.create(kanjiId, kanji, {
     //     setLoadedKanji(true);
     // },
     onLoadCharDataError: function (reason) {
-      console.log(`Filed  to kanji load =>${kanji} `, reason);
+      console.log(`Filed  to kanji load => ${kanji} `, reason);
       setHasError(true);
     },
   });

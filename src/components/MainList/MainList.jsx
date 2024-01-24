@@ -34,7 +34,7 @@ const MainList = ({
   const filteredList = filterBy(listToFilter, filters);
   const orderedList = sortBy(filteredList, sort[0], sort[1]);
   const listLength = orderedList.length;
-  
+
   const handleSearchTextChange = (e) => {
     setFilters({ ...filters, text: e.target.value });
   };

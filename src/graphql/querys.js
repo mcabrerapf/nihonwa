@@ -10,7 +10,6 @@ query listWords(
         en
         furi
         notes
-        types
         tags
         hits
         misses
@@ -31,11 +30,10 @@ query listSentences(
     listSentences(filter: $filter, limit: 999, nextToken: $nextToken) {
     items {
         id
-        jpWords
+        jp
         en
         furi
         notes
-        types
         tags
         hits
         misses

@@ -14,15 +14,15 @@ const MainListRender = ({ selectedList, mainList, setSelectedItemIndex }) => {
     <div ref={listRef} className="main-list-content">
       <ul className="main-list">
         {mainList.map((listItem, i) => {
-          const { jp = "", jpWords = [], id } = listItem;
-          if (!jp && !jpWords.length) return null;
+          const { jp = "", id } = listItem;
+          // if (!jp) return null;
           return (
             <li
               key={id}
               className="main-list-item"
               onClick={() => setSelectedItemIndex(i)}
             >
-              <span>{jp || jpWords.join("")}</span>
+              <span>{jp}</span>
             </li>
           );
         })}

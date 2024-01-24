@@ -2,20 +2,18 @@ import React from "react";
 import "./DisplayViewSentences.scss";
 import { copyToClipboard } from "../../../../../utils";
 
-const DisplayViewSentences = ({ jpWord, wordSentences }) => {
+const DisplayViewSentences = ({ jp, wordSentences }) => {
   return (
     <div className="display-view-sentences">
       {wordSentences.map((sentence, i) => {
-        const { jpWords } = sentence;
+        const { jp } = sentence;
         return (
           <div key={i} className="display-view-sentence">
             <div
               className="display-view-sentence-jp"
-              onClick={() => copyToClipboard(jpWords.join(" "))}
+              onClick={() => copyToClipboard(jp)}
             >
-              {jpWords.map((word, i) => {
-                return <span key={`${word}-${i}`}>{word}</span>;
-              })}
+              <span>{jp}</span>;
             </div>
             <span>{sentence.en}</span>
           </div>

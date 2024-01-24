@@ -9,7 +9,8 @@ import {
   UPDATE_WORD,
 } from "../graphql/mutations";
 import { initSentenceData, initWordData } from "../utils";
-
+// MODELS
+//amplify/backend/api/nihonwa/schema.graphql
 const client = generateClient();
 
 const getAllWords = async () => {

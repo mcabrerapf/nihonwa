@@ -6,7 +6,7 @@ import Button from "../../Button";
 
 const FiltersModal = ({ closeModal, filters }) => {
   const [selectedFilters, setSelectedFilters] = useState(filters);
-  const { tags, types } = selectedFilters;
+  const { tags } = selectedFilters;
 
   const updateFilters = (value, key) => {
     const filterToUpdate = selectedFilters[key];

@@ -56,7 +56,7 @@ mutation createSentence(
 ) {
   createSentence(input: $input, condition: $condition) {
     id
-    jpWords
+    jp
     en
     furi
     notes
@@ -76,7 +76,7 @@ mutation updateSentence(
 ) {
   updateSentence(input: $input, condition: $condition) {
     id
-    jpWords
+    jp
     en
     furi
     notes

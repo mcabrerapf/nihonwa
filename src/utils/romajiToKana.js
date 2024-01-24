@@ -34,7 +34,7 @@ const romajiToKana = (romaji, kana) => {
 
         if (nextChar === lowerCaseChar) return kana === "hi" ? "っ" : "ッ";
       }
-      return lowerCaseChar;
+      return char;
     })
     .join("");
 

@@ -18,15 +18,12 @@ const EditView = ({
   const [itemAlreadyExists, setItemAlreadyExists] = useState("");
 
   const handleSave = () => {
-    // TODO enable after updating all types
-    // if (deepCompare(listItemData, currentData)) return closeModal();
+    if (deepCompare(listItemData, currentData)) return closeModal();
     updateListService(currentData);
     closeModal();
   };
-  
-  const word = currentData.jpWords
-    ? currentData.jpWords.join("")
-    : currentData.jp;
+
+  const word = currentData.jp;
   const headerText = getEditStepHeaderText(listItemType, currentEditStep, word);
 
   const editStepComponentProps = {
@@ -50,8 +47,7 @@ const EditView = ({
     const listToCheck = listItemType === "word" ? allWords : allSentences;
     const alreadyExists = !!listToCheck.find((itemToCheck) => {
       if (itemToCheck.id === currentData.id) return false;
-      if (listItemType === "word") return itemToCheck.jp === word;
-      else return itemToCheck.jpWords[0] === word;
+      return itemToCheck.jp === word;
     });
     setItemAlreadyExists(alreadyExists);
     // eslint-disable-next-line react-hooks/exhaustive-deps
