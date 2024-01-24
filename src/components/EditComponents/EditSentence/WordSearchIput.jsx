@@ -67,6 +67,7 @@ const WordSearchIput = ({ sentence, allWords, handleUpdateData }) => {
     setCursorStartPosition(resultString.length);
     setCursorEndPosition(resultString.length);
     handleUpdateData(resultString);
+    if (inputRef.current) inputRef.current.focus();
   };
 
   const handleOnChange = ({ target: { value } }) => {
