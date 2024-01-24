@@ -14,7 +14,7 @@ const WordSearchIput = ({ sentence, allWords, handleUpdateData }) => {
     cursorStartPosition,
     cursorEndPosition
   ).trim();
-console.log({searchValue})
+
   const filteredWords = allWords.filter((word) => {
     const parsedPronunciation = getWordPronunciation(word);
     return parsedPronunciation.indexOf(searchValue.toLowerCase()) !== -1;
@@ -108,7 +108,7 @@ console.log({searchValue})
       setSelectedWordIndex(selectedWordIndex + 1);
     }
   };
-console.log({cursorStartPosition,cursorEndPosition})
+
   return (
     <>
       <div className="word-search-suggestions-container">

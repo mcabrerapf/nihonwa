@@ -43,6 +43,7 @@ const romajiToKana = (romaji, kana) => {
 
   wordToParse.split("").forEach((char, i) => {
     const lowerCaseChar = char.toLocaleLowerCase();
+
     if (i !== 0 && i <= parsedToIndex) return;
     const nextChar = wordToParse[i + 1]
       ? wordToParse[i + 1].toLocaleLowerCase()
@@ -64,7 +65,8 @@ const romajiToKana = (romaji, kana) => {
       return;
     }
     if (kanaToUse[lowerCaseChar]) {
-      finalWord = finalWord.replace(lowerCaseChar, kanaToUse[lowerCaseChar]);
+
+      finalWord = finalWord.replace(char, kanaToUse[lowerCaseChar]);
       parsedToIndex = i;
       return;
     }

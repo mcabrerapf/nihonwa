@@ -24,7 +24,6 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
   const handleUpdateItem = () => {
     if (!currentString) return;
     const updatedListValues = [...listValues, ""];
-    console.log({updatedListValues})
     updatedListValues[selectedItemIndex] = currentString;
     setCurrentData({ ...currentData, [listKey]: updatedListValues });
     setSelectedItemIndex(updatedListValues.length - 1);
@@ -61,7 +60,7 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
     setSelectedItemIndex(i);
     if (inputRef.current) inputRef.current.focus();
   };
-  console.log(selectedItemIndex)
+
   return (
     <div className="edit-list-string">
       <div className="edit-list-string-display">
