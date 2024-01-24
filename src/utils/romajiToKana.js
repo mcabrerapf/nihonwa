@@ -42,12 +42,17 @@ const romajiToKana = (romaji, kana) => {
   let parsedToIndex = 0;
 
   wordToParse.split("").forEach((char, i) => {
+    const lowerCaseChar = char.toLocaleLowerCase();
     if (i !== 0 && i <= parsedToIndex) return;
-    const nextChar = wordToParse[i + 1] || "";
-    const nextNextChar = wordToParse[i + 2] || "";
-    const nextNextString = `${char}${nextChar}${nextNextChar}`;
-    const nextString = `${char}${nextChar}`;
-    
+    const nextChar = wordToParse[i + 1]
+      ? wordToParse[i + 1].toLocaleLowerCase()
+      : "";
+    const nextNextChar = wordToParse[i + 2]
+      ? wordToParse[i + 2].toLocaleLowerCase()
+      : "";
+    const nextNextString = `${lowerCaseChar}${nextChar}${nextNextChar}`;
+    const nextString = `${lowerCaseChar}${nextChar}`;
+
     if (!!nextNextChar && kanaToUse[nextNextString]) {
       finalWord = finalWord.replace(nextNextString, kanaToUse[nextNextString]);
       parsedToIndex = i + 2;
@@ -58,8 +63,8 @@ const romajiToKana = (romaji, kana) => {
       parsedToIndex = i + 1;
       return;
     }
-    if (kanaToUse[char]) {
-      finalWord = finalWord.replace(char, kanaToUse[char]);
+    if (kanaToUse[lowerCaseChar]) {
+      finalWord = finalWord.replace(lowerCaseChar, kanaToUse[lowerCaseChar]);
       parsedToIndex = i;
       return;
     }

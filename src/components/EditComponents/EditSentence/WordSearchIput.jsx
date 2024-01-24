@@ -13,8 +13,8 @@ const WordSearchIput = ({ sentence, allWords, handleUpdateData }) => {
   const searchValue = currentValue.substring(
     cursorStartPosition,
     cursorEndPosition
-  );
-
+  ).trim();
+console.log({searchValue})
   const filteredWords = allWords.filter((word) => {
     const parsedPronunciation = getWordPronunciation(word);
     return parsedPronunciation.indexOf(searchValue.toLowerCase()) !== -1;
@@ -84,8 +84,9 @@ const WordSearchIput = ({ sentence, allWords, handleUpdateData }) => {
 
     if (key === "Enter") {
       e.preventDefault();
-      const wordMatch = filteredWords[selectedWordIndex];
-      !!wordMatch ? handleSelectWord(wordMatch.jp) : handleParseWord();
+      handleParseWord();
+      // const wordMatch = filteredWords[selectedWordIndex];
+      // !!wordMatch ? handleSelectWord(wordMatch.jp) : handleParseWord();
     }
 
     if (key === "Backspace" && cursorEndPosition > 0) {
@@ -107,7 +108,7 @@ const WordSearchIput = ({ sentence, allWords, handleUpdateData }) => {
       setSelectedWordIndex(selectedWordIndex + 1);
     }
   };
-
+console.log({cursorStartPosition,cursorEndPosition})
   return (
     <>
       <div className="word-search-suggestions-container">
@@ -132,7 +133,7 @@ const WordSearchIput = ({ sentence, allWords, handleUpdateData }) => {
           value={currentValue}
           onChange={handleOnChange}
           onKeyDown={handleKeyPress}
-          // onFocus={updateCursorPosition}
+          onFocus={updateCursorPosition}
           onClick={updateCursorPosition}
         />
         <div className="edit-sentence-input-buttons">
