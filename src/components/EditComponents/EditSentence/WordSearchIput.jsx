@@ -32,7 +32,7 @@ function WordSearchIput({ sentence, allWords, handleUpdateData }) {
 
   useEffect(() => {
     if (cursorStartPosition > currentValue.length) setCursorStartPosition(currentValue.length);
-  }, [currentValue, cursorStartPosition]);
+  }, [currentValue]);
 
   const getCurrentCursorPosition = () => {
     if (textareaRef.current) return textareaRef.current.selectionStart;
@@ -68,11 +68,10 @@ function WordSearchIput({ sentence, allWords, handleUpdateData }) {
   const handleSelectWord = (word) => {
     if (!word) return;
     const resultString = currentValue.replace(searchValue, `${word} `);
-    setCurrentValue(resultString);
     setCursorStartPosition(resultString.length);
     setCursorEndPosition(resultString.length);
+    setCurrentValue(resultString);
     handleUpdateData(resultString);
-    if (textareaRef.current) textareaRef.current.focus();
   };
 
   const handleOnChange = ({ target: { value } }) => {

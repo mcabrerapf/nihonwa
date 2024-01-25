@@ -28,7 +28,8 @@ function EditWord({
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || event.keyCode === 13) {
+      event.preventDefault();
       handleParseWord();
     }
 
