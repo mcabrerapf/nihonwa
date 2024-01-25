@@ -3,7 +3,7 @@ import { getWordPronunciation, romajiToKana } from '../../../utils';
 import Button from '../../Button';
 
 function WordSearchIput({ sentence, allWords, handleUpdateData }) {
-  const inputRef = useRef(null);
+  const textareaRef = useRef(null);
   const [currentValue, setCurrentValue] = useState(sentence);
   const [selectedKana, setSelectedKana] = useState('hi');
   const [selectedWordIndex, setSelectedWordIndex] = useState(0);
@@ -20,11 +20,11 @@ function WordSearchIput({ sentence, allWords, handleUpdateData }) {
     return parsedPronunciation.indexOf(searchValue.toLowerCase()) !== -1;
   });
 
-  useEffect(() => {
-    if (inputRef.current && !currentValue) {
-      inputRef.current.focus();
-    }
-  }, [inputRef]);
+  // useEffect(() => {
+  //   if (textareaRef.current && !currentValue) {
+  //     textareaRef.current.focus();
+  //   }
+  // }, [textareaRef]);
 
   useEffect(() => {
     if (selectedWordIndex > filteredWords.length - 1) setSelectedWordIndex(0);
@@ -35,7 +35,7 @@ function WordSearchIput({ sentence, allWords, handleUpdateData }) {
   }, [currentValue, cursorStartPosition]);
 
   const getCurrentCursorPosition = () => {
-    if (inputRef.current) return inputRef.current.selectionStart;
+    if (textareaRef.current) return textareaRef.current.selectionStart;
     return 0;
   };
 
@@ -62,7 +62,7 @@ function WordSearchIput({ sentence, allWords, handleUpdateData }) {
     setCurrentValue(resultString);
     setSelectedWordIndex(0);
     handleUpdateData(resultString);
-    if (inputRef.current) inputRef.current.focus();
+    if (textareaRef.current) textareaRef.current.focus();
   };
 
   const handleSelectWord = (word) => {
@@ -72,7 +72,7 @@ function WordSearchIput({ sentence, allWords, handleUpdateData }) {
     setCursorStartPosition(resultString.length);
     setCursorEndPosition(resultString.length);
     handleUpdateData(resultString);
-    if (inputRef.current) inputRef.current.focus();
+    if (textareaRef.current) textareaRef.current.focus();
   };
 
   const handleOnChange = ({ target: { value } }) => {
@@ -136,7 +136,7 @@ function WordSearchIput({ sentence, allWords, handleUpdateData }) {
       </div>
       <div className="word-search-textarea-cotainer">
         <textarea
-          ref={inputRef}
+          ref={textareaRef}
           value={currentValue}
           onChange={handleOnChange}
           onKeyDown={handleKeyPress}

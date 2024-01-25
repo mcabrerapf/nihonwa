@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './EditWord.scss';
 import Button from '../../Button';
 import { romajiToKana } from '../../../utils';
@@ -14,11 +14,11 @@ function EditWord({
   const [selectedKana, setSelectedKana] = useState('hi');
   const { jp } = currentData;
 
-  useEffect(() => {
-    if (inputRef.current && !currentString) {
-      inputRef.current.focus();
-    }
-  }, [inputRef]);
+  // useEffect(() => {
+  //   if (inputRef.current && !currentString) {
+  //     inputRef.current.focus();
+  //   }
+  // }, [inputRef]);
 
   const handleParseWord = (kanaKey) => {
     if (!currentString) return;

@@ -21,9 +21,9 @@ function EditListString({
       setSelectedItemIndex(listValues.length - 1);
     }
 
-    if (inputRef.current && !currentString && listKey === 'en') {
-      inputRef.current.focus();
-    }
+    // if (inputRef.current && !currentString && listKey === 'en') {
+    //   inputRef.current.focus();
+    // }
   }, [listKey, inputRef]);
 
   const handleUpdateItem = () => {
