@@ -51,8 +51,8 @@ function WordSearchIput({ sentence, allWords, handleUpdateData }) {
     const resultString = currentValue.replace(searchValue, kanaWithSpace);
     setCurrentValue(resultString);
     setSelectedWordIndex(0);
-    setCursorStartPosition(resultString);
-    setCursorEndPosition(resultString);
+    setCursorStartPosition(resultString.length);
+    setCursorEndPosition(resultString.length);
     handleUpdateData(resultString);
   };
 
@@ -113,7 +113,7 @@ function WordSearchIput({ sentence, allWords, handleUpdateData }) {
       setSelectedWordIndex(selectedWordIndex + 1);
     }
   };
-
+  console.log({ cursorStartPosition, cursorEndPosition });
   return (
     <>
       <div className="word-search-suggestions-container">
