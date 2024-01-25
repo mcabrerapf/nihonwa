@@ -28,7 +28,7 @@ function EditWord({
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter' || event.keyCode === 13) {
+    if (event.key === 'Enter' || event.keyCode === 32) {
       event.preventDefault();
       handleParseWord();
     }
@@ -70,7 +70,7 @@ function EditWord({
           <input
             ref={inputRef}
             onChange={(e) => setCurrentString(e.target.value)}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyPress}
             value={currentString}
           />
           <div className="edit-word-input-buttons">
