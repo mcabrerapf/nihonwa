@@ -70,7 +70,7 @@ function EditWord({
           <input
             ref={inputRef}
             onChange={(e) => setCurrentString(e.target.value)}
-            onKeyDown={handleKeyPress}
+            onKeyPress={handleKeyPress}
             value={currentString}
           />
           <div className="edit-word-input-buttons">
