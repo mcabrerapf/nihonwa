@@ -1,16 +1,15 @@
-import React from "react";
-import "./TestSetupContent.scss";
-import Button from "../../../Button";
-import { buildQuestions } from "../helpers";
+import React from 'react';
+import './TestSetupContent.scss';
+import Button from '../../../Button';
+import { buildQuestions } from '../helpers';
 
-const TestSetupContent = ({
+function TestSetupContent({
   testSetupOptions,
   wordsList,
-  sentencesList,
   setTestSetupOptions,
   handleTestStart,
   closeModal,
-}) => {
+}) {
   const { questionLimit } = testSetupOptions;
   const reachedMax = questionLimit >= 50;
   const reachedMin = questionLimit <= 5;
@@ -21,19 +20,17 @@ const TestSetupContent = ({
   };
 
   const handleQuestionLimitChange = (increase) => {
-    if (increase) {
-      !reachedMax &&
-        setTestSetupOptions({
-          ...testSetupOptions,
-          questionLimit: questionLimit + 5,
-        });
+    if (increase && !reachedMax) {
+      setTestSetupOptions({
+        ...testSetupOptions,
+        questionLimit: questionLimit + 5,
+      });
     }
-    if (!increase) {
-      !reachedMin &&
-        setTestSetupOptions({
-          ...testSetupOptions,
-          questionLimit: questionLimit - 5,
-        });
+    if (!increase && !reachedMin) {
+      setTestSetupOptions({
+        ...testSetupOptions,
+        questionLimit: questionLimit - 5,
+      });
     }
   };
 
@@ -62,6 +59,6 @@ const TestSetupContent = ({
       </footer>
     </>
   );
-};
+}
 
 export default TestSetupContent;

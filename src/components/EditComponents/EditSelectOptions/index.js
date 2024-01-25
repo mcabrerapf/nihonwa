@@ -1,3 +1,3 @@
-import EditSelectOptions from "./EditSelectOptions";
+import EditSelectOptions from './EditSelectOptions';
 
 export default EditSelectOptions;

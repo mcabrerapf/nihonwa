@@ -1,11 +1,11 @@
-import initSentenceData from "./initSentenceData";
-import initWordData from "./initWordData";
+import initSentenceData from './initSentenceData';
+import initWordData from './initWordData';
 
 const initItemData = (type, data) => {
   switch (type) {
-    case "word":
+    case 'word':
       return initWordData(data);
-    case "sentence":
+    case 'sentence':
       return initSentenceData(data);
 
     default:

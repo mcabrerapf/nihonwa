@@ -1,15 +1,15 @@
-import React from "react";
-import "./MainListFooter.scss";
-import { generateRandomNumber } from "../../../utils";
-import Button from "../../Button";
+import React from 'react';
+import './MainListFooter.scss';
+import { generateRandomNumber } from '../../../utils';
+import Button from '../../Button';
 
-const MainListFooter = ({
+function MainListFooter({
   listLength,
   isWordsList,
   setShowTestModal,
   handleListChange,
   setSelectedItemIndex,
-}) => {
+}) {
   const handleRandomItemClick = () => {
     const randomIndex = generateRandomNumber(0, listLength);
     setSelectedItemIndex(randomIndex);
@@ -18,7 +18,7 @@ const MainListFooter = ({
   return (
     <footer className="main-list-footer">
       <div className="main-list-footer-buttons l">
-        <Button onClick={handleListChange}>{isWordsList ? "文" : "言葉"}</Button>
+        <Button onClick={handleListChange}>{isWordsList ? '文' : '言葉'}</Button>
       </div>
       <div className="main-list-footer-buttons c">
         <Button onClick={() => setSelectedItemIndex(-1)}>+</Button>
@@ -35,6 +35,6 @@ const MainListFooter = ({
       </div>
     </footer>
   );
-};
+}
 
 export default MainListFooter;

@@ -1,4 +1,4 @@
-import TAGS from "./TAGS";
+import TAGS from './TAGS';
 
 import {
   HIRAGANA,
@@ -6,7 +6,7 @@ import {
   EN_HIRAGANA_MATCHES,
   EN_KATAKANA_MATCHES,
   KANA_EN_MATCHES,
-} from "./KANAS";
+} from './KANAS';
 
 export {
   EN_HIRAGANA_MATCHES,

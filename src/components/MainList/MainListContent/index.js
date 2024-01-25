@@ -1,3 +1,3 @@
-import MainListContent from "./MainListContent";
+import MainListContent from './MainListContent';
 
 export default MainListContent;

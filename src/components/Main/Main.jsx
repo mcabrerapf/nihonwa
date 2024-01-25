@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import "./Main.scss";
+import React, { useEffect, useState } from 'react';
+import './Main.scss';
 import {
   createWord,
   updateWord,
@@ -7,10 +7,10 @@ import {
   getAllWords,
   updateSentence,
   createSentence,
-} from "../../Services";
-import MainList from "../MainList";
+} from '../../Services';
+import MainList from '../MainList';
 
-const Main = () => {
+function Main() {
   const [allLists, setAllLists] = useState(null);
 
   useEffect(() => {
@@ -21,7 +21,6 @@ const Main = () => {
     }
 
     initMain();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const updateWordsList = async (newWordData) => {
@@ -45,15 +44,15 @@ const Main = () => {
   if (!allLists) return null;
 
   return (
-    // <main className="main-container">
-      <MainList
-        wordsList={allLists[0]}
-        sentencesList={allLists[1]}
-        updateWordsList={updateWordsList}
-        updateSentencesList={updateSentencesList}
-      />
-    // </main>
+  // <main className="main-container">
+    <MainList
+      wordsList={allLists[0]}
+      sentencesList={allLists[1]}
+      updateWordsList={updateWordsList}
+      updateSentencesList={updateSentencesList}
+    />
+  // </main>
   );
-};
+}
 
 export default Main;

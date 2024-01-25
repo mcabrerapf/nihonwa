@@ -1,3 +1,3 @@
-import DisplayViewHeader from "./DisplayViewHeader";
+import DisplayViewHeader from './DisplayViewHeader';
 
 export default DisplayViewHeader;

@@ -1,3 +1,3 @@
-import Kanji from "./Kanji";
+import Kanji from './Kanji';
 
 export default Kanji;

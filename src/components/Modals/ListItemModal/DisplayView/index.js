@@ -1,3 +1,3 @@
-import DisplayView from "./DisplayView";
+import DisplayView from './DisplayView';
 
 export default DisplayView;

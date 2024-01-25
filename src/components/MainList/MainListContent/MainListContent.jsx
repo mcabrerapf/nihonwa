@@ -1,12 +1,12 @@
-import React, { useEffect, useRef } from "react";
-import "./MainListContent.scss";
+import React, { useEffect, useRef } from 'react';
+import './MainListContent.scss';
 
-const MainListRender = ({ selectedList, mainList, setSelectedItemIndex }) => {
+function MainListRender({ selectedList, mainList, setSelectedItemIndex }) {
   const listRef = useRef(null);
-  
+
   useEffect(() => {
     if (listRef.current) {
-      listRef.current.scrollTo({ top: 0, behavior: "smooth" });
+      listRef.current.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [selectedList]);
 
@@ -14,10 +14,11 @@ const MainListRender = ({ selectedList, mainList, setSelectedItemIndex }) => {
     <div ref={listRef} className="main-list-content">
       <ul className="main-list">
         {mainList.map((listItem, i) => {
-          const { jp = "", id } = listItem;
-          // if (!jp) return null;
+          const { jp = '', id } = listItem;
+
           return (
             <li
+              role="button"
               key={id}
               className="main-list-item"
               onClick={() => setSelectedItemIndex(i)}
@@ -30,6 +31,6 @@ const MainListRender = ({ selectedList, mainList, setSelectedItemIndex }) => {
       </ul>
     </div>
   );
-};
+}
 
 export default MainListRender;

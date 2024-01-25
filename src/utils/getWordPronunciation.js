@@ -1,10 +1,10 @@
-import kanaToEnglishChar from "./kanaToEnglishChar";
+import kanaToEnglishChar from './kanaToEnglishChar';
 
 const getWordPronunciation = ({ jp, furi = [] }) => {
-  if (!jp) return "";
-  
+  if (!jp) return '';
+
   return jp
-    .split("")
+    .split('')
     .map((kana, i) => {
       const currentKana = furi[i] || kana;
       const nextKana = furi[i + 1] || jp[i + 1];
@@ -12,7 +12,7 @@ const getWordPronunciation = ({ jp, furi = [] }) => {
       return kanaToEnglishChar(currentKana, nextKana, prevKana);
     })
     .flat()
-    .join("");
+    .join('');
 };
 
 export default getWordPronunciation;

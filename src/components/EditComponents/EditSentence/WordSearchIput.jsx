@@ -1,18 +1,18 @@
-import React, { useState, useRef, useEffect } from "react";
-import { getWordPronunciation, romajiToKana } from "../../../utils";
-import Button from "../../Button";
+import React, { useState, useRef, useEffect } from 'react';
+import { getWordPronunciation, romajiToKana } from '../../../utils';
+import Button from '../../Button';
 
-const WordSearchIput = ({ sentence, allWords, handleUpdateData }) => {
+function WordSearchIput({ sentence, allWords, handleUpdateData }) {
   const inputRef = useRef(null);
   const [currentValue, setCurrentValue] = useState(sentence);
-  const [selectedKana, setSelectedKana] = useState("hi");
+  const [selectedKana, setSelectedKana] = useState('hi');
   const [selectedWordIndex, setSelectedWordIndex] = useState(0);
   const [cursorStartPosition, setCursorStartPosition] = useState(0);
   const [cursorEndPosition, setCursorEndPosition] = useState(0);
 
   const searchValue = currentValue.substring(
     cursorStartPosition,
-    cursorEndPosition
+    cursorEndPosition,
   ).trim();
 
   const filteredWords = allWords.filter((word) => {
@@ -21,12 +21,17 @@ const WordSearchIput = ({ sentence, allWords, handleUpdateData }) => {
   });
 
   useEffect(() => {
+    if (inputRef.current && !currentValue) {
+      inputRef.current.focus();
+    }
+  }, [inputRef]);
+
+  useEffect(() => {
     if (selectedWordIndex > filteredWords.length - 1) setSelectedWordIndex(0);
   }, [filteredWords, selectedWordIndex]);
 
   useEffect(() => {
-    if (cursorStartPosition > currentValue.length)
-      setCursorStartPosition(currentValue.length);
+    if (cursorStartPosition > currentValue.length) setCursorStartPosition(currentValue.length);
   }, [currentValue, cursorStartPosition]);
 
   const getCurrentCursorPosition = () => {
@@ -40,14 +45,14 @@ const WordSearchIput = ({ sentence, allWords, handleUpdateData }) => {
     setCursorEndPosition(currentCursorPosition);
   };
 
-  const handleParseWord = () => {
+  const handleParseWord = (addSpace) => {
     const kana = romajiToKana(searchValue, selectedKana);
-    const resultString = currentValue.replace(searchValue, `${kana}`);
-
+    const kanaWithSpace = `${kana}${addSpace ? ' ' : ''}`;
+    const resultString = currentValue.replace(searchValue, kanaWithSpace);
     setCurrentValue(resultString);
     setSelectedWordIndex(0);
-    setCursorStartPosition(resultString.length);
-    setCursorEndPosition(resultString.length);
+    setCursorStartPosition(resultString);
+    setCursorEndPosition(resultString);
     handleUpdateData(resultString);
   };
 
@@ -72,8 +77,7 @@ const WordSearchIput = ({ sentence, allWords, handleUpdateData }) => {
 
   const handleOnChange = ({ target: { value } }) => {
     const currentCursorPosition = getCurrentCursorPosition();
-    if (currentCursorPosition < cursorStartPosition)
-      setCursorStartPosition(currentCursorPosition);
+    if (currentCursorPosition < cursorStartPosition) setCursorStartPosition(currentCursorPosition);
     setCursorEndPosition(currentCursorPosition);
     setCurrentValue(value);
   };
@@ -81,30 +85,31 @@ const WordSearchIput = ({ sentence, allWords, handleUpdateData }) => {
   const handleKeyPress = (e) => {
     const { key } = e;
 
-    if (key === " ") handleParseWord();
+    if (key === ' ') handleParseWord();
 
-    if (key === "Enter") {
+    if (key === 'Enter') {
       e.preventDefault();
-      handleParseWord();
+      handleParseWord(true);
       // const wordMatch = filteredWords[selectedWordIndex];
       // !!wordMatch ? handleSelectWord(wordMatch.jp) : handleParseWord();
     }
 
-    if (key === "Backspace" && cursorEndPosition > 0) {
+    if (key === 'Backspace' && cursorEndPosition > 0) {
       setCursorEndPosition(cursorEndPosition - 1);
     }
 
-    if (key === "Tab") {
+    if (key === 'Tab') {
       e.preventDefault();
-      selectedKana === "hi" ? setSelectedKana("ka") : setSelectedKana("hi");
+      const newKana = selectedKana === 'hi' ? 'ka' : 'hi';
+      setSelectedKana(newKana);
     }
 
-    if (key === "ArrowUp" && selectedWordIndex > 0) {
+    if (key === 'ArrowUp' && selectedWordIndex > 0) {
       e.preventDefault();
       setSelectedWordIndex(selectedWordIndex - 1);
     }
 
-    if (key === "ArrowDown" && selectedWordIndex < filteredWords.length - 1) {
+    if (key === 'ArrowDown' && selectedWordIndex < filteredWords.length - 1) {
       e.preventDefault();
       setSelectedWordIndex(selectedWordIndex + 1);
     }
@@ -118,11 +123,12 @@ const WordSearchIput = ({ sentence, allWords, handleUpdateData }) => {
             {filteredWords.map(({ id, jp }, i) => (
               <li
                 key={id}
+                role="button"
                 // className={i === selectedWordIndex ? "selected-word" : ""}
                 onClick={() => handleSelectWord(jp)}
               >
                 {jp}
-                {i === selectedWordIndex ? " <=" : ""}
+                {i === selectedWordIndex ? ' <=' : ''}
               </li>
             ))}
           </ul>
@@ -139,14 +145,14 @@ const WordSearchIput = ({ sentence, allWords, handleUpdateData }) => {
         />
         <div className="edit-sentence-input-buttons">
           <Button
-            isNotSelected={selectedKana !== "hi"}
-            onClick={() => handleKanaClick("hi")}
+            isNotSelected={selectedKana !== 'hi'}
+            onClick={() => handleKanaClick('hi')}
           >
             か
           </Button>
           <Button
-            isNotSelected={selectedKana !== "ka"}
-            onClick={() => handleKanaClick("ka")}
+            isNotSelected={selectedKana !== 'ka'}
+            onClick={() => handleKanaClick('ka')}
           >
             カ
           </Button>
@@ -154,6 +160,6 @@ const WordSearchIput = ({ sentence, allWords, handleUpdateData }) => {
       </div>
     </>
   );
-};
+}
 
 export default WordSearchIput;

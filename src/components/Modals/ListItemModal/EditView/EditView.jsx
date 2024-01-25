@@ -1,24 +1,28 @@
-import React, { useEffect, useState } from "react";
-import "./EditView.scss";
-import EditViewFooter from "./EditViewFooter";
-import { getEditStepHeaderText, renderEditStepComponent } from "./helpers";
-import Button from "../../../Button";
-import { deepCompare } from "../../../../utils";
+import React, { useEffect, useState } from 'react';
+import './EditView.scss';
+import EditViewFooter from './EditViewFooter';
+import { getEditStepHeaderText, renderEditStepComponent } from './helpers';
+import Button from '../../../Button';
+import { deepCompare } from '../../../../utils';
 
-const EditView = ({
+function EditView({
   listItemData,
   listItemType,
   allWords,
   allSentences,
   updateListService,
   closeModal,
-}) => {
+}) {
   const [currentEditStep, setCurrentEditStep] = useState(0);
   const [currentData, setCurrentData] = useState(listItemData);
-  const [itemAlreadyExists, setItemAlreadyExists] = useState("");
+  const [itemAlreadyExists, setItemAlreadyExists] = useState('');
 
   const handleSave = () => {
-    if (deepCompare(listItemData, currentData)) return closeModal();
+    if (deepCompare(listItemData, currentData)) {
+      closeModal();
+      return;
+    }
+
     updateListService(currentData);
     closeModal();
   };
@@ -32,10 +36,11 @@ const EditView = ({
     itemAlreadyExists,
     isFirstItem: true,
     isLastItem: true,
-    modalView: "edit",
+    modalView: 'edit',
     setModalView: () => {},
     handleListItemChange: () => {},
     currentData,
+    currentEditStep,
     setCurrentData,
     setCurrentEditStep,
     allSentences,
@@ -44,13 +49,12 @@ const EditView = ({
 
   useEffect(() => {
     if (!word) setItemAlreadyExists(false);
-    const listToCheck = listItemType === "word" ? allWords : allSentences;
+    const listToCheck = listItemType === 'word' ? allWords : allSentences;
     const alreadyExists = !!listToCheck.find((itemToCheck) => {
       if (itemToCheck.id === currentData.id) return false;
       return itemToCheck.jp === word;
     });
     setItemAlreadyExists(alreadyExists);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [word]);
 
   return (
@@ -65,7 +69,7 @@ const EditView = ({
         {renderEditStepComponent(
           listItemType,
           currentEditStep,
-          editStepComponentProps
+          editStepComponentProps,
         )}
       </div>
       <EditViewFooter
@@ -79,6 +83,6 @@ const EditView = ({
       />
     </div>
   );
-};
+}
 
 export default EditView;

@@ -1,3 +1,3 @@
-import MainListFooter from "./MainListFooter";
+import MainListFooter from './MainListFooter';
 
 export default MainListFooter;

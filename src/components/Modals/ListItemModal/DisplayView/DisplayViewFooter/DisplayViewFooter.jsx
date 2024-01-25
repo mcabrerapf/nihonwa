@@ -1,8 +1,8 @@
-import React from "react";
-import "./DisplayViewFooter.scss";
-import Button from "../../../../Button";
+import React from 'react';
+import './DisplayViewFooter.scss';
+import Button from '../../../../Button';
 
-const DisplayViewFooter = ({
+function DisplayViewFooter({
   listItemType,
   isLastItem,
   isFirstItem,
@@ -11,7 +11,7 @@ const DisplayViewFooter = ({
   hasSentences,
   setView,
   handleListItemChange,
-}) => {
+}) {
   return (
     <div className="display-view-modal-footer">
       <div className="arrow-container">
@@ -19,14 +19,16 @@ const DisplayViewFooter = ({
           <Button
             isDisabled={isFirstItem}
             onClick={() => handleListItemChange()}
-          >{`<`}</Button>
+          >
+            {'<'}
+          </Button>
         )}
       </div>
       <div className="display-view-modal-view-buttons">
         <Button
           isDisabled={!hasNotes}
           onClick={() => {
-            hasNotes && setView("notes");
+            if (hasNotes) setView('notes');
           }}
         >
           N
@@ -34,17 +36,17 @@ const DisplayViewFooter = ({
 
         <Button
           onClick={() => {
-            setView("general");
+            setView('general');
           }}
         >
           G
         </Button>
 
-        {listItemType === "word" && (
+        {listItemType === 'word' && (
           <Button
             isDisabled={!hasSentences}
             onClick={() => {
-              setView("sentences");
+              setView('sentences');
             }}
           >
             S
@@ -54,7 +56,7 @@ const DisplayViewFooter = ({
           <Button
             modifier="kanji-footer-button"
             onClick={() => {
-              setView("kanji");
+              setView('kanji');
             }}
           >
             漢字
@@ -66,11 +68,13 @@ const DisplayViewFooter = ({
           <Button
             isDisabled={isLastItem}
             onClick={() => handleListItemChange(true)}
-          >{`>`}</Button>
+          >
+            {'>'}
+          </Button>
         )}
       </div>
     </div>
   );
-};
+}
 
 export default DisplayViewFooter;

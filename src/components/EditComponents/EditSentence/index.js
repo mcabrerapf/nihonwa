@@ -1,3 +1,3 @@
-import EditSentence from "./EditSentence";
+import EditSentence from './EditSentence';
 
 export default EditSentence;

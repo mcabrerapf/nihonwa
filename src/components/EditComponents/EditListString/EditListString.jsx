@@ -1,40 +1,45 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./EditListString.scss";
-import Button from "../../Button";
+import React, { useState, useEffect, useRef } from 'react';
+import './EditListString.scss';
+import Button from '../../Button';
 
-const EditListString = ({ currentData, setCurrentData, listKey }) => {
+function EditListString({
+  currentData, setCurrentData, listKey, currentEditStep, setCurrentEditStep,
+}) {
   const inputRef = useRef(null);
-  const [currentString, setCurrentString] = useState("");
+  const [currentString, setCurrentString] = useState('');
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
   const { [listKey]: listValues } = currentData;
-  const hasLastItemEmpty = listValues[listValues.length - 1] !==  '';
+  const hasLastItemEmpty = listValues[listValues.length - 1] !== '';
+  const isListEmpty = !listValues.filter(Boolean).length;
 
   useEffect(() => {
     if (!listValues.length) {
-      setCurrentData({ ...currentData, [listKey]: [""] });
+      setCurrentData({ ...currentData, [listKey]: [''] });
       setSelectedItemIndex(0);
     } else {
       setCurrentData({ ...currentData, [listKey]: listValues });
       setSelectedItemIndex(listValues.length - 1);
     }
-    setCurrentString("");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [listKey]);
+
+    if (inputRef.current && !currentString && listKey === 'en') {
+      inputRef.current.focus();
+    }
+  }, [listKey, inputRef]);
 
   const handleUpdateItem = () => {
     if (!currentString) return;
-    const updatedListValues = [...listValues, ""];
+    const updatedListValues = [...listValues, ''];
     updatedListValues[selectedItemIndex] = currentString;
     setCurrentData({ ...currentData, [listKey]: updatedListValues });
     setSelectedItemIndex(updatedListValues.length - 1);
-    setCurrentString("");
+    setCurrentString('');
   };
 
   const handleAddItem = () => {
-    const updatedListValues = [...listValues, ""];
+    const updatedListValues = [...listValues, ''];
     setCurrentData({ ...currentData, [listKey]: updatedListValues });
     setSelectedItemIndex(updatedListValues.length - 1);
-    setCurrentString("");
+    setCurrentString('');
     if (inputRef.current) inputRef.current.focus();
   };
 
@@ -47,18 +52,25 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       handleUpdateItem();
     }
   };
 
   const handleItemClick = (i, item) => {
-    if (!item) return;
     const updatedListValues = listValues.filter(Boolean);
     setCurrentData({ ...currentData, [listKey]: updatedListValues });
     setCurrentString(item);
     setSelectedItemIndex(i);
     if (inputRef.current) inputRef.current.focus();
+  };
+
+  const handleGoToNotes = () => {
+    setCurrentEditStep(currentEditStep + 1);
+  };
+
+  const handleGoToTags = () => {
+    setCurrentEditStep(currentEditStep + 2);
   };
 
   return (
@@ -77,7 +89,8 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
               </Button>
 
               <span
-                className={`${isItemSelected ? "selected-item" : ""}`}
+                role="button"
+                className={`${isItemSelected ? 'selected-item' : ''}`}
                 onClick={() => handleItemClick(i, value)}
               >
                 {value}
@@ -86,10 +99,28 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
           );
         })}
         <div>
-          {hasLastItemEmpty && <button onClick={handleAddItem}>+</button>}
+          {hasLastItemEmpty && <Button onClick={handleAddItem}>+</Button>}
         </div>
       </div>
+      {listKey === 'en' && (
+      <div className="edit-list-string-nav-buttons">
+        <Button
+          isDisabled={isListEmpty}
+          onClick={handleGoToNotes}
+        >
+          ノート
+        </Button>
+        <Button
+          isDisabled={isListEmpty}
+          onClick={handleGoToTags}
+        >
+
+          タグ
+        </Button>
+      </div>
+      )}
       <div className="edit-list-string-input">
+
         {/* TODO check why not rendering equaly to text area word */}
         <input
           ref={inputRef}
@@ -108,6 +139,6 @@ const EditListString = ({ currentData, setCurrentData, listKey }) => {
       </div>
     </div>
   );
-};
+}
 
 export default EditListString;

@@ -1,12 +1,12 @@
-import React from "react";
-import "./DisplayViewKanji.scss";
-import Kanji from "../../../../Kanji";
+import React from 'react';
+import './DisplayViewKanji.scss';
+import Kanji from '../../../../Kanji';
 
-const DisplayViewKanji = ({ kanjis }) => {
+function DisplayViewKanji({ kanjis }) {
   return (
     <div className="display-view-kanji">
-      {kanjis.split("").map((kanji, i) => {
-        const kanjiId = `${kanji}-${i}`
+      {kanjis.split('').map((kanji, i) => {
+        const kanjiId = `${kanji}-${i}`;
 
         return (
           <div key={`${i}-${kanji}`} className="kanji">
@@ -16,6 +16,6 @@ const DisplayViewKanji = ({ kanjis }) => {
       })}
     </div>
   );
-};
+}
 
 export default DisplayViewKanji;

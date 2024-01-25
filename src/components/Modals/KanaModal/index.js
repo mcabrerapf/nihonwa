@@ -1,3 +1,3 @@
-import KanaModal from "./KanaModal";
+import KanaModal from './KanaModal';
 
 export default KanaModal;

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import "./SortModal.scss";
-import ModalWrapper from "../../ModalWrapper";
-import Button from "../../Button";
+import React, { useState } from 'react';
+import './SortModal.scss';
+import ModalWrapper from '../../ModalWrapper';
+import Button from '../../Button';
 
-const SortModal = ({ closeModal, sort }) => {
+function SortModal({ closeModal, sort }) {
   const [selectedSort, setSelectedSort] = useState(sort);
   const [selectedSortLanguage, selectedSortDirection] = selectedSort;
 
@@ -23,28 +23,28 @@ const SortModal = ({ closeModal, sort }) => {
         <div className="sort-modal-content">
           <div className="sort-options">
             <Button
-              isNotSelected={selectedSortLanguage !== "en"}
-              onClick={() => updateSortLan("en")}
+              isNotSelected={selectedSortLanguage !== 'en'}
+              onClick={() => updateSortLan('en')}
             >
               Abc
             </Button>
             <Button
-              isNotSelected={selectedSortLanguage !== "jp"}
-              onClick={() => updateSortLan("jp")}
+              isNotSelected={selectedSortLanguage !== 'jp'}
+              onClick={() => updateSortLan('jp')}
             >
               日本
             </Button>
           </div>
           <div className="sort-options">
             <Button
-              isNotSelected={selectedSortDirection !== "asc"}
-              onClick={() => updateSortDir("asc")}
+              isNotSelected={selectedSortDirection !== 'asc'}
+              onClick={() => updateSortDir('asc')}
             >
               Asc
             </Button>
             <Button
-              isNotSelected={selectedSortDirection !== "desc"}
-              onClick={() => updateSortDir("desc")}
+              isNotSelected={selectedSortDirection !== 'desc'}
+              onClick={() => updateSortDir('desc')}
             >
               Desc
             </Button>
@@ -53,6 +53,6 @@ const SortModal = ({ closeModal, sort }) => {
       </div>
     </ModalWrapper>
   );
-};
+}
 
 export default SortModal;

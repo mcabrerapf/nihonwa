@@ -1,3 +1,3 @@
-import EditListString from "./EditListString";
+import EditListString from './EditListString';
 
 export default EditListString;

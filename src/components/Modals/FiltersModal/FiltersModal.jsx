@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import "./FiltersModal.scss";
-import ModalWrapper from "../../ModalWrapper";
-import TAGS from "../../../constants/TAGS";
-import Button from "../../Button";
+import React, { useState } from 'react';
+import './FiltersModal.scss';
+import ModalWrapper from '../../ModalWrapper';
+import TAGS from '../../../constants/TAGS';
+import Button from '../../Button';
 
-const FiltersModal = ({ closeModal, filters }) => {
+function FiltersModal({ closeModal, filters }) {
   const [selectedFilters, setSelectedFilters] = useState(filters);
   const { tags } = selectedFilters;
 
@@ -30,10 +30,8 @@ const FiltersModal = ({ closeModal, filters }) => {
             <span>Tags</span>
             {!!selectedFilters.tags.length && (
               <Button
-                modifier={"ghost"}
-                onClick={() =>
-                  setSelectedFilters({ ...selectedFilters, tags: [] })
-                }
+                modifier="ghost"
+                onClick={() => setSelectedFilters({ ...selectedFilters, tags: [] })}
               >
                 X
               </Button>
@@ -42,14 +40,14 @@ const FiltersModal = ({ closeModal, filters }) => {
           <div className="filters-options">
             {TAGS.map((tag) => {
               const isSelected = tags.find(
-                (selectedTag) => selectedTag === tag
+                (selectedTag) => selectedTag === tag,
               );
 
               return (
                 <Button
                   key={tag}
                   isNotSelected={!isSelected}
-                  onClick={() => updateFilters(tag, "tags")}
+                  onClick={() => updateFilters(tag, 'tags')}
                 >
                   {tag}
                 </Button>
@@ -63,6 +61,6 @@ const FiltersModal = ({ closeModal, filters }) => {
       </div>
     </ModalWrapper>
   );
-};
+}
 
 export default FiltersModal;

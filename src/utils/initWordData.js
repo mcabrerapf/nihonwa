@@ -1,6 +1,6 @@
 const initWordData = (data = {}) => {
   const initData = {
-    jp: data.jp || "",
+    jp: data.jp || '',
     en: data.en || [],
     furi: data.furi || [],
     notes: data.notes || [],

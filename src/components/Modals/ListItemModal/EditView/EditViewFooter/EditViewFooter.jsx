@@ -1,9 +1,9 @@
-import React from "react";
-import "./EditViewFooter.scss";
-import Button from "../../../../Button";
-import { checkEditFooterStatus, getEditStepsArray } from "../../helpers";
+import React from 'react';
+import './EditViewFooter.scss';
+import Button from '../../../../Button';
+import { checkEditFooterStatus, getEditStepsArray } from '../../helpers';
 
-const EditViewFooter = ({
+function EditViewFooter({
   listItemType,
   itemAlreadyExists,
   currentData,
@@ -11,11 +11,11 @@ const EditViewFooter = ({
   setCurrentData,
   setCurrentEditStep,
   handleSave,
-}) => {
+}) {
   const [canProceed, isFirstStep, isLastStep] = checkEditFooterStatus(
     currentEditStep,
     listItemType,
-    currentData
+    currentData,
   );
 
   const stepsArray = getEditStepsArray(listItemType);
@@ -39,8 +39,9 @@ const EditViewFooter = ({
   };
 
   const handleGoForwardClick = () => {
-    if (listItemType === "word" && isFirstStep)
-      handleChangeEditStep(currentEditStep + 2);
+    if (listItemType === 'word' && isFirstStep) handleChangeEditStep(currentEditStep + 2);
+    else if (listItemType === 'word' && currentEditStep === 2) handleChangeEditStep(currentEditStep + 3);
+    else if (listItemType === 'sentence' && currentEditStep === 1) handleChangeEditStep(currentEditStep + 3);
     else handleChangeEditStep(currentEditStep + 1);
   };
 
@@ -49,29 +50,31 @@ const EditViewFooter = ({
       <Button
         isDisabled={isFirstStep}
         onClick={() => handleChangeEditStep(currentEditStep - 1)}
-      >{`<`}</Button>
+      >
+        {'<'}
+      </Button>
       <div className="edit-view-step-indicator">
-        {stepsArray.map((_, i) => {
-          return (
-            <Button
-              key={i}
-              modifier="ghost"
-              onClick={() => handleStepIndicatorClick(i)}
-            >
-              {i === currentEditStep ? "o" : "."}
-            </Button>
-          );
-        })}
+        {stepsArray.map((_, i) => (
+          <Button
+            key={i}
+            modifier="ghost"
+            onClick={() => handleStepIndicatorClick(i)}
+          >
+            {i === currentEditStep ? 'o' : '.'}
+          </Button>
+        ))}
       </div>
       {!isLastStep && (
         <Button
           isDisabled={!canProceed || itemAlreadyExists}
           onClick={handleGoForwardClick}
-        >{`>`}</Button>
+        >
+          {'>'}
+        </Button>
       )}
       {isLastStep && <Button onClick={handleSave}>O</Button>}
     </footer>
   );
-};
+}
 
 export default EditViewFooter;

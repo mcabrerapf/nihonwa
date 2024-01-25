@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import "./MainListHeader.scss";
-import Button from "../../Button";
-import { copyToClipboard } from "../../../utils";
+import React, { useEffect, useRef, useState } from 'react';
+import './MainListHeader.scss';
+import Button from '../../Button';
+import { copyToClipboard } from '../../../utils';
 
-const MainListHeader = ({
+function MainListHeader({
   isWordsList,
   filters,
   listToFilter,
@@ -13,15 +13,15 @@ const MainListHeader = ({
   setShowKanaModal,
   setShowSortModal,
   setShowFiltersModal,
-}) => {
+}) {
   const [isLongPress, setIsLongPress] = useState(false);
   const pressTimer = useRef(null);
   const hasActiveFilters = !!filters.tags.length;
-  const headerText = isWordsList ? "言葉" : "文";
+  const headerText = isWordsList ? '言葉' : '文';
 
   useEffect(() => {
     if (isLongPress) {
-      console.log("COPIED CURRENT LIST");
+      console.log('COPIED CURRENT LIST');
       copyToClipboard(JSON.stringify(listToFilter));
     }
   }, [isLongPress, listToFilter]);
@@ -63,6 +63,7 @@ const MainListHeader = ({
           )}
         </div>
         <div
+          role="button"
           className="main-list-header-text"
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
@@ -72,8 +73,8 @@ const MainListHeader = ({
           <span className="main-list-count">{listLength}</span>
         </div>
         <div className="main-list-kana-buttons">
-          <Button onClick={() => setShowKanaModal("hi")}>か</Button>
-          <Button onClick={() => setShowKanaModal("ka")}>カ</Button>
+          <Button onClick={() => setShowKanaModal('hi')}>か</Button>
+          <Button onClick={() => setShowKanaModal('ka')}>カ</Button>
         </div>
       </div>
       <div className="main-list-search-input">
@@ -86,7 +87,7 @@ const MainListHeader = ({
         {!!filters.text && (
           <Button
             modifier="ghost"
-            onClick={() => handleSearchTextChange({ target: { value: "" } })}
+            onClick={() => handleSearchTextChange({ target: { value: '' } })}
           >
             X
           </Button>
@@ -94,6 +95,6 @@ const MainListHeader = ({
       </div>
     </header>
   );
-};
+}
 
 export default MainListHeader;

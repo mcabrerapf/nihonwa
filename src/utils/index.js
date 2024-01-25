@@ -1,21 +1,22 @@
-import capitalizeFirstLetter from "./capitalizeFirstLetter";
-import checkIfCharIsKanji from "./checkIfCharIsKanji";
-import copyToClipboard from "./copyToClipboard";
-import deepCompare from "./deepCompare";
-import filterBy from "./filterBy";
-import generateRandomNumber from "./generateRandomNumber";
-import getCharWithFuri from "./getCharWithFuri";
-import getEnglishCharacters from "./getEnglishCharacters";
-import getWordPronunciation from "./getWordPronunciation";
-import getWordSentences from "./getWordSentences";
-import hasFilterMatch from "./hasFilterMatch";
-import hasTextMatch from "./hasTextMatch";
-import initItemData from "./initItemData";
-import initSentenceData from "./initSentenceData";
-import initWordData from "./initWordData";
-import kanaToEnglishChar from "./kanaToEnglishChar";
-import romajiToKana from "./romajiToKana";
-import sortBy from "./sortBy";
+import capitalizeFirstLetter from './capitalizeFirstLetter';
+import checkIfCharIsKanji from './checkIfCharIsKanji';
+import copyToClipboard from './copyToClipboard';
+import deepCompare from './deepCompare';
+import filterBy from './filterBy';
+import generateRandomNumber from './generateRandomNumber';
+import getCharWithFuri from './getCharWithFuri';
+import getEnglishCharacters from './getEnglishCharacters';
+import getKanjiFromString from './getKanjiFromString';
+import getWordPronunciation from './getWordPronunciation';
+import getWordSentences from './getWordSentences';
+import hasFilterMatch from './hasFilterMatch';
+import hasTextMatch from './hasTextMatch';
+import initItemData from './initItemData';
+import initSentenceData from './initSentenceData';
+import initWordData from './initWordData';
+import kanaToEnglishChar from './kanaToEnglishChar';
+import romajiToKana from './romajiToKana';
+import sortBy from './sortBy';
 
 export {
   capitalizeFirstLetter,
@@ -26,6 +27,7 @@ export {
   filterBy,
   generateRandomNumber,
   getCharWithFuri,
+  getKanjiFromString,
   getEnglishCharacters,
   getWordPronunciation,
   getWordSentences,

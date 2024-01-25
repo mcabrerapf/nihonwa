@@ -1,3 +1,3 @@
-import TestProgressContent from "./TestProgressContent";
+import TestProgressContent from './TestProgressContent';
 
 export default TestProgressContent;

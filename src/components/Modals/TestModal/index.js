@@ -1,3 +1,3 @@
-import TestModal from "./TestModal";
+import TestModal from './TestModal';
 
 export default TestModal;

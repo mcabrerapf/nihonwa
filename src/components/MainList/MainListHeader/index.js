@@ -1,3 +1,3 @@
-import MainListHeader from "./MainListHeader";
+import MainListHeader from './MainListHeader';
 
 export default MainListHeader;

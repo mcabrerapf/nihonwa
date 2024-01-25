@@ -1,3 +1,3 @@
-import DisplayViewSentences from "./DisplayViewSentences";
+import DisplayViewSentences from './DisplayViewSentences';
 
 export default DisplayViewSentences;

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import "./TestProgressContent.scss";
-import Button from "../../../Button";
-import { getCharWithFuri } from "../../../../utils";
+import React, { useState } from 'react';
+import './TestProgressContent.scss';
+import Button from '../../../Button';
+import { getCharWithFuri } from '../../../../utils';
 
-const TestProgressContent = ({ questions, setQuestions, setView }) => {
+function TestProgressContent({ questions, setQuestions, setView }) {
   const [showAnswer, setShowAnswer] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const currentQuestion = questions[currentQuestionIndex];
@@ -21,7 +21,7 @@ const TestProgressContent = ({ questions, setQuestions, setView }) => {
     setShowAnswer(false);
 
     if (currentQuestionIndex + 1 === questions.length) {
-      setView("done");
+      setView('done');
     } else setCurrentQuestionIndex(currentQuestionIndex + 1);
   };
 
@@ -32,6 +32,7 @@ const TestProgressContent = ({ questions, setQuestions, setView }) => {
     <>
       <div className="test-modal-progress-content">
         <div
+          role="button"
           className="current-question"
           onClick={() => {
             if (!showAnswer) setShowAnswer(true);
@@ -69,6 +70,6 @@ const TestProgressContent = ({ questions, setQuestions, setView }) => {
       </footer>
     </>
   );
-};
+}
 
 export default TestProgressContent;

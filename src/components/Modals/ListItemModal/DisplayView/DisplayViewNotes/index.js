@@ -1,3 +1,3 @@
-import DisplayViewNotes from "./DisplayViewNotes";
+import DisplayViewNotes from './DisplayViewNotes';
 
 export default DisplayViewNotes;

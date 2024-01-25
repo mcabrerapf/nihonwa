@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import "./KanaModal.scss";
-import ModalWrapper from "../../ModalWrapper";
-import Button from "../../Button";
-import { HIRAGANA, KATAKANA } from "../../../constants";
-import { copyToClipboard } from "../../../utils";
+import React, { useState } from 'react';
+import './KanaModal.scss';
+import ModalWrapper from '../../ModalWrapper';
+import Button from '../../Button';
+import { HIRAGANA, KATAKANA } from '../../../constants';
+import { copyToClipboard } from '../../../utils';
 
-const KanaModal = ({ closeModal, kanaMode }) => {
-  const [view, setView] = useState(kanaMode || "hi");
-  const isInHiraganaMode = view === "hi";
-  const header = isInHiraganaMode ? "ひらがな" : "カタカナ";
-  const kanaModalButtonText = isInHiraganaMode ? "カ" : "が";
+function KanaModal({ closeModal, kanaMode }) {
+  const [view, setView] = useState(kanaMode || 'hi');
+  const isInHiraganaMode = view === 'hi';
+  const header = isInHiraganaMode ? 'ひらがな' : 'カタカナ';
+  const kanaModalButtonText = isInHiraganaMode ? 'カ' : 'が';
 
   const handleKanaToggle = () => {
-    if (view === "ka") setView("hi");
-    else setView("ka");
+    if (view === 'ka') setView('hi');
+    else setView('ka');
   };
   const kanaToUse = isInHiraganaMode ? HIRAGANA : KATAKANA;
   const mainKana = kanaToUse[0];
@@ -26,21 +26,19 @@ const KanaModal = ({ closeModal, kanaMode }) => {
         </div>
         <div className="kana-modal-content">
           <div className="kana-group">
-            {mainKana.map((kanas, i) => {
-              return (
-                <div key={i} className="kana-list">
-                  {kanas.map((kana, i) => (
-                    <Button
-                      key={`${kana}-${i}`}
-                      modifier="ghost"
-                      onClick={() => copyToClipboard(kana)}
-                    >
-                      {kana}
-                    </Button>
-                  ))}
-                </div>
-              );
-            })}
+            {mainKana.map((kanas, kanasI) => (
+              <div key={kanasI} className="kana-list">
+                {kanas.map((kana, kanaI) => (
+                  <Button
+                    key={`${kana}-${kanaI}`}
+                    modifier="ghost"
+                    onClick={() => copyToClipboard(kana)}
+                  >
+                    {kana}
+                  </Button>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
         <div className="kana-modal-footer">
@@ -49,6 +47,6 @@ const KanaModal = ({ closeModal, kanaMode }) => {
       </div>
     </ModalWrapper>
   );
-};
+}
 
 export default KanaModal;

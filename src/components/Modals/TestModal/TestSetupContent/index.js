@@ -1,3 +1,3 @@
-import TestSetupContent from "./TestSetupContent";
+import TestSetupContent from './TestSetupContent';
 
 export default TestSetupContent;

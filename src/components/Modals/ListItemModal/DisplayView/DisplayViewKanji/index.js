@@ -1,3 +1,3 @@
-import DisplayViewKanji from "./DisplayViewKanji";
+import DisplayViewKanji from './DisplayViewKanji';
 
 export default DisplayViewKanji;

@@ -1,3 +1,3 @@
-import DisplayViewGeneral from "./DisplayViewGeneral";
+import DisplayViewGeneral from './DisplayViewGeneral';
 
 export default DisplayViewGeneral;

@@ -1,13 +1,16 @@
-import React from "react";
-import "./DisplayViewGeneral.scss";
+import React from 'react';
+import './DisplayViewGeneral.scss';
 
-const DisplayViewGeneral = ({ en = [], tags  = [] }) => {
+function DisplayViewGeneral({ en = [], tags = [] }) {
   return (
     <div className="display-view-general">
       <div className="display-view-content-meanings">
-        {en.map((meaning, i) => {
-          return <span key={`${i}-${meaning}`}>- {meaning}</span>;
-        })}
+        {en.map((meaning, i) => (
+          <span key={`${i}-${meaning}`}>
+            -
+            {meaning}
+          </span>
+        ))}
       </div>
       <div className="display-view-tags-tags">
         {!!tags.length && (
@@ -23,6 +26,6 @@ const DisplayViewGeneral = ({ en = [], tags  = [] }) => {
       </div>
     </div>
   );
-};
+}
 
 export default DisplayViewGeneral;

@@ -1,9 +1,8 @@
-import checkIfCharIsKanji from "./checkIfCharIsKanji";
+import checkIfCharIsKanji from './checkIfCharIsKanji';
 
 function getKanjiFromString(string) {
-    if(!string) return '';
-    return string.split('').filter(checkIfCharIsKanji).join('')
-  }
-  
-  export default getKanjiFromString;
-  
+  if (!string) return '';
+  return string.split('').filter(checkIfCharIsKanji).join('');
+}
+
+export default getKanjiFromString;

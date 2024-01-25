@@ -1,27 +1,27 @@
-import React, { useState } from "react";
-import "./MainList.scss";
-import { filterBy, sortBy } from "../../utils";
+import React, { useState } from 'react';
+import './MainList.scss';
+import { filterBy, sortBy } from '../../utils';
 import {
   FiltersModal,
   KanaModal,
   ListItemModal,
   SortModal,
   TestModal,
-} from "../Modals";
-import MainListFooter from "./MainListFooter";
-import MainListHeader from "./MainListHeader";
-import MainListContent from "./MainListContent";
-import { FILTERS_INIT_VAL } from "./constants";
-import ModalWrapper from "../ModalWrapper";
+} from '../Modals';
+import MainListFooter from './MainListFooter';
+import MainListHeader from './MainListHeader';
+import MainListContent from './MainListContent';
+import { FILTERS_INIT_VAL } from './constants';
+import ModalWrapper from '../ModalWrapper';
 
-const MainList = ({
+function MainList({
   wordsList,
   sentencesList,
   updateWordsList,
   updateSentencesList,
-}) => {
-  const [selectedList, setSelectedList] = useState("w");
-  const [sort, setSort] = useState(["jp", "desc"]);
+}) {
+  const [selectedList, setSelectedList] = useState('w');
+  const [sort, setSort] = useState(['jp', 'desc']);
   const [filters, setFilters] = useState(FILTERS_INIT_VAL);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
   const [showKanaModal, setShowKanaModal] = useState(null);
@@ -29,7 +29,7 @@ const MainList = ({
   const [showTestModal, setShowTestModal] = useState(false);
   const [showFiltersModal, setShowFiltersModal] = useState(false);
 
-  const isWordsList = selectedList === "w";
+  const isWordsList = selectedList === 'w';
   const listToFilter = isWordsList ? wordsList : sentencesList;
   const filteredList = filterBy(listToFilter, filters);
   const orderedList = sortBy(filteredList, sort[0], sort[1]);
@@ -48,18 +48,18 @@ const MainList = ({
 
   const handleListChange = async () => {
     if (isWordsList) {
-      setSelectedList("s");
+      setSelectedList('s');
     } else {
-      setSelectedList("w");
+      setSelectedList('w');
     }
   };
 
-  const listItemType = selectedList === "w" ? "word" : "sentence";
+  const listItemType = selectedList === 'w' ? 'word' : 'sentence';
 
   return (
     <div className="main-list-container">
       {selectedItemIndex !== null && (
-        //TODO improve this warpper bit
+        // TODO improve this warpper bit
         <ModalWrapper closeModal={() => setSelectedItemIndex(null)}>
           <ListItemModal
             listItemType={listItemType}
@@ -127,6 +127,6 @@ const MainList = ({
       />
     </div>
   );
-};
+}
 
 export default MainList;

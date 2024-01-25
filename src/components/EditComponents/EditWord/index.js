@@ -1,3 +1,3 @@
-import EditWord from "./EditWord";
+import EditWord from './EditWord';
 
 export default EditWord;

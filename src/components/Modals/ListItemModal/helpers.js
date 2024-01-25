@@ -21,12 +21,12 @@ const checkSentenceCanProceed = (step, data) => {
 };
 
 const checkEditFooterStatus = (step, type, data) => {
-  if (type === "word") {
+  if (type === 'word') {
     const isFirstStep = step === 0;
     const isLastStep = step === 5;
     return [checkWordCanProceed(step, data), isFirstStep, isLastStep];
   }
-  if (type === "sentence") {
+  if (type === 'sentence') {
     const isFirstStep = step === 0;
     const isLastStep = step === 4;
     return [checkSentenceCanProceed(step, data), isFirstStep, isLastStep];
@@ -35,8 +35,8 @@ const checkEditFooterStatus = (step, type, data) => {
 };
 
 const getEditStepsArray = (type) => {
-  if (type === "word") return [0, 1, 2, 3, 4, 5];
+  if (type === 'word') return [0, 1, 2, 3, 4, 5];
   return [0, 1, 2, 3, 4];
 };
 
-export { checkEditFooterStatus,getEditStepsArray };
+export { checkEditFooterStatus, getEditStepsArray };

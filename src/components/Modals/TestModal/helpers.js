@@ -1,4 +1,4 @@
-import { generateRandomNumber } from "../../../utils";
+import { generateRandomNumber } from '../../../utils';
 
 const buildQuestions = (testSetupOptions, optionsList) => {
   const { questionLimit } = testSetupOptions;
@@ -7,14 +7,12 @@ const buildQuestions = (testSetupOptions, optionsList) => {
     const rIndex = generateRandomNumber(0, optionsList.length, indexes);
     indexes.push(rIndex);
   }
-  return indexes.map((index) => {
-    return {
-      ...optionsList[index],
-      hits: 0,
-      misses: 0,
-      correct: false,
-    };
-  });
+  return indexes.map((index) => ({
+    ...optionsList[index],
+    hits: 0,
+    misses: 0,
+    correct: false,
+  }));
 };
 
 export { buildQuestions };

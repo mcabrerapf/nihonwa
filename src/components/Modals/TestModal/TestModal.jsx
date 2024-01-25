@@ -1,29 +1,29 @@
-import React, { useState } from "react";
-import "./TestModal.scss";
-import ModalWrapper from "../../ModalWrapper";
-import TestSetupContent from "./TestSetupContent";
-import TestProgressContent from "./TestProgressContent";
-import TestResultsContent from "./TestResultsContent";
+import React, { useState } from 'react';
+import './TestModal.scss';
+import ModalWrapper from '../../ModalWrapper';
+import TestSetupContent from './TestSetupContent';
+import TestProgressContent from './TestProgressContent';
+import TestResultsContent from './TestResultsContent';
 
 const TEST_SETUP_INIT_STATE = {
   questionLimit: 5,
 };
-const TestModal = ({ closeModal, wordsList, sentencesList }) => {
-  const [view, setView] = useState("setup");
+function TestModal({ closeModal, wordsList, sentencesList }) {
+  const [view, setView] = useState('setup');
   const [questions, setQuestions] = useState([]);
   const [testSetupOptions, setTestSetupOptions] = useState(
-    TEST_SETUP_INIT_STATE
+    TEST_SETUP_INIT_STATE,
   );
 
   const handleTestStart = (builtQuestions) => {
     setQuestions(builtQuestions);
-    setView("inprogress");
+    setView('inprogress');
   };
 
   return (
     <ModalWrapper closeModal={closeModal}>
       <div className="test-modal">
-        {view === "setup" && (
+        {view === 'setup' && (
           <TestSetupContent
             testSetupOptions={testSetupOptions}
             wordsList={wordsList}
@@ -33,14 +33,14 @@ const TestModal = ({ closeModal, wordsList, sentencesList }) => {
             closeModal={closeModal}
           />
         )}
-        {view === "inprogress" && (
+        {view === 'inprogress' && (
           <TestProgressContent
             questions={questions}
             setQuestions={setQuestions}
             setView={setView}
           />
         )}
-        {view === "done" && (
+        {view === 'done' && (
           <TestResultsContent
             questions={questions}
             setView={setView}
@@ -50,6 +50,6 @@ const TestModal = ({ closeModal, wordsList, sentencesList }) => {
       </div>
     </ModalWrapper>
   );
-};
+}
 
 export default TestModal;

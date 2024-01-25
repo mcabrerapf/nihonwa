@@ -1,13 +1,13 @@
-import React from "react";
-import "./EditSelectOptions.scss";
-import Button from "../../Button";
+import React from 'react';
+import './EditSelectOptions.scss';
+import Button from '../../Button';
 
-const EditSelectOptions = ({
+function EditSelectOptions({
   currentData,
   setCurrentData,
   optionKey,
   options,
-}) => {
+}) {
   const { [optionKey]: selectedOptions } = currentData;
 
   const handleAddOption = (option) => {
@@ -17,7 +17,7 @@ const EditSelectOptions = ({
 
   const handleRemoveOption = (optionToCheck) => {
     const updatedSelectedOptionns = selectedOptions.filter(
-      (selectedOption) => selectedOption !== optionToCheck
+      (selectedOption) => selectedOption !== optionToCheck,
     );
     setCurrentData({ ...currentData, [optionKey]: updatedSelectedOptionns });
   };
@@ -27,14 +27,15 @@ const EditSelectOptions = ({
       <div className="edit-select-options-options">
         {options.map((option) => {
           const isSelected = selectedOptions.find(
-            (selectedType) => selectedType === option
+            (selectedType) => selectedType === option,
           );
           return (
             <Button
               key={option}
               isNotSelected={!isSelected}
               onClick={() => {
-                isSelected ? handleRemoveOption(option) : handleAddOption(option);
+                if (isSelected)handleRemoveOption(option);
+                else handleAddOption(option);
               }}
             >
               {option}
@@ -44,6 +45,6 @@ const EditSelectOptions = ({
       </div>
     </div>
   );
-};
+}
 
 export default EditSelectOptions;

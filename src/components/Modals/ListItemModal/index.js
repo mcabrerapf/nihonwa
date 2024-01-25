@@ -1,3 +1,3 @@
-import ListItemModal from "./ListItemModal";
+import ListItemModal from './ListItemModal';
 
 export default ListItemModal;
