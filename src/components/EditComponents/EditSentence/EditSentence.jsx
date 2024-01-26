@@ -1,6 +1,6 @@
 import React from 'react';
 import './EditSentence.scss';
-import WordSearchIput from './WordSearchIput';
+import WordSearchIput from './WordSearchInput';
 
 function EditSentence({
   currentData,

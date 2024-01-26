@@ -2,7 +2,7 @@ import React from 'react';
 import './Button.scss';
 
 function Button({
-  onClick, isDisabled, isNotSelected, children, modifier,
+  onClick, isDisabled, isNotSelected, children, modifier, value,
 }) {
   const buttonClassNames = ['button'];
   if (isDisabled || isNotSelected) buttonClassNames.push('disabled');
@@ -10,7 +10,7 @@ function Button({
   const className = buttonClassNames.join(' ');
 
   return (
-    <button type="button" className={className} disabled={isDisabled} onClick={onClick}>
+    <button type="button" className={className} value={value} disabled={isDisabled} onClick={onClick}>
       {children}
     </button>
   );

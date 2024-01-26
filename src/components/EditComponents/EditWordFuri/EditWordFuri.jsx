@@ -1,62 +1,33 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import './EditWordFuri.scss';
 import Button from '../../Button';
-import { romajiToKana, getCharWithFuri } from '../../../utils';
+import useEditWordFuri from './useEditWordFuri';
 
-function EditWordFuri({ currentData, setCurrentData }) {
-  const [currentString, setCurrentString] = useState('');
-  const [selectedKana, setSelectedKana] = useState('hi');
-  const [selectedCharIndex, setSelectedCharIndex] = useState(0);
-  const inputRef = useRef(null);
-  const { jp, furi } = currentData;
-
-  const handleUpdateFuri = (value, i) => {
-    const indexToUse = i !== undefined ? i : selectedCharIndex;
-    const updatedFuri = [...furi];
-    updatedFuri[indexToUse] = value;
-    setCurrentData({ ...currentData, furi: updatedFuri });
-  };
-
-  const handleParseWord = (kanaKey) => {
-    if (!currentString) return;
-    const kana = romajiToKana(currentString, kanaKey || selectedKana);
-    handleUpdateFuri(kana);
-    setCurrentString('');
-  };
-
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      handleParseWord();
-    }
-  };
-
-  const handleKanaClick = (kana) => {
-    setSelectedKana(kana);
-    handleParseWord(kana);
-  };
-
-  const handleCharSelect = (index, furiToCheck) => {
-    setSelectedCharIndex(index);
-    if (furiToCheck) setCurrentString(furiToCheck);
-    if (inputRef.current) inputRef.current.focus();
-  };
-
-  const kanaWithFuri = getCharWithFuri(jp, furi);
-
+function EditWordFuri(props) {
+  const {
+    inputRef,
+    currentString,
+    kanaWithFuri,
+    isHiraganaSelected,
+    isKatakanaSelected,
+    handleOnChange,
+    handleKeyDown,
+    handleKanaClick,
+  } = useEditWordFuri(props);
   return (
     <div className="edit-word-furi">
       <div className="edit-word-furi-display">
-        {kanaWithFuri.map((kanaGroup, i) => (
+        {kanaWithFuri.map(({
+          key, className, kanaGroup, handleDeleteFuri, handleSelectFuri,
+        }) => (
           <div
-            key={`${kanaGroup[0]}-${i}`}
-            className={`kana-with-furi ${
-              i === selectedCharIndex ? 'selected-kana' : ''
-            }`}
+            key={key}
+            className={className}
           >
             {kanaGroup[1] && (
             <Button
               modifier="ghost"
-              onClick={() => handleUpdateFuri('', i)}
+              onClick={handleDeleteFuri}
             >
               x
             </Button>
@@ -65,7 +36,7 @@ function EditWordFuri({ currentData, setCurrentData }) {
             <span
               role="button"
               className="kana"
-              onClick={() => handleCharSelect(i, kanaGroup[1])}
+              onClick={handleSelectFuri}
             >
               {kanaGroup[0]}
             </span>
@@ -76,20 +47,22 @@ function EditWordFuri({ currentData, setCurrentData }) {
       <div className="edit-word-furi-input">
         <input
           ref={inputRef}
-          onChange={(e) => setCurrentString(e.target.value)}
-          onKeyDown={handleKeyPress}
+          onChange={handleOnChange}
+          onKeyDown={handleKeyDown}
           value={currentString}
         />
         <div className="edit-word-furi-input-buttons">
           <Button
-            isNotSelected={selectedKana !== 'hi'}
-            onClick={() => handleKanaClick('hi')}
+            isNotSelected={!isHiraganaSelected}
+            value="hi"
+            onClick={handleKanaClick}
           >
             か
           </Button>
           <Button
-            isNotSelected={selectedKana !== 'ka'}
-            onClick={() => handleKanaClick('ka')}
+            isNotSelected={!isKatakanaSelected}
+            value="ka"
+            onClick={handleKanaClick}
           >
             カ
           </Button>

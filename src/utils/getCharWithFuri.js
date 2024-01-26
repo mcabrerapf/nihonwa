@@ -1,6 +1,10 @@
 import kanaToEnglishChar from './kanaToEnglishChar';
 
-const getCharWithFuri = (text = '', furi = [], showVocalization = false) => text.split('').map((char, i) => {
+const getCharWithFuri = (
+  text = '',
+  furi = [],
+  showVocalization = false,
+) => text.split('').map((char, i) => {
   const furiChar = furi && furi[i];
   const currentKana = furiChar || char;
   const nextKana = furi[i + 1] || text[i + 1];

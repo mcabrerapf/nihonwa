@@ -1,8 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { getWordPronunciation, romajiToKana } from '../../../utils';
-import Button from '../../Button';
+import { useState, useRef, useEffect } from 'react';
+import { getWordPronunciation, romajiToKana } from '../../../../utils';
 
-function WordSearchIput({ sentence, allWords, handleUpdateData }) {
+function useWordSearchInput({ sentence, allWords, handleUpdateData }) {
   const textareaRef = useRef(null);
   const [currentValue, setCurrentValue] = useState(sentence);
   const [selectedKana, setSelectedKana] = useState('hi');
@@ -10,6 +9,8 @@ function WordSearchIput({ sentence, allWords, handleUpdateData }) {
   const [cursorStartPosition, setCursorStartPosition] = useState(0);
   const [cursorEndPosition, setCursorEndPosition] = useState(0);
 
+  const isHiraganaSelected = selectedKana === 'hi';
+  const isKatakanaSelected = selectedKana === 'ka';
   const searchValue = currentValue.substring(
     cursorStartPosition,
     cursorEndPosition,
@@ -56,16 +57,16 @@ function WordSearchIput({ sentence, allWords, handleUpdateData }) {
     handleUpdateData(resultString);
   };
 
-  const handleKanaClick = (kanaKey) => {
-    const resultString = romajiToKana(currentValue, kanaKey);
-    setSelectedKana(kanaKey);
+  const handleKanaClick = ({ target: { value } }) => {
+    const resultString = romajiToKana(currentValue, value);
+    setSelectedKana(value);
     setCurrentValue(resultString);
     setSelectedWordIndex(0);
     handleUpdateData(resultString);
     if (textareaRef.current) textareaRef.current.focus();
   };
 
-  const handleSelectWord = (word) => {
+  const handleSelectWord = ({ target: { innerText: word } }) => {
     if (!word) return;
     const resultString = currentValue.replace(searchValue, `${word} `);
     setCursorStartPosition(resultString.length);
@@ -81,7 +82,7 @@ function WordSearchIput({ sentence, allWords, handleUpdateData }) {
     setCurrentValue(value);
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyDown = (e) => {
     const { key } = e;
 
     if (key === ' ') handleParseWord();
@@ -113,52 +114,21 @@ function WordSearchIput({ sentence, allWords, handleUpdateData }) {
       setSelectedWordIndex(selectedWordIndex + 1);
     }
   };
-  console.log({ cursorStartPosition, cursorEndPosition });
-  return (
-    <>
-      <div className="word-search-suggestions-container">
-        {searchValue && (
-          <ul>
-            {filteredWords.map(({ id, jp }, i) => (
-              <li
-                key={id}
-                role="button"
-                // className={i === selectedWordIndex ? "selected-word" : ""}
-                onClick={() => handleSelectWord(jp)}
-              >
-                {jp}
-                {i === selectedWordIndex ? ' <=' : ''}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-      <div className="word-search-textarea-cotainer">
-        <textarea
-          ref={textareaRef}
-          value={currentValue}
-          onChange={handleOnChange}
-          onKeyDown={handleKeyPress}
-          onFocus={updateCursorPosition}
-          onClick={updateCursorPosition}
-        />
-        <div className="edit-sentence-input-buttons">
-          <Button
-            isNotSelected={selectedKana !== 'hi'}
-            onClick={() => handleKanaClick('hi')}
-          >
-            か
-          </Button>
-          <Button
-            isNotSelected={selectedKana !== 'ka'}
-            onClick={() => handleKanaClick('ka')}
-          >
-            カ
-          </Button>
-        </div>
-      </div>
-    </>
-  );
+
+  return {
+    textareaRef,
+    currentValue,
+    selectedWordIndex,
+    searchValue,
+    isHiraganaSelected,
+    isKatakanaSelected,
+    filteredWords,
+    updateCursorPosition,
+    handleSelectWord,
+    handleOnChange,
+    handleKeyDown,
+    handleKanaClick,
+  };
 }
 
-export default WordSearchIput;
+export default useWordSearchInput;
