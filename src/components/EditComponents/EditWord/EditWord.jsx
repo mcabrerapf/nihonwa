@@ -48,13 +48,13 @@ function EditWord(props) {
           />
           <div className="edit-word-input-buttons">
             <Button
-              isNotSelected={isHiraganaSelected}
+              isNotSelected={!isHiraganaSelected}
               onClick={() => handleKanaClick('hi')}
             >
               か
             </Button>
             <Button
-              isNotSelected={isKatakanaSelected}
+              isNotSelected={!isKatakanaSelected}
               onClick={() => handleKanaClick('ka')}
             >
               カ
