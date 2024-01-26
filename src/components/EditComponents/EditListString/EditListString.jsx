@@ -1,77 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import './EditListString.scss';
 import Button from '../../Button';
+import useEditListString from './useEditListString';
 
-function EditListString({
-  currentData, setCurrentData, listKey, currentEditStep, setCurrentEditStep,
-}) {
-  const inputRef = useRef(null);
-  const [currentString, setCurrentString] = useState('');
-  const [selectedItemIndex, setSelectedItemIndex] = useState(0);
-  const { [listKey]: listValues } = currentData;
-  const hasLastItemEmpty = listValues[listValues.length - 1] !== '';
-  const isListEmpty = !listValues.filter(Boolean).length;
-
-  useEffect(() => {
-    if (!listValues.length) {
-      setCurrentData({ ...currentData, [listKey]: [''] });
-      setSelectedItemIndex(0);
-    } else {
-      setCurrentData({ ...currentData, [listKey]: listValues });
-      setSelectedItemIndex(listValues.length - 1);
-    }
-
-    // if (inputRef.current && !currentString && listKey === 'en') {
-    //   inputRef.current.focus();
-    // }
-  }, [listKey, inputRef]);
-
-  const handleUpdateItem = () => {
-    if (!currentString) return;
-    const updatedListValues = [...listValues, ''];
-    updatedListValues[selectedItemIndex] = currentString;
-    setCurrentData({ ...currentData, [listKey]: updatedListValues });
-    setSelectedItemIndex(updatedListValues.length - 1);
-    setCurrentString('');
-  };
-
-  const handleAddItem = () => {
-    const updatedListValues = [...listValues, ''];
-    setCurrentData({ ...currentData, [listKey]: updatedListValues });
-    setSelectedItemIndex(updatedListValues.length - 1);
-    setCurrentString('');
-    if (inputRef.current) inputRef.current.focus();
-  };
-
-  const handleDelete = (valueIndex) => {
-    const updatedListValues = listValues.filter((_, i) => i !== valueIndex);
-    setCurrentData({
-      ...currentData,
-      [listKey]: updatedListValues.filter(Boolean),
-    });
-  };
-
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      handleUpdateItem();
-    }
-  };
-
-  const handleItemClick = (i, item) => {
-    const updatedListValues = listValues.filter(Boolean);
-    setCurrentData({ ...currentData, [listKey]: updatedListValues });
-    setCurrentString(item);
-    setSelectedItemIndex(i);
-    if (inputRef.current) inputRef.current.focus();
-  };
-
-  const handleGoToNotes = () => {
-    setCurrentEditStep(currentEditStep + 1);
-  };
-
-  const handleGoToTags = () => {
-    setCurrentEditStep(currentEditStep + 2);
-  };
+function EditListString(props) {
+  const {
+    inputRef,
+    currentString,
+    listValues,
+    selectedItemIndex,
+    isLastItemEmpty,
+    isMeaningsList,
+    isListEmpty,
+    handleAddItem,
+    handleUpdateItem,
+    handleDelete,
+    handleOnChange,
+    handleOnSubmit,
+    handleItemClick,
+    handleGoToNotes,
+    handleGoToTags,
+  } = useEditListString(props);
 
   return (
     <div className="edit-list-string">
@@ -99,10 +48,10 @@ function EditListString({
           );
         })}
         <div>
-          {hasLastItemEmpty && <Button onClick={handleAddItem}>+</Button>}
+          {isLastItemEmpty && <Button onClick={handleAddItem}>+</Button>}
         </div>
       </div>
-      {listKey === 'en' && (
+      {isMeaningsList && (
       <div className="edit-list-string-nav-buttons">
         <Button
           isDisabled={isListEmpty}
@@ -119,24 +68,22 @@ function EditListString({
         </Button>
       </div>
       )}
-      <div className="edit-list-string-input">
-
+      <form className="edit-list-string-input" onSubmit={handleOnSubmit}>
         {/* TODO check why not rendering equaly to text area word */}
         <input
           ref={inputRef}
-          onChange={(e) => setCurrentString(e.target.value)}
-          onKeyDown={handleKeyPress}
+          onChange={handleOnChange}
           value={currentString}
         />
         <div className="edit-list-string-input-buttons">
           <Button
             isDisabled={!currentString}
-            onClick={() => handleUpdateItem()}
+            onClick={handleUpdateItem}
           >
             O
           </Button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

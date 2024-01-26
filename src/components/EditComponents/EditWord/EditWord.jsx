@@ -1,58 +1,28 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import './EditWord.scss';
 import Button from '../../Button';
-import { romajiToKana } from '../../../utils';
+import useEditWord from './useEditWord';
 
-function EditWord({
-  currentData,
-  setCurrentData,
-  itemAlreadyExists,
-  setCurrentEditStep,
-}) {
-  const inputRef = useRef(null);
-  const [currentString, setCurrentString] = useState(currentData.jp);
-  const [selectedKana, setSelectedKana] = useState('hi');
-  const { jp } = currentData;
-
-  // useEffect(() => {
-  //   if (inputRef.current && !currentString) {
-  //     inputRef.current.focus();
-  //   }
-  // }, [inputRef]);
-
-  const handleParseWord = (kanaKey) => {
-    if (!currentString) return;
-    const kana = romajiToKana(currentString, kanaKey || selectedKana);
-    setCurrentData({ ...currentData, jp: kana });
-    setCurrentString(kana);
-  };
-
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter' || event.keyCode === 32) {
-      event.preventDefault();
-      handleParseWord();
-    }
-
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      const newKana = selectedKana === 'hi' ? 'ka' : 'hi';
-      setSelectedKana(newKana);
-    }
-  };
-
-  const handleKanaClick = (kana) => {
-    setSelectedKana(kana);
-    handleParseWord(kana);
-  };
-
-  const handleGoToFuriEditStep = () => {
-    setCurrentEditStep(1);
-  };
+function EditWord(props) {
+  const {
+    inputRef,
+    itemAlreadyExists,
+    word,
+    currentWord,
+    isHiraganaSelected,
+    isKatakanaSelected,
+    isFuriButtonDisabled,
+    handleOnChange,
+    handleOnSubmit,
+    handleKeyDown,
+    handleKanaClick,
+    handleGoToFuriEditStep,
+  } = useEditWord(props);
 
   return (
     <div className="edit-word">
       <div className="edit-word-display">
-        <span>{jp}</span>
+        <span>{word}</span>
         {itemAlreadyExists && (
           <span className="edit-word-error-message">Word already exists</span>
         )}
@@ -60,34 +30,37 @@ function EditWord({
       <div className="edit-word-actions">
         <div className="add-furi-button">
           <Button
-            isDisabled={itemAlreadyExists || !jp}
+            isDisabled={isFuriButtonDisabled}
             onClick={handleGoToFuriEditStep}
           >
             振り仮名
           </Button>
         </div>
-        <div className="edit-word-input">
+        <form
+          className="edit-word-input"
+          onSubmit={handleOnSubmit}
+        >
           <input
             ref={inputRef}
-            onChange={(e) => setCurrentString(e.target.value)}
-            onKeyDown={handleKeyPress}
-            value={currentString}
+            onChange={handleOnChange}
+            onKeyDown={handleKeyDown}
+            value={currentWord}
           />
           <div className="edit-word-input-buttons">
             <Button
-              isNotSelected={selectedKana !== 'hi'}
+              isNotSelected={isHiraganaSelected}
               onClick={() => handleKanaClick('hi')}
             >
               か
             </Button>
             <Button
-              isNotSelected={selectedKana !== 'ka'}
+              isNotSelected={isKatakanaSelected}
               onClick={() => handleKanaClick('ka')}
             >
               カ
             </Button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

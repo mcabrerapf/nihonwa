@@ -33,7 +33,7 @@ function MainList({
   const listToFilter = isWordsList ? wordsList : sentencesList;
   const filteredList = filterBy(listToFilter, filters);
   const orderedList = sortBy(filteredList, sort[0], sort[1]);
-  const listLength = orderedList.length;
+  const filteredListLength = orderedList.length;
 
   const handleSearchTextChange = (e) => {
     setFilters({ ...filters, text: e.target.value });
@@ -106,7 +106,7 @@ function MainList({
         isWordsList={isWordsList}
         filters={filters}
         listToFilter={listToFilter}
-        listLength={listLength}
+        filteredListLength={filteredListLength}
         handleSearchTextChange={handleSearchTextChange}
         handleFiltersChange={handleFiltersChange}
         setShowSortModal={setShowSortModal}
@@ -119,7 +119,7 @@ function MainList({
         setSelectedItemIndex={setSelectedItemIndex}
       />
       <MainListFooter
-        listLength={listLength}
+        filteredListLength={filteredListLength}
         isWordsList={isWordsList}
         handleListChange={handleListChange}
         setShowTestModal={setShowTestModal}

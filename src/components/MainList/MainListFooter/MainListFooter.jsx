@@ -4,14 +4,14 @@ import { generateRandomNumber } from '../../../utils';
 import Button from '../../Button';
 
 function MainListFooter({
-  listLength,
+  filteredListLength,
   isWordsList,
   setShowTestModal,
   handleListChange,
   setSelectedItemIndex,
 }) {
   const handleRandomItemClick = () => {
-    const randomIndex = generateRandomNumber(0, listLength);
+    const randomIndex = generateRandomNumber(0, filteredListLength);
     setSelectedItemIndex(randomIndex);
   };
 

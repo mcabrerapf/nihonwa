@@ -1,62 +1,40 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import './MainListHeader.scss';
 import Button from '../../Button';
-import { copyToClipboard } from '../../../utils';
+import useMainListHeader from './useMainListHeader';
 
-function MainListHeader({
-  isWordsList,
-  filters,
-  listToFilter,
-  listLength,
-  handleFiltersChange,
-  handleSearchTextChange,
-  setShowKanaModal,
-  setShowSortModal,
-  setShowFiltersModal,
-}) {
-  const [isLongPress, setIsLongPress] = useState(false);
-  const pressTimer = useRef(null);
-  const hasActiveFilters = !!filters.tags.length;
-  const headerText = isWordsList ? '言葉' : '文';
-
-  useEffect(() => {
-    if (isLongPress) {
-      console.log('COPIED CURRENT LIST');
-      copyToClipboard(JSON.stringify(listToFilter));
-    }
-  }, [isLongPress, listToFilter]);
-
-  const handleMouseDown = () => {
-    pressTimer.current = setTimeout(() => {
-      setIsLongPress(true);
-    }, 500); // Adjust the duration as needed (in milliseconds)
-  };
-
-  const handleMouseUp = () => {
-    clearTimeout(pressTimer.current);
-    setIsLongPress(false);
-  };
-
-  const handleMouseLeave = () => {
-    clearTimeout(pressTimer.current);
-    setIsLongPress(false);
-  };
+function MainListHeader(props) {
+  const {
+    textFilter,
+    hasActiveFilters,
+    headerText,
+    headerCount,
+    handleSearchTextChange,
+    handleKanaButtonClick,
+    handleTagsReset,
+    handleTextSearchReset,
+    handleShowSortModal,
+    handleShowFiltersModal,
+    handleMouseUp,
+    handleMouseDown,
+    handleMouseLeave,
+  } = useMainListHeader(props);
 
   return (
     <header className="main-list-header">
       <div className="main-list-header-main-content">
         <div className="main-list-filters-buttons">
-          <Button onClick={() => setShowSortModal(true)}>S</Button>
+          <Button onClick={handleShowSortModal}>S</Button>
           <Button
             isNotSelected={!hasActiveFilters}
-            onClick={() => setShowFiltersModal(true)}
+            onClick={handleShowFiltersModal}
           >
             F
           </Button>
           {hasActiveFilters && (
             <Button
               modifier="reset-filters-button ghost"
-              onClick={() => handleFiltersChange({ ...filters, tags: [] })}
+              onClick={handleTagsReset}
             >
               X
             </Button>
@@ -70,24 +48,24 @@ function MainListHeader({
           onMouseLeave={handleMouseLeave}
         >
           <span>{headerText}</span>
-          <span className="main-list-count">{listLength}</span>
+          <span className="main-list-count">{headerCount}</span>
         </div>
         <div className="main-list-kana-buttons">
-          <Button onClick={() => setShowKanaModal('hi')}>か</Button>
-          <Button onClick={() => setShowKanaModal('ka')}>カ</Button>
+          <Button onClick={() => handleKanaButtonClick('hi')}>か</Button>
+          <Button onClick={() => handleKanaButtonClick('ka')}>カ</Button>
         </div>
       </div>
       <div className="main-list-search-input">
         <input
           autoComplete="off"
           type="text"
-          value={filters.text}
+          value={textFilter}
           onChange={handleSearchTextChange}
         />
-        {!!filters.text && (
+        {textFilter && (
           <Button
             modifier="ghost"
-            onClick={() => handleSearchTextChange({ target: { value: '' } })}
+            onClick={handleTextSearchReset}
           >
             X
           </Button>
