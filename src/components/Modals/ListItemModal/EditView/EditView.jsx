@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './EditView.scss';
 import EditViewFooter from './EditViewFooter';
-import { getEditStepHeaderText, renderEditStepComponent } from './helpers';
 import Button from '../../../Button';
+import { getEditStepHeaderText, renderEditStepComponent } from './helpers';
 import { deepCompare } from '../../../../utils';
 
 function EditView({
@@ -10,25 +10,26 @@ function EditView({
   listItemType,
   allWords,
   allSentences,
+  setModalView,
   updateListService,
   closeModal,
 }) {
   const [currentEditStep, setCurrentEditStep] = useState(0);
   const [currentData, setCurrentData] = useState(listItemData);
   const [itemAlreadyExists, setItemAlreadyExists] = useState('');
+  const word = currentData.jp;
+  const headerText = getEditStepHeaderText(listItemType, currentEditStep, word);
 
   const handleSave = () => {
     if (deepCompare(listItemData, currentData)) {
-      closeModal();
-      return;
+      if (listItemData.id) return setModalView('display');
+      return closeModal();
     }
 
     updateListService(currentData);
-    closeModal();
+    if (listItemData.id) return setModalView('display');
+    return closeModal();
   };
-
-  const word = currentData.jp;
-  const headerText = getEditStepHeaderText(listItemType, currentEditStep, word);
 
   const editStepComponentProps = {
     listItemData: currentData,
@@ -37,10 +38,10 @@ function EditView({
     isFirstItem: true,
     isLastItem: true,
     modalView: 'edit',
-    setModalView: () => {},
-    handleListItemChange: () => {},
     currentData,
     currentEditStep,
+    setModalView: () => {},
+    handleListItemChange: () => {},
     setCurrentData,
     setCurrentEditStep,
     allSentences,

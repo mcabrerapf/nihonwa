@@ -5,7 +5,7 @@ import Kanji from '../../../../Kanji';
 function DisplayViewKanji({ kanjis }) {
   return (
     <div className="display-view-kanji">
-      {kanjis.split('').map((kanji, i) => {
+      {kanjis.map((kanji, i) => {
         const kanjiId = `${kanji}-${i}`;
 
         return (

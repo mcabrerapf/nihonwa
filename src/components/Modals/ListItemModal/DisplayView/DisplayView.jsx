@@ -6,7 +6,7 @@ import DisplayViewSentences from './DisplayViewSentences';
 import DisplayViewNotes from './DisplayViewNotes';
 import DisplayViewFooter from './DisplayViewFooter';
 import DisplayViewKanji from './DisplayViewKanji';
-import { getWordSentences, getKanjiFromString } from '../../../../utils';
+import { getWordSentences, getKanjiArrayFromString } from '../../../../utils';
 
 function DisplayView({
   listItemData,
@@ -15,6 +15,7 @@ function DisplayView({
   isLastItem,
   allSentences,
   canDelete,
+  modalView,
   setModalView,
   handleListItemChange,
 }) {
@@ -25,7 +26,8 @@ function DisplayView({
   const wordSentences = listItemType === 'word' ? getWordSentences(jp, allSentences) : [];
   const hasSentences = wordSentences && wordSentences.length;
   const hasNotes = notes && !!notes.length;
-  const kanjis = getKanjiFromString(jp);
+  const kanjis = [...new Set(getKanjiArrayFromString(jp))];
+  console.log(kanjis);
   const hasKanji = !!kanjis;
 
   useEffect(() => {
@@ -39,6 +41,7 @@ function DisplayView({
         furi={furi}
         hasKanji={hasKanji}
         canDelete={canDelete}
+        modalView={modalView}
         setModalView={setModalView}
         setView={setView}
       />

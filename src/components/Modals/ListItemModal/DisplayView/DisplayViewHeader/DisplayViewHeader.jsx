@@ -5,7 +5,7 @@ import { getHeaderTextClassName } from './helpers';
 import Button from '../../../../Button';
 
 function DisplayViewHeader({
-  text, furi, hasKanji, canDelete, setModalView, setView,
+  text, furi, hasKanji, canDelete, modalView, setModalView, setView,
 }) {
   const headerCharacters = getCharWithFuri(text, furi, true);
 
@@ -18,6 +18,7 @@ function DisplayViewHeader({
 
   return (
     <div role="button" className="display-view-modal-header" onClick={handleCharacterCopy}>
+      {modalView !== 'edit' && (
       <div className="display-view-modal-header-buttons">
         <Button
           isDisabled={!canDelete}
@@ -37,6 +38,7 @@ function DisplayViewHeader({
         )}
         <Button onClick={() => setModalView('edit')}>E</Button>
       </div>
+      )}
       <div className="display-view-modal-header-text">
         {headerCharacters.map((headerChar, i) => {
           const [char, furiChar, enChar] = headerChar;

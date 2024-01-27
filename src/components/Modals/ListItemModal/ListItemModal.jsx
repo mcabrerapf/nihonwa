@@ -36,6 +36,8 @@ function ListItemModal({
   useEffect(() => {
     if (modalView === 'edit') {
       setCloseOnBgClick(false);
+    } else {
+      setCloseOnBgClick(true);
     }
   }, [modalView, setCloseOnBgClick]);
 
@@ -98,28 +100,17 @@ function ListItemModal({
       </div>
       )}
       {modalView === 'display' && (
-      <>
-        {/* <div className="list-item-actions-buttons">
-          <Button
-            isDisabled={!canDelete}
-            onClick={() => setModalView('delete')}
-          >
-            D
-          </Button>
-          <Button onClick={() => setModalView('edit')}>E</Button>
-        </div> */}
-        <DisplayView
-          listItemData={parsedListItemData}
-          listItemType={listItemType}
-          isLastItem={isLastItem}
-          isFirstItem={isFirstItem}
-          allSentences={allSentences}
-          modalView={modalView}
-          canDelete={canDelete}
-          setModalView={setModalView}
-          handleListItemChange={handleListItemChange}
-        />
-      </>
+      <DisplayView
+        listItemData={parsedListItemData}
+        listItemType={listItemType}
+        isLastItem={isLastItem}
+        isFirstItem={isFirstItem}
+        allSentences={allSentences}
+        modalView={modalView}
+        canDelete={canDelete}
+        setModalView={setModalView}
+        handleListItemChange={handleListItemChange}
+      />
       )}
       {modalView === 'edit' && (
       <EditView
@@ -129,6 +120,7 @@ function ListItemModal({
         allSentences={allSentences}
         updateListService={updateListService}
         closeModal={closeModal}
+        setModalView={setModalView}
       />
       )}
     </div>

@@ -6,7 +6,7 @@ import filterBy from './filterBy';
 import generateRandomNumber from './generateRandomNumber';
 import getCharWithFuri from './getCharWithFuri';
 import getEnglishCharacters from './getEnglishCharacters';
-import getKanjiFromString from './getKanjiFromString';
+import getKanjiArrayFromString from './getKanjiArrayFromString';
 import getWordPronunciation from './getWordPronunciation';
 import getWordSentences from './getWordSentences';
 import hasFilterMatch from './hasFilterMatch';
@@ -27,7 +27,7 @@ export {
   filterBy,
   generateRandomNumber,
   getCharWithFuri,
-  getKanjiFromString,
+  getKanjiArrayFromString,
   getEnglishCharacters,
   getWordPronunciation,
   getWordSentences,
