@@ -10,10 +10,6 @@ function EditSentence({
 }) {
   const { jp } = currentData;
 
-  const handleUpdateData = (newSentence) => {
-    setCurrentData({ ...currentData, jp: newSentence });
-  };
-
   return (
     <div className="edit-sentence">
       <div className="edit-sentence-display">
@@ -28,7 +24,8 @@ function EditSentence({
         <WordSearchIput
           sentence={jp}
           allWords={allWords}
-          handleUpdateData={handleUpdateData}
+          currentData={currentData}
+          setCurrentData={setCurrentData}
         />
       </div>
     </div>

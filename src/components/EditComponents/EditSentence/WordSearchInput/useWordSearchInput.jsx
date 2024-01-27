@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { getWordPronunciation, romajiToKana } from '../../../../utils';
 
-function useWordSearchInput({ sentence, allWords, handleUpdateData }) {
+function useWordSearchInput({
+  sentence, allWords, currentData, setCurrentData,
+}) {
   const textareaRef = useRef(null);
   const [currentValue, setCurrentValue] = useState(sentence);
   const [selectedKana, setSelectedKana] = useState('hi');
@@ -34,6 +36,10 @@ function useWordSearchInput({ sentence, allWords, handleUpdateData }) {
   useEffect(() => {
     if (cursorStartPosition > currentValue.length) setCursorStartPosition(currentValue.length);
   }, [currentValue]);
+
+  const handleUpdateData = (newSentence) => {
+    setCurrentData({ ...currentData, jp: newSentence });
+  };
 
   const getCurrentCursorPosition = () => {
     if (textareaRef.current) return textareaRef.current.selectionStart;
