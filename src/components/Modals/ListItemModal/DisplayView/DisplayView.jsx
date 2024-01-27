@@ -27,8 +27,7 @@ function DisplayView({
   const hasSentences = wordSentences && wordSentences.length;
   const hasNotes = notes && !!notes.length;
   const kanjis = [...new Set(getKanjiArrayFromString(jp))];
-  console.log(kanjis);
-  const hasKanji = !!kanjis;
+  const hasKanji = !!kanjis && !!kanjis.length;
 
   useEffect(() => {
     setView('general');
