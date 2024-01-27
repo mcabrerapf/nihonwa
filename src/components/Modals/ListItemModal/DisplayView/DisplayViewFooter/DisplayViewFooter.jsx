@@ -6,7 +6,6 @@ function DisplayViewFooter({
   listItemType,
   isLastItem,
   isFirstItem,
-  hasKanji,
   hasNotes,
   hasSentences,
   setView,
@@ -52,7 +51,7 @@ function DisplayViewFooter({
             S
           </Button>
         )}
-        {hasKanji && (
+        {/* {hasKanji && (
           <Button
             modifier="kanji-footer-button"
             onClick={() => {
@@ -61,7 +60,7 @@ function DisplayViewFooter({
           >
             漢字
           </Button>
-        )}
+        )} */}
       </div>
       <div className="arrow-container">
         {!isLastItem && (

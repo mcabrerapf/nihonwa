@@ -2,8 +2,11 @@ import React from 'react';
 import './DisplayViewHeader.scss';
 import { copyToClipboard, getCharWithFuri } from '../../../../../utils';
 import { getHeaderTextClassName } from './helpers';
+import Button from '../../../../Button';
 
-function DisplayViewHeader({ text, furi }) {
+function DisplayViewHeader({
+  text, furi, hasKanji, canDelete, setModalView, setView,
+}) {
   const headerCharacters = getCharWithFuri(text, furi, true);
 
   const handleCharacterCopy = () => {
@@ -15,17 +18,39 @@ function DisplayViewHeader({ text, furi }) {
 
   return (
     <div role="button" className="display-view-modal-header" onClick={handleCharacterCopy}>
-      {headerCharacters.map((headerChar, i) => {
-        const [char, furiChar, enChar] = headerChar;
+      <div className="display-view-modal-header-buttons">
+        <Button
+          isDisabled={!canDelete}
+          onClick={() => setModalView('delete')}
+        >
+          D
+        </Button>
+        {hasKanji && (
+        <Button
+          modifier="kanji-header-button"
+          onClick={() => {
+            setView('kanji');
+          }}
+        >
+          漢字
+        </Button>
+        )}
+        <Button onClick={() => setModalView('edit')}>E</Button>
+      </div>
+      <div className="display-view-modal-header-text">
+        {headerCharacters.map((headerChar, i) => {
+          const [char, furiChar, enChar] = headerChar;
 
-        return (
-          <div className="kana-with-furi" key={`${char}-${i}`}>
-            <span className="furi">{furiChar}</span>
-            <span className={kanaClassName}>{char}</span>
-            <span className="furi">{enChar}</span>
-          </div>
-        );
-      })}
+          return (
+            <div className="kana-with-furi" key={`${char}-${i}`}>
+              <span className="furi">{furiChar}</span>
+              <span className={kanaClassName}>{char}</span>
+              <span className="furi">{enChar}</span>
+            </div>
+          );
+        })}
+      </div>
+
     </div>
   );
 }

@@ -15,31 +15,30 @@
     gap: 0.5rem;
 
 
-  .edit-list-string-item {
-    display: flex;
-    align-items: center;
-
-    button.delete-item-button {
-      box-shadow: none;
-      font-size: 1.2rem;
-    }
-
-    span {
+    .edit-list-string-item {
       display: flex;
       align-items: center;
-      text-align: start;
-      font-size: 1.7rem;
-      min-width: 3rem;
-      min-height: 3rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
 
-    .selected-item {
-      text-align: center;
-      box-shadow: 0rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+      button.delete-item-button {
+        box-shadow: none;
+        font-size: 1.2rem;
+      }
+
+      span {
+        display: flex;
+        align-items: center;
+        text-align: start;
+        font-size: 1.7rem;
+        min-width: 3rem;
+        min-height: 3rem;
+        padding: 0.4rem 1rem;
+      }
+
+      .selected-item {
+        text-align: left;
+        box-shadow: 0rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+      }
     }
-  }
 
   }
 

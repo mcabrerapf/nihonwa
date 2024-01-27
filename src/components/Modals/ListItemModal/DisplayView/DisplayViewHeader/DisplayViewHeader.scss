@@ -1,36 +1,60 @@
 .display-view-modal-header {
-  display: flex;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  justify-content: center;
-  cursor: pointer;
-  user-select: none;
 
-  .kana-with-furi {
+
+  .display-view-modal-header-buttons {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 1rem;
 
-    .kana {
-      display: flex;
-      align-items: flex-end;
-      font-size: 3rem;
-    }
-    
-    .kana.s {
-      font-size: 2rem;
-    }
-
-    .kana.xs {
-      font-size: 1.75rem;
-    }
-
-    .furi {
-      display: flex;
-      align-items: flex-end;
+    button {
       font-size: 1.2rem;
-      height: 1.5rem;
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .kanji-header-button {
+      width: 4rem;
+    }
+
+
+  }
+
+  .display-view-modal-header-text {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+
+    .kana-with-furi {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .kana {
+        display: flex;
+        align-items: flex-end;
+        font-size: 3rem;
+      }
+
+      .kana.s {
+        font-size: 2rem;
+      }
+
+      .kana.xs {
+        font-size: 1.75rem;
+      }
+
+      .furi {
+        display: flex;
+        align-items: flex-end;
+        font-size: 1.2rem;
+        height: 1.5rem;
+      }
     }
   }
+
 }

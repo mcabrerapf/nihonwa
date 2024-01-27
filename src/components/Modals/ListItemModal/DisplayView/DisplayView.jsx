@@ -14,6 +14,8 @@ function DisplayView({
   isFirstItem,
   isLastItem,
   allSentences,
+  canDelete,
+  setModalView,
   handleListItemChange,
 }) {
   const [view, setView] = useState('general');
@@ -32,7 +34,14 @@ function DisplayView({
 
   return (
     <div className="list-item-modal-display-view">
-      <DisplayViewHeader text={jp} furi={furi} />
+      <DisplayViewHeader
+        text={jp}
+        furi={furi}
+        hasKanji={hasKanji}
+        canDelete={canDelete}
+        setModalView={setModalView}
+        setView={setView}
+      />
       <div className="list-item-modal-content">
         {view === 'general' && <DisplayViewGeneral tags={tags} en={en} />}
         {view === 'sentences' && (
@@ -43,7 +52,6 @@ function DisplayView({
       </div>
       <DisplayViewFooter
         listItemType={listItemType}
-        hasKanji={hasKanji}
         isLastItem={isLastItem}
         isFirstItem={isFirstItem}
         hasNotes={hasNotes}

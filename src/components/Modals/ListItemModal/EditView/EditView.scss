@@ -22,8 +22,12 @@
     flex-direction: column;
     justify-content: space-between;
     overflow: auto;
-    height: 37rem;
+    height: 24rem;
     font-size: 1.5rem;
     gap: 1rem;
+
+    .list-item-modal-display-view {
+      height: 24rem !important;
+    }
   }
 }

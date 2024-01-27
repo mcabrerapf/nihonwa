@@ -99,7 +99,7 @@ function ListItemModal({
       )}
       {modalView === 'display' && (
       <>
-        <div className="list-item-actions-buttons">
+        {/* <div className="list-item-actions-buttons">
           <Button
             isDisabled={!canDelete}
             onClick={() => setModalView('delete')}
@@ -107,7 +107,7 @@ function ListItemModal({
             D
           </Button>
           <Button onClick={() => setModalView('edit')}>E</Button>
-        </div>
+        </div> */}
         <DisplayView
           listItemData={parsedListItemData}
           listItemType={listItemType}
@@ -115,6 +115,7 @@ function ListItemModal({
           isFirstItem={isFirstItem}
           allSentences={allSentences}
           modalView={modalView}
+          canDelete={canDelete}
           setModalView={setModalView}
           handleListItemChange={handleListItemChange}
         />
