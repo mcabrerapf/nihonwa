@@ -1,12 +1,12 @@
 import { generateClient } from 'aws-amplify/api';
-import { GET_ALL_SENTENCES, GET_ALL_WORDS } from '../graphql/querys';
+import { GET_ALL_WORDS, GET_ALL_SENTENCES } from '../graphql/querys';
 import {
-  CREATE_SENTENCE,
   CREATE_WORD,
-  DELETE_SENTENCE,
-  DELETE_WORD,
-  UPDATE_SENTENCE,
+  CREATE_SENTENCE,
   UPDATE_WORD,
+  UPDATE_SENTENCE,
+  DELETE_WORD,
+  DELETE_SENTENCE,
 } from '../graphql/mutations';
 import { initSentenceData, initWordData } from '../utils';
 // MODELS
@@ -159,7 +159,43 @@ const deleteSentence = async ({ input, callback }) => {
   }
 };
 
+const getServiceToUse = (itemType, event) => {
+  if (itemType === 'word') {
+    switch (event) {
+      case 'getAll':
+        return getAllWords;
+      case 'create':
+        return createWord;
+      case 'update':
+        return updateWord;
+      case 'delete':
+        return deleteWord;
+
+      default:
+        return () => {};
+    }
+  }
+
+  if (itemType === 'sentence') {
+    switch (event) {
+      case 'getAll':
+        return getAllSentences;
+      case 'create':
+        return createSentence;
+      case 'update':
+        return updateSentence;
+      case 'delete':
+        return deleteSentence;
+
+      default:
+        return () => {};
+    }
+  }
+  return () => {};
+};
+
 export {
+  getServiceToUse,
   getAllWords,
   getAllSentences,
   createWord,

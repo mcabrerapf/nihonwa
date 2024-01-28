@@ -115,6 +115,7 @@ function ListItemModal({
         allSentences={allSentences}
         updateListService={updateListService}
         setModalView={setModalView}
+        setSelectedItemIndex={setSelectedItemIndex}
       />
       )}
     </div>

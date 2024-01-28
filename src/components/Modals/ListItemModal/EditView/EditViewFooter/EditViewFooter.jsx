@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './EditViewFooter.scss';
 import Button from '../../../../Button';
 import { checkEditFooterStatus, getEditStepsArray } from '../../helpers';
@@ -12,6 +12,7 @@ function EditViewFooter({
   setCurrentEditStep,
   handleSave,
 }) {
+  const [canSave, setCanSave] = useState(true);
   const [canProceed, isFirstStep, isLastStep] = checkEditFooterStatus(
     currentEditStep,
     listItemType,
@@ -45,6 +46,11 @@ function EditViewFooter({
     else handleChangeEditStep(currentEditStep + 1);
   };
 
+  const handleSaveButtonClick = async () => {
+    setCanSave(false);
+    handleSave();
+  };
+
   return (
     <footer className="edit-view-footer">
       <Button
@@ -72,7 +78,7 @@ function EditViewFooter({
           {'>'}
         </Button>
       )}
-      {isLastStep && <Button onClick={handleSave}>O</Button>}
+      {isLastStep && <Button isDisabled={!canSave} onClick={handleSaveButtonClick}>O</Button>}
     </footer>
   );
 }

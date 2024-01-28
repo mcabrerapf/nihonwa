@@ -5,6 +5,7 @@ import Button from '../../../Button';
 import { getEditStepHeaderText, renderEditStepComponent } from './helpers';
 import { deepCompare } from '../../../../utils';
 import { ModalWrapperContext } from '../../../ModalWrapper/ModalWrapperContext';
+import { getServiceToUse } from '../../../../Services';
 
 function EditView({
   listItemData,
@@ -21,16 +22,27 @@ function EditView({
   const word = currentData.jp;
   const headerText = getEditStepHeaderText(listItemType, currentEditStep, word);
 
-  const handleSave = () => {
+  const handleSave = async () => {
+    const itemId = listItemData.id;
+    const serviceName = itemId ? 'update' : 'create';
+    const serviceToUse = getServiceToUse(listItemType, serviceName);
     if (deepCompare(listItemData, currentData)) {
-      if (listItemData.id) return setModalView('display');
-      return closeModal();
+      return setModalView('display');
     }
-
-    updateListService(currentData);
-    if (listItemData.id) return setModalView('display');
-    return closeModal();
+    await serviceToUse({ input: currentData });
+    await updateListService();
+    return itemId ? setModalView('display') : closeModal();
   };
+
+  useEffect(() => {
+    if (!word) setItemAlreadyExists(false);
+    const listToCheck = listItemType === 'word' ? allWords : allSentences;
+    const alreadyExists = !!listToCheck.find((itemToCheck) => {
+      if (itemToCheck.id === currentData.id) return false;
+      return itemToCheck.jp === word;
+    });
+    setItemAlreadyExists(alreadyExists);
+  }, [word]);
 
   const editStepComponentProps = {
     listItemData: currentData,
@@ -48,16 +60,6 @@ function EditView({
     allSentences,
     allWords,
   };
-
-  useEffect(() => {
-    if (!word) setItemAlreadyExists(false);
-    const listToCheck = listItemType === 'word' ? allWords : allSentences;
-    const alreadyExists = !!listToCheck.find((itemToCheck) => {
-      if (itemToCheck.id === currentData.id) return false;
-      return itemToCheck.jp === word;
-    });
-    setItemAlreadyExists(alreadyExists);
-  }, [word]);
 
   return (
     <div className="list-item-modal-edit-view">

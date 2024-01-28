@@ -23,11 +23,11 @@ function useWordSearchInput({
     return parsedPronunciation.indexOf(searchValue.toLowerCase()) !== -1;
   });
 
-  // useEffect(() => {
-  //   if (textareaRef.current && !currentValue) {
-  //     textareaRef.current.focus();
-  //   }
-  // }, [textareaRef]);
+  useEffect(() => {
+    if (textareaRef.current && !currentValue) {
+      textareaRef.current.focus();
+    }
+  }, [textareaRef]);
 
   useEffect(() => {
     if (selectedWordIndex > filteredWords.length - 1) setSelectedWordIndex(0);

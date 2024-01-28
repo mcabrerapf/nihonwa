@@ -16,6 +16,12 @@ function useEditListString({
   const isListEmpty = !listValues.filter(Boolean).length;
 
   useEffect(() => {
+    if (inputRef.current && isListEmpty) {
+      inputRef.current.focus();
+    }
+  }, [inputRef, isListEmpty]);
+
+  useEffect(() => {
     if (!listValues.length) {
       setCurrentData({ ...currentData, [listKey]: [''] });
       setSelectedItemIndex(0);
@@ -23,11 +29,7 @@ function useEditListString({
       setCurrentData({ ...currentData, [listKey]: listValues });
       setSelectedItemIndex(listValues.length - 1);
     }
-
-    // if (inputRef.current && !currentString && listKey === 'en') {
-    //   inputRef.current.focus();
-    // }
-  }, [listKey, inputRef]);
+  }, [listKey]);
 
   const handleUpdateItem = () => {
     if (!currentString) return;

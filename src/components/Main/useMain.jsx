@@ -1,11 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  createWord,
-  updateWord,
-  getAllSentences,
-  getAllWords,
-  updateSentence,
-  createSentence,
+  getServiceToUse,
 } from '../../Services';
 
 function useMain() {
@@ -13,8 +8,8 @@ function useMain() {
 
   useEffect(() => {
     async function initMain() {
-      const { data: allWords, error: wordsError } = await getAllWords();
-      const { data: allSentences, error: messagesError } = await getAllSentences();
+      const { data: allWords, error: wordsError } = await getServiceToUse('word', 'getAll')();
+      const { data: allSentences, error: messagesError } = await getServiceToUse('sentence', 'getAll')();
       if (wordsError || messagesError) return;
       setAllLists([allWords, allSentences]);
     }
@@ -22,21 +17,13 @@ function useMain() {
     initMain();
   }, []);
 
-  const updateWordsList = async (newWord) => {
-    if (newWord) {
-      const serviceToUse = newWord.id ? updateWord : createWord;
-      await serviceToUse({ input: newWord });
-    }
-    const { data: allWords } = await getAllWords();
+  const updateWordsList = async () => {
+    const { data: allWords } = await getServiceToUse('word', 'getAll')();
     setAllLists([allWords, allLists[1]]);
   };
 
-  const updateSentencesList = async (newSentence) => {
-    if (newSentence) {
-      const serviceToUse = newSentence.id ? updateSentence : createSentence;
-      await serviceToUse({ input: newSentence });
-    }
-    const { data: allSentences } = await getAllSentences();
+  const updateSentencesList = async () => {
+    const { data: allSentences } = await getServiceToUse('sentence', 'getAll')();
     setAllLists([allLists[0], allSentences]);
   };
 

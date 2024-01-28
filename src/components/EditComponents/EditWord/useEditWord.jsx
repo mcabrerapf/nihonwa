@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { romajiToKana } from '../../../utils';
 
 const useEditWord = ({
@@ -15,11 +15,11 @@ const useEditWord = ({
   const isKatakanaSelected = selectedKana === 'ka';
   const isFuriButtonDisabled = itemAlreadyExists || !word;
 
-  // useEffect(() => {
-  //   if (inputRef.current && !currentWord) {
-  //     inputRef.current.focus();
-  //   }
-  // }, [inputRef]);
+  useEffect(() => {
+    if (inputRef.current && !currentWord) {
+      inputRef.current.focus();
+    }
+  }, [inputRef]);
 
   const handleParseWord = (kanaKey) => {
     if (!currentWord) return;
