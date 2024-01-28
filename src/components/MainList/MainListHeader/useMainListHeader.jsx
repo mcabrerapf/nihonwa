@@ -2,21 +2,18 @@ import { useEffect, useRef, useState } from 'react';
 import { copyToClipboard } from '../../../utils';
 
 const useMainListHeader = ({
-  isWordsList,
+  selectedList,
   filters,
   listToFilter,
   filteredListLength,
   handleFiltersChange,
-  handleSearchTextChange,
-  setShowKanaModal,
-  setShowSortModal,
-  setShowFiltersModal,
+  handleToggleModal,
 }) => {
   const pressTimer = useRef(null);
   const [isLongPress, setIsLongPress] = useState(false);
   const { text, tags } = filters;
   const hasActiveFilters = !!tags.length;
-  const headerText = isWordsList ? '言葉' : '文';
+  const headerText = selectedList === 'word' ? '言葉' : '文';
   const listToFilterLength = listToFilter.length;
   const headerCount = filteredListLength < listToFilterLength
     ? `(${filteredListLength}) ${listToFilterLength}` : filteredListLength;
@@ -44,6 +41,10 @@ const useMainListHeader = ({
     setIsLongPress(false);
   };
 
+  const handleSearchTextChange = ({ target: { value } }) => {
+    handleFiltersChange({ text: value, tags });
+  };
+
   const handleTextSearchReset = () => {
     handleFiltersChange({ text: '', tags });
   };
@@ -53,24 +54,24 @@ const useMainListHeader = ({
   };
 
   const handleKanaButtonClick = (selectedKana) => {
-    setShowKanaModal(selectedKana);
+    handleToggleModal(selectedKana);
   };
 
-  const handleShowSortModal = () => setShowSortModal(true);
+  const handleShowSortModal = () => handleToggleModal('sort');
 
-  const handleShowFiltersModal = () => setShowFiltersModal(true);
+  const handleShowFiltersModal = () => handleToggleModal('filters');
 
   return {
+    textFilter: text,
     hasActiveFilters,
     headerText,
     headerCount,
-    textFilter: text,
-    handleTagsReset,
-    handleTextSearchReset,
     handleSearchTextChange,
     handleShowSortModal,
-    handleShowFiltersModal,
     handleKanaButtonClick,
+    handleTagsReset,
+    handleTextSearchReset,
+    handleShowFiltersModal,
     handleMouseUp,
     handleMouseDown,
     handleMouseLeave,

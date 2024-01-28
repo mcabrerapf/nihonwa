@@ -13,7 +13,7 @@ import { initSentenceData, initWordData } from '../utils';
 // amplify/backend/api/nihonwa/schema.graphql
 const client = generateClient();
 
-const getAllWords = async () => {
+const getAllWords = async ({ callback } = {}) => {
   try {
     const result = await client.graphql({ query: GET_ALL_WORDS });
     const {
@@ -21,48 +21,15 @@ const getAllWords = async () => {
         listWords: { items },
       },
     } = result;
-    return items;
+    const data = { data: items };
+    return callback ? callback(data) : data;
   } catch (error) {
     console.log(error);
-    return [];
+    return callback ? callback({ error }) : { error };
   }
 };
 
-const getAllSentences = async () => {
-  try {
-    const result = await client.graphql({ query: GET_ALL_SENTENCES });
-    const {
-      data: {
-        listSentences: { items },
-      },
-    } = result;
-    return items;
-  } catch (error) {
-    console.log(error);
-    return [];
-  }
-};
-
-const createSentence = async (input) => {
-  try {
-    const parsedInput = initSentenceData(input);
-    const result = await client.graphql({
-      query: CREATE_SENTENCE,
-      variables: {
-        input: parsedInput,
-      },
-    });
-    const {
-      data: { createSentence: newSentenceData },
-    } = result;
-    return newSentenceData;
-  } catch (error) {
-    console.log({ error });
-    return null;
-  }
-};
-
-const createWord = async (input) => {
+const createWord = async ({ input, callback }) => {
   try {
     const parsedInput = initWordData(input);
     const result = await client.graphql({
@@ -74,14 +41,15 @@ const createWord = async (input) => {
     const {
       data: { createWord: newWordData },
     } = result;
-    return newWordData;
+    const data = { data: newWordData };
+    return callback ? callback(data) : data;
   } catch (error) {
-    console.log({ error });
-    return null;
+    console.log(error);
+    return callback ? callback({ error }) : { error };
   }
 };
 
-const updateWord = async (input) => {
+const updateWord = async ({ input, callback }) => {
   try {
     const parsedInput = initWordData(input);
     const result = await client.graphql({
@@ -93,14 +61,68 @@ const updateWord = async (input) => {
     const {
       data: { updateWord: updatedWordData },
     } = result;
-    return updatedWordData;
+    const data = { data: updatedWordData };
+    return callback ? callback(data) : data;
   } catch (error) {
-    console.log({ error });
-    return null;
+    console.log(error);
+    return callback ? callback({ error }) : { error };
   }
 };
 
-const updateSentence = async (input) => {
+const deleteWord = async ({ input, callback }) => {
+  try {
+    const parsedInput = initWordData(input);
+    await client.graphql({
+      query: DELETE_WORD,
+      variables: {
+        input: { id: parsedInput.id },
+      },
+    });
+    const data = { data: { id: parsedInput.id } };
+    return callback ? callback(data) : data;
+  } catch (error) {
+    console.log(error);
+    return callback ? callback({ error }) : { error };
+  }
+};
+
+const getAllSentences = async ({ callback } = {}) => {
+  try {
+    const result = await client.graphql({ query: GET_ALL_SENTENCES });
+    const {
+      data: {
+        listSentences: { items },
+      },
+    } = result;
+    const data = { data: items };
+    return callback ? callback(data) : data;
+  } catch (error) {
+    console.log(error);
+    return callback ? callback({ error }) : { error };
+  }
+};
+
+const createSentence = async ({ input, callback } = {}) => {
+  try {
+    const parsedInput = initSentenceData(input);
+    const result = await client.graphql({
+      query: CREATE_SENTENCE,
+      variables: {
+        input: parsedInput,
+      },
+    });
+    const {
+      data: { createSentence: newSentenceData },
+    } = result;
+    const data = { data: newSentenceData };
+    return callback ? callback(data) : data;
+  } catch (error) {
+    console.log(error);
+    return callback ? callback({ error }) : { error };
+  }
+};
+
+const updateSentence = async ({ input, callback }) => {
   try {
     const parsedInput = initSentenceData(input);
     const result = await client.graphql({
@@ -112,30 +134,15 @@ const updateSentence = async (input) => {
     const {
       data: { updateSentence: updatedSentenceData },
     } = result;
-    return updatedSentenceData;
+    const data = { data: updatedSentenceData };
+    return callback ? callback(data) : data;
   } catch (error) {
-    console.log({ error });
-    return null;
+    console.log(error);
+    return callback ? callback({ error }) : { error };
   }
 };
 
-const deleteWord = async (input) => {
-  try {
-    const parsedInput = initWordData(input);
-    await client.graphql({
-      query: DELETE_WORD,
-      variables: {
-        input: { id: parsedInput.id },
-      },
-    });
-    return true;
-  } catch (error) {
-    console.log({ error });
-    return null;
-  }
-};
-
-const deleteSentence = async (input) => {
+const deleteSentence = async ({ input, callback }) => {
   try {
     const parsedInput = initSentenceData(input);
     await client.graphql({
@@ -144,18 +151,19 @@ const deleteSentence = async (input) => {
         input: { id: parsedInput.id },
       },
     });
-    return true;
+    const data = { data: { id: parsedInput.id } };
+    return callback ? callback(data) : data;
   } catch (error) {
-    console.log({ error });
-    return null;
+    console.log(error);
+    return callback ? callback({ error }) : { error };
   }
 };
 
 export {
   getAllWords,
   getAllSentences,
-  createSentence,
   createWord,
+  createSentence,
   updateWord,
   updateSentence,
   deleteWord,

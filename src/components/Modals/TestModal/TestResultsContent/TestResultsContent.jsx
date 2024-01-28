@@ -22,7 +22,7 @@ function TestResultsContent({ questions, setView, closeModal }) {
       </div>
       <footer className="test-modal-footer">
         <Button onClick={() => setView('setup')}>R</Button>
-        <Button onClick={closeModal}>O</Button>
+        <Button onClick={() => closeModal()}>O</Button>
       </footer>
     </>
   );

@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import './MainListContent.scss';
 
-function MainListRender({ selectedList, mainList, setSelectedItemIndex }) {
+function MainListRender({
+  selectedList, mainList, handleToggleModal, setSelectedItemIndex,
+}) {
   const listRef = useRef(null);
 
   useEffect(() => {
@@ -9,6 +11,11 @@ function MainListRender({ selectedList, mainList, setSelectedItemIndex }) {
       listRef.current.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [selectedList]);
+
+  const handleOpenListItemModal = (i) => {
+    setSelectedItemIndex(i);
+    handleToggleModal('listItem');
+  };
 
   return (
     <div ref={listRef} className="main-list-content">
@@ -21,7 +28,7 @@ function MainListRender({ selectedList, mainList, setSelectedItemIndex }) {
               role="button"
               key={id}
               className="main-list-item"
-              onClick={() => setSelectedItemIndex(i)}
+              onClick={() => handleOpenListItemModal(i)}
             >
               <span>{jp}</span>
             </li>

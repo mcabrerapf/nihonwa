@@ -5,15 +5,26 @@ import Button from '../../Button';
 
 function MainListFooter({
   filteredListLength,
-  isWordsList,
-  setShowTestModal,
+  selectedList,
+  handleToggleModal,
   handleListChange,
   setSelectedItemIndex,
 }) {
-  const handleRandomItemClick = () => {
+  const handleOpenRandomListItemModal = () => {
     const randomIndex = generateRandomNumber(0, filteredListLength);
     setSelectedItemIndex(randomIndex);
+    handleToggleModal('listItem');
   };
+  const handleOpenNewItemModal = () => {
+    setSelectedItemIndex(-1);
+    handleToggleModal('listItem');
+  };
+
+  const handleOpenTestModal = () => {
+    handleToggleModal('test');
+  };
+
+  const isWordsList = selectedList === 'word';
 
   return (
     <footer className="main-list-footer">
@@ -21,17 +32,15 @@ function MainListFooter({
         <Button onClick={handleListChange}>{isWordsList ? '文' : '言葉'}</Button>
       </div>
       <div className="main-list-footer-buttons c">
-        <Button onClick={() => setSelectedItemIndex(-1)}>+</Button>
+        <Button onClick={handleOpenNewItemModal}>+</Button>
       </div>
       <div className="main-list-footer-buttons r">
         <Button
-          onClick={() => {
-            setShowTestModal(true);
-          }}
+          onClick={handleOpenTestModal}
         >
           T
         </Button>
-        <Button onClick={handleRandomItemClick}>R</Button>
+        <Button onClick={handleOpenRandomListItemModal}>R</Button>
       </div>
     </footer>
   );

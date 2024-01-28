@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './KanaModal.scss';
 import ModalWrapper from '../../ModalWrapper';
 import Button from '../../Button';
+import { ModalWrapperContext } from '../../ModalWrapper/ModalWrapperContext';
 import { HIRAGANA, KATAKANA } from '../../../constants';
 import { copyToClipboard } from '../../../utils';
 
-function KanaModal({ closeModal, kanaMode }) {
+function KanaModal({ kanaMode }) {
+  const { closeModal } = useContext(ModalWrapperContext);
   const [view, setView] = useState(kanaMode || 'hi');
   const isInHiraganaMode = view === 'hi';
   const header = isInHiraganaMode ? 'ひらがな' : 'カタカナ';

@@ -8,7 +8,6 @@ function TestSetupContent({
   wordsList,
   setTestSetupOptions,
   handleTestStart,
-  closeModal,
 }) {
   const { questionLimit } = testSetupOptions;
   const reachedMax = questionLimit >= 50;
@@ -54,7 +53,6 @@ function TestSetupContent({
         </div>
       </div>
       <footer className="test-modal-footer">
-        <Button onClick={closeModal}>X</Button>
         <Button onClick={handleBuildQuestions}>O</Button>
       </footer>
     </>

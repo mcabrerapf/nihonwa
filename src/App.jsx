@@ -1,7 +1,7 @@
 import './App.scss';
 import React from 'react';
-import { Authenticator } from '@aws-amplify/ui-react';
 import ReactDOM from 'react-dom/client';
+import { Authenticator } from '@aws-amplify/ui-react';
 import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
 import Main from './components/Main';

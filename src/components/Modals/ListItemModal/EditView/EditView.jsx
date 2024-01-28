@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './EditView.scss';
 import EditViewFooter from './EditViewFooter';
 import Button from '../../../Button';
 import { getEditStepHeaderText, renderEditStepComponent } from './helpers';
 import { deepCompare } from '../../../../utils';
+import { ModalWrapperContext } from '../../../ModalWrapper/ModalWrapperContext';
 
 function EditView({
   listItemData,
@@ -12,8 +13,8 @@ function EditView({
   allSentences,
   setModalView,
   updateListService,
-  closeModal,
 }) {
+  const { closeModal } = useContext(ModalWrapperContext);
   const [currentEditStep, setCurrentEditStep] = useState(0);
   const [currentData, setCurrentData] = useState(listItemData);
   const [itemAlreadyExists, setItemAlreadyExists] = useState('');
@@ -62,7 +63,7 @@ function EditView({
     <div className="list-item-modal-edit-view">
       <div className="edit-view-header">
         <span>{headerText}</span>
-        <Button className="edit-view-header-close-button" onClick={closeModal}>
+        <Button className="edit-view-header-close-button" onClick={() => closeModal()}>
           x
         </Button>
       </div>

@@ -3,7 +3,7 @@ import './ListItemModal.scss';
 import DisplayView from './DisplayView';
 import EditView from './EditView';
 import Button from '../../Button';
-import { deleteSentence, deleteWord } from '../../../Services';
+import { deleteWord, deleteSentence } from '../../../Services';
 import { initItemData } from '../../../utils';
 import { ModalWrapperContext } from '../../ModalWrapper/ModalWrapperContext';
 
@@ -15,9 +15,8 @@ function ListItemModal({
   allSentences,
   updateWordsList,
   updateSentencesList,
-  closeModal,
 }) {
-  const { setCloseOnBgClick } = useContext(ModalWrapperContext);
+  const { closeModal, setCloseOnBgClick } = useContext(ModalWrapperContext);
   const isNewItem = listItemIndex === -1;
   const [selectedItemIndex, setSelectedItemIndex] = useState(listItemIndex);
   const [canDelete, setCanDelete] = useState(true);
@@ -34,11 +33,7 @@ function ListItemModal({
   const updateListService = listItemType === 'word' ? updateWordsList : updateSentencesList;
 
   useEffect(() => {
-    if (modalView === 'edit') {
-      setCloseOnBgClick(false);
-    } else {
-      setCloseOnBgClick(true);
-    }
+    setCloseOnBgClick(modalView !== 'edit');
   }, [modalView, setCloseOnBgClick]);
 
   const handleListItemChange = (next) => {
@@ -54,8 +49,8 @@ function ListItemModal({
 
   const handleDelete = async () => {
     setCanDelete(false);
-    await deleteService(listItemData);
-    updateListService();
+    await deleteService({ input: listItemData });
+    await updateListService();
     closeModal();
   };
 
@@ -119,7 +114,6 @@ function ListItemModal({
         allWords={allWords}
         allSentences={allSentences}
         updateListService={updateListService}
-        closeModal={closeModal}
         setModalView={setModalView}
       />
       )}

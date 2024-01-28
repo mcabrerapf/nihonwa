@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import './FiltersModal.scss';
-import ModalWrapper from '../../ModalWrapper';
 import TAGS from '../../../constants/TAGS';
 import Button from '../../Button';
 
-function FiltersModal({ closeModal, filters }) {
+function FiltersModal({ filters, handleFiltersChange }) {
   const [selectedFilters, setSelectedFilters] = useState(filters);
   const { tags } = selectedFilters;
 
+  const handleUpdateListFilters = () => {
+    handleFiltersChange(selectedFilters);
+  };
   const updateFilters = (value, key) => {
     const filterToUpdate = selectedFilters[key];
     let wasSelected = false;
@@ -23,43 +25,41 @@ function FiltersModal({ closeModal, filters }) {
   };
 
   return (
-    <ModalWrapper closeModal={closeModal}>
-      <div className="filters-modal">
-        <div className="filters-modal-content">
-          <div className="filters-options-label">
-            <span>Tags</span>
-            {!!selectedFilters.tags.length && (
-              <Button
-                modifier="ghost"
-                onClick={() => setSelectedFilters({ ...selectedFilters, tags: [] })}
-              >
-                X
-              </Button>
-            )}
-          </div>
-          <div className="filters-options">
-            {TAGS.map((tag) => {
-              const isSelected = tags.find(
-                (selectedTag) => selectedTag === tag,
-              );
-
-              return (
-                <Button
-                  key={tag}
-                  isNotSelected={!isSelected}
-                  onClick={() => updateFilters(tag, 'tags')}
-                >
-                  {tag}
-                </Button>
-              );
-            })}
-          </div>
+    <div className="filters-modal">
+      <div className="filters-modal-content">
+        <div className="filters-options-label">
+          <span>Tags</span>
+          {!!selectedFilters.tags.length && (
+          <Button
+            modifier="ghost"
+            onClick={() => setSelectedFilters({ ...selectedFilters, tags: [] })}
+          >
+            X
+          </Button>
+          )}
         </div>
-        <div className="filters-modal-footer">
-          <Button onClick={() => closeModal(selectedFilters)}>O</Button>
+        <div className="filters-options">
+          {TAGS.map((tag) => {
+            const isSelected = tags.find(
+              (selectedTag) => selectedTag === tag,
+            );
+
+            return (
+              <Button
+                key={tag}
+                isNotSelected={!isSelected}
+                onClick={() => updateFilters(tag, 'tags')}
+              >
+                {tag}
+              </Button>
+            );
+          })}
         </div>
       </div>
-    </ModalWrapper>
+      <div className="filters-modal-footer">
+        <Button onClick={handleUpdateListFilters}>O</Button>
+      </div>
+    </div>
   );
 }
 

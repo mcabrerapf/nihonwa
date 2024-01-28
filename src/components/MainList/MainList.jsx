@@ -1,128 +1,76 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './MainList.scss';
-import { filterBy, sortBy } from '../../utils';
-import {
-  FiltersModal,
-  KanaModal,
-  ListItemModal,
-  SortModal,
-  TestModal,
-} from '../Modals';
 import MainListFooter from './MainListFooter';
 import MainListHeader from './MainListHeader';
 import MainListContent from './MainListContent';
-import { FILTERS_INIT_VAL } from './constants';
 import ModalWrapper from '../ModalWrapper';
+import useMainList from './useMainList';
 
-function MainList({
-  wordsList,
-  sentencesList,
-  updateWordsList,
-  updateSentencesList,
-}) {
-  const [selectedList, setSelectedList] = useState('w');
-  const [sort, setSort] = useState(['jp', 'desc']);
-  const [filters, setFilters] = useState(FILTERS_INIT_VAL);
-  const [selectedItemIndex, setSelectedItemIndex] = useState(null);
-  const [showKanaModal, setShowKanaModal] = useState(null);
-  const [showSortModal, setShowSortModal] = useState(false);
-  const [showTestModal, setShowTestModal] = useState(false);
-  const [showFiltersModal, setShowFiltersModal] = useState(false);
+function MainList(props) {
+  const {
+    selectedItemIndex,
+    orderedList,
+    wordsList,
+    sentencesList,
+    selectedList,
+    sort,
+    filters,
+    listToFilter,
+    filteredListLength,
 
-  const isWordsList = selectedList === 'w';
-  const listToFilter = isWordsList ? wordsList : sentencesList;
-  const filteredList = filterBy(listToFilter, filters);
-  const orderedList = sortBy(filteredList, sort[0], sort[1]);
-  const filteredListLength = orderedList.length;
+    showModal,
+    ModalToUse,
+    handleToggleModal,
 
-  const handleSearchTextChange = (e) => {
-    setFilters({ ...filters, text: e.target.value });
-  };
+    updateWordsList,
+    updateSentencesList,
 
-  const handleFiltersChange = (newFilters) => {
-    if (newFilters) {
-      setFilters(newFilters);
-    }
-    setShowFiltersModal(false);
-  };
-
-  const handleListChange = async () => {
-    if (isWordsList) {
-      setSelectedList('s');
-    } else {
-      setSelectedList('w');
-    }
-  };
-
-  const listItemType = selectedList === 'w' ? 'word' : 'sentence';
-
+    handleFiltersChange,
+    handleListChange,
+    setSort,
+    setSelectedItemIndex,
+  } = useMainList(props);
   return (
     <div className="main-list-container">
-      {selectedItemIndex !== null && (
-        // TODO improve this warpper bit
-        <ModalWrapper closeModal={() => setSelectedItemIndex(null)}>
-          <ListItemModal
-            listItemType={listItemType}
+      {showModal && (
+        <ModalWrapper closeModal={handleToggleModal}>
+          <ModalToUse
+            kanaMode={showModal}
+            filters={filters}
+            sort={sort}
+            wordsList={wordsList}
+            sentencesList={sentencesList}
+            listItemType={selectedList}
             listItemIndex={selectedItemIndex}
             listData={orderedList}
             allWords={wordsList}
             allSentences={sentencesList}
             updateWordsList={updateWordsList}
             updateSentencesList={updateSentencesList}
-            closeModal={() => setSelectedItemIndex(null)}
+            handleFiltersChange={handleFiltersChange}
+            setSort={setSort}
           />
         </ModalWrapper>
       )}
-      {showKanaModal && (
-        <KanaModal
-          closeModal={() => setShowKanaModal(null)}
-          kanaMode={showKanaModal}
-        />
-      )}
-      {showTestModal && (
-        <TestModal
-          closeModal={() => setShowTestModal(false)}
-          wordsList={wordsList}
-          sentencesList={sentencesList}
-        />
-      )}
-      {showSortModal && (
-        <SortModal
-          closeModal={(newSort) => {
-            if (newSort) {
-              // const orderedList = sortBy(mainList, newSort[0], newSort[1]);
-              // setMainList(orderedList);
-              setSort(newSort);
-            }
-            setShowSortModal(false);
-          }}
-          sort={sort}
-        />
-      )}
-      {showFiltersModal && (
-        <FiltersModal closeModal={handleFiltersChange} filters={filters} />
-      )}
       <MainListHeader
-        isWordsList={isWordsList}
+        selectedList={selectedList}
         filters={filters}
         listToFilter={listToFilter}
         filteredListLength={filteredListLength}
-        handleSearchTextChange={handleSearchTextChange}
         handleFiltersChange={handleFiltersChange}
-        setShowSortModal={setShowSortModal}
-        setShowFiltersModal={setShowFiltersModal}
-        setShowKanaModal={setShowKanaModal}
+        handleToggleModal={handleToggleModal}
       />
       <MainListContent
         selectedList={selectedList}
         mainList={orderedList}
         setSelectedItemIndex={setSelectedItemIndex}
+        handleToggleModal={handleToggleModal}
       />
       <MainListFooter
+        selectedList={selectedList}
         filteredListLength={filteredListLength}
-        isWordsList={isWordsList}
         handleListChange={handleListChange}
-        setShowTestModal={setShowTestModal}
+        handleToggleModal={handleToggleModal}
         setSelectedItemIndex={setSelectedItemIndex}
       />
     </div>
