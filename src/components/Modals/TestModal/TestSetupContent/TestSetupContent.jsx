@@ -1,41 +1,27 @@
 import React from 'react';
 import './TestSetupContent.scss';
 import Button from '../../../Button';
-import { buildQuestions } from '../helpers';
+import useTestSetupContent from './useTestSetupContent';
 
-function TestSetupContent({
-  testSetupOptions,
-  wordsList,
-  setTestSetupOptions,
-  handleTestStart,
-}) {
-  const { questionLimit } = testSetupOptions;
-  const reachedMax = questionLimit >= 50;
-  const reachedMin = questionLimit <= 5;
-
-  const handleBuildQuestions = () => {
-    const builtQuestions = buildQuestions(testSetupOptions, wordsList);
-    handleTestStart(builtQuestions);
-  };
-
-  const handleQuestionLimitChange = (increase) => {
-    if (increase && !reachedMax) {
-      setTestSetupOptions({
-        ...testSetupOptions,
-        questionLimit: questionLimit + 5,
-      });
-    }
-    if (!increase && !reachedMin) {
-      setTestSetupOptions({
-        ...testSetupOptions,
-        questionLimit: questionLimit - 5,
-      });
-    }
-  };
+function TestSetupContent(props) {
+  const {
+    questionLimit,
+    reachedMin,
+    reachedMax,
+    isJpEnabled,
+    isEnEnabled,
+    handleQuestionLimitChange,
+    handleLanguageButtonClick,
+    handleBuildQuestions,
+  } = useTestSetupContent(props);
 
   return (
     <>
       <div className="test-modal-setup-content">
+        <div className="question-language">
+          <Button value="en" isNotSelected={!isEnEnabled} onClick={handleLanguageButtonClick}>Abc</Button>
+          <Button value="jp" isNotSelected={!isJpEnabled} onClick={handleLanguageButtonClick}>日本</Button>
+        </div>
         <div className="question-limit">
           <Button
             isDisabled={reachedMin}

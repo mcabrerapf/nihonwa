@@ -1,8 +1,16 @@
 .test-modal-setup-content {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: 3rem;
   height: 100%;
   width: 100%;
+
+  .question-language {
+    display: flex;
+    gap: 1rem;
+  }
 
   .question-limit {
     display: flex;

@@ -3,8 +3,9 @@ import './TestModal.scss';
 import TestSetupContent from './TestSetupContent';
 import TestProgressContent from './TestProgressContent';
 import TestResultsContent from './TestResultsContent';
-import { TEST_SETUP_INIT_STATE } from './constants';
+import Button from '../../Button';
 import { ModalWrapperContext } from '../../ModalWrapper/ModalWrapperContext';
+import { TEST_SETUP_INIT_STATE } from './constants';
 
 function TestModal({ wordsList, sentencesList }) {
   const { closeModal, setCloseOnBgClick } = useContext(ModalWrapperContext);
@@ -25,6 +26,9 @@ function TestModal({ wordsList, sentencesList }) {
 
   return (
     <div className="test-modal">
+      <div className="test-modal-header">
+        <Button onClick={() => closeModal()}>X</Button>
+      </div>
       {view === 'setup' && (
       <TestSetupContent
         testSetupOptions={testSetupOptions}
@@ -38,6 +42,7 @@ function TestModal({ wordsList, sentencesList }) {
       {view === 'inprogress' && (
       <TestProgressContent
         questions={questions}
+        testSetupOptions={testSetupOptions}
         setQuestions={setQuestions}
         setView={setView}
       />

@@ -1,12 +1,25 @@
 import React, { useState } from 'react';
 import './TestProgressContent.scss';
 import Button from '../../../Button';
-import { getCharWithFuri } from '../../../../utils';
+import { generateRandomNumber, getCharWithFuri } from '../../../../utils';
 
-function TestProgressContent({ questions, setQuestions, setView }) {
+const checkIfShouldShow = (questionLanguage, questionKey, showAnswer, isOtherTrue) => {
+  if (showAnswer) return true;
+  if (isOtherTrue !== undefined) return !isOtherTrue;
+  if (questionLanguage.includes(questionKey)) {
+    if (questionLanguage.length === 1) return true;
+    return generateRandomNumber(0, 100) < 50;
+  }
+  return false;
+};
+
+function TestProgressContent({
+  questions, testSetupOptions, setQuestions, setView,
+}) {
   const [showAnswer, setShowAnswer] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const currentQuestion = questions[currentQuestionIndex];
+  const { questionLanguage } = testSetupOptions;
 
   const handleUpdateQuestion = (hit) => {
     const updatedQuestions = questions.map((question, index) => {
@@ -27,6 +40,8 @@ function TestProgressContent({ questions, setQuestions, setView }) {
 
   const { jp, en, furi } = currentQuestion;
   const questionCharacters = getCharWithFuri(jp, furi, true);
+  const showJp = checkIfShouldShow(questionLanguage, 'jp', showAnswer);
+  const showEn = checkIfShouldShow(questionLanguage, 'en', showAnswer, showJp);
 
   return (
     <>
@@ -38,6 +53,7 @@ function TestProgressContent({ questions, setQuestions, setView }) {
             if (!showAnswer) setShowAnswer(true);
           }}
         >
+          {showJp && (
           <div className="current-question-question">
             {questionCharacters.map((questionChar, i) => {
               const [char, furiChar, enChar] = questionChar;
@@ -51,8 +67,15 @@ function TestProgressContent({ questions, setQuestions, setView }) {
               );
             })}
           </div>
-          {showAnswer && (
-            <div className="current-question-answer">
+          )}
+          {showEn && (
+            <div
+              role="button"
+              className="current-question-answer"
+              onClick={() => {
+                if (!showAnswer) setShowAnswer(true);
+              }}
+            >
               {en.map((answer) => (
                 <span key={answer}>{answer}</span>
               ))}
