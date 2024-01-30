@@ -17,7 +17,7 @@ function DisplayViewHeader({
   const kanaClassName = getHeaderTextClassName(headerCharacters);
 
   return (
-    <div role="button" className="display-view-modal-header" onClick={handleCharacterCopy}>
+    <div role="button" className="display-view-modal-header">
       {modalView !== 'edit' && (
       <div className="display-view-modal-header-buttons">
         <Button
@@ -39,7 +39,7 @@ function DisplayViewHeader({
         <Button onClick={() => setModalView('edit')}>E</Button>
       </div>
       )}
-      <div className="display-view-modal-header-text">
+      <div role="button" className="display-view-modal-header-text" onClick={handleCharacterCopy}>
         {headerCharacters.map((headerChar, i) => {
           const [char, furiChar, enChar] = headerChar;
 
