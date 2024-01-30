@@ -27,9 +27,10 @@ function MainList(props) {
 
     handleFiltersChange,
     handleListChange,
-    setSort,
+    handleSortChange,
     setSelectedItemIndex,
   } = useMainList(props);
+
   return (
     <div className="main-list-container">
       {showModal && (
@@ -48,7 +49,7 @@ function MainList(props) {
             updateWordsList={updateWordsList}
             updateSentencesList={updateSentencesList}
             handleFiltersChange={handleFiltersChange}
-            setSort={setSort}
+            handleSortChange={handleSortChange}
           />
         </ModalWrapper>
       )}

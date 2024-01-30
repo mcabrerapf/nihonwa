@@ -2,17 +2,17 @@ import React from 'react';
 import './SortModal.scss';
 import Button from '../../Button';
 
-function SortModal({ sort, setSort }) {
+function SortModal({ sort, handleSortChange }) {
   const [selectedSortLanguage, selectedSortDirection] = sort;
 
   const updateSortLan = (language) => {
     if (language === selectedSortLanguage) return;
-    setSort([language, selectedSortDirection]);
+    handleSortChange([language, selectedSortDirection]);
   };
 
   const updateSortDir = (direction) => {
     if (direction === selectedSortDirection) return;
-    setSort([selectedSortLanguage, direction]);
+    handleSortChange([selectedSortLanguage, direction]);
   };
 
   return (

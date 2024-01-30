@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { filterBy, sortBy } from '../../utils';
 import { FILTERS_INIT_VAL } from './constants';
 import { getModalToUse } from './helpers';
@@ -14,18 +14,31 @@ function useMainList({
   const [filters, setFilters] = useState(FILTERS_INIT_VAL);
   const [showModal, setShowModal] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
+  const [orderedList, setOrderedList] = useState([]);
 
   const isWordsList = selectedList === 'word';
   const listToFilter = isWordsList ? wordsList : sentencesList;
-  const filteredList = filterBy(listToFilter, filters);
-  const orderedList = sortBy(filteredList, sort[0], sort[1]);
-  const filteredListLength = orderedList.length;
+
+  useEffect(() => {
+    const sortedList = sortBy(listToFilter, sort[0], sort[1]);
+    setOrderedList(sortedList);
+  }, []);
 
   const handleToggleModal = (modalKey = null) => {
     setShowModal(modalKey);
   };
 
+  const handleSortChange = (newSort) => {
+    const sortedList = sortBy(listToFilter, newSort[0], newSort[1]);
+    setOrderedList(sortedList);
+    setSort(newSort);
+    setShowModal(false);
+  };
+
   const handleFiltersChange = (newFilters) => {
+    const filteredList = filterBy(listToFilter, newFilters);
+    const sortedList = sortBy(filteredList, sort[0], sort[1]);
+    setOrderedList(sortedList);
     setFilters(newFilters);
     setShowModal(false);
   };
@@ -37,7 +50,10 @@ function useMainList({
       setSelectedList('word');
     }
   };
+
   const ModalToUse = getModalToUse(showModal);
+
+  const filteredListLength = orderedList.length;
 
   return {
     selectedItemIndex,
@@ -58,8 +74,8 @@ function useMainList({
     updateSentencesList,
 
     handleFiltersChange,
+    handleSortChange,
     handleListChange,
-    setSort,
     setSelectedItemIndex,
   };
 }

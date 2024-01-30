@@ -52,9 +52,14 @@ function useWordSearchInput({
     setCursorEndPosition(currentCursorPosition);
   };
 
-  const handleParseWord = (addSpace) => {
+  const handleParseWord = () => {
     const kana = romajiToKana(searchValue, selectedKana);
-    const kanaWithSpace = `${kana}${addSpace ? ' ' : ''}`;
+    if (!kana) return;
+    const shouldAddSpaceAfter = currentValue[cursorEndPosition] === undefined
+    || !!currentValue[cursorEndPosition].trim();
+    const shouldAddSpaceBefore = cursorStartPosition !== 0
+    && !!currentValue[cursorStartPosition - 1].trim();
+    const kanaWithSpace = `${shouldAddSpaceBefore ? ' ' : ''}${kana}${shouldAddSpaceAfter ? ' ' : ''}`;
     const resultString = currentValue.replace(searchValue, kanaWithSpace);
     setCurrentValue(resultString);
     setSelectedWordIndex(0);
@@ -79,6 +84,7 @@ function useWordSearchInput({
     setCursorEndPosition(resultString.length);
     setCurrentValue(resultString);
     handleUpdateData(resultString);
+    if (textareaRef.current) textareaRef.current.focus();
   };
 
   const handleOnChange = ({ target: { value } }) => {
