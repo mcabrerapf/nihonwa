@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './ModalWrapper.scss';
 import { ModalWrapperContextProvider } from './ModalWrapperContext';
 
-function ModalWrapper({ children, closeModal, closeOnBgClick: _closeOnBgClick = true }) {
+function ModalWrapper({ children, closeModal }) {
   const wrapperRef = useRef(null);
   const [closeOnBgClick, setCloseOnBgClick] = useState(true);
 
@@ -18,10 +18,6 @@ function ModalWrapper({ children, closeModal, closeOnBgClick: _closeOnBgClick = 
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [wrapperRef, closeModal, closeOnBgClick]);
-
-  useEffect(() => {
-    setCloseOnBgClick(_closeOnBgClick);
-  }, [_closeOnBgClick]);
 
   const stopPropagation = (e) => {
     e.stopPropagation();

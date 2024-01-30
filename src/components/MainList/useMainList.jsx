@@ -44,6 +44,10 @@ function useMainList({
   };
 
   const handleListChange = async () => {
+    const newList = isWordsList ? sentencesList : wordsList;
+    const filteredList = filterBy(newList, filters);
+    const sortedList = sortBy(filteredList, sort[0], sort[1]);
+    setOrderedList(sortedList);
     if (isWordsList) {
       setSelectedList('sentence');
     } else {
