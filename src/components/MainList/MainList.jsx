@@ -17,14 +17,11 @@ function MainList(props) {
     filters,
     listToFilter,
     filteredListLength,
-
     showModal,
     ModalToUse,
     handleToggleModal,
-
     updateWordsList,
     updateSentencesList,
-
     handleFiltersChange,
     handleListChange,
     handleSortChange,

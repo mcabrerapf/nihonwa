@@ -20,9 +20,10 @@ function useMainList({
   const listToFilter = isWordsList ? wordsList : sentencesList;
 
   useEffect(() => {
-    const sortedList = sortBy(listToFilter, sort[0], sort[1]);
+    const filteredList = filterBy(listToFilter, filters);
+    const sortedList = sortBy(filteredList, sort[0], sort[1]);
     setOrderedList(sortedList);
-  }, []);
+  }, [listToFilter]);
 
   const handleToggleModal = (modalKey = null) => {
     setShowModal(modalKey);
