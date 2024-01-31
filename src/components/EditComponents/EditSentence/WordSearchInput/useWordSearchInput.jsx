@@ -30,6 +30,12 @@ function useWordSearchInput({
   }, [textareaRef]);
 
   useEffect(() => {
+    if (textareaRef.current && !searchValue) {
+      textareaRef.current.focus();
+    }
+  }, [searchValue]);
+
+  useEffect(() => {
     if (selectedWordIndex > filteredWords.length - 1) setSelectedWordIndex(0);
   }, [filteredWords, selectedWordIndex]);
 
@@ -77,14 +83,16 @@ function useWordSearchInput({
     if (textareaRef.current) textareaRef.current.focus();
   };
 
-  const handleSelectWord = ({ target: { innerText: word } }) => {
+  const handleSelectWord = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const { target: { innerText: word } } = e;
     if (!word) return;
     const resultString = currentValue.replace(searchValue, `${word} `);
-    setCursorStartPosition(resultString.length);
-    setCursorEndPosition(resultString.length);
     setCurrentValue(resultString);
     handleUpdateData(resultString);
-    if (textareaRef.current) textareaRef.current.focus();
+    setCursorStartPosition(resultString.length);
+    setCursorEndPosition(resultString.length);
   };
 
   const handleOnChange = ({ target: { value } }) => {
