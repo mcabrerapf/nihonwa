@@ -84,7 +84,7 @@ function useWordSearchInput({
     setCursorEndPosition(resultString.length);
     setCurrentValue(resultString);
     handleUpdateData(resultString);
-    // if (textareaRef.current) textareaRef.current.focus();
+    if (textareaRef.current) textareaRef.current.focus();
   };
 
   const handleOnChange = ({ target: { value } }) => {
