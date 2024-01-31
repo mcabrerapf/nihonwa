@@ -29,14 +29,19 @@ function useEditWordFuri({ currentData, setCurrentData }) {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      handleParseWord();
-    }
+    // if (event.key === 'Enter') {
+    //   handleParseWord();
+    // }
     if (event.key === 'Tab') {
       event.preventDefault();
       const newKana = selectedKana === 'hi' ? 'ka' : 'hi';
       setSelectedKana(newKana);
     }
+  };
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    handleParseWord();
   };
 
   const handleKanaClick = ({ target: { value } }) => {
@@ -75,6 +80,7 @@ function useEditWordFuri({ currentData, setCurrentData }) {
     isKatakanaSelected,
     handleOnChange,
     handleKeyDown,
+    handleOnSubmit,
     handleKanaClick,
   };
 }

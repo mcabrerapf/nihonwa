@@ -12,8 +12,10 @@ function EditWordFuri(props) {
     isKatakanaSelected,
     handleOnChange,
     handleKeyDown,
+    handleOnSubmit,
     handleKanaClick,
   } = useEditWordFuri(props);
+
   return (
     <div className="edit-word-furi">
       <div className="edit-word-furi-display">
@@ -44,7 +46,7 @@ function EditWordFuri(props) {
           </div>
         ))}
       </div>
-      <div className="edit-word-furi-input">
+      <form className="edit-word-furi-input" onSubmit={handleOnSubmit}>
         <input
           ref={inputRef}
           onChange={handleOnChange}
@@ -67,7 +69,7 @@ function EditWordFuri(props) {
             カ
           </Button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
