@@ -7,11 +7,12 @@ function useTestSetupContent({
   setTestSetupOptions,
   handleTestStart,
 }) {
-  const { questionLimit, questionLanguage } = testSetupOptions;
-  const reachedMax = questionLimit >= 50;
+  const { questionLimit, questionLanguage, questionTags } = testSetupOptions;
+  const reachedMax = questionLimit >= 25;
   const reachedMin = questionLimit <= 5;
   const isJpEnabled = !!questionLanguage.find((lan) => lan === 'jp');
   const isEnEnabled = !!questionLanguage.find((lan) => lan === 'en');
+
   const handleBuildQuestions = () => {
     const builtQuestions = buildQuestions(testSetupOptions, wordsList);
     handleTestStart(builtQuestions);
@@ -47,15 +48,36 @@ function useTestSetupContent({
     }
   };
 
+  const handleTagClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const { target: { innerText: tag } } = e;
+    const isSelected = questionTags.includes(tag);
+
+    if (isSelected) {
+      setTestSetupOptions({
+        ...testSetupOptions,
+        questionTags: questionTags.filter((sTag) => sTag !== tag),
+      });
+    } else {
+      setTestSetupOptions({
+        ...testSetupOptions,
+        questionTags: [...questionTags, tag],
+      });
+    }
+  };
+
   return {
     questionLimit,
     reachedMin,
     reachedMax,
     isJpEnabled,
     isEnEnabled,
+    questionTags,
     handleQuestionLimitChange,
     handleLanguageButtonClick,
     handleBuildQuestions,
+    handleTagClick,
   };
 }
 
