@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { filterBy, sortBy } from '../../utils';
 import { FILTERS_INIT_VAL } from './constants';
 import { getModalToUse } from './helpers';
@@ -9,75 +9,52 @@ function useMainList({
   updateWordsList,
   updateSentencesList,
 }) {
-  const [selectedList, setSelectedList] = useState('word');
+  const [selectedListKey, setSelectedListKey] = useState('word');
   const [sort, setSort] = useState(['jp', 'desc']);
   const [filters, setFilters] = useState(FILTERS_INIT_VAL);
   const [showModal, setShowModal] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
-  const [orderedList, setOrderedList] = useState([]);
-
-  const isWordsList = selectedList === 'word';
-  const listToFilter = isWordsList ? wordsList : sentencesList;
-
-  useEffect(() => {
-    const filteredList = filterBy(listToFilter, filters);
-    const sortedList = sortBy(filteredList, sort[0], sort[1]);
-    setOrderedList(sortedList);
-  }, [listToFilter]);
 
   const handleToggleModal = (modalKey = null) => {
     setShowModal(modalKey);
   };
 
   const handleSortChange = (newSort) => {
-    const sortedList = sortBy(listToFilter, newSort[0], newSort[1]);
-    setOrderedList(sortedList);
     setSort(newSort);
     setShowModal(false);
   };
 
   const handleFiltersChange = (newFilters) => {
-    const filteredList = filterBy(listToFilter, newFilters);
-    const sortedList = sortBy(filteredList, sort[0], sort[1]);
-    setOrderedList(sortedList);
     setFilters(newFilters);
     setShowModal(false);
   };
 
   const handleListChange = async () => {
-    const newList = isWordsList ? sentencesList : wordsList;
-    const filteredList = filterBy(newList, filters);
-    const sortedList = sortBy(filteredList, sort[0], sort[1]);
-    setOrderedList(sortedList);
-    if (isWordsList) {
-      setSelectedList('sentence');
-    } else {
-      setSelectedList('word');
-    }
+    const newListKey = selectedListKey === 'word' ? 'sentence' : 'word';
+    setSelectedListKey(newListKey);
   };
 
   const ModalToUse = getModalToUse(showModal);
-
-  const filteredListLength = orderedList.length;
+  const selectedList = selectedListKey === 'word' ? wordsList : sentencesList;
+  const filteredList = filterBy(selectedList, filters);
+  const orderedList = sortBy(filteredList, sort[0], sort[1]);
+  const orderedListLength = orderedList.length;
 
   return {
     selectedItemIndex,
-    orderedList,
-    wordsList,
-    sentencesList,
-    selectedList,
+    selectedListKey,
     sort,
     filters,
-    listToFilter,
-    filteredListLength,
-
+    selectedList,
+    orderedList,
+    orderedListLength,
+    wordsList,
+    sentencesList,
     showModal,
     ModalToUse,
     handleToggleModal,
-
     updateWordsList,
     updateSentencesList,
-
     handleFiltersChange,
     handleSortChange,
     handleListChange,

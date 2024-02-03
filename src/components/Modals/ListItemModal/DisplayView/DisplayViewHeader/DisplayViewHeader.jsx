@@ -5,7 +5,7 @@ import { getHeaderTextClassName } from './helpers';
 import Button from '../../../../Button';
 
 function DisplayViewHeader({
-  text, furi, hasKanji, canDelete, modalView, setModalView, setView,
+  successPercentage, text, furi, hasKanji, canDelete, modalView, setModalView, setView,
 }) {
   const headerCharacters = getCharWithFuri(text, furi, true);
 
@@ -51,6 +51,12 @@ function DisplayViewHeader({
             </div>
           );
         })}
+      </div>
+      <div className="display-view-modal-header-succes-percentage">
+        <span>
+          {successPercentage}
+          %
+        </span>
       </div>
 
     </div>

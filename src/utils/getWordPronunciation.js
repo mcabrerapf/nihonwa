@@ -2,7 +2,7 @@ import kanaToEnglishChar from './kanaToEnglishChar';
 
 const getWordPronunciation = ({ jp, furi = [] }) => {
   if (!jp) return '';
-  // console.log('getWordPronunciation');
+
   return jp
     .split('')
     .map((kana, i) => {

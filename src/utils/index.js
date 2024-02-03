@@ -1,3 +1,4 @@
+import calculateSuccessRate from './calculateSuccesRate';
 import capitalizeFirstLetter from './capitalizeFirstLetter';
 import checkIfCharIsKanji from './checkIfCharIsKanji';
 import copyToClipboard from './copyToClipboard';
@@ -19,6 +20,7 @@ import romajiToKana from './romajiToKana';
 import sortBy from './sortBy';
 
 export {
+  calculateSuccessRate,
   capitalizeFirstLetter,
   checkIfCharIsKanji,
   copyToClipboard,

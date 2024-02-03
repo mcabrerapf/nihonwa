@@ -4,14 +4,14 @@ import { generateRandomNumber } from '../../../utils';
 import Button from '../../Button';
 
 function MainListFooter({
-  filteredListLength,
-  selectedList,
+  orderedListLength,
+  selectedListKey,
   handleToggleModal,
   handleListChange,
   setSelectedItemIndex,
 }) {
   const handleOpenRandomListItemModal = () => {
-    const randomIndex = generateRandomNumber(0, filteredListLength);
+    const randomIndex = generateRandomNumber(0, orderedListLength);
     setSelectedItemIndex(randomIndex);
     handleToggleModal('listItem');
   };
@@ -24,7 +24,7 @@ function MainListFooter({
     handleToggleModal('test');
   };
 
-  const isWordsList = selectedList === 'word';
+  const isWordsList = selectedListKey === 'word';
 
   return (
     <footer className="main-list-footer">

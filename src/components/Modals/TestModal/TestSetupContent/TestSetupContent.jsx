@@ -46,6 +46,7 @@ function TestSetupContent(props) {
           <div className="test-modal-tag-options">
             {TAGS.map((tag) => (
               <Button
+                key={tag}
                 onClick={handleTagClick}
                 isNotSelected={!questionTags.includes(tag)}
               >

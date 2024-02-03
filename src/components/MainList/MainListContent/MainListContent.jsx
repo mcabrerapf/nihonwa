@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import './MainListContent.scss';
 
 function MainListRender({
-  selectedList, mainList, handleToggleModal, setSelectedItemIndex,
+  selectedListKey, mainList, handleToggleModal, setSelectedItemIndex,
 }) {
   const listRef = useRef(null);
 
@@ -10,7 +10,7 @@ function MainListRender({
     if (listRef.current) {
       listRef.current.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }, [selectedList]);
+  }, [selectedListKey]);
 
   const handleOpenListItemModal = (i) => {
     setSelectedItemIndex(i);

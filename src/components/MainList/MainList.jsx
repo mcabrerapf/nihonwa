@@ -12,11 +12,11 @@ function MainList(props) {
     orderedList,
     wordsList,
     sentencesList,
-    selectedList,
+    selectedListKey,
     sort,
     filters,
-    listToFilter,
-    filteredListLength,
+    selectedList,
+    orderedListLength,
     showModal,
     ModalToUse,
     handleToggleModal,
@@ -38,7 +38,7 @@ function MainList(props) {
             sort={sort}
             wordsList={wordsList}
             sentencesList={sentencesList}
-            listItemType={selectedList}
+            listItemType={selectedListKey}
             listItemIndex={selectedItemIndex}
             listData={orderedList}
             allWords={wordsList}
@@ -51,22 +51,22 @@ function MainList(props) {
         </ModalWrapper>
       )}
       <MainListHeader
-        selectedList={selectedList}
+        selectedListKey={selectedListKey}
         filters={filters}
-        listToFilter={listToFilter}
-        filteredListLength={filteredListLength}
+        selectedList={selectedList}
+        orderedListLength={orderedListLength}
         handleFiltersChange={handleFiltersChange}
         handleToggleModal={handleToggleModal}
       />
       <MainListContent
-        selectedList={selectedList}
+        selectedListKey={selectedListKey}
         mainList={orderedList}
         setSelectedItemIndex={setSelectedItemIndex}
         handleToggleModal={handleToggleModal}
       />
       <MainListFooter
-        selectedList={selectedList}
-        filteredListLength={filteredListLength}
+        selectedListKey={selectedListKey}
+        orderedListLength={orderedListLength}
         handleListChange={handleListChange}
         handleToggleModal={handleToggleModal}
         setSelectedItemIndex={setSelectedItemIndex}

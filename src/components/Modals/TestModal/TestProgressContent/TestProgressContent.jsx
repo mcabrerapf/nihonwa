@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './TestProgressContent.scss';
 import Button from '../../../Button';
+import { getServiceToUse } from '../../../../Services';
 import { generateRandomNumber, getCharWithFuri } from '../../../../utils';
 
 const checkIfShouldShow = (questionLanguage, questionKey, showAnswer, isOtherTrue) => {
@@ -17,11 +18,20 @@ function TestProgressContent({
   questions, testSetupOptions, setQuestions, setView,
 }) {
   const [showAnswer, setShowAnswer] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const currentQuestion = questions[currentQuestionIndex];
   const { questionLanguage } = testSetupOptions;
 
-  const handleUpdateQuestion = (hit) => {
+  const handleUpdateQuestion = async (hit) => {
+    setIsLoading(true);
+    const updatedQuestion = { ...questions[currentQuestionIndex] };
+    if (hit)updatedQuestion.hits += 1;
+    else updatedQuestion.misses += 1;
+
+    const serviceToUse = getServiceToUse('word', 'update');
+    await serviceToUse({ input: updatedQuestion });
+
     const updatedQuestions = questions.map((question, index) => {
       if (currentQuestionIndex !== index) return question;
       return {
@@ -32,6 +42,7 @@ function TestProgressContent({
     setQuestions(updatedQuestions);
     setCurrentQuestionIndex(0);
     setShowAnswer(false);
+    setIsLoading(false);
 
     if (currentQuestionIndex + 1 === questions.length) {
       setView('done');
@@ -86,8 +97,8 @@ function TestProgressContent({
       <footer className="test-modal-footer">
         {showAnswer && (
           <>
-            <Button onClick={() => handleUpdateQuestion()}>X</Button>
-            <Button onClick={() => handleUpdateQuestion(true)}>O</Button>
+            <Button isDisabled={isLoading} onClick={() => handleUpdateQuestion()}>X</Button>
+            <Button isDisabled={isLoading} onClick={() => handleUpdateQuestion(true)}>O</Button>
           </>
         )}
       </footer>
