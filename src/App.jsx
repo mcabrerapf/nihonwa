@@ -6,14 +6,14 @@ import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
 import Main from './components/Main';
 
-Amplify.configure(awsExports);
+Amplify.configure({ ...awsExports, aws_appsync_authenticationType: 'AMAZON_COGNITO_USER_POOLS' });
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const App = () => root.render(
   <React.StrictMode>
     <div className="app">
-      <Authenticator>
-        {() => <Main />}
+      <Authenticator hideSignUp>
+        {({ signOut }) => <Main signOut={signOut} />}
       </Authenticator>
     </div>
   </React.StrictMode>,

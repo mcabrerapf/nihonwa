@@ -1,4 +1,4 @@
-type Sentence @model @auth(rules: [{allow: public}]) {
+type Sentence @model @auth(rules: [{allow: public, operations: [read]}, {allow: owner}]) {
   id: ID!
   jp: String
   en: [String]
@@ -12,7 +12,7 @@ type Sentence @model @auth(rules: [{allow: public}]) {
   jpWords: [String]
 }
 
-type Word @model @auth(rules: [{allow: public}]) {
+type Word @model @auth(rules: [{allow: public, operations: [read]}, {allow: owner}]) {
   id: ID!
   jp: String
   en: [String]
