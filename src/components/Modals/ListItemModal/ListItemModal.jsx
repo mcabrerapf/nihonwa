@@ -11,8 +11,8 @@ function ListItemModal({
   listItemType,
   listItemIndex,
   listData,
-  allWords,
-  allSentences,
+  wordList,
+  sentenceList,
   updateWordsList,
   updateSentencesList,
 }) {
@@ -100,7 +100,7 @@ function ListItemModal({
         listItemType={listItemType}
         isLastItem={isLastItem}
         isFirstItem={isFirstItem}
-        allSentences={allSentences}
+        sentenceList={sentenceList}
         modalView={modalView}
         canDelete={canDelete}
         setModalView={setModalView}
@@ -111,8 +111,8 @@ function ListItemModal({
       <EditView
         listItemData={parsedListItemData}
         listItemType={listItemType}
-        allWords={allWords}
-        allSentences={allSentences}
+        wordList={wordList}
+        sentenceList={sentenceList}
         updateListService={updateListService}
         setModalView={setModalView}
         setSelectedItemIndex={setSelectedItemIndex}

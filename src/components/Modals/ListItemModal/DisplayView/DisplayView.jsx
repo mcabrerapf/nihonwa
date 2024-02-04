@@ -13,7 +13,7 @@ function DisplayView({
   listItemType,
   isFirstItem,
   isLastItem,
-  allSentences,
+  sentenceList,
   canDelete,
   modalView,
   setModalView,
@@ -23,7 +23,7 @@ function DisplayView({
   const {
     jp, furi, en, tags, notes, hits, misses,
   } = listItemData;
-  const wordSentences = listItemType === 'word' ? getWordSentences(jp, allSentences) : [];
+  const wordSentences = listItemType === 'word' ? getWordSentences(jp, sentenceList) : [];
   const hasSentences = wordSentences && wordSentences.length;
   const hasNotes = notes && !!notes.length;
   const kanjis = [...new Set(getKanjiArrayFromString(jp))];

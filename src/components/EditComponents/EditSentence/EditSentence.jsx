@@ -5,7 +5,7 @@ import WordSearchIput from './WordSearchInput';
 function EditSentence({
   currentData,
   setCurrentData,
-  allWords,
+  wordList,
   itemAlreadyExists,
 }) {
   const { jp } = currentData;
@@ -23,7 +23,7 @@ function EditSentence({
       <div className="edit-sentence-input">
         <WordSearchIput
           sentence={jp}
-          allWords={allWords}
+          wordList={wordList}
           currentData={currentData}
           setCurrentData={setCurrentData}
         />

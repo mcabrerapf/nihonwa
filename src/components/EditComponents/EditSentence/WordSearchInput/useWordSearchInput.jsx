@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { getWordPronunciation, romajiToKana } from '../../../../utils';
 
 function useWordSearchInput({
-  sentence, allWords, currentData, setCurrentData,
+  sentence, wordList, currentData, setCurrentData,
 }) {
   const textareaRef = useRef(null);
   const [currentValue, setCurrentValue] = useState(sentence);
@@ -18,7 +18,7 @@ function useWordSearchInput({
     cursorEndPosition,
   ).trim();
 
-  const filteredWords = allWords.filter((word) => {
+  const filteredWords = wordList.filter((word) => {
     const parsedPronunciation = getWordPronunciation(word);
     return parsedPronunciation.indexOf(searchValue.toLowerCase()) !== -1;
   });

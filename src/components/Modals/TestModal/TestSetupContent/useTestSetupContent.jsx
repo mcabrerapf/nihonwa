@@ -3,7 +3,7 @@ import { buildQuestions } from '../helpers';
 
 function useTestSetupContent({
   testSetupOptions,
-  wordsList,
+  wordList,
   setTestSetupOptions,
   handleTestStart,
 }) {
@@ -14,7 +14,7 @@ function useTestSetupContent({
   const isEnEnabled = !!questionLanguage.find((lan) => lan === 'en');
 
   const handleBuildQuestions = () => {
-    const builtQuestions = buildQuestions(testSetupOptions, wordsList);
+    const builtQuestions = buildQuestions(testSetupOptions, wordList);
     handleTestStart(builtQuestions);
   };
 

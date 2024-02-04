@@ -5,17 +5,23 @@ import useMain from './useMain';
 
 function Main() {
   const {
-    allLists,
+    wordList,
+    sentenceList,
+    selectedListKey,
+    selectedList,
+    setSelectedListKey,
     updateWordsList,
     updateSentencesList,
   } = useMain();
-  if (!allLists) return null;
 
   return (
   // <main className="main-container">
     <MainList
-      wordsList={allLists[0]}
-      sentencesList={allLists[1]}
+      wordList={wordList}
+      sentenceList={sentenceList}
+      selectedListKey={selectedListKey}
+      selectedList={selectedList}
+      setSelectedListKey={setSelectedListKey}
       updateWordsList={updateWordsList}
       updateSentencesList={updateSentencesList}
     />

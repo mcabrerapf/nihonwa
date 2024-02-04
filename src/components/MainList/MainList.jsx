@@ -10,8 +10,8 @@ function MainList(props) {
   const {
     selectedItemIndex,
     orderedList,
-    wordsList,
-    sentencesList,
+    wordList,
+    sentenceList,
     selectedListKey,
     sort,
     filters,
@@ -34,15 +34,13 @@ function MainList(props) {
         <ModalWrapper closeModal={handleToggleModal}>
           <ModalToUse
             kanaMode={showModal}
-            filters={filters}
-            sort={sort}
-            wordsList={wordsList}
-            sentencesList={sentencesList}
+            wordList={wordList}
+            sentenceList={sentenceList}
+            listData={orderedList}
             listItemType={selectedListKey}
             listItemIndex={selectedItemIndex}
-            listData={orderedList}
-            allWords={wordsList}
-            allSentences={sentencesList}
+            filters={filters}
+            sort={sort}
             updateWordsList={updateWordsList}
             updateSentencesList={updateSentencesList}
             handleFiltersChange={handleFiltersChange}

@@ -4,14 +4,17 @@ import {
 } from '../../Services';
 
 function useMain() {
-  const [allLists, setAllLists] = useState(null);
+  const [wordList, setWordList] = useState([]);
+  const [sentenceList, setSentenceList] = useState([]);
+  const [selectedListKey, setSelectedListKey] = useState('word');
 
   useEffect(() => {
     async function initMain() {
       const { data: allWords, error: wordsError } = await getServiceToUse('word', 'getAll')();
       const { data: allSentences, error: messagesError } = await getServiceToUse('sentence', 'getAll')();
       if (wordsError || messagesError) return;
-      setAllLists([allWords, allSentences]);
+      setWordList(allWords);
+      setSentenceList(allSentences);
     }
 
     initMain();
@@ -19,16 +22,21 @@ function useMain() {
 
   const updateWordsList = async () => {
     const { data: allWords } = await getServiceToUse('word', 'getAll')();
-    setAllLists([allWords, allLists[1]]);
+    setWordList(allWords);
   };
 
   const updateSentencesList = async () => {
     const { data: allSentences } = await getServiceToUse('sentence', 'getAll')();
-    setAllLists([allLists[0], allSentences]);
+    setSentenceList(allSentences);
   };
+  const selectedList = selectedListKey === 'word' ? wordList : sentenceList;
 
   return {
-    allLists,
+    wordList,
+    sentenceList,
+    selectedListKey,
+    selectedList,
+    setSelectedListKey,
     updateWordsList,
     updateSentencesList,
   };

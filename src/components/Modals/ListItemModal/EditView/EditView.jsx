@@ -10,8 +10,8 @@ import { getServiceToUse } from '../../../../Services';
 function EditView({
   listItemData,
   listItemType,
-  allWords,
-  allSentences,
+  wordList,
+  sentenceList,
   setModalView,
   updateListService,
 }) {
@@ -36,7 +36,7 @@ function EditView({
 
   useEffect(() => {
     if (!word) setItemAlreadyExists(false);
-    const listToCheck = listItemType === 'word' ? allWords : allSentences;
+    const listToCheck = listItemType === 'word' ? wordList : sentenceList;
     const alreadyExists = !!listToCheck.find((itemToCheck) => {
       if (itemToCheck.id === currentData.id) return false;
       return itemToCheck.jp === word;
@@ -57,8 +57,8 @@ function EditView({
     handleListItemChange: () => {},
     setCurrentData,
     setCurrentEditStep,
-    allSentences,
-    allWords,
+    sentenceList,
+    wordList,
   };
 
   return (
