@@ -1,55 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './EditViewFooter.scss';
 import Button from '../../../../Button';
-import { checkEditFooterStatus, getEditStepsArray } from '../../helpers';
+import useEditViewFooter from './useEditViewFooter';
 
-function EditViewFooter({
-  listItemType,
-  itemAlreadyExists,
-  currentData,
-  currentEditStep,
-  setCurrentData,
-  setCurrentEditStep,
-  handleSave,
-}) {
-  const [canSave, setCanSave] = useState(true);
-  const [canProceed, isFirstStep, isLastStep] = checkEditFooterStatus(
+function EditViewFooter(props) {
+  const {
+    isFirstStep,
+    isLastStep,
+    isNextButtonDisabled,
     currentEditStep,
-    listItemType,
-    currentData,
-  );
-
-  const stepsArray = getEditStepsArray(listItemType);
-
-  const handleChangeEditStep = (newStep) => {
-    const updatedData = {};
-    Object.keys(currentData).forEach((key) => {
-      const currentValue = currentData[key];
-      if (Array.isArray(currentValue)) {
-        updatedData[key] = currentValue.filter(Boolean);
-      } else updatedData[key] = currentValue;
-    });
-    setCurrentData(updatedData);
-    setCurrentEditStep(newStep);
-  };
-
-  const handleStepIndicatorClick = (indicatorIndex) => {
-    if (indicatorIndex === currentEditStep) return;
-    if (indicatorIndex > currentEditStep && !canProceed) return;
-    handleChangeEditStep(indicatorIndex);
-  };
-
-  const handleGoForwardClick = () => {
-    if (listItemType === 'word' && isFirstStep) handleChangeEditStep(currentEditStep + 2);
-    else if (listItemType === 'word' && currentEditStep === 2) handleChangeEditStep(currentEditStep + 3);
-    else if (listItemType === 'sentence' && currentEditStep === 1) handleChangeEditStep(currentEditStep + 3);
-    else handleChangeEditStep(currentEditStep + 1);
-  };
-
-  const handleSaveButtonClick = async () => {
-    setCanSave(false);
-    handleSave();
-  };
+    stepsArray,
+    canSave,
+    handleGoForwardClick,
+    handleSaveButtonClick,
+    handleChangeEditStep,
+    handleStepIndicatorClick,
+  } = useEditViewFooter(props);
 
   return (
     <footer className="edit-view-footer">
@@ -70,15 +36,14 @@ function EditViewFooter({
           </Button>
         ))}
       </div>
-      {!isLastStep && (
+      {isLastStep ? <Button isDisabled={!canSave} onClick={handleSaveButtonClick}>O</Button> : (
         <Button
-          isDisabled={!canProceed || itemAlreadyExists}
+          isDisabled={isNextButtonDisabled}
           onClick={handleGoForwardClick}
         >
           {'>'}
         </Button>
       )}
-      {isLastStep && <Button isDisabled={!canSave} onClick={handleSaveButtonClick}>O</Button>}
     </footer>
   );
 }

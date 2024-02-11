@@ -1,6 +1,8 @@
 import calculateSuccessRate from './calculateSuccesRate';
 import capitalizeFirstLetter from './capitalizeFirstLetter';
 import checkIfCharIsKanji from './checkIfCharIsKanji';
+import containsKanji from './containsKanji';
+import containsKatakana from './containsKatakana';
 import copyToClipboard from './copyToClipboard';
 import deepCompare from './deepCompare';
 import filterBy from './filterBy';
@@ -23,6 +25,8 @@ export {
   calculateSuccessRate,
   capitalizeFirstLetter,
   checkIfCharIsKanji,
+  containsKanji,
+  containsKatakana,
   copyToClipboard,
   deepCompare,
   romajiToKana,

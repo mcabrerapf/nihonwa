@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import './EditView.scss';
 import EditViewFooter from './EditViewFooter';
 import Button from '../../../Button';
-import { getEditStepHeaderText, renderEditStepComponent } from './helpers';
-import { deepCompare } from '../../../../utils';
 import { ModalWrapperContext } from '../../../ModalWrapper/ModalWrapperContext';
 import { getServiceToUse } from '../../../../Services';
+import { getEditStepHeaderText, renderEditStepComponent } from './helpers';
+import { deepCompare } from '../../../../utils';
 
 function EditView({
   listItemData,

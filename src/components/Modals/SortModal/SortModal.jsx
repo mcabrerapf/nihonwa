@@ -31,6 +31,12 @@ function SortModal({ sort, handleSortChange }) {
           >
             日本
           </Button>
+          <Button
+            isNotSelected={selectedSortLanguage !== '%'}
+            onClick={() => updateSortLan('%')}
+          >
+            %
+          </Button>
         </div>
         <div className="sort-options">
           <Button
