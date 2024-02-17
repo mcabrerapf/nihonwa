@@ -5,6 +5,7 @@ import useMain from './useMain';
 
 function Main() {
   const {
+    loading,
     wordList,
     sentenceList,
     selectedListKey,
@@ -13,6 +14,8 @@ function Main() {
     updateWordsList,
     updateSentencesList,
   } = useMain();
+
+  if (loading) return null;
 
   return (
   // <main className="main-container">

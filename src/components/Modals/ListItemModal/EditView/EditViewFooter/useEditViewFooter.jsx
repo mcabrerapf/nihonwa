@@ -22,7 +22,7 @@ function useEditViewFooter({
     Object.keys(currentData).forEach((key) => {
       const currentValue = currentData[key];
       if (Array.isArray(currentValue)) {
-        updatedData[key] = currentValue.filter(Boolean);
+        updatedData[key] = key === 'furi' ? currentValue : currentValue.filter(Boolean);
       } else updatedData[key] = currentValue;
     });
     setCurrentData(updatedData);

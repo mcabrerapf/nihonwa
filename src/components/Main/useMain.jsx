@@ -4,6 +4,7 @@ import {
 } from '../../Services';
 
 function useMain() {
+  const [loading, setLoading] = useState(true);
   const [wordList, setWordList] = useState([]);
   const [sentenceList, setSentenceList] = useState([]);
   const [selectedListKey, setSelectedListKey] = useState('word');
@@ -15,6 +16,7 @@ function useMain() {
       if (wordsError || messagesError) return;
       setWordList(allWords);
       setSentenceList(allSentences);
+      setLoading(false);
     }
 
     initMain();
@@ -32,6 +34,7 @@ function useMain() {
   const selectedList = selectedListKey === 'word' ? wordList : sentenceList;
 
   return {
+    loading,
     wordList,
     sentenceList,
     selectedListKey,

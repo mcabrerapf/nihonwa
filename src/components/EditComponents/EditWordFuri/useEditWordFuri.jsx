@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { romajiToKana, getCharWithFuri } from '../../../utils';
 
 function useEditWordFuri({ currentData, setCurrentData }) {
@@ -9,6 +9,12 @@ function useEditWordFuri({ currentData, setCurrentData }) {
   const [selectedCharIndex, setSelectedCharIndex] = useState(0);
   const isHiraganaSelected = selectedKana === 'hi';
   const isKatakanaSelected = selectedKana === 'ka';
+
+  useEffect(() => {
+    if (!furi.length) {
+      setCurrentData({ ...currentData, furi: jp.split('').fill('') });
+    }
+  }, []);
 
   const handleUpdateFuri = (value, i) => {
     const indexToUse = i !== undefined ? i : selectedCharIndex;
