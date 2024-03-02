@@ -44,10 +44,6 @@ const useMainListHeader = ({
     handleFiltersChange({ text: value, tags });
   };
 
-  const handleTextSearchReset = () => {
-    handleFiltersChange({ text: '', tags });
-  };
-
   const handleTagsReset = () => {
     handleFiltersChange({ text, tags: [] });
   };
@@ -69,7 +65,6 @@ const useMainListHeader = ({
     handleShowSortModal,
     handleKanaButtonClick,
     handleTagsReset,
-    handleTextSearchReset,
     handleShowFiltersModal,
     handleMouseUp,
     handleMouseDown,

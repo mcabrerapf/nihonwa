@@ -13,7 +13,6 @@ function MainListHeader(props) {
     handleShowSortModal,
     handleKanaButtonClick,
     handleTagsReset,
-    handleTextSearchReset,
     handleShowFiltersModal,
     handleMouseUp,
     handleMouseDown,
@@ -58,18 +57,18 @@ function MainListHeader(props) {
       <div className="main-list-search-input">
         <input
           autoComplete="off"
-          type="text"
+          type="search"
           value={textFilter}
           onChange={handleSearchTextChange}
         />
-        {textFilter && (
+        {/* {textFilter && (
           <Button
             modifier="ghost"
             onClick={handleTextSearchReset}
           >
             X
           </Button>
-        )}
+        )} */}
       </div>
     </header>
   );
