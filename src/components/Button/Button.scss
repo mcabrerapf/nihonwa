@@ -26,4 +26,5 @@ button.no-shadow {
 
 button.disabled {
   color: gray;
+  box-shadow: none !important;
 }
