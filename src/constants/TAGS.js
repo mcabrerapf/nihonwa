@@ -24,7 +24,7 @@ const VERB = 'verb';
 
 const TAGS = [
   ADJECTIVE,
-  CLOTHES,
+  // CLOTHES,
   COUNTRY,
   ENTERTAINMENT,
   FAMILY,
