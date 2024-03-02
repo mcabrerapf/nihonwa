@@ -2,18 +2,17 @@ import React, { useEffect, useState } from 'react';
 import './DisplayView.scss';
 import DisplayViewHeader from './DisplayViewHeader';
 import DisplayViewGeneral from './DisplayViewGeneral';
-import DisplayViewSentences from './DisplayViewSentences';
 import DisplayViewNotes from './DisplayViewNotes';
 import DisplayViewFooter from './DisplayViewFooter';
 import DisplayViewKanji from './DisplayViewKanji';
-import { calculateSuccessRate, getWordSentences, getKanjiArrayFromString } from '../../../../utils';
+import { calculateSuccessRate, getKanjiArrayFromString } from '../../../../utils';
 
 function DisplayView({
   listItemData,
-  listItemType,
+  // listItemType,
   isFirstItem,
   isLastItem,
-  sentenceList,
+  // sentenceList,
   canDelete,
   modalView,
   setModalView,
@@ -23,8 +22,6 @@ function DisplayView({
   const {
     jp, furi, en, tags, notes, hits, misses,
   } = listItemData;
-  const wordSentences = listItemType === 'word' ? getWordSentences(jp, sentenceList) : [];
-  const hasSentences = wordSentences && wordSentences.length;
   const hasNotes = notes && !!notes.length;
   const kanjis = [...new Set(getKanjiArrayFromString(jp))];
   const hasKanji = !!kanjis && !!kanjis.length;
@@ -48,18 +45,13 @@ function DisplayView({
       />
       <div className="list-item-modal-content">
         {view === 'general' && <DisplayViewGeneral tags={tags} en={en} />}
-        {view === 'sentences' && (
-          <DisplayViewSentences jpWord={jp} wordSentences={wordSentences} />
-        )}
         {view === 'notes' && <DisplayViewNotes notes={notes} />}
         {view === 'kanji' && <DisplayViewKanji kanjis={kanjis} />}
       </div>
       <DisplayViewFooter
-        listItemType={listItemType}
         isLastItem={isLastItem}
         isFirstItem={isFirstItem}
         hasNotes={hasNotes}
-        hasSentences={hasSentences}
         handleListItemChange={handleListItemChange}
         setView={setView}
       />

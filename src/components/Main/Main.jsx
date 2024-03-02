@@ -7,12 +7,12 @@ function Main() {
   const {
     loading,
     wordList,
-    sentenceList,
-    selectedListKey,
-    selectedList,
-    setSelectedListKey,
+    // sentenceList,
+    // selectedListKey,
+    // selectedList,
+    // setSelectedListKey,
     updateWordsList,
-    updateSentencesList,
+    // updateSentencesList,
   } = useMain();
 
   if (loading) return null;
@@ -21,12 +21,12 @@ function Main() {
   // <main className="main-container">
     <MainList
       wordList={wordList}
-      sentenceList={sentenceList}
-      selectedListKey={selectedListKey}
-      selectedList={selectedList}
-      setSelectedListKey={setSelectedListKey}
+      // sentenceList={sentenceList}
+      // selectedListKey={selectedListKey}
+      // selectedList={selectedList}
+      // setSelectedListKey={setSelectedListKey}
       updateWordsList={updateWordsList}
-      updateSentencesList={updateSentencesList}
+      // updateSentencesList={updateSentencesList}
     />
   // </main>
   );

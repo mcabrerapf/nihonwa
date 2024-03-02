@@ -3,18 +3,18 @@ import './ListItemModal.scss';
 import DisplayView from './DisplayView';
 import EditView from './EditView';
 import Button from '../../Button';
-import { deleteWord, deleteSentence } from '../../../Services';
+import { deleteWord } from '../../../Services';
 import { initItemData } from '../../../utils';
 import { ModalWrapperContext } from '../../ModalWrapper/ModalWrapperContext';
 
 function ListItemModal({
-  listItemType,
+  // listItemType,
   listItemIndex,
+  // listData,
   listData,
-  wordList,
-  sentenceList,
+  // sentenceList,
   updateWordsList,
-  updateSentencesList,
+  // updateSentencesList,
 }) {
   const { closeModal, setCloseOnBgClick } = useContext(ModalWrapperContext);
   const isNewItem = listItemIndex === -1;
@@ -24,13 +24,13 @@ function ListItemModal({
   const listLength = listData.length;
   const listItemData = listData[selectedItemIndex] || {};
   const parsedListItemData = initItemData(
-    listItemType,
+    'word',
     listData[selectedItemIndex],
   );
   const isLastItem = selectedItemIndex + 1 >= listLength;
   const isFirstItem = selectedItemIndex <= 0;
-  const deleteService = listItemType === 'word' ? deleteWord : deleteSentence;
-  const updateListService = listItemType === 'word' ? updateWordsList : updateSentencesList;
+  // const deleteService = listItemType === 'word' ? deleteWord : deleteSentence;
+  // const updateListService = listItemType === 'word' ? updateWordsList : updateSentencesList;
 
   useEffect(() => {
     setCloseOnBgClick(modalView !== 'edit');
@@ -49,8 +49,8 @@ function ListItemModal({
 
   const handleDelete = async () => {
     setCanDelete(false);
-    await deleteService({ input: listItemData });
-    await updateListService();
+    await deleteWord({ input: listItemData });
+    await updateWordsList();
     closeModal();
   };
 
@@ -97,10 +97,10 @@ function ListItemModal({
       {modalView === 'display' && (
       <DisplayView
         listItemData={parsedListItemData}
-        listItemType={listItemType}
+        // listItemType={listItemType}
         isLastItem={isLastItem}
         isFirstItem={isFirstItem}
-        sentenceList={sentenceList}
+        // sentenceList={sentenceList}
         modalView={modalView}
         canDelete={canDelete}
         setModalView={setModalView}
@@ -110,12 +110,12 @@ function ListItemModal({
       {modalView === 'edit' && (
       <EditView
         listItemData={parsedListItemData}
-        listItemType={listItemType}
-        wordList={wordList}
-        sentenceList={sentenceList}
-        updateListService={updateListService}
+        // listItemType={listItemType}
+        listData={listData}
+        // sentenceList={sentenceList}
+        updateWordsList={updateWordsList}
         setModalView={setModalView}
-        setSelectedItemIndex={setSelectedItemIndex}
+        // setSelectedItemIndex={setSelectedItemIndex}
       />
       )}
     </div>

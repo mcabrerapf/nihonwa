@@ -9,22 +9,22 @@ import useMainList from './useMainList';
 function MainList(props) {
   const {
     selectedItemIndex,
-    orderedList,
-    wordList,
-    sentenceList,
-    selectedListKey,
+    // selectedListKey,
     sort,
     filters,
-    selectedList,
+    // selectedList,
+    orderedList,
     orderedListLength,
+    wordList,
+    // sentenceList,
     showModal,
     ModalToUse,
     handleToggleModal,
     updateWordsList,
-    updateSentencesList,
+    // updateSentencesList,
     handleFiltersChange,
-    handleListChange,
     handleSortChange,
+    // handleListChange,
     setSelectedItemIndex,
   } = useMainList(props);
 
@@ -34,38 +34,38 @@ function MainList(props) {
         <ModalWrapper closeModal={handleToggleModal}>
           <ModalToUse
             kanaMode={showModal}
-            wordList={wordList}
-            sentenceList={sentenceList}
+            // wordList={wordList}
+            // sentenceList={sentenceList}
             listData={orderedList}
-            listItemType={selectedListKey}
+            // listItemType={selectedListKey}
             listItemIndex={selectedItemIndex}
             filters={filters}
             sort={sort}
             updateWordsList={updateWordsList}
-            updateSentencesList={updateSentencesList}
+            // updateSentencesList={updateSentencesList}
             handleFiltersChange={handleFiltersChange}
             handleSortChange={handleSortChange}
           />
         </ModalWrapper>
       )}
       <MainListHeader
-        selectedListKey={selectedListKey}
+        // selectedListKey={selectedListKey}
         filters={filters}
-        selectedList={selectedList}
+        wordList={wordList}
         orderedListLength={orderedListLength}
         handleFiltersChange={handleFiltersChange}
         handleToggleModal={handleToggleModal}
       />
       <MainListContent
-        selectedListKey={selectedListKey}
+        // selectedListKey={selectedListKey}
         mainList={orderedList}
         setSelectedItemIndex={setSelectedItemIndex}
         handleToggleModal={handleToggleModal}
       />
       <MainListFooter
-        selectedListKey={selectedListKey}
+        // selectedListKey={selectedListKey}
         orderedListLength={orderedListLength}
-        handleListChange={handleListChange}
+        // handleListChange={handleListChange}
         handleToggleModal={handleToggleModal}
         setSelectedItemIndex={setSelectedItemIndex}
       />

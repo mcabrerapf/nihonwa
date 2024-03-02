@@ -5,12 +5,12 @@ import { getModalToUse } from './helpers';
 
 function useMainList({
   wordList,
-  sentenceList,
-  selectedListKey,
-  selectedList,
-  setSelectedListKey,
+  // sentenceList,
+  // selectedListKey,
+  // selectedList,
+  // setSelectedListKey,
   updateWordsList,
-  updateSentencesList,
+  // updateSentencesList,
 }) {
   const [sort, setSort] = useState(['jp', 'desc']);
   const [filters, setFilters] = useState(FILTERS_INIT_VAL);
@@ -31,34 +31,34 @@ function useMainList({
     setShowModal(false);
   };
 
-  const handleListChange = async () => {
-    const newListKey = selectedListKey === 'word' ? 'sentence' : 'word';
-    setSelectedListKey(newListKey);
-  };
+  // const handleListChange = async () => {
+  //   const newListKey = selectedListKey === 'word' ? 'sentence' : 'word';
+  //   setSelectedListKey(newListKey);
+  // };
 
   const ModalToUse = getModalToUse(showModal);
-  const filteredList = filterBy(selectedList, filters);
+  const filteredList = filterBy(wordList, filters);
   const orderedList = sortBy(filteredList, sort[0], sort[1]);
   const orderedListLength = orderedList.length;
 
   return {
     selectedItemIndex,
-    selectedListKey,
+    // selectedListKey,
     sort,
     filters,
-    selectedList,
+    // selectedList,
     orderedList,
     orderedListLength,
     wordList,
-    sentenceList,
+    // sentenceList,
     showModal,
     ModalToUse,
     handleToggleModal,
     updateWordsList,
-    updateSentencesList,
+    // updateSentencesList,
     handleFiltersChange,
     handleSortChange,
-    handleListChange,
+    // handleListChange,
     setSelectedItemIndex,
   };
 }

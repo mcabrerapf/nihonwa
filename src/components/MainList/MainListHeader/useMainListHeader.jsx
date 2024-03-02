@@ -2,9 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { copyToClipboard } from '../../../utils';
 
 const useMainListHeader = ({
-  selectedListKey,
   filters,
-  selectedList,
+  wordList,
   orderedListLength,
   handleFiltersChange,
   handleToggleModal,
@@ -13,17 +12,17 @@ const useMainListHeader = ({
   const [isLongPress, setIsLongPress] = useState(false);
   const { text, tags } = filters;
   const hasActiveFilters = !!tags.length;
-  const headerText = selectedListKey === 'word' ? '言葉' : '文';
-  const listToFilterLength = selectedList.length;
+  const headerText = '言葉';
+  const listToFilterLength = wordList.length;
   const headerCount = orderedListLength < listToFilterLength
     ? `(${orderedListLength}) ${listToFilterLength}` : orderedListLength;
 
   useEffect(() => {
     if (isLongPress) {
       console.log('COPIED CURRENT LIST');
-      copyToClipboard(JSON.stringify(selectedList));
+      copyToClipboard(JSON.stringify(wordList));
     }
-  }, [isLongPress, selectedList]);
+  }, [isLongPress, wordList]);
 
   const handleMouseDown = () => {
     pressTimer.current = setTimeout(() => {

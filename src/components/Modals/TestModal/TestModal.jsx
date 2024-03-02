@@ -7,7 +7,7 @@ import Button from '../../Button';
 import { ModalWrapperContext } from '../../ModalWrapper/ModalWrapperContext';
 import { TEST_SETUP_INIT_STATE } from './constants';
 
-function TestModal({ wordList, sentenceList, updateWordsList }) {
+function TestModal({ listData, updateWordsList }) {
   const { closeModal, setCloseOnBgClick } = useContext(ModalWrapperContext);
   const [view, setView] = useState('setup');
   const [questions, setQuestions] = useState([]);
@@ -38,8 +38,7 @@ function TestModal({ wordList, sentenceList, updateWordsList }) {
       {view === 'setup' && (
       <TestSetupContent
         testSetupOptions={testSetupOptions}
-        wordList={wordList}
-        sentenceList={sentenceList}
+        wordList={listData}
         setTestSetupOptions={setTestSetupOptions}
         handleTestStart={handleTestStart}
         closeModal={closeModal}

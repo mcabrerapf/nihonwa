@@ -9,35 +9,34 @@ import { deepCompare } from '../../../../utils';
 
 function EditView({
   listItemData,
-  listItemType,
-  wordList,
-  sentenceList,
+  // listItemType,
+  listData,
+  // sentenceList,
   setModalView,
-  updateListService,
+  updateWordsList,
 }) {
   const { closeModal } = useContext(ModalWrapperContext);
   const [currentEditStep, setCurrentEditStep] = useState(0);
   const [currentData, setCurrentData] = useState(listItemData);
   const [itemAlreadyExists, setItemAlreadyExists] = useState('');
   const word = currentData.jp;
-  const headerText = getEditStepHeaderText(listItemType, currentEditStep, word);
+  const headerText = getEditStepHeaderText('word', currentEditStep, word);
 
   const handleSave = async () => {
     const itemId = listItemData.id;
     const serviceName = itemId ? 'update' : 'create';
-    const serviceToUse = getServiceToUse(listItemType, serviceName);
+    const serviceToUse = getServiceToUse('word', serviceName);
     if (deepCompare(listItemData, currentData)) {
       return setModalView('display');
     }
     await serviceToUse({ input: currentData });
-    await updateListService();
+    await updateWordsList();
     return itemId ? setModalView('display') : closeModal();
   };
 
   useEffect(() => {
     if (!word) setItemAlreadyExists(false);
-    const listToCheck = listItemType === 'word' ? wordList : sentenceList;
-    const alreadyExists = !!listToCheck.find((itemToCheck) => {
+    const alreadyExists = !!listData.find((itemToCheck) => {
       if (itemToCheck.id === currentData.id) return false;
       return itemToCheck.jp === word;
     });
@@ -46,7 +45,7 @@ function EditView({
 
   const editStepComponentProps = {
     listItemData: currentData,
-    listItemType,
+    wordList: listData,
     itemAlreadyExists,
     isFirstItem: true,
     isLastItem: true,
@@ -57,8 +56,6 @@ function EditView({
     handleListItemChange: () => {},
     setCurrentData,
     setCurrentEditStep,
-    sentenceList,
-    wordList,
   };
 
   return (
@@ -71,13 +68,12 @@ function EditView({
       </div>
       <div className="edit-view-content">
         {renderEditStepComponent(
-          listItemType,
+          'word',
           currentEditStep,
           editStepComponentProps,
         )}
       </div>
       <EditViewFooter
-        listItemType={listItemType}
         itemAlreadyExists={itemAlreadyExists}
         currentData={currentData}
         currentEditStep={currentEditStep}

@@ -5,9 +5,7 @@ import Button from '../../Button';
 
 function MainListFooter({
   orderedListLength,
-  selectedListKey,
   handleToggleModal,
-  handleListChange,
   setSelectedItemIndex,
 }) {
   const handleOpenRandomListItemModal = () => {
@@ -24,12 +22,11 @@ function MainListFooter({
     handleToggleModal('test');
   };
 
-  const isWordsList = selectedListKey === 'word';
-
   return (
     <footer className="main-list-footer">
       <div className="main-list-footer-buttons l">
-        <Button onClick={handleListChange}>{isWordsList ? '文' : '言葉'}</Button>
+        <Button onClick={() => {}}>V</Button>
+        <Button onClick={() => {}}>A</Button>
       </div>
       <div className="main-list-footer-buttons c">
         <Button onClick={handleOpenNewItemModal}>+</Button>

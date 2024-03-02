@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { checkEditFooterStatus, getEditStepsArray } from '../../helpers';
 
 function useEditViewFooter({
-  listItemType,
   itemAlreadyExists,
   currentData,
   currentEditStep,
@@ -13,7 +12,7 @@ function useEditViewFooter({
   const [canSave, setCanSave] = useState(true);
   const [canProceed, isFirstStep, isLastStep] = checkEditFooterStatus(
     currentEditStep,
-    listItemType,
+    'word',
     currentData,
   );
 
@@ -36,9 +35,8 @@ function useEditViewFooter({
   };
 
   const handleGoForwardClick = () => {
-    if (listItemType === 'word' && isFirstStep) handleChangeEditStep(currentEditStep + 2);
-    else if (listItemType === 'word' && currentEditStep === 2) handleChangeEditStep(currentEditStep + 2);
-    else if (listItemType === 'sentence' && currentEditStep === 1) handleChangeEditStep(currentEditStep + 2);
+    if (isFirstStep) handleChangeEditStep(currentEditStep + 2);
+    else if ('word' && currentEditStep === 2) handleChangeEditStep(currentEditStep + 2);
     else handleChangeEditStep(currentEditStep + 1);
   };
 
@@ -48,7 +46,7 @@ function useEditViewFooter({
   };
 
   const isNextButtonDisabled = !canProceed || itemAlreadyExists;
-  const stepsArray = getEditStepsArray(listItemType);
+  const stepsArray = getEditStepsArray('word');
 
   return {
     isFirstStep,

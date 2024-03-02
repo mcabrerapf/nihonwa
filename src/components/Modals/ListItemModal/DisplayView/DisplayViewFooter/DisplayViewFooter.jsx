@@ -3,11 +3,9 @@ import './DisplayViewFooter.scss';
 import Button from '../../../../Button';
 
 function DisplayViewFooter({
-  listItemType,
   isLastItem,
   isFirstItem,
   hasNotes,
-  hasSentences,
   setView,
   handleListItemChange,
 }) {
@@ -40,17 +38,6 @@ function DisplayViewFooter({
         >
           G
         </Button>
-
-        {listItemType === 'word' && (
-          <Button
-            isDisabled={!hasSentences}
-            onClick={() => {
-              setView('sentences');
-            }}
-          >
-            S
-          </Button>
-        )}
         {/* {hasKanji && (
           <Button
             modifier="kanji-footer-button"
