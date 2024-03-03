@@ -16,7 +16,8 @@ const getTeForm = (stem, ending, type) => {
   }
 };
 
-const getPastIndicative = (ending) => {
+const getPastIndicative = (stem, ending) => {
+  if (stem === '行') return 'った';
   if (['う', 'つ', 'る'].includes(ending)) return 'った';
   if (['む', 'ぶ', 'ぬ'].includes(ending)) return 'んだ';
   if (ending === 'く') return 'いた';
@@ -33,7 +34,7 @@ const conjugateGodan = ({
   const ending = isGodan ? verb.substring(verb.length - 1) : '';
   const conjugations = HIRAGANA.flat().find((syllables) => !!syllables.includes(ending)) || ['', '', '', '', ''];
   const teForm = getTeForm(stem, ending, type);
-  const pastIndicativeEnding = getPastIndicative(ending);
+  const pastIndicativeEnding = getPastIndicative(stem, ending);
   const aConjugation = ending === 'う' ? 'わ' : conjugations[0];
 
   switch (tense) {
