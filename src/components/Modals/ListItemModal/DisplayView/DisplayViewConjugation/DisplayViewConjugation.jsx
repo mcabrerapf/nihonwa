@@ -1,9 +1,9 @@
 import React from 'react';
 import './DisplayViewConjugation.scss';
-import { conjugateVerb } from '../../../../../utils';
+import { conjugateWord } from '../../../../../utils';
 
 function DisplayViewConjugation({ word, conjugation }) {
-  const conjugations = conjugateVerb(word, conjugation);
+  const conjugations = conjugateWord(word, conjugation);
 
   return (
     <div className="display-view-conjugation">

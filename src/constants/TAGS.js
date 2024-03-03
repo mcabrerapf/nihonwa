@@ -23,8 +23,12 @@ const TRANSPORT = 'transport';
 const VERB = 'verb';
 const GODAN = '五段';
 const ICHIDAN = '一段';
+const IADJECTIVE = 'い-adjective';
+const NAADJECTIVE = 'な-adjective';
 
 const TAGS = [
+  IADJECTIVE,
+  NAADJECTIVE,
   ADJECTIVE,
   // CLOTHES,
   COUNTRY,
@@ -54,6 +58,8 @@ const TAGS = [
 
 export default TAGS;
 export {
+  IADJECTIVE,
+  NAADJECTIVE,
   CLOTHES,
   COUNTRY,
   ENTERTAINMENT,

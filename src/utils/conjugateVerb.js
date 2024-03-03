@@ -1,4 +1,5 @@
 import { HIRAGANA, VERB_TENSES } from '../constants';
+import { GODAN } from '../constants/TAGS';
 
 const getTeForm = (stem, ending, type) => {
   switch (type) {
@@ -26,11 +27,11 @@ const getPastIndicative = (stem, ending) => {
   return 'た';
 };
 
-const conjugateGodan = ({
-  verb = '', tense = '', type = '五段', polite = false, negative = false,
+const getConjugation = ({
+  verb = '', tense = '', type = GODAN, polite = false, negative = false,
 }) => {
   const stem = verb.substring(0, verb.length - 1);
-  const isGodan = type === '五段';
+  const isGodan = type === GODAN;
   const ending = isGodan ? verb.substring(verb.length - 1) : '';
   const conjugations = HIRAGANA.flat().find((syllables) => !!syllables.includes(ending)) || ['', '', '', '', ''];
   const teForm = getTeForm(stem, ending, type);
@@ -99,29 +100,26 @@ const conjugateGodan = ({
       if (polite) return `${stem}${conjugations[1]}ましょう / ${stem}${conjugations[2]}${!isGodan ? 'る' : ''}でしょう`;
       return `${stem}${conjugations[3]}${!isGodan ? 'よ' : ''}う / ${stem}${conjugations[2]}${!isGodan ? 'る' : ''}だろう`;
     default:
-      return `${stem}${conjugations[3]}${!isGodan ? 'よう' : ''}`;
+      return '';
   }
 };
 
-const conjugateVerb = (verb, type) => {
-  console.log(verb, type);
-  return VERB_TENSES.map((tense) => [
-    tense[1],
-    [
-      conjugateGodan({ verb, type, tense: tense[0] }),
-      conjugateGodan({
-        verb, type, tense: tense[0], polite: true,
-      }),
-    ],
-    [
-      conjugateGodan({
-        verb, type, tense: tense[0], negative: true,
-      }),
-      conjugateGodan({
-        verb, type, tense: tense[0], polite: true, negative: true,
-      }),
-    ],
-  ]);
-};
+const conjugateVerb = (verb, type) => VERB_TENSES.map((tense) => [
+  tense[1],
+  [
+    getConjugation({ verb, type, tense: tense[0] }),
+    getConjugation({
+      verb, type, tense: tense[0], polite: true,
+    }),
+  ],
+  [
+    getConjugation({
+      verb, type, tense: tense[0], negative: true,
+    }),
+    getConjugation({
+      verb, type, tense: tense[0], polite: true, negative: true,
+    }),
+  ],
+]);
 
 export default conjugateVerb;

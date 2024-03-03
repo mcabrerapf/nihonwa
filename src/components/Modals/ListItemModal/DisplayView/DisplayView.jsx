@@ -6,7 +6,9 @@ import DisplayViewNotes from './DisplayViewNotes';
 import DisplayViewFooter from './DisplayViewFooter';
 import DisplayViewKanji from './DisplayViewKanji';
 import { calculateSuccessRate, getKanjiArrayFromString } from '../../../../utils';
-import { GODAN, ICHIDAN } from '../../../../constants/TAGS';
+import {
+  GODAN, IADJECTIVE, ICHIDAN, NAADJECTIVE,
+} from '../../../../constants/TAGS';
 import DisplayViewConjugation from './DisplayViewConjugation';
 
 function DisplayView({
@@ -28,7 +30,11 @@ function DisplayView({
   const kanjis = [...new Set(getKanjiArrayFromString(jp))];
   const hasKanji = !!kanjis && !!kanjis.length;
   const successPercentage = calculateSuccessRate(hits, misses);
-  const conjugation = tags.find((tag) => tag === GODAN || tag === ICHIDAN);
+  const conjugation = tags
+    .find((tag) => tag === GODAN
+  || tag === ICHIDAN
+  || tag === IADJECTIVE
+  || tag === NAADJECTIVE);
   const sortedTags = tags.sort((a, b) => a.localeCompare(b));
 
   useEffect(() => {

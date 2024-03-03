@@ -1,6 +1,6 @@
 import TAGS from './TAGS';
 import VERB_TENSES from './VERB_TENSES';
-
+import ADJECTIVE_TENSES from './ADJECTIVE_TENSES';
 import {
   HIRAGANA,
   KATAKANA,
@@ -10,6 +10,7 @@ import {
 } from './KANAS';
 
 export {
+  ADJECTIVE_TENSES,
   EN_HIRAGANA_MATCHES,
   EN_KATAKANA_MATCHES,
   HIRAGANA,
