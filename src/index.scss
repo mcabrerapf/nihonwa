@@ -8,9 +8,11 @@ html {
   font-size: 10px;
 }
 
-body, #root {
+body,
+#root {
   position: fixed;
-  overflow: hidden; /* Avoiding overflow */
+  overflow: hidden;
+  /* Avoiding overflow */
   margin: 0;
   padding: 0;
   height: 100%;

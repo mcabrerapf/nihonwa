@@ -8,65 +8,70 @@ function DisplayViewFooter({
   hasConjugation,
   hasNotes,
   setView,
+  tags,
   handleListItemChange,
 }) {
   return (
     <div className="display-view-modal-footer">
-      <div className="arrow-container">
-        {!isFirstItem && (
+      <div className="display-view-tags">
+        {!!tags.length && tags.map((tag) => (
+          <Button
+            key={tag}
+            isDisabled
+            onClick={() => {}}
+          >
+            {tag}
+          </Button>
+        ))}
+      </div>
+      <div className="display-view-actions">
+        <div className="arrow-container">
+          {!isFirstItem && (
           <Button
             isDisabled={isFirstItem}
             onClick={() => handleListItemChange()}
           >
             {'<'}
           </Button>
-        )}
-      </div>
-      <div className="display-view-modal-view-buttons">
-        <Button
-          isDisabled={!hasNotes}
-          onClick={() => {
-            if (hasNotes) setView('notes');
-          }}
-        >
-          N
-        </Button>
-        <Button
-          onClick={() => {
-            setView('general');
-          }}
-        >
-          G
-        </Button>
-        <Button
-          isDisabled={!hasConjugation}
-          onClick={() => {
-            setView('conjugation');
-          }}
-        >
-          C
-        </Button>
-        {/* {hasKanji && (
+          )}
+        </div>
+        <div className="display-view-modal-view-buttons">
           <Button
-            modifier="kanji-footer-button"
+            isDisabled={!hasNotes}
             onClick={() => {
-              setView('kanji');
+              if (hasNotes) setView('notes');
             }}
           >
-            漢字
+            N
           </Button>
-        )} */}
-      </div>
-      <div className="arrow-container">
-        {!isLastItem && (
+          <Button
+            onClick={() => {
+              setView('general');
+            }}
+          >
+            G
+          </Button>
+          <Button
+            isDisabled={!hasConjugation}
+            onClick={() => {
+              setView('conjugation');
+            }}
+          >
+            C
+          </Button>
+        </div>
+        <div className="arrow-container">
+          {!isLastItem && (
           <Button
             isDisabled={isLastItem}
             onClick={() => handleListItemChange(true)}
           >
             {'>'}
           </Button>
-        )}
+          )}
+        </div>
       </div>
+
     </div>
   );
 }

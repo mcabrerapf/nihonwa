@@ -1,4 +1,5 @@
 import TAGS from './TAGS';
+import VERB_TENSES from './VERB_TENSES';
 
 import {
   HIRAGANA,
@@ -15,4 +16,5 @@ export {
   KATAKANA,
   KANA_EN_MATCHES,
   TAGS,
+  VERB_TENSES,
 };

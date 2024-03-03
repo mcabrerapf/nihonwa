@@ -1,7 +1,7 @@
 import React from 'react';
 import './DisplayViewGeneral.scss';
 
-function DisplayViewGeneral({ en = [], tags = [] }) {
+function DisplayViewGeneral({ en = [] }) {
   return (
     <div className="display-view-general">
       <div className="display-view-content-meanings">
@@ -11,18 +11,6 @@ function DisplayViewGeneral({ en = [], tags = [] }) {
             {meaning}
           </span>
         ))}
-      </div>
-      <div className="display-view-tags-tags">
-        {!!tags.length && (
-          <div className="display-view-content-item-list">
-            <span className="display-view-content-item-list-header">Tags</span>
-            <div className="display-view-content-item-list-items">
-              {tags.map((tag) => (
-                <span key={tag}>{tag}</span>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

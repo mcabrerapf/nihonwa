@@ -1,10 +1,10 @@
 import React from 'react';
 import './DisplayViewConjugation.scss';
-import { conjugateWord } from '../../../../../utils';
+import { conjugateVerb } from '../../../../../utils';
 
 function DisplayViewConjugation({ word, conjugation }) {
-  const conjugations = conjugateWord(word, conjugation);
-  console.log({ conjugations });
+  const conjugations = conjugateVerb(word, conjugation);
+
   return (
     <div className="display-view-conjugation">
       <ul className="display-view-conjugation-list">
@@ -19,10 +19,6 @@ function DisplayViewConjugation({ word, conjugation }) {
               <span>{wordConjugation[2][0]}</span>
               <span>{wordConjugation[2][1]}</span>
             </div>
-            {/* <div className="display-view-conjugation-list-item-content">
-              <span>{wordConjugation[2][0]}</span>
-              <span>{wordConjugation[2][1]}</span>
-            </div> */}
           </li>
         ))}
       </ul>

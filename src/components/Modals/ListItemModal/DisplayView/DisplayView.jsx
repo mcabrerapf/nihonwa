@@ -29,6 +29,7 @@ function DisplayView({
   const hasKanji = !!kanjis && !!kanjis.length;
   const successPercentage = calculateSuccessRate(hits, misses);
   const conjugation = tags.find((tag) => tag === GODAN || tag === ICHIDAN);
+  const sortedTags = tags.sort((a, b) => a.localeCompare(b));
 
   useEffect(() => {
     setView('general');
@@ -55,6 +56,7 @@ function DisplayView({
       <DisplayViewFooter
         isLastItem={isLastItem}
         isFirstItem={isFirstItem}
+        tags={sortedTags}
         hasConjugation={!!conjugation}
         hasNotes={hasNotes}
         handleListItemChange={handleListItemChange}
