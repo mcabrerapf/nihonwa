@@ -6,6 +6,8 @@ import DisplayViewNotes from './DisplayViewNotes';
 import DisplayViewFooter from './DisplayViewFooter';
 import DisplayViewKanji from './DisplayViewKanji';
 import { calculateSuccessRate, getKanjiArrayFromString } from '../../../../utils';
+import { GODAN, ICHIDAN } from '../../../../constants/TAGS';
+import DisplayViewConjugation from './DisplayViewConjugation';
 
 function DisplayView({
   listItemData,
@@ -26,6 +28,7 @@ function DisplayView({
   const kanjis = [...new Set(getKanjiArrayFromString(jp))];
   const hasKanji = !!kanjis && !!kanjis.length;
   const successPercentage = calculateSuccessRate(hits, misses);
+  const conjugation = tags.find((tag) => tag === GODAN || tag === ICHIDAN);
 
   useEffect(() => {
     setView('general');
@@ -46,11 +49,13 @@ function DisplayView({
       <div className="list-item-modal-content">
         {view === 'general' && <DisplayViewGeneral tags={tags} en={en} />}
         {view === 'notes' && <DisplayViewNotes notes={notes} />}
+        {view === 'conjugation' && <DisplayViewConjugation word={jp} conjugation={conjugation} />}
         {view === 'kanji' && <DisplayViewKanji kanjis={kanjis} />}
       </div>
       <DisplayViewFooter
         isLastItem={isLastItem}
         isFirstItem={isFirstItem}
+        hasConjugation={!!conjugation}
         hasNotes={hasNotes}
         handleListItemChange={handleListItemChange}
         setView={setView}

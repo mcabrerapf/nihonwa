@@ -1,0 +1,23 @@
+.display-view-conjugation {
+    width: 100%;
+
+    .display-view-conjugation-list {
+
+
+        .display-view-conjugation-list-item {
+            display: flex;
+            flex-direction: column;
+            // justify-content: center;
+            // align-items: center;
+            padding-bottom: 1rem;
+
+            .display-view-conjugation-list-item-header {}
+
+            .display-view-conjugation-list-item-content {
+                display: flex;
+                flex-direction: column;
+                // gap: 3rem;
+            }
+        }
+    }
+}

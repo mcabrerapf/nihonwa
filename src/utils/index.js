@@ -1,6 +1,7 @@
 import calculateSuccessRate from './calculateSuccesRate';
 import capitalizeFirstLetter from './capitalizeFirstLetter';
 import checkIfCharIsKanji from './checkIfCharIsKanji';
+import conjugateWord from './conjugateWord';
 import containsKanji from './containsKanji';
 import containsKatakana from './containsKatakana';
 import copyToClipboard from './copyToClipboard';
@@ -25,6 +26,7 @@ export {
   calculateSuccessRate,
   capitalizeFirstLetter,
   checkIfCharIsKanji,
+  conjugateWord,
   containsKanji,
   containsKatakana,
   copyToClipboard,

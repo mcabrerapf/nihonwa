@@ -21,6 +21,8 @@ const THING = 'thing';
 const TIME = 'time';
 const TRANSPORT = 'transport';
 const VERB = 'verb';
+const GODAN = '五段';
+const ICHIDAN = '一段';
 
 const TAGS = [
   ADJECTIVE,
@@ -32,6 +34,8 @@ const TAGS = [
   FORMALITY,
   KANJI,
   KATAKANA,
+  GODAN,
+  ICHIDAN,
   NOUN,
   // NUMBER,
   OCCUPATION,
@@ -56,6 +60,8 @@ export {
   FAMILY,
   FOOD,
   FORMALITY,
+  GODAN,
+  ICHIDAN,
   NUMBER,
   OCCUPATION,
   PERSON,

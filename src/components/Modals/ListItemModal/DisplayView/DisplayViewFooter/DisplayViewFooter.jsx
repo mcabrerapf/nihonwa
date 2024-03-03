@@ -5,6 +5,7 @@ import Button from '../../../../Button';
 function DisplayViewFooter({
   isLastItem,
   isFirstItem,
+  hasConjugation,
   hasNotes,
   setView,
   handleListItemChange,
@@ -30,13 +31,20 @@ function DisplayViewFooter({
         >
           N
         </Button>
-
         <Button
           onClick={() => {
             setView('general');
           }}
         >
           G
+        </Button>
+        <Button
+          isDisabled={!hasConjugation}
+          onClick={() => {
+            setView('conjugation');
+          }}
+        >
+          C
         </Button>
         {/* {hasKanji && (
           <Button

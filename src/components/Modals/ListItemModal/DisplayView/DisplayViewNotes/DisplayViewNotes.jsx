@@ -1,6 +1,5 @@
 import React from 'react';
 import './DisplayViewNotes.scss';
-import { copyToClipboard } from '../../../../../utils';
 
 function DisplayViewNotes({ notes = [] }) {
   return (
@@ -10,7 +9,6 @@ function DisplayViewNotes({ notes = [] }) {
           role="button"
           key={`${i}-${note}`}
           className="display-view-note"
-          onClick={() => copyToClipboard(note)}
         >
           <span>
             -
