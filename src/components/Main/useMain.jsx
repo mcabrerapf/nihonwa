@@ -13,7 +13,7 @@ function useMain() {
   useEffect(() => {
     async function initMain() {
       const { data: allWords, error: wordsError } = await getServiceToUse('word', 'getAll')();
-      await fetch('https://mcabrerapf.github.io/kanjidicxml/kanjidic2.xml')
+      await fetch('/kanjidic.xml')
         .then((response) => response.text())
         .then((data) => {
           console.log(data);
