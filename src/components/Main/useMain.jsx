@@ -5,14 +5,13 @@ import {
 } from '../../Services';
 
 function useMain() {
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [wordList, setWordList] = useState([]);
   const [kanjiDictionary, setKanjiDictionary] = useState([]);
 
   useEffect(() => {
     async function initMain() {
-      const { data: allWords, error: wordsError } = await getServiceToUse('word', 'getAll')();
-      await fetch('/kanjidic.xml')
+      fetch('/kanjidic.xml')
         .then((response) => response.text())
         .then((data) => {
           const parser = new XMLParser({
@@ -26,10 +25,8 @@ function useMain() {
           if (res?.kanjidic2?.character)setKanjiDictionary(res.kanjidic2.character);
         })
         .catch((error) => console.error('Error fetching kanjiDic2', error));
-
-      if (wordsError) return;
-      setWordList(allWords);
-      setLoading(false);
+      const { data: allWords, error: wordsError } = await getServiceToUse('word', 'getAll')();
+      if (!wordsError) setWordList(allWords);
     }
 
     initMain();
@@ -41,7 +38,7 @@ function useMain() {
   };
 
   return {
-    loading,
+    // loading,
     wordList,
     kanjiDictionary,
     updateWordsList,
