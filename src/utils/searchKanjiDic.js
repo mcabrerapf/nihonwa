@@ -1,5 +1,3 @@
-// import jsonData from '../constants/KANJI.json';
-
 function searchKanjiDic(kanji, kanjiDictionary) {
   const kanjiData = kanjiDictionary.find((item) => item.literal === kanji);
   if (!kanjiData) {
