@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './DisplayViewKanji.scss';
 import Kanji from '../../../../Kanji';
 import { searchKanjiDic } from '../../../../../utils';
-import useKanjiDic from '../../../../../hooks/useKanjiDic';
+import { DictionaryContext } from '../../../../../contexts';
 
 function DisplayViewKanji({ selectedKanji }) {
-  const kanjiDictionary = useKanjiDic();
+  const { kanjiDictionary } = useContext(DictionaryContext);
   const result = searchKanjiDic(selectedKanji, kanjiDictionary);
 
   return (
