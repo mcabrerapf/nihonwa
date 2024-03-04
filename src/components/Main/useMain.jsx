@@ -15,7 +15,6 @@ function useMain() {
       await fetch('/kanjidic.xml')
         .then((response) => response.text())
         .then((data) => {
-          console.log(data);
           const parser = new XMLParser({
             ignoreAttributes: false,
             attributeNamePrefix: '@_a_',
