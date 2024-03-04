@@ -3,7 +3,6 @@ import { XMLParser } from 'fast-xml-parser';
 import {
   getServiceToUse,
 } from '../../Services';
-// import kanjiDic2 from '../../constants/kanjidic2.xml';
 
 function useMain() {
   const [loading, setLoading] = useState(true);
