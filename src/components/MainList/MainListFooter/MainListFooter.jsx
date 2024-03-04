@@ -25,8 +25,7 @@ function MainListFooter({
   return (
     <footer className="main-list-footer">
       <div className="main-list-footer-buttons l">
-        <Button onClick={() => {}}>V</Button>
-        <Button onClick={() => {}}>A</Button>
+        <Button onClick={() => {}}>C</Button>
       </div>
       <div className="main-list-footer-buttons c">
         <Button onClick={handleOpenNewItemModal}>+</Button>

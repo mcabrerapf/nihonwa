@@ -44,15 +44,9 @@ const useMainListHeader = ({
     handleFiltersChange({ text: value, tags });
   };
 
-  const handleTagsReset = () => {
-    handleFiltersChange({ text, tags: [] });
-  };
-
   const handleKanaButtonClick = (selectedKana) => {
     handleToggleModal(selectedKana);
   };
-
-  const handleShowSortModal = () => handleToggleModal('sort');
 
   const handleShowFiltersModal = () => handleToggleModal('filters');
 
@@ -62,9 +56,7 @@ const useMainListHeader = ({
     headerText,
     headerCount,
     handleSearchTextChange,
-    handleShowSortModal,
     handleKanaButtonClick,
-    handleTagsReset,
     handleShowFiltersModal,
     handleMouseUp,
     handleMouseDown,

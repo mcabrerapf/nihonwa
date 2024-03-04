@@ -3,13 +3,16 @@ import './FiltersModal.scss';
 import TAGS from '../../../constants/TAGS';
 import Button from '../../Button';
 
-function FiltersModal({ filters, handleFiltersChange }) {
+function FiltersModal({ filters, sort, handleFiltersChange }) {
+  // const [selectedSortLanguage, selectedSortDirection] = sort;
   const [selectedFilters, setSelectedFilters] = useState(filters);
+  const [selectedSort, setSelectedSort] = useState(sort);
   const { tags } = selectedFilters;
 
   const handleUpdateListFilters = () => {
-    handleFiltersChange(selectedFilters);
+    handleFiltersChange(selectedFilters, selectedSort);
   };
+
   const updateFilters = (value, key) => {
     const filterToUpdate = selectedFilters[key];
     let wasSelected = false;
@@ -24,19 +27,50 @@ function FiltersModal({ filters, handleFiltersChange }) {
     setSelectedFilters({ ...selectedFilters, [key]: updatedTags });
   };
 
+  const updateSortLan = (language) => {
+    if (language === selectedSort[0]) return;
+    setSelectedSort([language, selectedSort[1]]);
+  };
+
+  const updateSortDir = (direction) => {
+    if (direction === selectedSort[1]) return;
+    setSelectedSort([selectedSort[0], direction]);
+  };
+
   return (
     <div className="filters-modal">
       <div className="filters-modal-content">
-        <div className="filters-options-label">
-          <span>Tags</span>
-          {!!selectedFilters.tags.length && (
+        <div className="sort-options">
           <Button
-            modifier="ghost"
-            onClick={() => setSelectedFilters({ ...selectedFilters, tags: [] })}
+            isNotSelected={selectedSort[0] !== 'en'}
+            onClick={() => updateSortLan('en')}
           >
-            X
+            Abc
           </Button>
-          )}
+          <Button
+            isNotSelected={selectedSort[0] !== 'jp'}
+            onClick={() => updateSortLan('jp')}
+          >
+            日本
+          </Button>
+          <Button
+            isNotSelected={selectedSort[0] !== '%'}
+            onClick={() => updateSortLan('%')}
+          >
+            %
+          </Button>
+          <Button
+            isNotSelected={selectedSort[1] !== 'asc'}
+            onClick={() => updateSortDir('asc')}
+          >
+            Asc
+          </Button>
+          <Button
+            isNotSelected={selectedSort[1] !== 'desc'}
+            onClick={() => updateSortDir('desc')}
+          >
+            Desc
+          </Button>
         </div>
         <div className="filters-options">
           {TAGS.map((tag) => {

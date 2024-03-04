@@ -23,7 +23,6 @@ function MainList(props) {
     updateWordsList,
     // updateSentencesList,
     handleFiltersChange,
-    handleSortChange,
     // handleListChange,
     setSelectedItemIndex,
   } = useMainList(props);
@@ -44,7 +43,6 @@ function MainList(props) {
             updateWordsList={updateWordsList}
             // updateSentencesList={updateSentencesList}
             handleFiltersChange={handleFiltersChange}
-            handleSortChange={handleSortChange}
           />
         </ModalWrapper>
       )}

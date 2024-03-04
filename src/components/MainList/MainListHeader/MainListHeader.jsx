@@ -10,9 +10,7 @@ function MainListHeader(props) {
     headerText,
     headerCount,
     handleSearchTextChange,
-    handleShowSortModal,
     handleKanaButtonClick,
-    handleTagsReset,
     handleShowFiltersModal,
     handleMouseUp,
     handleMouseDown,
@@ -23,21 +21,12 @@ function MainListHeader(props) {
     <header className="main-list-header">
       <div className="main-list-header-main-content">
         <div className="main-list-filters-buttons">
-          <Button onClick={handleShowSortModal}>S</Button>
           <Button
             isNotSelected={!hasActiveFilters}
             onClick={handleShowFiltersModal}
           >
             F
           </Button>
-          {hasActiveFilters && (
-            <Button
-              modifier="reset-filters-button ghost"
-              onClick={handleTagsReset}
-            >
-              X
-            </Button>
-          )}
         </div>
         <div
           role="button"
@@ -51,7 +40,6 @@ function MainListHeader(props) {
         </div>
         <div className="main-list-kana-buttons">
           <Button onClick={() => handleKanaButtonClick('hi')}>か</Button>
-          <Button onClick={() => handleKanaButtonClick('ka')}>カ</Button>
         </div>
       </div>
       <div className="main-list-search-input">
@@ -61,14 +49,6 @@ function MainListHeader(props) {
           value={textFilter}
           onChange={handleSearchTextChange}
         />
-        {/* {textFilter && (
-          <Button
-            modifier="ghost"
-            onClick={handleTextSearchReset}
-          >
-            X
-          </Button>
-        )} */}
       </div>
     </header>
   );

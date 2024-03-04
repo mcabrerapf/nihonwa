@@ -5,7 +5,7 @@ import DisplayViewGeneral from './DisplayViewGeneral';
 import DisplayViewNotes from './DisplayViewNotes';
 import DisplayViewFooter from './DisplayViewFooter';
 import DisplayViewKanji from './DisplayViewKanji';
-import { calculateSuccessRate, getKanjiArrayFromString } from '../../../../utils';
+import { calculateSuccessRate, checkIfCharIsKanji, getKanjiArrayFromString } from '../../../../utils';
 import {
   GODAN, IADJECTIVE, ICHIDAN, NAADJECTIVE,
 } from '../../../../constants/TAGS';
@@ -22,10 +22,12 @@ function DisplayView({
   setModalView,
   handleListItemChange,
 }) {
-  const [view, setView] = useState('general');
   const {
     jp, furi, en, tags, notes, hits, misses,
   } = listItemData;
+  const firstKanji = jp.split('').find((char) => checkIfCharIsKanji(char));
+  const [view, setView] = useState('general');
+  const [selectedKanji, setSelectedKanji] = useState(firstKanji);
   const hasNotes = notes && !!notes.length;
   const kanjis = [...new Set(getKanjiArrayFromString(jp))];
   const hasKanji = !!kanjis && !!kanjis.length;
@@ -38,6 +40,8 @@ function DisplayView({
   const sortedTags = tags.sort((a, b) => a.localeCompare(b));
 
   useEffect(() => {
+    const newFirstKanji = jp.split('').find((char) => checkIfCharIsKanji(char));
+    setSelectedKanji(newFirstKanji);
     setView('general');
   }, [listItemData]);
 
@@ -47,17 +51,20 @@ function DisplayView({
         successPercentage={successPercentage}
         text={jp}
         furi={furi}
+        isKanjiView={view === 'kanji'}
+        selectedKanji={selectedKanji}
         hasKanji={hasKanji}
         canDelete={canDelete}
         modalView={modalView}
         setModalView={setModalView}
+        setSelectedKanji={setSelectedKanji}
         setView={setView}
       />
       <div className="list-item-modal-content">
         {view === 'general' && <DisplayViewGeneral tags={tags} en={en} />}
         {view === 'notes' && <DisplayViewNotes notes={notes} />}
         {view === 'conjugation' && <DisplayViewConjugation word={jp} conjugation={conjugation} />}
-        {view === 'kanji' && <DisplayViewKanji kanjis={kanjis} />}
+        {view === 'kanji' && <DisplayViewKanji selectedKanji={selectedKanji} />}
       </div>
       <DisplayViewFooter
         isLastItem={isLastItem}

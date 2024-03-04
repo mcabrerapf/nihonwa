@@ -1,20 +1,36 @@
 import React from 'react';
 import './DisplayViewHeader.scss';
-import { copyToClipboard, getCharWithFuri } from '../../../../../utils';
+import { checkIfCharIsKanji, copyToClipboard, getCharWithFuri } from '../../../../../utils';
 import { getHeaderTextClassName } from './helpers';
 import Button from '../../../../Button';
 
 function DisplayViewHeader({
-  successPercentage, text, furi, hasKanji, canDelete, modalView, setModalView, setView,
+  successPercentage,
+  isKanjiView,
+  selectedKanji,
+  text,
+  furi,
+  hasKanji,
+  canDelete,
+  modalView,
+  setSelectedKanji,
+  setModalView,
+  setView,
 }) {
   const headerCharacters = getCharWithFuri(text, furi, true);
 
   const handleCharacterCopy = () => {
+    if (isKanjiView) return;
     copyToClipboard(text);
   };
   // 10 char turn to 2rem
   // 30 char turn to 1.5rem
   const kanaClassName = getHeaderTextClassName(headerCharacters);
+
+  const handleCharClick = (char) => {
+    if (!isKanjiView || char === selectedKanji) return;
+    if (checkIfCharIsKanji(char))setSelectedKanji(char);
+  };
 
   return (
     <div role="button" className="display-view-modal-header">
@@ -44,7 +60,12 @@ function DisplayViewHeader({
           const [char, furiChar, enChar] = headerChar;
 
           return (
-            <div className="kana-with-furi" key={`${char}-${i}`}>
+            <div
+              role="button"
+              key={`${char}-${i}`}
+              className="kana-with-furi"
+              onClick={() => handleCharClick(char)}
+            >
               <span className="furi">{furiChar}</span>
               <span className={kanaClassName}>{char}</span>
               <span className="furi">{enChar}</span>

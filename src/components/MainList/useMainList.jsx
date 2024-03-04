@@ -21,20 +21,11 @@ function useMainList({
     setShowModal(modalKey);
   };
 
-  const handleSortChange = (newSort) => {
-    setSort(newSort);
+  const handleFiltersChange = (newFilters, newSort) => {
+    if (newFilters)setFilters(newFilters);
+    if (newSort)setSort(newSort);
     setShowModal(false);
   };
-
-  const handleFiltersChange = (newFilters) => {
-    setFilters(newFilters);
-    setShowModal(false);
-  };
-
-  // const handleListChange = async () => {
-  //   const newListKey = selectedListKey === 'word' ? 'sentence' : 'word';
-  //   setSelectedListKey(newListKey);
-  // };
 
   const ModalToUse = getModalToUse(showModal);
   const filteredList = filterBy(wordList, filters);
@@ -57,7 +48,6 @@ function useMainList({
     updateWordsList,
     // updateSentencesList,
     handleFiltersChange,
-    handleSortChange,
     // handleListChange,
     setSelectedItemIndex,
   };
