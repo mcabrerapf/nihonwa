@@ -1,20 +1,35 @@
 import { useEffect, useState } from 'react';
+import { XMLParser } from 'fast-xml-parser';
 import {
   getServiceToUse,
 } from '../../Services';
+import kanjiDic2 from '../../constants/kanjidic2.xml';
 
 function useMain() {
   const [loading, setLoading] = useState(true);
   const [wordList, setWordList] = useState([]);
-  // const [sentenceList, setSentenceList] = useState([]);
-  const [selectedListKey, setSelectedListKey] = useState('word');
+  const [kanjiDictionary, setKanjiDictionary] = useState([]);
 
   useEffect(() => {
     async function initMain() {
       const { data: allWords, error: wordsError } = await getServiceToUse('word', 'getAll')();
+      await fetch(kanjiDic2)
+        .then((response) => response.text())
+        .then((data) => {
+          const parser = new XMLParser({
+            ignoreAttributes: false,
+            attributeNamePrefix: '@_a_',
+          });
+          const jObj = parser.parse(data);
+          return jObj;
+        })
+        .then((res) => {
+          if (res?.kanjidic2?.character)setKanjiDictionary(res.kanjidic2.character);
+        })
+        .catch((error) => console.error('Error fetching kanjiDic2', error));
+
       if (wordsError) return;
       setWordList(allWords);
-      // setSentenceList(allSentences);
       setLoading(false);
     }
 
@@ -26,21 +41,11 @@ function useMain() {
     setWordList(allWords);
   };
 
-  // const updateSentencesList = async () => {
-  //   const { data: allSentences } = await getServiceToUse('sentence', 'getAll')();
-  //   setSentenceList(allSentences);
-  // };
-  // const selectedList = selectedListKey === 'word' ? wordList : sentenceList;
-
   return {
     loading,
     wordList,
-    // sentenceList,
-    selectedListKey,
-    // selectedList,
-    setSelectedListKey,
+    kanjiDictionary,
     updateWordsList,
-    // updateSentencesList,
   };
 }
 

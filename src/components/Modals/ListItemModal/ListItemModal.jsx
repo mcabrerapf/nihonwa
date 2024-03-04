@@ -8,6 +8,7 @@ import { initItemData } from '../../../utils';
 import { ModalWrapperContext } from '../../ModalWrapper/ModalWrapperContext';
 
 function ListItemModal({
+  kanjiDictionary,
   // listItemType,
   listItemIndex,
   // listData,
@@ -97,6 +98,7 @@ function ListItemModal({
       {modalView === 'display' && (
       <DisplayView
         listItemData={parsedListItemData}
+        kanjiDictionary={kanjiDictionary}
         // listItemType={listItemType}
         isLastItem={isLastItem}
         isFirstItem={isFirstItem}

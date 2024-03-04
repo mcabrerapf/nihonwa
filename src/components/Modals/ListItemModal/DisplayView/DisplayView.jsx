@@ -13,10 +13,9 @@ import DisplayViewConjugation from './DisplayViewConjugation';
 
 function DisplayView({
   listItemData,
-  // listItemType,
+  kanjiDictionary,
   isFirstItem,
   isLastItem,
-  // sentenceList,
   canDelete,
   modalView,
   setModalView,
@@ -63,8 +62,14 @@ function DisplayView({
       <div className="list-item-modal-content">
         {view === 'general' && <DisplayViewGeneral tags={tags} en={en} />}
         {view === 'notes' && <DisplayViewNotes notes={notes} />}
-        {view === 'conjugation' && <DisplayViewConjugation word={jp} conjugation={conjugation} />}
-        {view === 'kanji' && <DisplayViewKanji selectedKanji={selectedKanji} />}
+        {view === 'conjugation'
+        && (
+        <DisplayViewConjugation
+          word={jp}
+          conjugation={conjugation}
+        />
+        )}
+        {view === 'kanji' && <DisplayViewKanji selectedKanji={selectedKanji} kanjiDictionary={kanjiDictionary} />}
       </div>
       <DisplayViewFooter
         isLastItem={isLastItem}

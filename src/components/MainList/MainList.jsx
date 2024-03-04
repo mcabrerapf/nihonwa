@@ -9,21 +9,17 @@ import useMainList from './useMainList';
 function MainList(props) {
   const {
     selectedItemIndex,
-    // selectedListKey,
+    kanjiDictionary,
     sort,
     filters,
-    // selectedList,
     orderedList,
     orderedListLength,
     wordList,
-    // sentenceList,
     showModal,
     ModalToUse,
     handleToggleModal,
     updateWordsList,
-    // updateSentencesList,
     handleFiltersChange,
-    // handleListChange,
     setSelectedItemIndex,
   } = useMainList(props);
 
@@ -33,15 +29,12 @@ function MainList(props) {
         <ModalWrapper closeModal={handleToggleModal}>
           <ModalToUse
             kanaMode={showModal}
-            // wordList={wordList}
-            // sentenceList={sentenceList}
+            kanjiDictionary={kanjiDictionary}
             listData={orderedList}
-            // listItemType={selectedListKey}
             listItemIndex={selectedItemIndex}
             filters={filters}
             sort={sort}
             updateWordsList={updateWordsList}
-            // updateSentencesList={updateSentencesList}
             handleFiltersChange={handleFiltersChange}
           />
         </ModalWrapper>

@@ -7,12 +7,8 @@ function Main() {
   const {
     loading,
     wordList,
-    // sentenceList,
-    // selectedListKey,
-    // selectedList,
-    // setSelectedListKey,
+    kanjiDictionary,
     updateWordsList,
-    // updateSentencesList,
   } = useMain();
 
   if (loading) return null;
@@ -21,12 +17,8 @@ function Main() {
   // <main className="main-container">
     <MainList
       wordList={wordList}
-      // sentenceList={sentenceList}
-      // selectedListKey={selectedListKey}
-      // selectedList={selectedList}
-      // setSelectedListKey={setSelectedListKey}
+      kanjiDictionary={kanjiDictionary}
       updateWordsList={updateWordsList}
-      // updateSentencesList={updateSentencesList}
     />
   // </main>
   );

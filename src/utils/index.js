@@ -4,6 +4,7 @@ import checkIfCharIsKanji from './checkIfCharIsKanji';
 import conjugateAdjective from './conjugateAdjective';
 import conjugateVerb from './conjugateVerb';
 import conjugateWord from './conjugateWord';
+import containsHiragana from './containsHiragana';
 import containsKanji from './containsKanji';
 import containsKatakana from './containsKatakana';
 import copyToClipboard from './copyToClipboard';
@@ -32,6 +33,7 @@ export {
   conjugateAdjective,
   conjugateVerb,
   conjugateWord,
+  containsHiragana,
   containsKanji,
   containsKatakana,
   copyToClipboard,

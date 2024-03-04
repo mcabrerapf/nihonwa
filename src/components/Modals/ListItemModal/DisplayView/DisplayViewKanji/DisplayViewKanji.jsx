@@ -3,8 +3,8 @@ import './DisplayViewKanji.scss';
 import Kanji from '../../../../Kanji';
 import { searchKanjiDic } from '../../../../../utils';
 // TODO make only one kanji appear
-function DisplayViewKanji({ selectedKanji }) {
-  const result = searchKanjiDic(selectedKanji);
+function DisplayViewKanji({ selectedKanji, kanjiDictionary }) {
+  const result = searchKanjiDic(selectedKanji, kanjiDictionary);
 
   return (
     <div className="display-view-kanji">
@@ -15,7 +15,7 @@ function DisplayViewKanji({ selectedKanji }) {
             <span className="kanji-data-header">音読み</span>
             <ul className="kanji-data-list">
 
-              {result.onYomi.map(({ __text: onYomi }) => (
+              {result.onYomi.map(({ '#text': onYomi }) => (
                 <li key={onYomi}>
                   {onYomi}
                 </li>
@@ -36,7 +36,7 @@ function DisplayViewKanji({ selectedKanji }) {
           <div className="kanji-data-container">
             <span className="kanji-data-header">訓読み</span>
             <ul className="kanji-data-list">
-              {result.kunYomi.map(({ __text: kunYomi }) => (
+              {result.kunYomi.map(({ '#text': kunYomi }) => (
                 <li key={kunYomi}>
                   {kunYomi}
                 </li>

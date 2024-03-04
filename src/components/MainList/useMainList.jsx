@@ -5,12 +5,8 @@ import { getModalToUse } from './helpers';
 
 function useMainList({
   wordList,
-  // sentenceList,
-  // selectedListKey,
-  // selectedList,
-  // setSelectedListKey,
+  kanjiDictionary,
   updateWordsList,
-  // updateSentencesList,
 }) {
   const [sort, setSort] = useState(['jp', 'desc']);
   const [filters, setFilters] = useState(FILTERS_INIT_VAL);
@@ -33,22 +29,18 @@ function useMainList({
   const orderedListLength = orderedList.length;
 
   return {
+    kanjiDictionary,
     selectedItemIndex,
-    // selectedListKey,
     sort,
     filters,
-    // selectedList,
     orderedList,
     orderedListLength,
     wordList,
-    // sentenceList,
     showModal,
     ModalToUse,
     handleToggleModal,
     updateWordsList,
-    // updateSentencesList,
     handleFiltersChange,
-    // handleListChange,
     setSelectedItemIndex,
   };
 }
