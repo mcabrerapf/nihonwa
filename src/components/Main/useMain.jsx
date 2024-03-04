@@ -11,6 +11,9 @@ function useMain() {
 
   useEffect(() => {
     async function initMain() {
+      const { data: allWords, error: wordsError } = await getServiceToUse('word', 'getAll')();
+      if (!wordsError) setWordList(allWords);
+
       fetch('/kanjidic.xml')
         .then((response) => response.text())
         .then((data) => {
@@ -25,8 +28,6 @@ function useMain() {
           if (res?.kanjidic2?.character)setKanjiDictionary(res.kanjidic2.character);
         })
         .catch((error) => console.error('Error fetching kanjiDic2', error));
-      const { data: allWords, error: wordsError } = await getServiceToUse('word', 'getAll')();
-      if (!wordsError) setWordList(allWords);
     }
 
     initMain();
