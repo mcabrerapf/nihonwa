@@ -9,7 +9,6 @@ import useMainList from './useMainList';
 function MainList(props) {
   const {
     selectedItemIndex,
-    kanjiDictionary,
     sort,
     filters,
     orderedList,
@@ -29,7 +28,6 @@ function MainList(props) {
         <ModalWrapper closeModal={handleToggleModal}>
           <ModalToUse
             kanaMode={showModal}
-            kanjiDictionary={kanjiDictionary}
             listData={orderedList}
             listItemIndex={selectedItemIndex}
             filters={filters}

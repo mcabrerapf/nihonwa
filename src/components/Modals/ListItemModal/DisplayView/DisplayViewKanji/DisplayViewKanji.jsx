@@ -2,8 +2,10 @@ import React from 'react';
 import './DisplayViewKanji.scss';
 import Kanji from '../../../../Kanji';
 import { searchKanjiDic } from '../../../../../utils';
-// TODO make only one kanji appear
-function DisplayViewKanji({ selectedKanji, kanjiDictionary }) {
+import useKanjiDic from '../../../../../hooks/useKanjiDic';
+
+function DisplayViewKanji({ selectedKanji }) {
+  const kanjiDictionary = useKanjiDic();
   const result = searchKanjiDic(selectedKanji, kanjiDictionary);
 
   return (

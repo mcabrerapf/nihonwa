@@ -13,7 +13,6 @@ import DisplayViewConjugation from './DisplayViewConjugation';
 
 function DisplayView({
   listItemData,
-  kanjiDictionary,
   isFirstItem,
   isLastItem,
   canDelete,
@@ -69,7 +68,7 @@ function DisplayView({
           conjugation={conjugation}
         />
         )}
-        {view === 'kanji' && <DisplayViewKanji selectedKanji={selectedKanji} kanjiDictionary={kanjiDictionary} />}
+        {view === 'kanji' && <DisplayViewKanji selectedKanji={selectedKanji} />}
       </div>
       <DisplayViewFooter
         isLastItem={isLastItem}

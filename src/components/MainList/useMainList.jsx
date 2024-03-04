@@ -5,7 +5,6 @@ import { getModalToUse } from './helpers';
 
 function useMainList({
   wordList,
-  kanjiDictionary,
   updateWordsList,
 }) {
   const [sort, setSort] = useState(['jp', 'desc']);
@@ -29,7 +28,6 @@ function useMainList({
   const orderedListLength = orderedList.length;
 
   return {
-    kanjiDictionary,
     selectedItemIndex,
     sort,
     filters,

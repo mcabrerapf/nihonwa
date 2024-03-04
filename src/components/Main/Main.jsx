@@ -7,7 +7,6 @@ function Main() {
   const {
     // loading,
     wordList,
-    kanjiDictionary,
     updateWordsList,
   } = useMain();
 
@@ -17,7 +16,6 @@ function Main() {
   // <main className="main-container">
     <MainList
       wordList={wordList}
-      kanjiDictionary={kanjiDictionary}
       updateWordsList={updateWordsList}
     />
   // </main>
