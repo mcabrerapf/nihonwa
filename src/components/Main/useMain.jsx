@@ -3,7 +3,7 @@ import { XMLParser } from 'fast-xml-parser';
 import {
   getServiceToUse,
 } from '../../Services';
-import kanjiDic2 from '../../constants/kanjidic2.xml';
+// import kanjiDic2 from '../../constants/kanjidic2.xml';
 
 function useMain() {
   const [loading, setLoading] = useState(true);
@@ -13,9 +13,10 @@ function useMain() {
   useEffect(() => {
     async function initMain() {
       const { data: allWords, error: wordsError } = await getServiceToUse('word', 'getAll')();
-      await fetch(kanjiDic2)
+      await fetch('/kanjidic2.xml')
         .then((response) => response.text())
         .then((data) => {
+          console.log(data);
           const parser = new XMLParser({
             ignoreAttributes: false,
             attributeNamePrefix: '@_a_',
