@@ -37,7 +37,11 @@ function TestProgressContent({
   };
 
   const handleUpdateQuestion = async (answer) => {
-    if (isLoading || isQuestionValidated) return;
+    if (isLoading) return;
+    if (isQuestionValidated) {
+      goToNextQuestion();
+      return;
+    }
     const hit = !!en.includes(answer);
     setSelectedAnswer(answer);
     setIsLoading(true);
@@ -73,6 +77,7 @@ function TestProgressContent({
           className="current-question"
           onClick={() => {
             if (!showAnswerOptions) setShowAnswerOptions(true);
+            if (!isLoading && isQuestionValidated) goToNextQuestion();
           }}
         >
           {showJp && (
@@ -98,7 +103,6 @@ function TestProgressContent({
               return (
                 <Button
                   key={answer}
-                  isDisabled={isQuestionValidated}
                   modifier={isQuestionValidated ? validatedColor : ''}
                   isNotSelected={selectedAnswer !== answer}
                   onClick={() => handleUpdateQuestion(answer)}
@@ -112,12 +116,12 @@ function TestProgressContent({
         </div>
       </div>
       <footer className="test-modal-footer">
-        <Button
+        {/* <Button
           isDisabled={isLoading || !selectedAnswer}
           onClick={goToNextQuestion}
         >
           O
-        </Button>
+        </Button> */}
       </footer>
     </>
   );
