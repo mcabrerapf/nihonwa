@@ -23,7 +23,7 @@ import initSentenceData from './initSentenceData';
 import initWordData from './initWordData';
 import kanaToEnglishChar from './kanaToEnglishChar';
 import romajiToKana from './romajiToKana';
-import searchKanjiDic from './searchKanjiDic';
+import parseDicData from './parseDicData';
 import sortBy from './sortBy';
 
 export {
@@ -52,6 +52,6 @@ export {
   initSentenceData,
   initWordData,
   kanaToEnglishChar,
-  searchKanjiDic,
+  parseDicData,
   sortBy,
 };

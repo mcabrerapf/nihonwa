@@ -1,12 +1,34 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import './DisplayViewKanji.scss';
 import Kanji from '../../../../Kanji';
-import { searchKanjiDic } from '../../../../../utils';
-import { DictionaryContext } from '../../../../../contexts';
+import { parseDicData } from '../../../../../utils';
 
 function DisplayViewKanji({ selectedKanji }) {
-  const { kanjiDictionary } = useContext(DictionaryContext);
-  const result = searchKanjiDic(selectedKanji, kanjiDictionary);
+  const [kajiData, setKanjiData] = useState({});
+  const {
+    meanings = [],
+    onYomi = [],
+    kunYomi = [],
+  } = kajiData;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const url = `https://afternoon-gorge-77049-a1de8dd15ce4.herokuapp.com/kanjis/${selectedKanji}`;
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const jsonData = await response.json();
+        const parsedData = parseDicData(jsonData);
+        setKanjiData(parsedData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [selectedKanji]);
 
   return (
     <div className="display-view-kanji">
@@ -16,11 +38,11 @@ function DisplayViewKanji({ selectedKanji }) {
           <div className="kanji-data-container">
             <span className="kanji-data-header">音読み</span>
             <ul className="kanji-data-list">
-              {result.onYomi.map(({ '#text': onYomi }) => (
-                <li key={onYomi}>
+              {onYomi.map(({ '#text': yomi }) => (
+                <li key={yomi}>
                   -
                   {' '}
-                  {onYomi}
+                  {yomi}
                 </li>
               ))}
             </ul>
@@ -29,7 +51,7 @@ function DisplayViewKanji({ selectedKanji }) {
             <span className="kanji-data-header">Meanings</span>
             <ul className="kanji-data-list">
 
-              {result.meanings.map((meaning) => (
+              {meanings.map((meaning) => (
                 <li key={meaning}>
                   -
                   {' '}
@@ -41,11 +63,11 @@ function DisplayViewKanji({ selectedKanji }) {
           <div className="kanji-data-container">
             <span className="kanji-data-header">訓読み</span>
             <ul className="kanji-data-list">
-              {result.kunYomi.map(({ '#text': kunYomi }) => (
-                <li key={kunYomi}>
+              {kunYomi.map(({ '#text': yomi }) => (
+                <li key={yomi}>
                   -
                   {' '}
-                  {kunYomi}
+                  {yomi}
                 </li>
               ))}
             </ul>

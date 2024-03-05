@@ -6,7 +6,6 @@ import Button from '../../../../Button';
 
 function DisplayViewHeader({
   successPercentage,
-  isKanjiView,
   selectedKanji,
   text,
   furi,
@@ -20,7 +19,6 @@ function DisplayViewHeader({
   const headerCharacters = getCharWithFuri(text, furi, true);
 
   const handleCharacterCopy = () => {
-    if (isKanjiView) return;
     copyToClipboard(text);
   };
   // 10 char turn to 2rem
@@ -28,8 +26,9 @@ function DisplayViewHeader({
   const kanaClassName = getHeaderTextClassName(headerCharacters);
 
   const handleCharClick = (char) => {
-    if (!isKanjiView || char === selectedKanji) return;
-    if (checkIfCharIsKanji(char))setSelectedKanji(char);
+    setView('kanji');
+    if (char === selectedKanji) return;
+    if (checkIfCharIsKanji(char)) setSelectedKanji(char);
   };
 
   return (
@@ -45,9 +44,7 @@ function DisplayViewHeader({
         {hasKanji && (
         <Button
           modifier="kanji-header-button"
-          onClick={() => {
-            setView('kanji');
-          }}
+          onClick={handleCharacterCopy}
         >
           漢字
         </Button>
