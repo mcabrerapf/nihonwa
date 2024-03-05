@@ -40,8 +40,6 @@ function DisplayViewKanji({ selectedKanji }) {
             <ul className="kanji-data-list">
               {onYomi.map(({ '#text': yomi }) => (
                 <li key={yomi}>
-                  -
-                  {' '}
                   {yomi}
                 </li>
               ))}
@@ -53,8 +51,6 @@ function DisplayViewKanji({ selectedKanji }) {
 
               {meanings.map((meaning) => (
                 <li key={meaning}>
-                  -
-                  {' '}
                   {meaning}
                 </li>
               ))}
@@ -65,8 +61,6 @@ function DisplayViewKanji({ selectedKanji }) {
             <ul className="kanji-data-list">
               {kunYomi.map(({ '#text': yomi }) => (
                 <li key={yomi}>
-                  -
-                  {' '}
                   {yomi}
                 </li>
               ))}
