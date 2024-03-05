@@ -18,9 +18,11 @@
       flex-direction: row;
       flex-wrap: wrap;
       user-select: none;
+      justify-content: center;
       margin-top: 1rem;
       margin-bottom: 2rem;
       min-height: 10rem;
+      width: 100%;
 
       .kana-with-furi {
         display: flex;
