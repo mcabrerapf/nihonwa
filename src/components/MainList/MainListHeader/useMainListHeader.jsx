@@ -12,7 +12,7 @@ const useMainListHeader = ({
   const [isLongPress, setIsLongPress] = useState(false);
   const { text, tags } = filters;
   const hasActiveFilters = !!tags.length;
-  const headerText = '言葉';
+  const headerText = '語句';
   const listToFilterLength = wordList.length;
   const headerCount = orderedListLength < listToFilterLength
     ? `(${orderedListLength}) ${listToFilterLength}` : orderedListLength;
@@ -44,6 +44,10 @@ const useMainListHeader = ({
     handleFiltersChange({ text: value, tags });
   };
 
+  const resetFilters = () => {
+    handleFiltersChange({ text: '', tags: [] });
+  };
+
   const handleKanaButtonClick = (selectedKana) => {
     handleToggleModal(selectedKana);
   };
@@ -52,6 +56,7 @@ const useMainListHeader = ({
 
   return {
     textFilter: text,
+    resetFilters,
     hasActiveFilters,
     headerText,
     headerCount,

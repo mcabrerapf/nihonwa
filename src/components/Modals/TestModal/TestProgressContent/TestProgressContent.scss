@@ -1,13 +1,14 @@
 .test-modal-progress-content {
   display: flex;
   justify-content: center;
+  // align-items: flex-start;
   height: 100%;
   width: 100%;
 
   .current-question {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
     height: 100%;
     width: 100%;
@@ -17,7 +18,9 @@
       flex-direction: row;
       flex-wrap: wrap;
       user-select: none;
-      font-size: 4rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+      min-height: 10rem;
 
       .kana-with-furi {
         display: flex;
@@ -26,8 +29,21 @@
         align-items: center;
 
         .kana {
+          &.big {
+            font-size: 4rem;
+          }
+
+          &.medium {
+            font-size: 3rem;
+          }
+
+          &.normal {
+            font-size: 2rem;
+          }
+
           display: flex;
           align-items: flex-end;
+
         }
 
         .furi {
@@ -35,6 +51,27 @@
           align-items: flex-end;
           font-size: 1.2rem;
           height: 1.5rem;
+        }
+      }
+    }
+
+    .queston-answers-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      .button {
+        padding: 1rem;
+        max-height: 5rem;
+
+        &.hit {
+          background-color: green;
+          color: white;
+        }
+
+        &.miss {
+          background-color: red;
+          color: white;
         }
       }
     }

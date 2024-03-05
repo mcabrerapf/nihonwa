@@ -1,36 +1,31 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './MainListContent.scss';
+import LoadMore from './LoadMore';
 
-function MainListContent({ mainList, handleToggleModal, setSelectedItemIndex }) {
+function MainListContent({
+  mainList, handleToggleModal, setSelectedItemIndex,
+}) {
   const [items, setItems] = useState([]);
   const listRef = useRef(null);
+
+  useEffect(() => {
+    const numberOfItemsToFetch = !items.length || items.length < 20 ? 20 : items.length;
+    setItems(mainList.slice(0, numberOfItemsToFetch));
+  }, [mainList]);
 
   const handleOpenListItemModal = (i) => {
     setSelectedItemIndex(i);
     handleToggleModal('listItem');
   };
 
-  useEffect(() => {
-    setItems(mainList.slice(0, 20)); // Initially load 20 items
-  }, [mainList]);
-
-  const handleScroll = () => {
-    const list = listRef.current;
-    if (list) {
-      const { scrollTop } = list;
-      const { scrollHeight } = list;
-      const halfwayPoint = scrollHeight / 2;
-      if (scrollTop >= halfwayPoint) {
-        setItems(mainList.slice(0, items.length + 20)); // Initially load 20 items
-      }
-    }
+  const loadMoreItems = () => {
+    setItems(mainList.slice(0, 20 + items.length));
   };
 
   return (
     <div
       className="main-list-content"
       ref={listRef}
-      onScroll={handleScroll}
     >
       <ul className="main-list">
         {items.map((listItem, i) => {
@@ -45,9 +40,16 @@ function MainListContent({ mainList, handleToggleModal, setSelectedItemIndex }) 
             >
               <span>{jp}</span>
             </li>
+
           );
         })}
-        <div className="seprator">.</div>
+        {items.length > 0 && (
+        <LoadMore
+          callback={loadMoreItems}
+          itemsLength={items.length}
+          allItemsLength={mainList.length}
+        />
+        )}
       </ul>
     </div>
   );

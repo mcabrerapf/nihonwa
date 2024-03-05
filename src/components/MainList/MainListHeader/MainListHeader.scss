@@ -16,6 +16,8 @@
   }
 
   .main-list-header-text {
+    position: absolute;
+    left: calc(50% - 3rem);
     display: flex;
     flex-direction: column;
     user-select: none;

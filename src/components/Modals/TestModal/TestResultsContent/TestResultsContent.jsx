@@ -3,6 +3,9 @@ import './TestResultsContent.scss';
 import Button from '../../../Button';
 
 function TestResultsContent({ questions, setView, closeModal }) {
+  const correctQuestions = questions.filter((question) => question.correct);
+  const score = (correctQuestions.length / questions.length) * 100;
+
   const handleClose = async (e) => {
     e.preventDefault();
     if (e.target.innerText === 'R') setView('setup');
@@ -12,19 +15,26 @@ function TestResultsContent({ questions, setView, closeModal }) {
   return (
     <>
       <div className="test-modal-results-content">
-        <div className="test-modal-results">
-          {questions.map((question, i) => {
-            const { jp } = question;
+        <div className="results-header">
+          <span className="text">Results</span>
+          <span>
+            {score.toFixed()}
+            %
+          </span>
+        </div>
+        <ul className="test-modal-results-list">
+          {questions.map((question) => {
+            const { jp, id, correct } = question;
             return (
-              <div key={`${jp}-${i}`} className="test-modal-results-result">
+              <li key={id} className="test-modal-results-result">
                 <span className="test-modal-results-result-check">
-                  {question.correct ? 'O' : 'X'}
+                  {correct ? 'O' : 'X'}
                 </span>
                 <span>{jp}</span>
-              </div>
+              </li>
             );
           })}
-        </div>
+        </ul>
       </div>
       <footer className="test-modal-footer">
         <Button onClick={handleClose}>R</Button>

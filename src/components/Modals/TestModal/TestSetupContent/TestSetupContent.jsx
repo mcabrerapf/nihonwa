@@ -9,11 +9,11 @@ function TestSetupContent(props) {
     questionLimit,
     reachedMin,
     reachedMax,
-    isJpEnabled,
-    isEnEnabled,
+    // isJpEnabled,
+    // isEnEnabled,
     questionTags,
     handleQuestionLimitChange,
-    handleLanguageButtonClick,
+    // handleLanguageButtonClick,
     handleBuildQuestions,
     handleTagClick,
   } = useTestSetupContent(props);
@@ -23,10 +23,22 @@ function TestSetupContent(props) {
       <div className="test-modal-setup-content">
         <div className="test-modal-options-group">
           <div className="test-modal-options-sub-group">
-            <div className="question-language">
-              <Button value="en" isNotSelected={!isEnEnabled} onClick={handleLanguageButtonClick}>Abc</Button>
-              <Button value="jp" isNotSelected={!isJpEnabled} onClick={handleLanguageButtonClick}>日本</Button>
-            </div>
+            {/* <div className="question-language">
+              <Button
+                value="en"
+                isNotSelected={!isEnEnabled}
+                onClick={handleLanguageButtonClick}
+              >
+                Abc
+              </Button>
+              <Button
+                value="jp"
+                isNotSelected={!isJpEnabled}
+                onClick={handleLanguageButtonClick}
+              >
+                日本
+              </Button>
+            </div> */}
             <div className="question-limit">
               <Button
                 isDisabled={reachedMin}

@@ -25,7 +25,7 @@ function MainListFooter({
   return (
     <footer className="main-list-footer">
       <div className="main-list-footer-buttons l">
-        <Button onClick={() => {}}>C</Button>
+        <Button isDisabled onClick={() => {}}>C</Button>
       </div>
       <div className="main-list-footer-buttons c">
         <Button onClick={handleOpenNewItemModal}>+</Button>

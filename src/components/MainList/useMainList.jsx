@@ -26,9 +26,11 @@ function useMainList({
   const filteredList = filterBy(wordList, filters);
   const orderedList = sortBy(filteredList, sort[0], sort[1]);
   const orderedListLength = orderedList.length;
+  const filterSortString = JSON.stringify({ filters, sort });
 
   return {
     selectedItemIndex,
+    filterSortString,
     sort,
     filters,
     orderedList,

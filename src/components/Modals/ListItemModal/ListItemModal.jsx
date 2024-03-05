@@ -23,14 +23,13 @@ function ListItemModal({
   const [modalView, setModalView] = useState(isNewItem ? 'edit' : 'display');
   const listLength = listData.length;
   const listItemData = listData[selectedItemIndex] || {};
+
   const parsedListItemData = initItemData(
     'word',
     listData[selectedItemIndex],
   );
   const isLastItem = selectedItemIndex + 1 >= listLength;
   const isFirstItem = selectedItemIndex <= 0;
-  // const deleteService = listItemType === 'word' ? deleteWord : deleteSentence;
-  // const updateListService = listItemType === 'word' ? updateWordsList : updateSentencesList;
 
   useEffect(() => {
     setCloseOnBgClick(modalView !== 'edit');

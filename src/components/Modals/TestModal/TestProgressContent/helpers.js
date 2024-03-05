@@ -1,5 +1,17 @@
 import { generateRandomNumber } from '../../../../utils';
 
+const getKanaSize = (kana) => {
+  if (!kana) return 'big';
+  if (kana.length > 10) return 'normal';
+  if (kana.length > 5) return 'medium';
+  return 'big';
+};
+
+const getAnswerButtonColor = (answer, selectedAnswer, answers) => {
+  if (answers.includes(answer)) return 'hit';
+  if (selectedAnswer === answer && !answers.includes(answer)) return 'miss';
+  return '';
+};
 const checkIfShouldShow = (questionLanguage, questionKey, showAnswer, isOtherTrue) => {
   if (showAnswer) return true;
   if (isOtherTrue !== undefined) return !isOtherTrue;
@@ -12,4 +24,6 @@ const checkIfShouldShow = (questionLanguage, questionKey, showAnswer, isOtherTru
 
 export {
   checkIfShouldShow,
+  getAnswerButtonColor,
+  getKanaSize,
 };

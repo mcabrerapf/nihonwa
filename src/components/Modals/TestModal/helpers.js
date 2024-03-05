@@ -15,6 +15,20 @@ function shuffleArray(array) {
   return shuffledArray;
 }
 
+function getPossibleAnswers(answers, wordsList, limit = 3) {
+  const possiblAnswers = [shuffleArray(answers)[0]];
+
+  while (possiblAnswers.length < limit) {
+    const rIndex = generateRandomNumber(0, wordsList.length);
+    const randomAnswerOption = shuffleArray(wordsList[rIndex].en)[0];
+    if (
+      !answers.includes(randomAnswerOption) && !possiblAnswers.includes(randomAnswerOption)
+    ) possiblAnswers.push(randomAnswerOption);
+  }
+
+  return shuffleArray(possiblAnswers);
+}
+
 const buildQuestions = (testSetupOptions, optionsList) => {
   const { questionLimit, questionTags } = testSetupOptions;
   const shuffledOptions = shuffleArray(optionsList);
@@ -32,6 +46,7 @@ const buildQuestions = (testSetupOptions, optionsList) => {
 
   return indexes.map((index) => ({
     ...filteredOptions[index],
+    answers: getPossibleAnswers(filteredOptions[index].en, optionsList),
     correct: false,
   }));
 };

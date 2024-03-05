@@ -3,26 +3,44 @@ import './TestProgressContent.scss';
 import Button from '../../../Button';
 import { getServiceToUse } from '../../../../Services';
 import { getCharWithFuri } from '../../../../utils';
-import { checkIfShouldShow } from './helpres';
+import {
+  checkIfShouldShow,
+  getAnswerButtonColor,
+  getKanaSize,
+} from './helpers';
 
 function TestProgressContent({
   questions, testSetupOptions, setQuestions, setView,
 }) {
-  const [showAnswer, setShowAnswer] = useState(false);
+  const [showAnswerOptions, setShowAnswerOptions] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isQuestionValidated, setIsQuestionValidated] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const currentQuestion = questions[currentQuestionIndex];
+  const {
+    jp,
+    en, furi,
+    answers,
+  } = currentQuestion;
   const { questionLanguage } = testSetupOptions;
 
-  const handleUpdateQuestion = async (hit) => {
+  const goToNextQuestion = () => {
+    if (currentQuestionIndex + 1 === questions.length) {
+      setView('done');
+      return;
+    }
+    setShowAnswerOptions(false);
+    setSelectedAnswer(null);
+    setIsQuestionValidated(false);
+    setCurrentQuestionIndex(currentQuestionIndex + 1);
+  };
+
+  const handleUpdateQuestion = async (answer) => {
+    if (isLoading || isQuestionValidated) return;
+    const hit = !!en.includes(answer);
+    setSelectedAnswer(answer);
     setIsLoading(true);
-    const updatedQuestion = { ...questions[currentQuestionIndex] };
-    if (hit)updatedQuestion.hits += 1;
-    else updatedQuestion.misses += 1;
-
-    const serviceToUse = getServiceToUse('word', 'update');
-    await serviceToUse({ input: updatedQuestion });
-
     const updatedQuestions = questions.map((question, index) => {
       if (currentQuestionIndex !== index) return question;
       return {
@@ -30,20 +48,22 @@ function TestProgressContent({
         correct: !!hit,
       };
     });
-    setQuestions(updatedQuestions);
-    setCurrentQuestionIndex(0);
-    setShowAnswer(false);
-    setIsLoading(false);
+    const updatedQuestion = { ...questions[currentQuestionIndex] };
+    if (hit)updatedQuestion.hits += 1;
+    else updatedQuestion.misses += 1;
 
-    if (currentQuestionIndex + 1 === questions.length) {
-      setView('done');
-    } else setCurrentQuestionIndex(currentQuestionIndex + 1);
+    const serviceToUse = getServiceToUse('word', 'update');
+    await serviceToUse({ input: updatedQuestion });
+
+    setQuestions(updatedQuestions);
+    setIsLoading(false);
+    setIsQuestionValidated(true);
   };
 
-  const { jp, en, furi } = currentQuestion;
   const questionCharacters = getCharWithFuri(jp, furi, true);
-  const showJp = checkIfShouldShow(questionLanguage, 'jp', showAnswer);
-  const showEn = checkIfShouldShow(questionLanguage, 'en', showAnswer, showJp);
+  const showJp = checkIfShouldShow(questionLanguage, 'jp', showAnswerOptions);
+  // const showEn = checkIfShouldShow(questionLanguage, 'en', showAnswerOptions, showJp);
+  const kanaSize = getKanaSize(jp);
 
   return (
     <>
@@ -52,7 +72,7 @@ function TestProgressContent({
           role="button"
           className="current-question"
           onClick={() => {
-            if (!showAnswer) setShowAnswer(true);
+            if (!showAnswerOptions) setShowAnswerOptions(true);
           }}
         >
           {showJp && (
@@ -62,36 +82,42 @@ function TestProgressContent({
 
               return (
                 <div className="kana-with-furi" key={`${char}-${i}`}>
-                  {showAnswer && <span className="furi">{furiChar}</span>}
-                  <span className="kana">{char}</span>
-                  {showAnswer && <span className="furi">{enChar}</span>}
+                  {showAnswerOptions && <span className="furi">{furiChar}</span>}
+                  <span className={`kana ${kanaSize}`}>{char}</span>
+                  {showAnswerOptions && <span className="furi">{enChar}</span>}
                 </div>
               );
             })}
           </div>
           )}
-          {showEn && (
-            <div
-              role="button"
-              className="current-question-answer"
-              onClick={() => {
-                if (!showAnswer) setShowAnswer(true);
-              }}
-            >
-              {en.map((answer) => (
-                <span key={answer}>{answer}</span>
-              ))}
-            </div>
+          {showAnswerOptions && (
+          <div className="queston-answers-options">
+            {answers.map((answer) => {
+              const validatedColor = getAnswerButtonColor(answer, selectedAnswer, en);
+
+              return (
+                <Button
+                  key={answer}
+                  isDisabled={isQuestionValidated}
+                  modifier={isQuestionValidated ? validatedColor : ''}
+                  isNotSelected={selectedAnswer !== answer}
+                  onClick={() => handleUpdateQuestion(answer)}
+                >
+                  {answer}
+                </Button>
+              );
+            })}
+          </div>
           )}
         </div>
       </div>
       <footer className="test-modal-footer">
-        {showAnswer && (
-          <>
-            <Button isDisabled={isLoading} onClick={() => handleUpdateQuestion()}>X</Button>
-            <Button isDisabled={isLoading} onClick={() => handleUpdateQuestion(true)}>O</Button>
-          </>
-        )}
+        <Button
+          isDisabled={isLoading || !selectedAnswer}
+          onClick={goToNextQuestion}
+        >
+          O
+        </Button>
       </footer>
     </>
   );

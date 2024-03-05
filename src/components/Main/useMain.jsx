@@ -4,13 +4,14 @@ import {
 } from '../../Services';
 
 function useMain() {
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [wordList, setWordList] = useState([]);
 
   useEffect(() => {
     async function initMain() {
       const { data: allWords, error: wordsError } = await getServiceToUse('word', 'getAll')();
       if (!wordsError) setWordList(allWords);
+      setLoading(false);
     }
 
     initMain();
@@ -23,6 +24,7 @@ function useMain() {
 
   return {
     wordList,
+    loading,
     updateWordsList,
   };
 }

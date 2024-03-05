@@ -9,6 +9,7 @@ function MainListHeader(props) {
     hasActiveFilters,
     headerText,
     headerCount,
+    resetFilters,
     handleSearchTextChange,
     handleKanaButtonClick,
     handleShowFiltersModal,
@@ -27,6 +28,13 @@ function MainListHeader(props) {
           >
             F
           </Button>
+          {hasActiveFilters && (
+          <Button
+            onClick={resetFilters}
+          >
+            X
+          </Button>
+          )}
         </div>
         <div
           role="button"

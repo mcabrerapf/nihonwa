@@ -8,7 +8,6 @@ function DisplayViewHeader({
   successPercentage,
   text,
   furi,
-  hasKanji,
   canDelete,
   modalView,
   setSelectedKanji,
@@ -41,14 +40,12 @@ function DisplayViewHeader({
         >
           D
         </Button>
-        {hasKanji && (
         <Button
           modifier="kanji-header-button"
           onClick={handleCharacterCopy}
         >
           写す
         </Button>
-        )}
         <Button onClick={() => setModalView('edit')}>E</Button>
       </div>
       )}

@@ -5,12 +5,12 @@ import useMain from './useMain';
 
 function Main() {
   const {
-    // loading,
+    loading,
     wordList,
     updateWordsList,
   } = useMain();
 
-  // if (loading) return null;
+  if (loading) return null;
 
   return (
   // <main className="main-container">

@@ -29,6 +29,7 @@ function MainList(props) {
           <ModalToUse
             kanaMode={showModal}
             listData={orderedList}
+            wordList={wordList}
             listItemIndex={selectedItemIndex}
             filters={filters}
             sort={sort}
@@ -38,7 +39,6 @@ function MainList(props) {
         </ModalWrapper>
       )}
       <MainListHeader
-        // selectedListKey={selectedListKey}
         filters={filters}
         wordList={wordList}
         orderedListLength={orderedListLength}
@@ -46,15 +46,12 @@ function MainList(props) {
         handleToggleModal={handleToggleModal}
       />
       <MainListContent
-        // selectedListKey={selectedListKey}
         mainList={orderedList}
         setSelectedItemIndex={setSelectedItemIndex}
         handleToggleModal={handleToggleModal}
       />
       <MainListFooter
-        // selectedListKey={selectedListKey}
         orderedListLength={orderedListLength}
-        // handleListChange={handleListChange}
         handleToggleModal={handleToggleModal}
         setSelectedItemIndex={setSelectedItemIndex}
       />

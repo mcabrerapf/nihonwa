@@ -6,7 +6,17 @@
   height: 100%;
   width: 100%;
 
-  .test-modal-results {
+  .results-header {
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+    gap: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid;
+  }
+
+  .test-modal-results-list {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -14,16 +24,17 @@
     height: 30rem;
     padding-top: 1rem;
     gap: 1rem;
-  }
 
-  .test-modal-results-result {
-    display: flex;
-    user-select: none;
-    gap: 1rem;
-    padding-left: 1rem;
-  }
 
-  .test-modal-results-result-check {
-    font-weight: 800;
+    .test-modal-results-result {
+      display: flex;
+      user-select: none;
+      gap: 1rem;
+      padding-left: 1rem;
+    }
+
+    .test-modal-results-result-check {
+      font-weight: 800;
+    }
   }
 }
