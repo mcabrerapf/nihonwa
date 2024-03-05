@@ -23,9 +23,8 @@ function DisplayView({
   const {
     jp, furi, en, tags, notes, hits, misses,
   } = listItemData;
-  const firstKanji = jp.split('').find((char) => checkIfCharIsKanji(char));
   const [view, setView] = useState('general');
-  const [selectedKanji, setSelectedKanji] = useState(firstKanji);
+  const [selectedKanji, setSelectedKanji] = useState('');
   const hasNotes = notes && !!notes.length;
   const kanjis = [...new Set(getKanjiArrayFromString(jp))];
   const hasKanji = !!kanjis && !!kanjis.length;
