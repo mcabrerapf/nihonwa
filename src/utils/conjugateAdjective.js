@@ -36,7 +36,7 @@ const conjugateAdjective = (adjective, type) => ADJECTIVE_TENSES.map((tense) => 
     getConjugation({
       adjective, type, tense: tense[0], polite: true,
     }),
-  ],
+  ].filter(Boolean),
   [
     getConjugation({
       adjective, type, tense: tense[0], negative: true,
@@ -44,7 +44,7 @@ const conjugateAdjective = (adjective, type) => ADJECTIVE_TENSES.map((tense) => 
     getConjugation({
       adjective, type, tense: tense[0], polite: true, negative: true,
     }),
-  ],
+  ].filter(Boolean),
 ]);
 
 export default conjugateAdjective;

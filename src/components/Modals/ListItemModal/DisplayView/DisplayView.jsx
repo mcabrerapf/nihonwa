@@ -31,9 +31,10 @@ function DisplayView({
   const successPercentage = calculateSuccessRate(hits, misses);
   const conjugation = tags
     .find((tag) => tag === GODAN
-  || tag === ICHIDAN
-  || tag === IADJECTIVE
-  || tag === NAADJECTIVE);
+    || tag === ICHIDAN
+    || tag === IADJECTIVE
+    || tag === NAADJECTIVE
+    || tag === 'verb');
   const sortedTags = tags.sort((a, b) => a.localeCompare(b));
 
   useEffect(() => {

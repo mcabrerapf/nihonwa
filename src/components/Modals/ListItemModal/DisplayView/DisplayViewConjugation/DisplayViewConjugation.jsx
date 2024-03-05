@@ -8,19 +8,23 @@ function DisplayViewConjugation({ word, conjugation }) {
   return (
     <div className="display-view-conjugation">
       <ul className="display-view-conjugation-list">
-        {conjugations.map((wordConjugation) => (
-          <li key={wordConjugation[0]} className="display-view-conjugation-list-item">
-            <div className="display-view-conjugation-list-item-header">
-              <span>{wordConjugation[0]}</span>
-            </div>
-            <div className="display-view-conjugation-list-item-content">
-              <span>{wordConjugation[1][0]}</span>
-              <span>{wordConjugation[1][1]}</span>
-              <span>{wordConjugation[2][0]}</span>
-              <span>{wordConjugation[2][1]}</span>
-            </div>
-          </li>
-        ))}
+        {conjugations.map((wordConjugation) => {
+          if (!wordConjugation[1].length && !wordConjugation[2].length) return null;
+
+          return (
+            <li key={wordConjugation[0]} className="display-view-conjugation-list-item">
+              <div className="display-view-conjugation-list-item-header">
+                <span>{wordConjugation[0]}</span>
+              </div>
+              <div className="display-view-conjugation-list-item-content">
+                <span>{wordConjugation[1][0]}</span>
+                <span>{wordConjugation[1][1]}</span>
+                <span>{wordConjugation[2][0]}</span>
+                <span>{wordConjugation[2][1]}</span>
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

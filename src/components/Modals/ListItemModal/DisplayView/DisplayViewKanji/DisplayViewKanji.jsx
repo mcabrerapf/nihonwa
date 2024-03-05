@@ -13,6 +13,7 @@ function DisplayViewKanji({ selectedKanji }) {
 
   useEffect(() => {
     const fetchData = async () => {
+      setKanjiData({});
       try {
         const url = `https://afternoon-gorge-77049-a1de8dd15ce4.herokuapp.com/kanjis/${selectedKanji}`;
         const response = await fetch(url);
@@ -26,7 +27,6 @@ function DisplayViewKanji({ selectedKanji }) {
         console.log(error);
       }
     };
-
     fetchData();
   }, [selectedKanji]);
 
@@ -36,7 +36,11 @@ function DisplayViewKanji({ selectedKanji }) {
         <Kanji kanji={selectedKanji} kanjiId={selectedKanji} />
         <div className="kanji-data">
           <div className="kanji-data-container">
-            <span className="kanji-data-header">音読み</span>
+            <span
+              className={`kanji-data-header${onYomi.length ? '' : ' empty-list'}`}
+            >
+              音読み
+            </span>
             <ul className="kanji-data-list">
               {onYomi.map(({ '#text': yomi }) => (
                 <li key={yomi}>
@@ -46,9 +50,12 @@ function DisplayViewKanji({ selectedKanji }) {
             </ul>
           </div>
           <div className="kanji-data-container">
-            <span className="kanji-data-header">Meanings</span>
+            <span
+              className={`kanji-data-header${meanings.length ? '' : ' empty-list'}`}
+            >
+              Meanings
+            </span>
             <ul className="kanji-data-list">
-
               {meanings.map((meaning) => (
                 <li key={meaning}>
                   {meaning}
@@ -57,7 +64,11 @@ function DisplayViewKanji({ selectedKanji }) {
             </ul>
           </div>
           <div className="kanji-data-container">
-            <span className="kanji-data-header">訓読み</span>
+            <span
+              className={`kanji-data-header${kunYomi.length ? '' : ' empty-list'}`}
+            >
+              訓読み
+            </span>
             <ul className="kanji-data-list">
               {kunYomi.map(({ '#text': yomi }) => (
                 <li key={yomi}>
