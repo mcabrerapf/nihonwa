@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './TestResultsContent.scss';
 import Button from '../../../Button';
+import { getServiceToUse } from '../../../../Services';
 
-function TestResultsContent({ questions, setView, closeModal }) {
+function TestResultsContent({
+  questions, setView, closeModal, updateWordsList,
+}) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [className, setClassname] = useState('underline');
   const correctQuestions = questions.filter((question) => question.correct);
   const score = (correctQuestions.length / questions.length) * 100;
+  useEffect(() => {
+    async function updateQustions() {
+      await Promise.all(questions.map(async (question) => {
+        const serviceToUse = getServiceToUse('word', 'update');
+        await serviceToUse({ input: question });
+      }));
+      await updateWordsList();
+      setIsLoading(false);
+    }
+    setClassname('underline fade-in');
+    updateQustions();
+  }, []);
 
   const handleClose = async (e) => {
     e.preventDefault();
@@ -22,17 +39,17 @@ function TestResultsContent({ questions, setView, closeModal }) {
           {questions.map((question, i) => {
             const { jp, id, correct } = question;
             return (
-              <li key={id} className="test-modal-results-result">
-                <span>
-                  {i + 1}
-                  .
-                </span>
+              <>
+                <li key={id} className="test-modal-results-result">
+                  <span>
+                    {i + 1}
+                    .
+                  </span>
+                  <span>{jp}</span>
+                </li>
+                <span key={`${id}underline`} className={`${className} ${correct ? 'correct' : 'miss'}`} />
+              </>
 
-                <span>{jp}</span>
-                <span className="test-modal-results-result-check">
-                  {correct ? 'O' : 'X'}
-                </span>
-              </li>
             );
           })}
         </ol>
@@ -44,8 +61,8 @@ function TestResultsContent({ questions, setView, closeModal }) {
         </div>
       </div>
       <footer className="test-modal-footer">
-        <Button onClick={handleClose}>R</Button>
-        <Button onClick={handleClose}>O</Button>
+        <Button onClick={handleClose} isDisabled={isLoading}>R</Button>
+        <Button onClick={handleClose} isDisabled={isLoading}>O</Button>
       </footer>
     </>
   );

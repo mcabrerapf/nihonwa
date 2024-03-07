@@ -24,9 +24,8 @@ function TestModal({ wordList, updateWordsList }) {
     setView('inprogress');
   };
 
-  const handleClose = (e) => {
-    if (e)e.preventDefault();
-    updateWordsList();
+  const handleClose = async (e) => {
+    if (e) e.preventDefault();
     closeModal();
   };
 
@@ -55,6 +54,7 @@ function TestModal({ wordList, updateWordsList }) {
       {view === 'done' && (
       <TestResultsContent
         questions={questions}
+        updateWordsList={updateWordsList}
         setView={setView}
         closeModal={handleClose}
       />

@@ -1,3 +1,17 @@
+@keyframes underline {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 50%;
+  }
+}
+
+.underline-text {
+  position: relative;
+}
+
 .test-modal-results-content {
   display: flex;
   flex-direction: column;
@@ -27,21 +41,40 @@
     width: 100%;
     height: 28.75rem;
     padding-top: 0.5rem;
-    gap: 0.5rem;
+    // gap: 0.5rem;
     font-size: 2rem;
 
 
     .test-modal-results-result {
       display: flex;
       user-select: none;
-      gap: 1rem;
+      gap: 0.5rem;
       padding-left: 1rem;
       align-items: center;
+
+
+      .test-modal-results-result-check {
+        font-weight: 800;
+      }
+
     }
 
-    .test-modal-results-result-check {
-      font-weight: 800;
+    .underline {
+      opacity: 0;
+      height: 0.25rem;
+      margin-left: 2.5rem;
+
+      &.miss {
+        background-color: red;
+      }
     }
+
+    .underline.fade-in {
+      opacity: 1;
+      animation: underline 1s linear forwards;
+    }
+
+
   }
 
   .results-footer {

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './TestProgressContent.scss';
 import Button from '../../../Button';
-import { getServiceToUse } from '../../../../Services';
 import { getCharWithFuri } from '../../../../utils';
 import {
   checkIfShouldShow,
@@ -14,7 +13,6 @@ function TestProgressContent({
 }) {
   const [showAnswerOptions, setShowAnswerOptions] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
   const [isQuestionValidated, setIsQuestionValidated] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const currentQuestion = questions[currentQuestionIndex];
@@ -37,30 +35,23 @@ function TestProgressContent({
   };
 
   const handleUpdateQuestion = async (answer) => {
-    if (isLoading) return;
     if (isQuestionValidated) {
       goToNextQuestion();
       return;
     }
     const hit = !!en.includes(answer);
-    setSelectedAnswer(answer);
-    setIsLoading(true);
     const updatedQuestions = questions.map((question, index) => {
       if (currentQuestionIndex !== index) return question;
       return {
         ...question,
         correct: !!hit,
+        hits: hit ? question.hits + 1 : question.hits,
+        misses: !hit ? question.misses + 1 : question.misses,
       };
     });
-    const updatedQuestion = { ...questions[currentQuestionIndex] };
-    if (hit)updatedQuestion.hits += 1;
-    else updatedQuestion.misses += 1;
 
-    const serviceToUse = getServiceToUse('word', 'update');
-    await serviceToUse({ input: updatedQuestion });
-
+    setSelectedAnswer(answer);
     setQuestions(updatedQuestions);
-    setIsLoading(false);
     setIsQuestionValidated(true);
   };
 
@@ -77,7 +68,7 @@ function TestProgressContent({
           className="current-question"
           onClick={() => {
             if (!showAnswerOptions) setShowAnswerOptions(true);
-            if (!isLoading && isQuestionValidated) goToNextQuestion();
+            if (isQuestionValidated) goToNextQuestion();
           }}
         >
           {showJp && (
