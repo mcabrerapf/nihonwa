@@ -15,7 +15,7 @@ function shuffleArray(array) {
   return shuffledArray;
 }
 
-function getPossibleAnswers(answers, wordsList, limit = 3) {
+function getPossibleAnswers(answers, wordsList, limit = 4) {
   const possiblAnswers = [shuffleArray(answers)[0]];
 
   while (possiblAnswers.length < limit) {

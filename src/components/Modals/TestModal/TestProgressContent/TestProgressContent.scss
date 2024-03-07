@@ -19,8 +19,8 @@
       flex-wrap: wrap;
       user-select: none;
       justify-content: center;
-      margin-top: 1rem;
-      margin-bottom: 2rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1.5rem;
       min-height: 10rem;
       width: 100%;
 
@@ -64,7 +64,13 @@
 
       .button {
         padding: 1rem;
+        height: 5rem;
+        min-height: 5rem;
         max-height: 5rem;
+
+        &.small {
+          font-size: 1.5rem;
+        }
 
         &.hit {
           background-color: green;
@@ -84,6 +90,22 @@
       user-select: none;
       padding-top: 1rem;
       font-size: 1.5rem;
+    }
+  }
+}
+
+.test-modal-footer {
+  .progress-bar {
+    height: 1rem;
+    background-color: white;
+    width: 100%;
+    border-radius: 0.2rem;
+
+    .progress-bar-fill {
+      background-color: green;
+      height: 100%;
+      border-radius: 0.2rem;
+      transition: width 0.5s;
     }
   }
 }

@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 import './TestResultsContent.scss';
 import Button from '../../../Button';
 import { getServiceToUse } from '../../../../Services';
+import TotalScore from './TotalScore';
 
 function TestResultsContent({
   questions, setView, closeModal, updateWordsList,
 }) {
   const [isLoading, setIsLoading] = useState(true);
   const [className, setClassname] = useState('underline');
-  const correctQuestions = questions.filter((question) => question.correct);
-  const score = (correctQuestions.length / questions.length) * 100;
+  const correctQuestions = questions.filter((question) => question.correct).length;
+  const totalQuestions = questions.length;
+
   useEffect(() => {
     async function updateQustions() {
       await Promise.all(questions.map(async (question) => {
@@ -32,9 +34,9 @@ function TestResultsContent({
   return (
     <>
       <div className="test-modal-results-content">
-        <div className="results-header">
+        {/* <div className="results-header">
           <span className="text">Results</span>
-        </div>
+        </div> */}
         <ol className="test-modal-results-list" type="1">
           {questions.map((question, i) => {
             const { jp, id, correct } = question;
@@ -53,12 +55,10 @@ function TestResultsContent({
             );
           })}
         </ol>
-        <div className="results-footer">
-          <span>
-            {score.toFixed()}
-            %
-          </span>
-        </div>
+        <TotalScore
+          correctQuestions={correctQuestions}
+          totalQuestions={totalQuestions}
+        />
       </div>
       <footer className="test-modal-footer">
         <Button onClick={handleClose} isDisabled={isLoading}>R</Button>

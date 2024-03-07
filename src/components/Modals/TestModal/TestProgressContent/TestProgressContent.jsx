@@ -7,6 +7,7 @@ import {
   getAnswerButtonColor,
   getKanaSize,
 } from './helpers';
+import ProgressBar from './PorgressBar';
 
 function TestProgressContent({
   questions, testSetupOptions, setQuestions, setView,
@@ -59,6 +60,7 @@ function TestProgressContent({
   const showJp = checkIfShouldShow(questionLanguage, 'jp', showAnswerOptions);
   // const showEn = checkIfShouldShow(questionLanguage, 'en', showAnswerOptions, showJp);
   const kanaSize = getKanaSize(jp);
+  const numberOfQuestions = questions.length;
 
   return (
     <>
@@ -89,12 +91,14 @@ function TestProgressContent({
           {showAnswerOptions && (
           <div className="queston-answers-options">
             {answers.map((answer) => {
-              const validatedColor = getAnswerButtonColor(answer, selectedAnswer, en);
+              const validatedColor = isQuestionValidated ? getAnswerButtonColor(answer, selectedAnswer, en) : '';
+              const answerFontsize = answer.length > 30 ? 'small' : '';
+              const buttonModifier = `${validatedColor} ${answerFontsize}`;
 
               return (
                 <Button
                   key={answer}
-                  modifier={isQuestionValidated ? validatedColor : ''}
+                  modifier={buttonModifier}
                   isNotSelected={selectedAnswer !== answer}
                   onClick={() => handleUpdateQuestion(answer)}
                 >
@@ -107,6 +111,11 @@ function TestProgressContent({
         </div>
       </div>
       <footer className="test-modal-footer">
+        <ProgressBar
+          numberOfQuestions={numberOfQuestions}
+          currentQuestionIndex={currentQuestionIndex}
+          isQuestionValidated={isQuestionValidated}
+        />
         {/* <Button
           isDisabled={isLoading || !selectedAnswer}
           onClick={goToNextQuestion}

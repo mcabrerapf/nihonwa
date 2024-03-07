@@ -3,7 +3,7 @@ import './TestModal.scss';
 import TestSetupContent from './TestSetupContent';
 import TestProgressContent from './TestProgressContent';
 import TestResultsContent from './TestResultsContent';
-import Button from '../../Button';
+// import Button from '../../Button';
 import { ModalWrapperContext } from '../../ModalWrapper/ModalWrapperContext';
 import { TEST_SETUP_INIT_STATE } from './constants';
 
@@ -32,7 +32,7 @@ function TestModal({ wordList, updateWordsList }) {
   return (
     <div className="test-modal">
       <div className="test-modal-header">
-        {view !== 'done' && <Button onClick={handleClose}>X</Button>}
+        {/* {view !== 'done' && <Button onClick={handleClose}>X</Button>} */}
       </div>
       {view === 'setup' && (
       <TestSetupContent
