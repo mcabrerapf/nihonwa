@@ -33,8 +33,15 @@ const buildQuestions = (testSetupOptions, optionsList) => {
   const { questionLimit, questionTags } = testSetupOptions;
   const shuffledOptions = shuffleArray(optionsList);
   const filteredOptions = shuffledOptions
+    .slice().sort((a, b) => {
+      const valueA = a.hits + a.misses;
+      const valueB = b.hits + b.misses;
+      if (valueA > valueB) return 1;
+      return -1;
+    })
     .filter(({ tags }) => arraysShareValue(questionTags, tags));
   // const sortedOptions = sortBy(filteredOptions, '%', 'desc');
+
   const limitToUse = questionLimit > filteredOptions.length
     ? filteredOptions.length : questionLimit;
 
