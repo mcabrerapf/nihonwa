@@ -17,24 +17,31 @@ function TestResultsContent({ questions, setView, closeModal }) {
       <div className="test-modal-results-content">
         <div className="results-header">
           <span className="text">Results</span>
+        </div>
+        <ol className="test-modal-results-list" type="1">
+          {questions.map((question, i) => {
+            const { jp, id, correct } = question;
+            return (
+              <li key={id} className="test-modal-results-result">
+                <span>
+                  {i + 1}
+                  .
+                </span>
+
+                <span>{jp}</span>
+                <span className="test-modal-results-result-check">
+                  {correct ? 'O' : 'X'}
+                </span>
+              </li>
+            );
+          })}
+        </ol>
+        <div className="results-footer">
           <span>
             {score.toFixed()}
             %
           </span>
         </div>
-        <ul className="test-modal-results-list">
-          {questions.map((question) => {
-            const { jp, id, correct } = question;
-            return (
-              <li key={id} className="test-modal-results-result">
-                <span className="test-modal-results-result-check">
-                  {correct ? 'O' : 'X'}
-                </span>
-                <span>{jp}</span>
-              </li>
-            );
-          })}
-        </ul>
       </div>
       <footer className="test-modal-footer">
         <Button onClick={handleClose}>R</Button>
