@@ -9,7 +9,7 @@ function TotalScore({
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (currentScore < score) setCurrentScore(currentScore + 1);
-    }, 50);
+    }, 15);
 
     // Clean-up function to clear the timeout when the component unmounts
     return () => clearTimeout(timeoutId);
