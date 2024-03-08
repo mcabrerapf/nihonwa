@@ -64,6 +64,19 @@ function TestProgressContent({
 
   return (
     <>
+      <footer className="test-modal-header">
+        <ProgressBar
+          numberOfQuestions={numberOfQuestions}
+          currentQuestionIndex={currentQuestionIndex}
+          isQuestionValidated={isQuestionValidated}
+        />
+        {/* <Button
+          isDisabled={isLoading || !selectedAnswer}
+          onClick={goToNextQuestion}
+        >
+          O
+        </Button> */}
+      </footer>
       <div className="test-modal-progress-content">
         <div
           role="button"
@@ -110,19 +123,6 @@ function TestProgressContent({
           )}
         </div>
       </div>
-      <footer className="test-modal-footer">
-        <ProgressBar
-          numberOfQuestions={numberOfQuestions}
-          currentQuestionIndex={currentQuestionIndex}
-          isQuestionValidated={isQuestionValidated}
-        />
-        {/* <Button
-          isDisabled={isLoading || !selectedAnswer}
-          onClick={goToNextQuestion}
-        >
-          O
-        </Button> */}
-      </footer>
     </>
   );
 }
