@@ -32,18 +32,10 @@ function LoadMore({
     };
   }, [itemsLength]);
 
-  if (itemsLength >= allItemsLength) {
-    return (
-      <div className="separator">
-        .
-      </div>
-    );
-  }
+  if (itemsLength >= allItemsLength) return null;
 
   return (
-    <div ref={targetRef} className="separator">
-      .
-    </div>
+    <div ref={targetRef} className="load-more" />
   );
 }
 

@@ -33,23 +33,27 @@ function MainListContent({
 
           return (
             <li
-              role="button"
               key={id}
+              role="button"
               className="main-list-item"
               onClick={() => handleOpenListItemModal(i)}
             >
               <span>{jp}</span>
+              {i === items.length - 10 && (
+                <LoadMore
+                  key={`${id}-load-more`}
+                  callback={loadMoreItems}
+                  itemsLength={items.length}
+                  allItemsLength={mainList.length}
+                />
+              )}
             </li>
 
           );
         })}
-        {items.length > 0 && (
-        <LoadMore
-          callback={loadMoreItems}
-          itemsLength={items.length}
-          allItemsLength={mainList.length}
-        />
-        )}
+        <div className="separator">
+          .
+        </div>
       </ul>
     </div>
   );
