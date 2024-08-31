@@ -3,10 +3,12 @@ import './ModalWrapper.scss';
 import { ModalWrapperContextProvider } from './ModalWrapperContext';
 
 function ModalWrapper({ children, closeModal }) {
+  const backgroundRef = useRef(null);
   const wrapperRef = useRef(null);
   const [closeOnBgClick, setCloseOnBgClick] = useState(true);
 
   const scrollToBottom = () => {
+    if (backgroundRef.current) backgroundRef.current.scrollTop = backgroundRef.current.scrollHeight;
     if (wrapperRef.current) wrapperRef.current.scrollTop = wrapperRef.current.scrollHeight;
   };
 
@@ -39,7 +41,7 @@ function ModalWrapper({ children, closeModal }) {
 
   return (
     <div
-      ref={wrapperRef}
+      ref={backgroundRef}
       className="modal-bg"
       onTouchStart={stopPropagation}
       onTouchMove={stopPropagation}
