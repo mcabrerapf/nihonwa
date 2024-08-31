@@ -6,6 +6,20 @@ function ModalWrapper({ children, closeModal }) {
   const wrapperRef = useRef(null);
   const [closeOnBgClick, setCloseOnBgClick] = useState(true);
 
+  const scrollToBottom = () => {
+    if (wrapperRef.current) wrapperRef.current.scrollTop = wrapperRef.current.scrollHeight;
+  };
+
+  useEffect(() => {
+    const handleResize = () => scrollToBottom();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   useEffect(() => {
     function handleClickOutside({ target }) {
       if (!closeOnBgClick) return;
@@ -25,6 +39,7 @@ function ModalWrapper({ children, closeModal }) {
 
   return (
     <div
+      ref={wrapperRef}
       className="modal-bg"
       onTouchStart={stopPropagation}
       onTouchMove={stopPropagation}
