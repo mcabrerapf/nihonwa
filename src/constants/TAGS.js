@@ -11,7 +11,7 @@ const NOUN = 'noun';
 const NUMBER = 'number';
 const OCCUPATION = 'occupation';
 const OTHER = 'other';
-const PARTICLE = 'particle';
+// const PARTICLE = 'particle';
 const PLACE = 'place';
 const PERSON = 'person';
 const SCHOOL = 'school';
@@ -30,21 +30,21 @@ const TAGS = [
   IADJECTIVE,
   NAADJECTIVE,
   ADJECTIVE,
+  GODAN,
+  ICHIDAN,
+  VERB,
+  NOUN,
+  KANJI,
+  KATAKANA,
   // CLOTHES,
   COUNTRY,
   ENTERTAINMENT,
   FAMILY,
   FOOD,
   FORMALITY,
-  KANJI,
-  KATAKANA,
-  GODAN,
-  ICHIDAN,
-  NOUN,
   // NUMBER,
   OCCUPATION,
-  OTHER,
-  PARTICLE,
+  // PARTICLE,
   PERSON,
   PLACE,
   SCHOOL,
@@ -53,7 +53,7 @@ const TAGS = [
   // THING,
   TIME,
   TRANSPORT,
-  VERB,
+  OTHER,
 ];
 
 export default TAGS;

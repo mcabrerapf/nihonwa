@@ -22,6 +22,18 @@ function TestSetupContent(props) {
     <>
       <div className="test-modal-setup-content">
         <div className="test-modal-options-group">
+
+          <div className="test-modal-tag-options">
+            {TAGS.map((tag) => (
+              <Button
+                key={tag}
+                onClick={handleTagClick}
+                isNotSelected={!questionTags.includes(tag)}
+              >
+                {tag}
+              </Button>
+            ))}
+          </div>
           <div className="test-modal-options-sub-group">
             {/* <div className="question-language">
               <Button
@@ -54,17 +66,6 @@ function TestSetupContent(props) {
                 +
               </Button>
             </div>
-          </div>
-          <div className="test-modal-tag-options">
-            {TAGS.map((tag) => (
-              <Button
-                key={tag}
-                onClick={handleTagClick}
-                isNotSelected={!questionTags.includes(tag)}
-              >
-                {tag}
-              </Button>
-            ))}
           </div>
         </div>
       </div>
