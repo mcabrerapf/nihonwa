@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import {
   getServiceToUse,
 } from '../../Services';
@@ -6,6 +6,11 @@ import {
 function useMain() {
   const [loading, setLoading] = useState(true);
   const [wordList, setWordList] = useState([]);
+  const containerRef = useRef(null);
+
+  const scrollToBottom = () => {
+    if (containerRef.current) containerRef.current.scrollTop = containerRef.current.scrollHeight;
+  };
 
   useEffect(() => {
     async function initMain() {
@@ -13,8 +18,15 @@ function useMain() {
       if (!wordsError) setWordList(allWords);
       setLoading(false);
     }
+    const handleResize = () => {
+      scrollToBottom();
+    };
 
+    window.addEventListener('resize', handleResize);
     initMain();
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const updateWordsList = async () => {

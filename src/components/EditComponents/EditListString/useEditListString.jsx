@@ -16,19 +16,16 @@ function useEditListString({
   const isListEmpty = !listValues.filter(Boolean).length;
 
   useEffect(() => {
-    if (inputRef.current && isListEmpty) {
-      inputRef.current.focus();
-    }
-  }, [inputRef, isListEmpty]);
-
-  useEffect(() => {
     if (!listValues.length) {
       setCurrentData({ ...currentData, [listKey]: [''] });
       setSelectedItemIndex(0);
+      setCurrentString('');
     } else {
       setCurrentData({ ...currentData, [listKey]: listValues });
+      setCurrentString(listValues[listValues.length - 1]);
       setSelectedItemIndex(listValues.length - 1);
     }
+    if (inputRef.current) inputRef.current.focus();
   }, [listKey]);
 
   const handleUpdateItem = () => {
@@ -49,6 +46,8 @@ function useEditListString({
   };
 
   const handleDelete = (valueIndex) => {
+    const hasOnlyOneValue = listValues.filter(Boolean).length < 2;
+    if (hasOnlyOneValue) return;
     const updatedListValues = listValues.filter((_, i) => i !== valueIndex);
     setCurrentData({
       ...currentData,
@@ -66,11 +65,12 @@ function useEditListString({
   };
 
   const handleItemClick = (i, item) => {
+    if (inputRef.current) inputRef.current.focus();
+    if (selectedItemIndex === i) return;
     const updatedListValues = listValues.filter(Boolean);
     setCurrentData({ ...currentData, [listKey]: updatedListValues });
     setCurrentString(item);
     setSelectedItemIndex(i);
-    if (inputRef.current) inputRef.current.focus();
   };
 
   const handleGoToNotes = () => {

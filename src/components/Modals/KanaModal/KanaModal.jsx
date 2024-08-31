@@ -10,7 +10,6 @@ function KanaModal({ kanaMode }) {
   const { closeModal } = useContext(ModalWrapperContext);
   const [view, setView] = useState(kanaMode || 'hi');
   const isInHiraganaMode = view === 'hi';
-  const header = isInHiraganaMode ? 'ひらがな' : 'カタカナ';
   const kanaModalButtonText = isInHiraganaMode ? 'カ' : 'が';
 
   const handleKanaToggle = () => {
@@ -23,9 +22,9 @@ function KanaModal({ kanaMode }) {
   return (
     <ModalWrapper closeModal={closeModal}>
       <div className="kana-modal">
-        <div className="kana-modal-header">
+        {/* <div className="kana-modal-header">
           <span>{header}</span>
-        </div>
+        </div> */}
         <div className="kana-modal-content">
           <div className="kana-group">
             {mainKana.map((kanas, kanasI) => (

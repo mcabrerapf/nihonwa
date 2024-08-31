@@ -14,6 +14,9 @@ function useEditWordFuri({ currentData, setCurrentData }) {
     if (!furi.length) {
       setCurrentData({ ...currentData, furi: jp.split('').fill('') });
     }
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }, []);
 
   const handleUpdateFuri = (value, i) => {

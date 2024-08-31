@@ -1,4 +1,6 @@
 .list-item-modal-edit-view {
+  height: 45rem;
+
   .edit-view-header {
     display: flex;
     justify-content: space-between;
@@ -22,12 +24,12 @@
     flex-direction: column;
     justify-content: space-between;
     overflow: auto;
-    height: 30rem;
+    height: 39rem;
     font-size: 1.5rem;
     gap: 1rem;
 
     .list-item-modal-display-view {
-      height: 24rem !important;
+      height: 38rem !important;
     }
   }
 }

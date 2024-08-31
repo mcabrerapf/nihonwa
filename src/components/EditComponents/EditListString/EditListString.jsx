@@ -69,7 +69,6 @@ function EditListString(props) {
       </div>
       )}
       <form className="edit-list-string-input" onSubmit={handleOnSubmit}>
-        {/* TODO check why not rendering equaly to text area word */}
         <input
           ref={inputRef}
           onChange={handleOnChange}
