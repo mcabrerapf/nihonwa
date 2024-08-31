@@ -8,6 +8,7 @@ import useMainList from './useMainList';
 
 function MainList(props) {
   const {
+    mainListRef,
     selectedItemIndex,
     sort,
     filters,
@@ -23,7 +24,7 @@ function MainList(props) {
   } = useMainList(props);
 
   return (
-    <div className="main-list-container">
+    <div ref={mainListRef} className="main-list-container">
       {showModal && (
         <ModalWrapper closeModal={handleToggleModal}>
           <ModalToUse

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { filterBy, sortBy } from '../../utils';
 import { FILTERS_INIT_VAL } from './constants';
 import { getModalToUse } from './helpers';
@@ -7,10 +7,25 @@ function useMainList({
   wordList,
   updateWordsList,
 }) {
+  const mainListRef = useRef(null);
   const [sort, setSort] = useState(['jp', 'desc']);
   const [filters, setFilters] = useState(FILTERS_INIT_VAL);
   const [showModal, setShowModal] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
+
+  const scrollToBottom = () => {
+    if (mainListRef.current) mainListRef.current.scrollTop = mainListRef.current.scrollHeight;
+  };
+
+  useEffect(() => {
+    const handleResize = () => scrollToBottom();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const handleToggleModal = (modalKey = null) => {
     setShowModal(modalKey);
@@ -29,6 +44,7 @@ function useMainList({
   const filterSortString = JSON.stringify({ filters, sort });
 
   return {
+    mainListRef,
     selectedItemIndex,
     filterSortString,
     sort,
