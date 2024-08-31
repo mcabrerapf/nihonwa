@@ -1,5 +1,5 @@
-import MainList from "./MainList";
+import MainList from './MainList';
 
 export {
-    MainList
-}
+  MainList,
+};

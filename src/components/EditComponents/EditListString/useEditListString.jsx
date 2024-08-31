@@ -16,17 +16,20 @@ function useEditListString({
   const isListEmpty = !listValues.filter(Boolean).length;
 
   useEffect(() => {
-    if (inputRef.current && isListEmpty) {
+    if (inputRef.current) {
       inputRef.current.focus();
     }
-  }, [inputRef, isListEmpty]);
+  }, []);
 
   useEffect(() => {
+    console.log({ listKey, listValues });
     if (!listValues.length) {
       setCurrentData({ ...currentData, [listKey]: [''] });
       setSelectedItemIndex(0);
+      setCurrentString('');
     } else {
       setCurrentData({ ...currentData, [listKey]: listValues });
+      setCurrentString(listValues[listValues.length - 1]);
       setSelectedItemIndex(listValues.length - 1);
     }
   }, [listKey]);
@@ -66,11 +69,12 @@ function useEditListString({
   };
 
   const handleItemClick = (i, item) => {
+    if (inputRef.current) inputRef.current.focus();
+    if (selectedItemIndex === i) return;
     const updatedListValues = listValues.filter(Boolean);
     setCurrentData({ ...currentData, [listKey]: updatedListValues });
     setCurrentString(item);
     setSelectedItemIndex(i);
-    if (inputRef.current) inputRef.current.focus();
   };
 
   const handleGoToNotes = () => {
