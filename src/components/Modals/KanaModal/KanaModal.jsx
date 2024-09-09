@@ -4,7 +4,7 @@ import ModalWrapper from '../../ModalWrapper';
 import Button from '../../Button';
 import { ModalWrapperContext } from '../../ModalWrapper/ModalWrapperContext';
 import { HIRAGANA, KATAKANA } from '../../../constants';
-import { copyToClipboard } from '../../../utils';
+// import { copyToClipboard } from '../../../utils';
 
 function KanaModal({ kanaMode }) {
   const { closeModal } = useContext(ModalWrapperContext);
@@ -33,7 +33,7 @@ function KanaModal({ kanaMode }) {
                   <Button
                     key={`${kana}-${kanaI}`}
                     modifier="ghost"
-                    onClick={() => copyToClipboard(kana)}
+                    // onClick={() => copyToClipboard(kana)}
                   >
                     {kana}
                   </Button>

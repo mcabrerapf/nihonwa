@@ -49,7 +49,7 @@ function DisplayViewHeader({
         <Button onClick={() => setModalView('edit')}>E</Button>
       </div>
       )}
-      <div role="button" className="display-view-modal-header-text" onClick={handleCharacterCopy}>
+      <div role="button" className="display-view-modal-header-text">
         {headerCharacters.map((headerChar, i) => {
           const [char, furiChar, enChar] = headerChar;
 
