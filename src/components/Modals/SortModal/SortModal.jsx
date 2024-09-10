@@ -46,8 +46,8 @@ function SortModal({ sort, handleSortChange }) {
             Asc
           </Button>
           <Button
-            isNotSelected={selectedSortDirection !== 'desc'}
-            onClick={() => updateSortDir('desc')}
+            isNotSelected={selectedSortDirection !== 'dsc'}
+            onClick={() => updateSortDir('dsc')}
           >
             Desc
           </Button>

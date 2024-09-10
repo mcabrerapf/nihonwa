@@ -8,7 +8,7 @@ function useMainList({
   updateWordsList,
 }) {
   const mainListRef = useRef(null);
-  const [sort, setSort] = useState(['jp', 'desc']);
+  const [sort, setSort] = useState(['jp', 'dsc']);
   const [filters, setFilters] = useState(FILTERS_INIT_VAL);
   const [showModal, setShowModal] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(-1);

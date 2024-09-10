@@ -40,7 +40,7 @@ const buildQuestions = (testSetupOptions, optionsList) => {
       return -1;
     })
     .filter(({ tags }) => arraysShareValue(questionTags, tags));
-  // const sortedOptions = sortBy(filteredOptions, '%', 'desc');
+  // const sortedOptions = sortBy(filteredOptions, '%', 'dsc');
 
   const limitToUse = questionLimit > filteredOptions.length
     ? filteredOptions.length : questionLimit;

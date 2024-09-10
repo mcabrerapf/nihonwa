@@ -63,13 +63,13 @@ function FiltersModal({ filters, sort, handleFiltersChange }) {
             isNotSelected={selectedSort[1] !== 'asc'}
             onClick={() => updateSortDir('asc')}
           >
-            Asc
+            ASC
           </Button>
           <Button
-            isNotSelected={selectedSort[1] !== 'desc'}
-            onClick={() => updateSortDir('desc')}
+            isNotSelected={selectedSort[1] !== 'dsc'}
+            onClick={() => updateSortDir('dsc')}
           >
-            Desc
+            DSC
           </Button>
         </div>
         <div className="filters-options">

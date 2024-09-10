@@ -10,6 +10,8 @@ function MainListHeader(props) {
     headerText,
     headerCount,
     resetFilters,
+    resetTextFilter,
+    handleJishoNavigate,
     handleSearchTextChange,
     handleKanaButtonClick,
     handleShowFiltersModal,
@@ -51,12 +53,21 @@ function MainListHeader(props) {
         </div>
       </div>
       <div className="main-list-search-input">
+        <Button onClick={handleJishoNavigate} modifier="jisho-button" isDisabled={!textFilter}>
+          辞書
+        </Button>
         <input
           autoComplete="off"
-          type="search"
+          type="text"
           value={textFilter}
           onChange={handleSearchTextChange}
         />
+        {textFilter && (
+        <Button onClick={resetTextFilter} modifier="reset-text-filter">
+          X
+        </Button>
+        )}
+
       </div>
     </header>
   );

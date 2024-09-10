@@ -19,7 +19,6 @@ const useMainListHeader = ({
 
   useEffect(() => {
     if (isLongPress) {
-      console.log('COPIED CURRENT LIST');
       copyToClipboard(JSON.stringify(wordList));
     }
   }, [isLongPress, wordList]);
@@ -47,19 +46,29 @@ const useMainListHeader = ({
   const resetFilters = () => {
     handleFiltersChange({ text: '', tags: [] });
   };
+  const resetTextFilter = () => {
+    handleFiltersChange({ text: '', tags: filters.tags });
+  };
 
   const handleKanaButtonClick = (selectedKana) => {
     handleToggleModal(selectedKana);
+  };
+
+  const handleJishoNavigate = () => {
+    if (!filters || !filters.text) return;
+    window.open(`https://jisho.org/search/${filters.text}`, '_blank');
   };
 
   const handleShowFiltersModal = () => handleToggleModal('filters');
 
   return {
     textFilter: text,
-    resetFilters,
     hasActiveFilters,
     headerText,
     headerCount,
+    resetTextFilter,
+    resetFilters,
+    handleJishoNavigate,
     handleSearchTextChange,
     handleKanaButtonClick,
     handleShowFiltersModal,

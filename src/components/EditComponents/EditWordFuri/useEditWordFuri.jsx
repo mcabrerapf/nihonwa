@@ -27,10 +27,11 @@ function useEditWordFuri({ currentData, setCurrentData }) {
   };
 
   const handleParseWord = (kanaKey) => {
-    if (!currentString) return;
     const kana = romajiToKana(currentString, kanaKey || selectedKana);
+    const newIndex = jp.length - 1 === selectedCharIndex ? 0 : selectedCharIndex + 1;
     handleUpdateFuri(kana);
-    setCurrentString('');
+    setSelectedCharIndex(newIndex);
+    setCurrentString(furi[newIndex] || '');
   };
 
   const handleOnChange = ({ target: { value } }) => {
@@ -60,7 +61,7 @@ function useEditWordFuri({ currentData, setCurrentData }) {
 
   const handleCharSelect = (index, furiToCheck) => {
     setSelectedCharIndex(index);
-    if (furiToCheck) setCurrentString(furiToCheck);
+    setCurrentString(furiToCheck);
     if (inputRef.current) inputRef.current.focus();
   };
 

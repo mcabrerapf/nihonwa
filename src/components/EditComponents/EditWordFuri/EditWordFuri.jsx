@@ -20,20 +20,20 @@ function EditWordFuri(props) {
     <div className="edit-word-furi">
       <div className="edit-word-furi-display">
         {kanaWithFuri.map(({
-          key, className, kanaGroup, handleDeleteFuri, handleSelectFuri,
+          key, className, kanaGroup, handleSelectFuri,
         }) => (
           <div
             key={key}
             className={className}
           >
-            {kanaGroup[1] && (
+            {/* {kanaGroup[1] && (
             <Button
               modifier="ghost"
               onClick={handleDeleteFuri}
             >
               x
             </Button>
-            )}
+            )} */}
             <span className="furi">{kanaGroup[1]}</span>
             <span
               role="button"

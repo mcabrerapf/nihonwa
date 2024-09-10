@@ -13,8 +13,13 @@
       height: 2rem;
     }
 
-    .kanji-header-button {
-      width: 4rem;
+    .display-view-modal-header-buttons-center {
+      display: flex;
+      gap: 0.5rem;
+
+      .kanji-header-button {
+        width: 4rem;
+      }
     }
 
 

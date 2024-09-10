@@ -19,6 +19,10 @@ function DisplayViewHeader({
   const handleCharacterCopy = () => {
     copyToClipboard(text);
   };
+
+  const handleJishoNavigate = () => {
+    window.open(`https://jisho.org/search/${text}`, '_blank');
+  };
   // 10 char turn to 2rem
   // 30 char turn to 1.5rem
   const kanaClassName = getHeaderTextClassName(headerCharacters);
@@ -40,12 +44,21 @@ function DisplayViewHeader({
         >
           D
         </Button>
-        <Button
-          modifier="kanji-header-button"
-          onClick={handleCharacterCopy}
-        >
-          写す
-        </Button>
+        <div className="display-view-modal-header-buttons-center">
+          <Button
+            modifier="kanji-header-button"
+            onClick={handleCharacterCopy}
+          >
+            写す
+          </Button>
+          <Button
+            modifier="kanji-header-button"
+            onClick={handleJishoNavigate}
+          >
+            辞書
+          </Button>
+        </div>
+
         <Button onClick={() => setModalView('edit')}>E</Button>
       </div>
       )}
