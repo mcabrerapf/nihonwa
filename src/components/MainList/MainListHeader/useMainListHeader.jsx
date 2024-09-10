@@ -54,7 +54,7 @@ const useMainListHeader = ({
     handleToggleModal(selectedKana);
   };
 
-  const handleJishoNavigate = () => {
+  const handleJishoNavigate = async () => {
     if (!filters || !filters.text) return;
     window.open(`https://jisho.org/search/${filters.text}`, '_blank');
   };

@@ -14,18 +14,15 @@ function DisplayViewKanji({ selectedKanji }) {
   useEffect(() => {
     const fetchData = async () => {
       setKanjiData({});
-      try {
-        const url = `https://afternoon-gorge-77049-a1de8dd15ce4.herokuapp.com/kanjis/${selectedKanji}`;
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const jsonData = await response.json();
-        const parsedData = parseDicData(jsonData);
-        setKanjiData(parsedData);
-      } catch (error) {
-        console.log(error);
-      }
+      const url = `https://afternoon-gorge-77049-a1de8dd15ce4.herokuapp.com/kanjis/${selectedKanji}`;
+      await fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          const parsedData = parseDicData(data);
+          if (!parseDicData) return;
+          setKanjiData(parsedData);
+        })
+        .catch((err) => console.log(err));
     };
     fetchData();
   }, [selectedKanji]);
@@ -50,11 +47,11 @@ function DisplayViewKanji({ selectedKanji }) {
             </ul>
           </div>
           <div className="kanji-data-container">
-            <span
+            {/* <span
               className={`kanji-data-header${meanings.length ? '' : ' empty-list'}`}
             >
               Meanings
-            </span>
+            </span> */}
             <ul className="kanji-data-list">
               {meanings.map((meaning) => (
                 <li key={meaning}>
