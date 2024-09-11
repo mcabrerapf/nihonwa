@@ -39,4 +39,11 @@ const getEditStepsArray = (type) => {
   return [0, 1, 2, 3, 4];
 };
 
-export { checkEditFooterStatus, getEditStepsArray };
+const findSimilarWords = (word, list) => {
+  if (!word || !word.jp) return [];
+  const { jp } = word;
+  return list
+    .filter((listWord) => listWord.jp.includes(jp) && listWord.jp !== jp);
+};
+
+export { checkEditFooterStatus, getEditStepsArray, findSimilarWords };

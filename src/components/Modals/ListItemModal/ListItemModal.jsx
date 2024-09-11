@@ -6,6 +6,7 @@ import Button from '../../Button';
 import { deleteWord } from '../../../Services';
 import { initItemData } from '../../../utils';
 import { ModalWrapperContext } from '../../ModalWrapper/ModalWrapperContext';
+import { findSimilarWords } from './helpers';
 
 function ListItemModal({
   // listItemType,
@@ -46,6 +47,12 @@ function ListItemModal({
     }
   };
 
+  const handleGoToItem = (newWord) => {
+    const newIndex = listData.findIndex((listWord) => listWord.id === newWord.id);
+    setSelectedItemIndex(newIndex);
+    setModalView('display');
+  };
+
   const handleDelete = async () => {
     setCanDelete(false);
     await deleteWord({ input: listItemData });
@@ -83,6 +90,7 @@ function ListItemModal({
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isLastItem, isFirstItem, selectedItemIndex, modalView, closeModal]);
+  const similarWords = findSimilarWords(parsedListItemData, listData);
 
   return (
     <div className="list-item-modal">
@@ -102,7 +110,9 @@ function ListItemModal({
         // sentenceList={sentenceList}
         modalView={modalView}
         canDelete={canDelete}
+        similarWords={similarWords}
         setModalView={setModalView}
+        handleGoToItem={handleGoToItem}
         handleListItemChange={handleListItemChange}
       />
       )}
