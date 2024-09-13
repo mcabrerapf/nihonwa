@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { copyToClipboard } from '../../../utils';
+import { copyToClipboard, romajiToKana } from '../../../utils';
 
 const useMainListHeader = ({
   filters,
@@ -10,6 +10,7 @@ const useMainListHeader = ({
 }) => {
   const pressTimer = useRef(null);
   const [isLongPress, setIsLongPress] = useState(false);
+  // const [selectedKana, setSelectedKana] = useState('hi');
   const { text, tags } = filters;
   const hasActiveFilters = !!tags.length;
   const headerText = '語句';
@@ -50,8 +51,8 @@ const useMainListHeader = ({
     handleFiltersChange({ text: '', tags: filters.tags });
   };
 
-  const handleKanaButtonClick = (selectedKana) => {
-    handleToggleModal(selectedKana);
+  const handleKanaButtonClick = () => {
+    handleToggleModal('hi');
   };
 
   const handleJishoNavigate = async () => {
@@ -61,6 +62,13 @@ const useMainListHeader = ({
 
   const handleShowFiltersModal = () => handleToggleModal('filters');
 
+  const handleKanaClick = (e) => {
+    // setSelectedKana(e.target.value);
+    if (!filters.text) return;
+    const kana = romajiToKana(filters.text, e.target.value);
+    handleFiltersChange({ text: kana, tags });
+  };
+
   return {
     textFilter: text,
     hasActiveFilters,
@@ -68,6 +76,8 @@ const useMainListHeader = ({
     headerCount,
     resetTextFilter,
     resetFilters,
+    // selectedKana,
+    handleKanaClick,
     handleJishoNavigate,
     handleSearchTextChange,
     handleKanaButtonClick,
