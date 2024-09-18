@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { copyToClipboard, romajiToKana } from '../../../utils';
+import { copyToClipboard, parseHtml, romajiToKana } from '../../../utils';
 
 const useMainListHeader = ({
   filters,
   wordList,
   orderedListLength,
+  setJishoData,
   handleFiltersChange,
   handleToggleModal,
 }) => {
@@ -57,13 +58,20 @@ const useMainListHeader = ({
 
   const handleJishoNavigate = async () => {
     if (!filters || !filters.text) return;
-    window.open(`https://jisho.org/search/${filters.text}`, '_blank');
+    await fetch(`/api/jisho/search/${filters.text}`)
+      .then((res) => res.text())
+      .then((html) => {
+        const parssedJishoData = parseHtml(html);
+        setJishoData(parssedJishoData);
+        handleToggleModal('jishoMeanings');
+      })
+      .catch((err) => console.log(err));
+    // window.open(`https://jisho.org/search/${filters.text}`, '_blank');
   };
 
   const handleShowFiltersModal = () => handleToggleModal('filters');
 
   const handleKanaClick = (e) => {
-    // setSelectedKana(e.target.value);
     if (!filters.text) return;
     const kana = romajiToKana(filters.text, e.target.value);
     handleFiltersChange({ text: kana, tags });

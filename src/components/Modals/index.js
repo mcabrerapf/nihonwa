@@ -3,6 +3,7 @@ import KanaModal from './KanaModal';
 import SortModal from './SortModal';
 import TestModal from './TestModal';
 import ListItemModal from './ListItemModal';
+import JishoMeaningsModal from './JishoMeaningsModal';
 
 export {
   FiltersModal,
@@ -10,4 +11,5 @@ export {
   ListItemModal,
   SortModal,
   TestModal,
+  JishoMeaningsModal,
 };

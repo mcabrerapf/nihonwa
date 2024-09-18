@@ -12,6 +12,7 @@ function useMainList({
   const [filters, setFilters] = useState(FILTERS_INIT_VAL);
   const [showModal, setShowModal] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
+  const [jishoData, setJishoData] = useState(null);
 
   const scrollToBottom = () => {
     if (mainListRef.current) mainListRef.current.scrollTop = mainListRef.current.scrollHeight;
@@ -53,9 +54,11 @@ function useMainList({
     orderedListLength,
     wordList,
     showModal,
+    jishoData,
     ModalToUse,
     handleToggleModal,
     updateWordsList,
+    setJishoData,
     handleFiltersChange,
     setSelectedItemIndex,
   };

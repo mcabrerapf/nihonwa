@@ -16,9 +16,11 @@ function MainList(props) {
     orderedListLength,
     wordList,
     showModal,
+    jishoData,
     ModalToUse,
     handleToggleModal,
     updateWordsList,
+    setJishoData,
     handleFiltersChange,
     setSelectedItemIndex,
   } = useMainList(props);
@@ -34,6 +36,7 @@ function MainList(props) {
             listItemIndex={selectedItemIndex}
             filters={filters}
             sort={sort}
+            jishoData={jishoData}
             updateWordsList={updateWordsList}
             handleFiltersChange={handleFiltersChange}
           />
@@ -43,6 +46,7 @@ function MainList(props) {
         filters={filters}
         wordList={wordList}
         orderedListLength={orderedListLength}
+        setJishoData={setJishoData}
         handleFiltersChange={handleFiltersChange}
         handleToggleModal={handleToggleModal}
       />
