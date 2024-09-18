@@ -16,8 +16,10 @@ function DisplayView({
   isFirstItem,
   isLastItem,
   canDelete,
+  similarWords,
   modalView,
   setModalView,
+  handleGoToItem,
   handleListItemChange,
 }) {
   const {
@@ -59,7 +61,7 @@ function DisplayView({
         setView={setView}
       />
       <div className="list-item-modal-content">
-        {view === 'general' && <DisplayViewGeneral tags={tags} en={en} />}
+        {view === 'general' && <DisplayViewGeneral tags={tags} en={en} similarWords={similarWords} similarWordClick={handleGoToItem} />}
         {view === 'notes' && <DisplayViewNotes notes={notes} />}
         {view === 'conjugation'
         && (

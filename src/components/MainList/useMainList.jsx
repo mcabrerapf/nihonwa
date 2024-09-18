@@ -32,8 +32,8 @@ function useMainList({
   };
 
   const handleFiltersChange = (newFilters, newSort) => {
-    if (newFilters)setFilters(newFilters);
-    if (newSort)setSort(newSort);
+    if (newFilters) setFilters(newFilters);
+    if (newSort) setSort(newSort);
     setShowModal(false);
   };
 

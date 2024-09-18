@@ -11,6 +11,8 @@ function MainListHeader(props) {
     headerCount,
     resetFilters,
     resetTextFilter,
+    // selectedKana,
+    handleKanaClick,
     handleJishoNavigate,
     handleSearchTextChange,
     handleKanaButtonClick,
@@ -49,25 +51,44 @@ function MainListHeader(props) {
           <span className="main-list-count">{headerCount}</span>
         </div>
         <div className="main-list-kana-buttons">
-          <Button onClick={() => handleKanaButtonClick('hi')}>か</Button>
+          <Button onClick={handleKanaButtonClick}>仮名</Button>
         </div>
       </div>
-      <div className="main-list-search-input">
+      <div className="main-list-search">
         <Button onClick={handleJishoNavigate} modifier="jisho-button" isDisabled={!textFilter}>
           辞書
         </Button>
-        <input
-          autoComplete="off"
-          type="text"
-          value={textFilter}
-          onChange={handleSearchTextChange}
-        />
-        {textFilter && (
-        <Button onClick={resetTextFilter} modifier="reset-text-filter">
-          X
-        </Button>
-        )}
-
+        <div className="search-input">
+          <input
+            autoComplete="off"
+            type="text"
+            value={textFilter}
+            onChange={handleSearchTextChange}
+          />
+          {textFilter && (
+          <Button onClick={resetTextFilter} modifier="reset-text-filter">
+            X
+          </Button>
+          )}
+        </div>
+        <div className="kana-buttons">
+          <Button
+            modifier="kana-button"
+            // isNotSelected={selectedKana !== 'hi'}
+            value="hi"
+            onClick={handleKanaClick}
+          >
+            か
+          </Button>
+          <Button
+            modifier="kana-button"
+            // isNotSelected={selectedKana !== 'ka'}
+            onClick={handleKanaClick}
+            value="ka"
+          >
+            カ
+          </Button>
+        </div>
       </div>
     </header>
   );
