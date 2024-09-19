@@ -15,6 +15,7 @@ function ListItemModal({
   listData,
   // sentenceList,
   updateWordsList,
+  jishoWord,
   // updateSentencesList,
 }) {
   const { closeModal, setCloseOnBgClick } = useContext(ModalWrapperContext);
@@ -23,11 +24,11 @@ function ListItemModal({
   const [canDelete, setCanDelete] = useState(true);
   const [modalView, setModalView] = useState(isNewItem ? 'edit' : 'display');
   const listLength = listData.length;
-  const listItemData = listData[selectedItemIndex] || {};
+  const listItemData = listData[selectedItemIndex] || jishoWord || {};
 
   const parsedListItemData = initItemData(
     'word',
-    listData[selectedItemIndex],
+    listItemData,
   );
   const isLastItem = selectedItemIndex + 1 >= listLength;
   const isFirstItem = selectedItemIndex <= 0;

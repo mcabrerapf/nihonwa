@@ -44,7 +44,7 @@ const getWordMeanings = (meanings) => {
     if (tagText === 'Wikipedia definition') return null;
     if (tagText === 'Other forms') return getOtherForms(meaningWrapper, tagText);
     if (tagText === 'Notes') return getNotes(meaningWrapper, tagText);
-    const meaningText = meaningWrapper.innerText.trim();
+    const meaningText = meaningWrapper.getElementsByClassName('meaning-meaning')[0].innerText;
     return [tagText, meaningText];
   }).filter(Boolean);
 };

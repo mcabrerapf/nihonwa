@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './JishoMeaningsModal.scss';
 import { parseHtml } from '../../../utils';
+import Button from '../../Button';
 
-function JishoMeaningsModal({ filters }) {
+function JishoMeaningsModal({ filters, handleToggleModal, setJishoWord }) {
   const [jishoData, setJishoData] = useState(null);
+  const [selectedWord, setSelectedWord] = useState({});
 
   useEffect(() => {
     async function fetchData(term) {
@@ -18,13 +20,34 @@ function JishoMeaningsModal({ filters }) {
     if (filters && filters.text)fetchData(filters.text);
   }, []);
 
-  console.log({ jishoData });
+  const handleWordClick = (word) => {
+    setSelectedWord(word);
+  };
+
+  const handleConfirmClick = () => {
+    const en = selectedWord.meanings.map((meaning) => meaning[1]);
+
+    const parsedWord = {
+      jp: selectedWord.jp,
+      furi: selectedWord.furi,
+      en,
+    };
+
+    setJishoWord(parsedWord);
+    handleToggleModal('listItem');
+  };
+
   return (
     <div className="jisho-meanings-modal">
       <div className="jisho-meanings-modal__content">
         {!jishoData && <span>LOADING</span>}
         {!!jishoData && jishoData.map((data) => (
-          <div key={data.id} className="jisho-meanings-modal__content__word">
+          <div
+            key={data.id}
+            className={`jisho-meanings-modal__content__word${selectedWord.id === data.id ? ' selected' : ''}`}
+            role="button"
+            onClick={() => handleWordClick(data)}
+          >
             <span className="jisho-meanings-modal__content__word__jp">{data.jp}</span>
             <div className="jisho-meanings-modal__content__word__meanings">
               {data.meanings.map((mean) => (
@@ -35,6 +58,9 @@ function JishoMeaningsModal({ filters }) {
             </div>
           </div>
         ))}
+      </div>
+      <div className="jisho-meanings-modal__footer">
+        <Button onClick={handleConfirmClick} isDisabled={!selectedWord.id}>O</Button>
       </div>
     </div>
   );

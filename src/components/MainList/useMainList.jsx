@@ -12,6 +12,7 @@ function useMainList({
   const [filters, setFilters] = useState(FILTERS_INIT_VAL);
   const [showModal, setShowModal] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
+  const [jishoWord, setJishoWord] = useState({});
 
   const scrollToBottom = () => {
     if (mainListRef.current) mainListRef.current.scrollTop = mainListRef.current.scrollHeight;
@@ -29,6 +30,7 @@ function useMainList({
 
   const handleToggleModal = (modalKey = null) => {
     setShowModal(modalKey);
+    if (showModal !== 'jishoMeanings') setJishoWord({});
   };
 
   const handleFiltersChange = (newFilters, newSort) => {
@@ -53,8 +55,10 @@ function useMainList({
     orderedListLength,
     wordList,
     showModal,
+    jishoWord,
     ModalToUse,
     handleToggleModal,
+    setJishoWord,
     updateWordsList,
     handleFiltersChange,
     setSelectedItemIndex,
