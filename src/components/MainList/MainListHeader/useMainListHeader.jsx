@@ -57,8 +57,8 @@ const useMainListHeader = ({
 
   const handleJishoNavigate = async () => {
     if (!filters || !filters.text) return;
-    // handleToggleModal('jishoMeanings');
-    window.open(`https://jisho.org/search/${filters.text}`, '_blank');
+    handleToggleModal('jishoMeanings');
+    // window.open(`https://jisho.org/search/${filters.text}`, '_blank');
   };
 
   const handleShowFiltersModal = () => handleToggleModal('filters');

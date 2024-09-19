@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './DisplayViewKanji.scss';
 import Kanji from '../../../../Kanji';
-import { parseDicData } from '../../../../../utils';
 
 function DisplayViewKanji({ selectedKanji }) {
   const [kajiData, setKanjiData] = useState({});
@@ -10,17 +9,17 @@ function DisplayViewKanji({ selectedKanji }) {
     onYomi = [],
     kunYomi = [],
   } = kajiData;
-
+  console.log({ onYomi, kunYomi });
   useEffect(() => {
     const fetchData = async () => {
       setKanjiData({});
-      const url = `https://afternoon-gorge-77049-a1de8dd15ce4.herokuapp.com/kanjis/${selectedKanji}`;
+      const url = `https://afternoon-gorge-77049-a1de8dd15ce4.herokuapp.com/jisho/kanji/${selectedKanji}`;
       await fetch(url)
         .then((res) => res.json())
         .then((data) => {
-          const parsedData = parseDicData(data);
-          if (!parseDicData) return;
-          setKanjiData(parsedData);
+          console.log(data);
+          if (!data) return;
+          setKanjiData(data);
         })
         .catch((err) => console.log(err));
     };
@@ -39,7 +38,7 @@ function DisplayViewKanji({ selectedKanji }) {
               音読み
             </span>
             <ul className="kanji-data-list">
-              {onYomi.map(({ '#text': yomi }) => (
+              {onYomi.map((yomi) => (
                 <li key={yomi}>
                   {yomi}
                 </li>
@@ -67,7 +66,7 @@ function DisplayViewKanji({ selectedKanji }) {
               訓読み
             </span>
             <ul className="kanji-data-list">
-              {kunYomi.map(({ '#text': yomi }) => (
+              {kunYomi.map((yomi) => (
                 <li key={yomi}>
                   {yomi}
                 </li>

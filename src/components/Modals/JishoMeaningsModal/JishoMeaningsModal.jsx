@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './JishoMeaningsModal.scss';
-import { parseHtml } from '../../../utils';
 import Button from '../../Button';
 
 function JishoMeaningsModal({ filters, handleToggleModal, setJishoWord }) {
@@ -9,12 +8,9 @@ function JishoMeaningsModal({ filters, handleToggleModal, setJishoWord }) {
 
   useEffect(() => {
     async function fetchData(term) {
-      await fetch(`/api/jisho/search/${term}`)
-        .then((res) => res.text())
-        .then((html) => {
-          const parssedJishoData = parseHtml(html);
-          setJishoData(parssedJishoData);
-        })
+      await fetch(`https://afternoon-gorge-77049-a1de8dd15ce4.herokuapp.com/jisho/word/${term}`)
+        .then((res) => res.json())
+        .then((json) => setJishoData(json))
         .catch((err) => console.log(err));
     }
     if (filters && filters.text)fetchData(filters.text);
