@@ -16,6 +16,8 @@ function MainList(props) {
     orderedListLength,
     wordList,
     showModal,
+    jishoWord,
+    setJishoWord,
     ModalToUse,
     handleToggleModal,
     updateWordsList,
@@ -34,7 +36,10 @@ function MainList(props) {
             listItemIndex={selectedItemIndex}
             filters={filters}
             sort={sort}
+            jishoWord={jishoWord}
+            setJishoWord={setJishoWord}
             updateWordsList={updateWordsList}
+            handleToggleModal={handleToggleModal}
             handleFiltersChange={handleFiltersChange}
           />
         </ModalWrapper>

@@ -23,6 +23,7 @@ import initSentenceData from './initSentenceData';
 import initWordData from './initWordData';
 import kanaToEnglishChar from './kanaToEnglishChar';
 import romajiToKana from './romajiToKana';
+import parseHtml from './parseHtml';
 import parseDicData from './parseDicData';
 import sortBy from './sortBy';
 
@@ -53,5 +54,6 @@ export {
   initWordData,
   kanaToEnglishChar,
   parseDicData,
+  parseHtml,
   sortBy,
 };

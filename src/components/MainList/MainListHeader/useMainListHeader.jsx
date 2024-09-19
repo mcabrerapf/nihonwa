@@ -57,13 +57,13 @@ const useMainListHeader = ({
 
   const handleJishoNavigate = async () => {
     if (!filters || !filters.text) return;
-    window.open(`https://jisho.org/search/${filters.text}`, '_blank');
+    handleToggleModal('jishoMeanings');
+    // window.open(`https://jisho.org/search/${filters.text}`, '_blank');
   };
 
   const handleShowFiltersModal = () => handleToggleModal('filters');
 
   const handleKanaClick = (e) => {
-    // setSelectedKana(e.target.value);
     if (!filters.text) return;
     const kana = romajiToKana(filters.text, e.target.value);
     handleFiltersChange({ text: kana, tags });

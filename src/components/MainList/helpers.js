@@ -1,5 +1,5 @@
 import {
-  FiltersModal, KanaModal, ListItemModal, SortModal, TestModal,
+  FiltersModal, KanaModal, ListItemModal, SortModal, TestModal, JishoMeaningsModal,
 } from '../Modals';
 
 const getModalToUse = (modalKey) => {
@@ -16,6 +16,8 @@ const getModalToUse = (modalKey) => {
       return TestModal;
     case 'listItem':
       return ListItemModal;
+    case 'jishoMeanings':
+      return JishoMeaningsModal;
     default:
       return () => {};
   }
