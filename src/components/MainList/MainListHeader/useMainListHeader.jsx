@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { copyToClipboard, parseHtml, romajiToKana } from '../../../utils';
+import { copyToClipboard, romajiToKana } from '../../../utils';
 
 const useMainListHeader = ({
   filters,
   wordList,
   orderedListLength,
-  setJishoData,
   handleFiltersChange,
   handleToggleModal,
 }) => {
@@ -58,14 +57,7 @@ const useMainListHeader = ({
 
   const handleJishoNavigate = async () => {
     if (!filters || !filters.text) return;
-    await fetch(`/api/jisho/search/${filters.text}`)
-      .then((res) => res.text())
-      .then((html) => {
-        const parssedJishoData = parseHtml(html);
-        setJishoData(parssedJishoData);
-        handleToggleModal('jishoMeanings');
-      })
-      .catch((err) => console.log(err));
+    handleToggleModal('jishoMeanings');
     // window.open(`https://jisho.org/search/${filters.text}`, '_blank');
   };
 

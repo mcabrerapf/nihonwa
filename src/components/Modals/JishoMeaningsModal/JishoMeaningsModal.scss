@@ -1,6 +1,31 @@
 .jisho-meanings-modal {
-  width: 18rem;
+  width: 20rem;
   padding-top: 0.5rem;
 
+  &__content {
+    height: 30rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &__word {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      &__jp {
+        font-size: 2rem;
+      }
+
+      &__meanings {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        &__meaning {}
+      }
+    }
+  }
 
 }

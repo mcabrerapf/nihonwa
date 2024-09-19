@@ -5,7 +5,6 @@ const getWordResultFuriArray = (furi) => {
 };
 
 const getOtherForms = (meanings, tagText) => {
-  if (meanings && tagText) return null;
   const forms = meanings.getElementsByTagName('span');
   if (!forms) return null;
   const parsedForms = Array.from(forms).map((form) => form.innerText.trim()).join('');
@@ -23,32 +22,43 @@ const getNotes = (meanings, tagText) => {
 };
 
 const getWordMeanings = (meanings) => {
-  const tags = meanings.getElementsByClassName('meaning-tags');
-  const meaningMeanings = meanings.getElementsByClassName('meaning-meaning');
-  if (!tags && !meaningMeanings) return [];
-  // TODO fix issue with tags and meanings not matching check classnames used
-  return Array.from(tags).map((tag, i) => {
-    if (!tag) return null;
-    const tagText = tag.innerText.trim();
+  const mDIvs = meanings.children;
+  const meaningPairs = [];
+  for (let index = 0; index < mDIvs.length; index += 1) {
+    if (!mDIvs[index]) break;
+    const currentDivClassame = mDIvs[index].className;
+
+    if (currentDivClassame === 'meaning-tags') {
+      meaningPairs.push([mDIvs[index], mDIvs[index + 1]]);
+      index += 1;
+    }
+    if (currentDivClassame === 'meaning-wrapper') {
+      meaningPairs.push([null, mDIvs[index]]);
+    }
+  }
+  if (!meaningPairs.length) return [];
+
+  return meaningPairs.map((pair) => {
+    const [tag, meaningWrapper] = pair;
+    const tagText = tag ? tag.innerText.trim() : null;
     if (tagText === 'Wikipedia definition') return null;
-    if (tagText === 'Other forms') return getOtherForms(meaningMeanings[i], tagText);
-    if (tagText === 'Notes') return getNotes(meanings, tagText);
-    const meaningText = meaningMeanings[i].innerText.trim();
+    if (tagText === 'Other forms') return getOtherForms(meaningWrapper, tagText);
+    if (tagText === 'Notes') return getNotes(meaningWrapper, tagText);
+    const meaningText = meaningWrapper.innerText.trim();
     return [tagText, meaningText];
   }).filter(Boolean);
 };
-const getWordResult = (word) => {
+
+const getWordResult = (word, index) => {
   const furi = word.getElementsByClassName('furigana')[0];
   const wordString = word.getElementsByClassName('text')[0].innerText.trim();
   const meaningsWrapper = word.getElementsByClassName('meanings-wrapper')[0];
   const furiArray = getWordResultFuriArray(furi);
   const meanings = getWordMeanings(meaningsWrapper);
 
-  // console.log('-- FURI --', furiArray);
-  // console.log('-- STRING --', wordString);
-  // console.log('-- MEANINGS --');
-  // meanings.forEach((mean) => console.log(mean.join(' - ')));
+  // console.log({ furiArray, wordString, meanings });
   return {
+    id: `${wordString}-${index}`,
     furi: furiArray,
     jp: wordString,
     meanings,
@@ -62,14 +72,14 @@ const parseHtml = (html) => {
   const primary = doc.getElementById('primary');
   const words = primary.getElementsByClassName('concept_light clearfix');
 
-  Array.from(words).forEach((word) => {
+  Array.from(words).forEach((word, i) => {
     if (!word) return;
     // console.log('----- WORD -----');
-    //   console.log(word);
-    const parsedWord = getWordResult(word);
+    // console.log(word);
+    const parsedWord = getWordResult(word, i);
     data.push(parsedWord);
   });
-  console.log(data);
+
   return data;
 };
 
