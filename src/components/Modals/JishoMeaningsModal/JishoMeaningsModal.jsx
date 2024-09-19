@@ -13,12 +13,12 @@ function JishoMeaningsModal({
 
   useEffect(() => {
     async function fetchData(term) {
-      await fetch(`https://afternoon-gorge-77049-a1de8dd15ce4.herokuapp.com/jisho/word/${term}`)
+      await fetch(`https://afternoon-gorge-77049-a1de8dd15ce4.herokuapp.com/jisho/word/${term.toLocaleLowerCase()}`)
         .then((res) => res.json())
         .then((json) => setJishoData(json))
         .catch((err) => console.log(err));
     }
-    if (filters && filters.text)fetchData(filters.text);
+    if (filters && filters.text) fetchData(filters.text);
   }, []);
 
   const handleWordClick = (word) => {
