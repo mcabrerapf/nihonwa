@@ -39,6 +39,7 @@ function MainList(props) {
             jishoWord={jishoWord}
             setJishoWord={setJishoWord}
             updateWordsList={updateWordsList}
+            setSelectedItemIndex={setSelectedItemIndex}
             handleToggleModal={handleToggleModal}
             handleFiltersChange={handleFiltersChange}
           />
@@ -50,6 +51,7 @@ function MainList(props) {
         orderedListLength={orderedListLength}
         handleFiltersChange={handleFiltersChange}
         handleToggleModal={handleToggleModal}
+        setSelectedItemIndex={setSelectedItemIndex}
       />
       <MainListContent
         mainList={orderedList}

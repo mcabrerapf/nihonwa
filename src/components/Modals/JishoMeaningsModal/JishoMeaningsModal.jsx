@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import './JishoMeaningsModal.scss';
 import Button from '../../Button';
 
-function JishoMeaningsModal({ filters, handleToggleModal, setJishoWord }) {
+function JishoMeaningsModal({
+  filters,
+  handleToggleModal,
+  setJishoWord,
+  setSelectedItemIndex,
+}) {
   const [jishoData, setJishoData] = useState(null);
   const [selectedWord, setSelectedWord] = useState({});
 
@@ -30,6 +35,7 @@ function JishoMeaningsModal({ filters, handleToggleModal, setJishoWord }) {
     };
 
     setJishoWord(parsedWord);
+    setSelectedItemIndex(-1);
     handleToggleModal('listItem');
   };
 

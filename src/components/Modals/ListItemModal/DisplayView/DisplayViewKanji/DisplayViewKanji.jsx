@@ -9,7 +9,7 @@ function DisplayViewKanji({ selectedKanji }) {
     onYomi = [],
     kunYomi = [],
   } = kajiData;
-  console.log({ onYomi, kunYomi });
+
   useEffect(() => {
     const fetchData = async () => {
       setKanjiData({});
@@ -17,7 +17,6 @@ function DisplayViewKanji({ selectedKanji }) {
       await fetch(url)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (!data) return;
           setKanjiData(data);
         })
