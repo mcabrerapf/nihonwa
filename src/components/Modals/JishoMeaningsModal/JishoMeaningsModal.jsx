@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './JishoMeaningsModal.scss';
+import Loading from '../../Loading';
 import Button from '../../Button';
 
 function JishoMeaningsModal({
@@ -10,13 +11,17 @@ function JishoMeaningsModal({
 }) {
   const [jishoData, setJishoData] = useState(null);
   const [selectedWord, setSelectedWord] = useState({});
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     async function fetchData(term) {
       await fetch(`https://afternoon-gorge-77049-a1de8dd15ce4.herokuapp.com/jisho/word/${term.toLocaleLowerCase()}`)
         .then((res) => res.json())
-        .then((json) => setJishoData(json))
-        .catch((err) => console.log(err));
+        .then((json) => {
+          setErrorMessage(null);
+          setJishoData(json);
+        })
+        .catch((err) => setErrorMessage(err));
     }
     if (filters && filters.text) fetchData(filters.text);
   }, []);
@@ -42,8 +47,13 @@ function JishoMeaningsModal({
   return (
     <div className="jisho-meanings-modal">
       <div className="jisho-meanings-modal__content">
-        {!jishoData && <span>LOADING</span>}
-        {!!jishoData && jishoData.map((data) => (
+        {!jishoData && <div className="jisho-meanings-modal__content__loading"><Loading /></div>}
+        {!!errorMessage && (
+          <div className="jisho-meanings-modal__content__error">
+            {errorMessage}
+          </div>
+        )}
+        {!!jishoData && !errorMessage && jishoData.map((data) => (
           <div
             key={data.id}
             className={`jisho-meanings-modal__content__word${selectedWord.id === data.id ? ' selected' : ''}`}
