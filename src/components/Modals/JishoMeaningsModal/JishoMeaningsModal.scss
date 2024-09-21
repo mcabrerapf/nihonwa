@@ -6,10 +6,11 @@
   gap: 0.5rem;
 
   &__content {
-    height: 30rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    height: 30rem;
+    padding: 0.5rem 1.5rem 1.5rem 0.5rem;
     gap: 2rem;
 
     &__loading {
@@ -33,6 +34,7 @@
       flex-direction: column;
       gap: 0.5rem;
       border: 1px solid transparent;
+      box-shadow: 0rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
       border-radius: 5px;
       padding: 1rem;
 
@@ -41,13 +43,29 @@
       }
 
       &__jp {
-        font-size: 2rem;
+        display: flex;
+        align-items: flex-end;
+
+        &__char {
+          display: flex;
+          flex-direction: column;
+
+          &__furi {}
+
+          &__kana {
+            font-size: 2.5rem;
+          }
+        }
       }
 
       &__meanings {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+
+        &__meaning {
+          font-size: 1.2rem;
+        }
       }
     }
   }

@@ -60,7 +60,18 @@ function JishoMeaningsModal({
             role="button"
             onClick={() => handleWordClick(data)}
           >
-            <span className="jisho-meanings-modal__content__word__jp">{data.jp}</span>
+            <span className="jisho-meanings-modal__content__word__jp">
+              {data.jp.split('').map((char, index) => (
+                <div className="jisho-meanings-modal__content__word__jp__char">
+                  <div className="jisho-meanings-modal__content__word__jp__char__furi">
+                    {data.furi[index]}
+                  </div>
+                  <div className="jisho-meanings-modal__content__word__jp__char__kana">
+                    {char}
+                  </div>
+                </div>
+              ))}
+            </span>
             <div className="jisho-meanings-modal__content__word__meanings">
               {data.meanings.map((mean) => (
                 <span className="jisho-meanings-modal__content__word__meanings__meaning">
