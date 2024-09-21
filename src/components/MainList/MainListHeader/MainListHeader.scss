@@ -62,6 +62,7 @@
     .search-input {
       display: flex;
       width: 100%;
+      position: relative;
 
       input {
         width: 100%;
@@ -70,7 +71,7 @@
 
       .reset-text-filter {
         position: absolute;
-        right: 8rem;
+        right: 0rem;
         padding-top: 0.5rem;
         color: black;
         box-shadow: none;

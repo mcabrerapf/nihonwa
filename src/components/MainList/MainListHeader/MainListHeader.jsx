@@ -36,7 +36,7 @@ function MainListHeader(props) {
           <Button
             onClick={resetFilters}
           >
-            X
+            x
           </Button>
           )}
         </div>
@@ -67,7 +67,7 @@ function MainListHeader(props) {
           />
           {textFilter && (
           <Button onClick={resetTextFilter} modifier="reset-text-filter">
-            X
+            x
           </Button>
           )}
         </div>
