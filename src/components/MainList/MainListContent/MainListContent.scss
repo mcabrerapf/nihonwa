@@ -1,38 +1,31 @@
-.main-list-content {
+.main-list {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  box-sizing: border-box;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  padding: 0 0 2rem 0;
+  height: 100%;
+  height: calc(100% - 5rem);
   width: 100%;
-  flex: 1;
-  overflow: auto;
 
-  .main-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.5rem 0 2rem 0;
-    height: 100%;
-    width: 100%;
-  }
 
-  .main-list-item {
+  &__item {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     cursor: pointer;
-    width: 90%;
+    width: 95%;
     gap: 0.5rem;
     padding: 1rem 0.5rem;
     border-radius: 0.5rem;
     font-size: 2rem;
     box-shadow: 0rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
-  }
 
-  .separator {
-    color: #282c34;
-  }
-
-  .load-more {
-    width: 1px;
+    & .load-more {
+      width: 1px;
+    }
   }
 }

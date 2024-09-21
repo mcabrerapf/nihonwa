@@ -6,17 +6,14 @@ import useMainListHeader from './useMainListHeader';
 function MainListHeader(props) {
   const {
     textFilter,
-    hasActiveFilters,
-    headerText,
+    tagFilters,
     headerCount,
-    resetFilters,
-    resetTextFilter,
-    // selectedKana,
     handleKanaClick,
     handleJishoNavigate,
     handleSearchTextChange,
     handleKanaButtonClick,
     handleShowFiltersModal,
+    handleRemoveTagFilter,
     handleMouseUp,
     handleMouseDown,
     handleMouseLeave,
@@ -24,41 +21,34 @@ function MainListHeader(props) {
 
   return (
     <header className="main-list-header">
-      <div className="main-list-header-main-content">
-        <div className="main-list-filters-buttons">
+      <div className="main-list-header__top">
+        <div className="main-list-header__top__filter-buttons">
           <Button
-            isNotSelected={!hasActiveFilters}
             onClick={handleShowFiltersModal}
           >
-            F
+            フィルター
           </Button>
-          {hasActiveFilters && (
-          <Button
-            onClick={resetFilters}
-          >
-            x
-          </Button>
-          )}
         </div>
         <div
           role="button"
-          className="main-list-header-text"
+          className="main-list-header__top__header-text"
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
         >
-          <span>{headerText}</span>
-          <span className="main-list-count">{headerCount}</span>
+          <span>辞書</span>
+          <span className="main-list-header__top__header-text__count">{headerCount}</span>
         </div>
-        <div className="main-list-kana-buttons">
+        <div className="main-list-header__top__kana-buttons">
           <Button onClick={handleKanaButtonClick}>仮名</Button>
         </div>
       </div>
-      <div className="main-list-search">
+
+      <div className="main-list-header__search">
         <Button onClick={handleJishoNavigate} modifier="jisho-button" isDisabled={!textFilter}>
-          辞書
+          探索
         </Button>
-        <div className="search-input">
+        <div className="main-list-header__search__search-input">
           <input
             autoComplete="off"
             type="text"
@@ -66,15 +56,15 @@ function MainListHeader(props) {
             onChange={handleSearchTextChange}
           />
           {textFilter && (
-          <Button onClick={resetTextFilter} modifier="reset-text-filter">
+          <Button onClick={() => handleSearchTextChange({ target: { value: '' } })} modifier="reset-text-filter">
             x
           </Button>
           )}
         </div>
-        <div className="kana-buttons">
+        <div className="main-list-header__search__kana-buttons">
           <Button
             modifier="kana-button"
-            // isNotSelected={selectedKana !== 'hi'}
+            isDisabled={!textFilter}
             value="hi"
             onClick={handleKanaClick}
           >
@@ -82,7 +72,7 @@ function MainListHeader(props) {
           </Button>
           <Button
             modifier="kana-button"
-            // isNotSelected={selectedKana !== 'ka'}
+            isDisabled={!textFilter}
             onClick={handleKanaClick}
             value="ka"
           >
@@ -90,6 +80,16 @@ function MainListHeader(props) {
           </Button>
         </div>
       </div>
+      {!!tagFilters.length && (
+      <div className="main-list-header__filters">
+        {tagFilters.map((tag) => (
+          <Button onClick={() => handleRemoveTagFilter(tag)}>
+            <span>{tag}</span>
+            <span>x</span>
+          </Button>
+        ))}
+      </div>
+      )}
     </header>
   );
 }

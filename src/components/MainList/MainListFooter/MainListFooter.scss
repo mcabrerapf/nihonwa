@@ -2,26 +2,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 5rem;
+  box-sizing: border-box;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+
   width: 100%;
 
-  .main-list-footer-buttons {
+  &__buttons {
     display: flex;
     gap: 1rem;
-    width: 9rem;
 
-    &.l {
+    &__l {
       justify-content: flex-start;
-      padding-left: 1rem;
     }
 
-    &.c {
+    &__c {
       justify-content: center;
     }
 
-    &.r {
+    &__r {
       justify-content: flex-end;
-      padding-right: 1rem;
     }
   }
 

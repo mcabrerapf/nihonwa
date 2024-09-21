@@ -23,39 +23,30 @@ function MainListContent({
   };
 
   return (
-    <div
-      className="main-list-content"
-      ref={listRef}
-    >
-      <ul className="main-list">
-        {items.map((listItem, i) => {
-          const { jp = '', id } = listItem;
+    <ul className="main-list" ref={listRef}>
+      {items.map((listItem, i) => {
+        const { jp = '', id } = listItem;
 
-          return (
-            <li
-              key={id}
-              role="button"
-              className="main-list-item"
-              onClick={() => handleOpenListItemModal(i)}
-            >
-              <span>{jp}</span>
-              {i === items.length - 10 && (
-                <LoadMore
-                  key={`${id}-load-more`}
-                  callback={loadMoreItems}
-                  itemsLength={items.length}
-                  allItemsLength={mainList.length}
-                />
-              )}
-            </li>
-
-          );
-        })}
-        <div className="separator">
-          .
-        </div>
-      </ul>
-    </div>
+        return (
+          <li
+            key={id}
+            role="button"
+            className="main-list__item"
+            onClick={() => handleOpenListItemModal(i)}
+          >
+            <span>{jp}</span>
+            {i === items.length - 10 && (
+            <LoadMore
+              key={`${id}-load-more`}
+              callback={loadMoreItems}
+              itemsLength={items.length}
+              allItemsLength={mainList.length}
+            />
+            )}
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 

@@ -10,10 +10,7 @@ const useMainListHeader = ({
 }) => {
   const pressTimer = useRef(null);
   const [isLongPress, setIsLongPress] = useState(false);
-  // const [selectedKana, setSelectedKana] = useState('hi');
-  const { text, tags } = filters;
-  const hasActiveFilters = !!tags.length;
-  const headerText = '語句';
+  const { text: textFilter, tags: tagFilters } = filters;
   const listToFilterLength = wordList.length;
   const headerCount = orderedListLength < listToFilterLength
     ? `(${orderedListLength}) ${listToFilterLength}` : orderedListLength;
@@ -41,14 +38,12 @@ const useMainListHeader = ({
   };
 
   const handleSearchTextChange = ({ target: { value } }) => {
-    handleFiltersChange({ text: value, tags });
+    handleFiltersChange({ text: value, tags: tagFilters });
   };
 
-  const resetFilters = () => {
-    handleFiltersChange({ text: '', tags: [] });
-  };
-  const resetTextFilter = () => {
-    handleFiltersChange({ text: '', tags: filters.tags });
+  const handleRemoveTagFilter = (tagToRemove) => {
+    const updatedTags = tagFilters.filter((tag) => tag !== tagToRemove);
+    handleFiltersChange({ text: textFilter, tags: updatedTags });
   };
 
   const handleKanaButtonClick = () => {
@@ -58,7 +53,6 @@ const useMainListHeader = ({
   const handleJishoNavigate = async () => {
     if (!filters || !filters.text) return;
     handleToggleModal('jishoMeanings');
-    // window.open(`https://jisho.org/search/${filters.text}`, '_blank');
   };
 
   const handleShowFiltersModal = () => handleToggleModal('filters');
@@ -66,22 +60,19 @@ const useMainListHeader = ({
   const handleKanaClick = (e) => {
     if (!filters.text) return;
     const kana = romajiToKana(filters.text, e.target.value);
-    handleFiltersChange({ text: kana, tags });
+    handleFiltersChange({ text: kana, tags: tagFilters });
   };
 
   return {
-    textFilter: text,
-    hasActiveFilters,
-    headerText,
+    textFilter,
+    tagFilters,
     headerCount,
-    resetTextFilter,
-    resetFilters,
-    // selectedKana,
     handleKanaClick,
     handleJishoNavigate,
     handleSearchTextChange,
     handleKanaButtonClick,
     handleShowFiltersModal,
+    handleRemoveTagFilter,
     handleMouseUp,
     handleMouseDown,
     handleMouseLeave,

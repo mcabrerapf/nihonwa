@@ -24,19 +24,19 @@ function MainListFooter({
 
   return (
     <footer className="main-list-footer">
-      <div className="main-list-footer-buttons l">
-        <Button isDisabled onClick={() => {}}>C</Button>
+      <div className="main-list-footer__buttons__l">
+        <Button onClick={handleOpenRandomListItemModal}>無作為</Button>
       </div>
-      <div className="main-list-footer-buttons c">
+      <div className="main-list-footer__buttons__c">
         <Button onClick={handleOpenNewItemModal}>+</Button>
       </div>
-      <div className="main-list-footer-buttons r">
+      <div className="main-list-footer__buttons__r">
         <Button
           onClick={handleOpenTestModal}
         >
-          T
+          試験
         </Button>
-        <Button onClick={handleOpenRandomListItemModal}>R</Button>
+
       </div>
     </footer>
   );
