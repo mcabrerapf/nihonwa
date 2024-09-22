@@ -1,16 +1,16 @@
-.test-modal {
+.exam-modal {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 30rem;
-  height: 40rem;
 
-  .test-modal-header {
+  &__header {
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 0.7rem;
   }
 
-  .test-modal-footer {
+  &__footer {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;

@@ -42,12 +42,12 @@ function ModalWrapper({ children, closeModal }) {
   return (
     <div
       ref={backgroundRef}
-      className="modal-bg"
+      className="modal__bg"
       onTouchStart={stopPropagation}
       onTouchMove={stopPropagation}
       onTouchEnd={stopPropagation}
     >
-      <div ref={wrapperRef} className="modal-wrapper">
+      <div ref={wrapperRef} className="modal__bg__wrapper">
         <ModalWrapperContextProvider
           value={{
             setCloseOnBgClick,

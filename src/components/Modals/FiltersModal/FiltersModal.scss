@@ -1,42 +1,46 @@
 .filters-modal {
   width: 30rem;
 
-  .filters-modal-content {
+  &__content {
     display: flex;
     flex-direction: column;
     height: 100%;
     font-size: 2rem;
     gap: 1rem;
+
+    &__sort-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 0.5rem;
+
+      &__type {
+        display: flex;
+        gap: 1rem;
+      }
+
+      &__dir {
+        display: flex;
+        gap: 1rem;
+      }
+    }
+
+    &__filters-options {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding-top: 0.5rem;
+      padding-bottom: 1rem;
+      gap: 1rem;
+
+      button {
+        font-size: 1.5rem;
+      }
+    }
+
   }
 
-  .sort-options {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    margin-bottom: 15px;
-  }
-
-  .filters-options-label button {
-    position: fixed;
-    font-size: 1.5rem;
-    margin-left: 8rem;
-    margin-top: 0.3rem;
-  }
-
-  .filters-options {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding-top: 0.5rem;
-    padding-bottom: 1rem;
-    gap: 1rem;
-  }
-
-  .filters-options button {
-    font-size: 1.5rem;
-  }
-
-  .filters-modal-footer {
+  &__footer {
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;

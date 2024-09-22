@@ -11,15 +11,15 @@ function MainListFooter({
   const handleOpenRandomListItemModal = () => {
     const randomIndex = generateRandomNumber(0, orderedListLength);
     setSelectedItemIndex(randomIndex);
-    handleToggleModal('listItem');
+    handleToggleModal('listItemModal');
   };
   const handleOpenNewItemModal = () => {
     setSelectedItemIndex(-1);
-    handleToggleModal('listItem');
+    handleToggleModal('listItemModal');
   };
 
-  const handleOpenTestModal = () => {
-    handleToggleModal('test');
+  const handleOpenExamModal = () => {
+    handleToggleModal('examModal');
   };
 
   return (
@@ -32,7 +32,7 @@ function MainListFooter({
       </div>
       <div className="main-list-footer__buttons__r">
         <Button
-          onClick={handleOpenTestModal}
+          onClick={handleOpenExamModal}
         >
           試験
         </Button>

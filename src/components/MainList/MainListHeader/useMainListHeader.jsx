@@ -47,15 +47,15 @@ const useMainListHeader = ({
   };
 
   const handleKanaButtonClick = () => {
-    handleToggleModal('hi');
+    handleToggleModal('kanaModal');
   };
 
   const handleJishoNavigate = async () => {
     if (!filters || !filters.text) return;
-    handleToggleModal('jishoMeanings');
+    handleToggleModal('jishoMeaningsModal');
   };
 
-  const handleShowFiltersModal = () => handleToggleModal('filters');
+  const handleShowFiltersModal = () => handleToggleModal('filtersModal');
 
   const handleKanaClick = (e) => {
     if (!filters.text) return;

@@ -30,7 +30,7 @@ function useMainList({
 
   const handleToggleModal = (modalKey = null) => {
     setShowModal(modalKey);
-    if (showModal !== 'jishoMeanings') setJishoWord({});
+    if (showModal !== 'jishoMeaningsModal') setJishoWord({});
   };
 
   const handleFiltersChange = (newFilters, newSort) => {

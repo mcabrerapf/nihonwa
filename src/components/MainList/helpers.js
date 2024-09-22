@@ -1,22 +1,18 @@
 import {
-  FiltersModal, KanaModal, ListItemModal, SortModal, TestModal, JishoMeaningsModal,
+  FiltersModal, KanaModal, ListItemModal, ExamModal, JishoMeaningsModal,
 } from '../Modals';
 
 const getModalToUse = (modalKey) => {
   switch (modalKey) {
-    case 'hi':
+    case 'kanaModal':
       return KanaModal;
-    case 'ka':
-      return KanaModal;
-    case 'filters':
+    case 'filtersModal':
       return FiltersModal;
-    case 'sort':
-      return SortModal;
-    case 'test':
-      return TestModal;
-    case 'listItem':
+    case 'examModal':
+      return ExamModal;
+    case 'listItemModal':
       return ListItemModal;
-    case 'jishoMeanings':
+    case 'jishoMeaningsModal':
       return JishoMeaningsModal;
     default:
       return () => {};

@@ -4,7 +4,6 @@ import TAGS from '../../../constants/TAGS';
 import Button from '../../Button';
 
 function FiltersModal({ filters, sort, handleFiltersChange }) {
-  // const [selectedSortLanguage, selectedSortDirection] = sort;
   const [selectedFilters, setSelectedFilters] = useState(filters);
   const [selectedSort, setSelectedSort] = useState(sort);
   const { tags } = selectedFilters;
@@ -39,45 +38,48 @@ function FiltersModal({ filters, sort, handleFiltersChange }) {
 
   return (
     <div className="filters-modal">
-      <div className="filters-modal-content">
-        <div className="sort-options">
-          <Button
-            isNotSelected={selectedSort[0] !== 'en'}
-            onClick={() => updateSortLan('en')}
-          >
-            Abc
-          </Button>
-          <Button
-            isNotSelected={selectedSort[0] !== 'jp'}
-            onClick={() => updateSortLan('jp')}
-          >
-            日本
-          </Button>
-          <Button
-            isNotSelected={selectedSort[0] !== '%'}
-            onClick={() => updateSortLan('%')}
-          >
-            %
-          </Button>
-          <Button
-            isNotSelected={selectedSort[1] !== 'asc'}
-            onClick={() => updateSortDir('asc')}
-          >
-            ASC
-          </Button>
-          <Button
-            isNotSelected={selectedSort[1] !== 'dsc'}
-            onClick={() => updateSortDir('dsc')}
-          >
-            DSC
-          </Button>
+      <div className="filters-modal__content">
+        <div className="filters-modal__content__sort-options">
+          <div className="filters-modal__content__sort-options__type">
+            <Button
+              isNotSelected={selectedSort[0] !== 'en'}
+              onClick={() => updateSortLan('en')}
+            >
+              Abc
+            </Button>
+            <Button
+              isNotSelected={selectedSort[0] !== 'jp'}
+              onClick={() => updateSortLan('jp')}
+            >
+              日本
+            </Button>
+            <Button
+              isNotSelected={selectedSort[0] !== '%'}
+              onClick={() => updateSortLan('%')}
+            >
+              %
+            </Button>
+          </div>
+          <div className="filters-modal__content__sort-options__dir">
+            <Button
+              isNotSelected={selectedSort[1] !== 'asc'}
+              onClick={() => updateSortDir('asc')}
+            >
+              ASC
+            </Button>
+            <Button
+              isNotSelected={selectedSort[1] !== 'dsc'}
+              onClick={() => updateSortDir('dsc')}
+            >
+              DSC
+            </Button>
+          </div>
         </div>
-        <div className="filters-options">
+        <div className="filters-modal__content__filters-options">
           {TAGS.map((tag) => {
             const isSelected = tags.find(
               (selectedTag) => selectedTag === tag,
             );
-
             return (
               <Button
                 key={tag}
@@ -90,7 +92,7 @@ function FiltersModal({ filters, sort, handleFiltersChange }) {
           })}
         </div>
       </div>
-      <div className="filters-modal-footer">
+      <div className="filters-modal__footer">
         <Button onClick={handleUpdateListFilters}>O</Button>
       </div>
     </div>

@@ -14,12 +14,10 @@ function Main() {
   if (loading) return <div className="main-loading-container"><Loading /></div>;
 
   return (
-  // <main className="main-container">
     <MainList
       wordList={wordList}
       updateWordsList={updateWordsList}
     />
-  // </main>
   );
 }
 

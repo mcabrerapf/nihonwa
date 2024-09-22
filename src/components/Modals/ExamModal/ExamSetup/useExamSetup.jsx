@@ -1,36 +1,18 @@
-import './TestSetupContent.scss';
 import { buildQuestions } from '../helpers';
 
-function useTestSetupContent({
+function useExamSetup({
   testSetupOptions,
   wordList,
   setTestSetupOptions,
   handleTestStart,
 }) {
-  const { questionLimit, questionLanguage, questionTags } = testSetupOptions;
+  const { questionLimit, questionTags } = testSetupOptions;
   const reachedMax = questionLimit >= 25;
   const reachedMin = questionLimit <= 5;
-  const isJpEnabled = !!questionLanguage.find((lan) => lan === 'jp');
-  const isEnEnabled = !!questionLanguage.find((lan) => lan === 'en');
 
   const handleBuildQuestions = () => {
     const builtQuestions = buildQuestions(testSetupOptions, wordList);
     handleTestStart(builtQuestions);
-  };
-
-  const handleLanguageButtonClick = ({ target: { value } }) => {
-    if (value === 'en') {
-      if (isJpEnabled) {
-        const updatedOptions = isEnEnabled ? ['jp'] : ['en', 'jp'];
-        setTestSetupOptions({ ...testSetupOptions, questionLanguage: updatedOptions });
-      }
-    }
-    if (value === 'jp') {
-      if (isEnEnabled) {
-        const updatedOptions = isJpEnabled ? ['en'] : ['en', 'jp'];
-        setTestSetupOptions({ ...testSetupOptions, questionLanguage: updatedOptions });
-      }
-    }
   };
 
   const handleQuestionLimitChange = (increase) => {
@@ -71,14 +53,11 @@ function useTestSetupContent({
     questionLimit,
     reachedMin,
     reachedMax,
-    isJpEnabled,
-    isEnEnabled,
     questionTags,
     handleQuestionLimitChange,
-    handleLanguageButtonClick,
     handleBuildQuestions,
     handleTagClick,
   };
 }
 
-export default useTestSetupContent;
+export default useExamSetup;

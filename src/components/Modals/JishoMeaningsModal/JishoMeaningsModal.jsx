@@ -41,7 +41,7 @@ function JishoMeaningsModal({
 
     setJishoWord(parsedWord);
     setSelectedItemIndex(-1);
-    handleToggleModal('listItem');
+    handleToggleModal('listItemModal');
   };
 
   return (

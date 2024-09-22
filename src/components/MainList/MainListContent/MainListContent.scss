@@ -7,7 +7,6 @@
   gap: 1rem;
   margin-top: 0.5rem;
   padding: 0 0 2rem 0;
-  height: 100%;
   height: calc(100% - 5rem);
   width: 100%;
 
@@ -17,9 +16,11 @@
     flex-direction: row;
     align-items: flex-start;
     cursor: pointer;
-    width: 95%;
-    gap: 0.5rem;
-    padding: 1rem 0.5rem;
+    box-sizing: border-box;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 98%;
+    padding: 1rem 1rem;
     border-radius: 0.5rem;
     font-size: 2rem;
     box-shadow: 0rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);

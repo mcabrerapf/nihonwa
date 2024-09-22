@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import './TestResultsContent.scss';
+import './ExamResults.scss';
 import Button from '../../../Button';
 import { getServiceToUse } from '../../../../Services';
-import TotalScore from './TotalScore';
 
-function TestResultsContent({
+function ExamResults({
   questions, setView, closeModal, updateWordsList,
 }) {
   const [isLoading, setIsLoading] = useState(true);
-  const [className, setClassname] = useState('underline');
+
   const correctQuestions = questions.filter((question) => question.correct).length;
   const totalQuestions = questions.length;
+  const score = (correctQuestions / totalQuestions) * 100;
 
   useEffect(() => {
     async function updateQustions() {
@@ -21,7 +21,6 @@ function TestResultsContent({
       await updateWordsList();
       setIsLoading(false);
     }
-    setClassname('underline fade-in');
     updateQustions();
   }, []);
 
@@ -33,34 +32,30 @@ function TestResultsContent({
 
   return (
     <>
-      <div className="test-modal-results-content">
-        {/* <div className="results-header">
-          <span className="text">Results</span>
-        </div> */}
-        <ol className="test-modal-results-list" type="1">
+      <div className="exam-modal-results">
+        <ol className="exam-modal-results__list" type="1">
           {questions.map((question, i) => {
             const { jp, id, correct } = question;
             return (
-              <>
-                <li key={id} className="test-modal-results-result">
-                  <span>
-                    {i + 1}
-                    .
-                  </span>
-                  <span>{jp}</span>
-                </li>
-                <span key={`${id}underline`} className={`${className} ${correct ? 'correct' : 'miss'}`} />
-              </>
+              <li key={id} className={`exam-modal-results__list__item${!correct ? ' miss' : ''}`}>
+                <span>
+                  {i + 1}
+                  .
+                </span>
+                <span>{jp}</span>
+              </li>
 
             );
           })}
         </ol>
-        <TotalScore
-          correctQuestions={correctQuestions}
-          totalQuestions={totalQuestions}
-        />
+        <div className="exam-modal-results__score">
+          <span className="exam-modal-results__score__number">
+            {score}
+            %
+          </span>
+        </div>
       </div>
-      <footer className="test-modal-footer">
+      <footer className="exam-modal__footer">
         <Button onClick={handleClose} isDisabled={isLoading}>R</Button>
         <Button onClick={handleClose} isDisabled={isLoading}>O</Button>
       </footer>
@@ -68,4 +63,4 @@ function TestResultsContent({
   );
 }
 
-export default TestResultsContent;
+export default ExamResults;

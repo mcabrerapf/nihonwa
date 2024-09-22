@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import './TestProgressContent.scss';
+import './ExamProgress.scss';
 import Button from '../../../Button';
 import { getCharWithFuri } from '../../../../utils';
 import {
-  checkIfShouldShow,
   getAnswerButtonColor,
   getKanaSize,
 } from './helpers';
 import ProgressBar from './PorgressBar';
 
-function TestProgressContent({
-  questions, testSetupOptions, setQuestions, setView,
+function ExamProgress({
+  questions, setQuestions, setView,
 }) {
   const [showAnswerOptions, setShowAnswerOptions] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -22,7 +21,6 @@ function TestProgressContent({
     en, furi,
     answers,
   } = currentQuestion;
-  const { questionLanguage } = testSetupOptions;
 
   const goToNextQuestion = () => {
     if (currentQuestionIndex + 1 === questions.length) {
@@ -57,52 +55,42 @@ function TestProgressContent({
   };
 
   const questionCharacters = getCharWithFuri(jp, furi, true);
-  const showJp = checkIfShouldShow(questionLanguage, 'jp', showAnswerOptions);
-  // const showEn = checkIfShouldShow(questionLanguage, 'en', showAnswerOptions, showJp);
   const kanaSize = getKanaSize(jp);
   const numberOfQuestions = questions.length;
 
   return (
-    <>
-      <footer className="test-modal-header">
+    <div className="exam-modal-progress">
+      <div className="exam-modal-progress__top">
         <ProgressBar
           numberOfQuestions={numberOfQuestions}
           currentQuestionIndex={currentQuestionIndex}
           isQuestionValidated={isQuestionValidated}
         />
-        {/* <Button
-          isDisabled={isLoading || !selectedAnswer}
-          onClick={goToNextQuestion}
-        >
-          O
-        </Button> */}
-      </footer>
-      <div className="test-modal-progress-content">
-        <div
-          role="button"
-          className="current-question"
-          onClick={() => {
-            if (!showAnswerOptions) setShowAnswerOptions(true);
-            if (isQuestionValidated) goToNextQuestion();
-          }}
-        >
-          {showJp && (
-          <div className="current-question-question">
-            {questionCharacters.map((questionChar, i) => {
-              const [char, furiChar, enChar] = questionChar;
+      </div>
+      <div
+        role="button"
+        className="exam-modal-progress__question"
+        onClick={() => {
+          if (!showAnswerOptions) setShowAnswerOptions(true);
+          if (isQuestionValidated) goToNextQuestion();
+        }}
+      >
+        <div className="exam-modal-progress__question__jp">
+          {questionCharacters.map((questionChar, i) => {
+            const [char, furiChar, enChar] = questionChar;
 
-              return (
-                <div className="kana-with-furi" key={`${char}-${i}`}>
-                  {showAnswerOptions && <span className="furi">{furiChar}</span>}
-                  <span className={`kana ${kanaSize}`}>{char}</span>
-                  {showAnswerOptions && <span className="furi">{enChar}</span>}
-                </div>
-              );
-            })}
-          </div>
-          )}
-          {showAnswerOptions && (
-          <div className="queston-answers-options">
+            return (
+              <div className="kana-with-furi" key={`${char}-${i}`}>
+                {showAnswerOptions && <span className="furi">{furiChar}</span>}
+                <span className={`kana ${kanaSize}`}>{char}</span>
+                {showAnswerOptions && <span className="furi">{enChar}</span>}
+              </div>
+            );
+          })}
+        </div>
+
+        {showAnswerOptions && (
+          <div className="exam-modal-progress__question__answers">
             {answers.map((answer) => {
               const validatedColor = isQuestionValidated ? getAnswerButtonColor(answer, selectedAnswer, en) : '';
               const answerFontsize = answer.length > 30 ? 'small' : '';
@@ -120,11 +108,10 @@ function TestProgressContent({
               );
             })}
           </div>
-          )}
-        </div>
+        )}
       </div>
-    </>
+    </div>
   );
 }
 
-export default TestProgressContent;
+export default ExamProgress;

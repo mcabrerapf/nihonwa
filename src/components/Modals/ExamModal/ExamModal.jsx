@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import './TestModal.scss';
-import TestSetupContent from './TestSetupContent';
-import TestProgressContent from './TestProgressContent';
-import TestResultsContent from './TestResultsContent';
-// import Button from '../../Button';
+import './ExamModal.scss';
+import ExamSetup from './ExamSetup';
+import ExamProgress from './ExamProgress';
+import ExamResults from './ExamResults';
 import { ModalWrapperContext } from '../../ModalWrapper/ModalWrapperContext';
 import { TEST_SETUP_INIT_STATE } from './constants';
+import Button from '../../Button';
 
-function TestModal({ wordList, updateWordsList }) {
+function ExamModal({ wordList, updateWordsList }) {
   const { closeModal, setCloseOnBgClick } = useContext(ModalWrapperContext);
   const [view, setView] = useState('setup');
   const [questions, setQuestions] = useState([]);
@@ -21,7 +21,7 @@ function TestModal({ wordList, updateWordsList }) {
 
   const handleTestStart = (builtQuestions) => {
     setQuestions(builtQuestions);
-    setView('inprogress');
+    setView('inProgress');
   };
 
   const handleClose = async (e) => {
@@ -30,12 +30,12 @@ function TestModal({ wordList, updateWordsList }) {
   };
 
   return (
-    <div className="test-modal">
-      <div className="test-modal-header">
-        {/* {view !== 'done' && <Button onClick={handleClose}>X</Button>} */}
+    <div className="exam-modal">
+      <div className="exam-modal__header">
+        {view !== 'done' && <Button onClick={handleClose}>X</Button>}
       </div>
       {view === 'setup' && (
-      <TestSetupContent
+      <ExamSetup
         testSetupOptions={testSetupOptions}
         wordList={wordList}
         setTestSetupOptions={setTestSetupOptions}
@@ -43,8 +43,8 @@ function TestModal({ wordList, updateWordsList }) {
         closeModal={closeModal}
       />
       )}
-      {view === 'inprogress' && (
-      <TestProgressContent
+      {view === 'inProgress' && (
+      <ExamProgress
         questions={questions}
         testSetupOptions={testSetupOptions}
         setQuestions={setQuestions}
@@ -52,7 +52,7 @@ function TestModal({ wordList, updateWordsList }) {
       />
       )}
       {view === 'done' && (
-      <TestResultsContent
+      <ExamResults
         questions={questions}
         updateWordsList={updateWordsList}
         setView={setView}
@@ -63,4 +63,4 @@ function TestModal({ wordList, updateWordsList }) {
   );
 }
 
-export default TestModal;
+export default ExamModal;

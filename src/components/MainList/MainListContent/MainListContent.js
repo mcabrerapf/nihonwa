@@ -15,7 +15,7 @@ function MainListContent({
 
   const handleOpenListItemModal = (i) => {
     setSelectedItemIndex(i);
-    handleToggleModal('listItem');
+    handleToggleModal('listItemModal');
   };
 
   const loadMoreItems = () => {
@@ -25,8 +25,8 @@ function MainListContent({
   return (
     <ul className="main-list" ref={listRef}>
       {items.map((listItem, i) => {
-        const { jp = '', id } = listItem;
-
+        const { jp, id } = listItem;
+        if (!jp) return null;
         return (
           <li
             key={id}
