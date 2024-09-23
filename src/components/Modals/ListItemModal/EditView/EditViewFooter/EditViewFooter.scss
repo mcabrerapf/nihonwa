@@ -11,13 +11,14 @@
         font-size: 2rem;
         align-items: center;
 
-        button {
+        .button {
             display: flex;
             justify-content: center;
             align-items: center;
             user-select: none;
             border: none;
-
+            min-height: 3rem;
+            min-width: 3rem;
         }
     }
 }
