@@ -13,7 +13,7 @@ import { EDIT_STEP_HEADERS } from './constants';
 const getEditStepHeaderText = (type, step, word) => {
   if (!type) return '';
   if (step === 0) return EDIT_STEP_HEADERS[type][step];
-  if (EDIT_STEP_HEADERS[type][step]) return `${EDIT_STEP_HEADERS[type][step]} - ${word}`;
+  if (EDIT_STEP_HEADERS[type][step]) return `${word} - ${EDIT_STEP_HEADERS[type][step]}`;
   return '';
 };
 

@@ -24,7 +24,7 @@ function DisplayViewHeader(props) {
           isDisabled={!canDelete}
           onClick={() => setModalView('delete')}
         >
-          D
+          削除
         </Button>
         <div className="display-view-modal-header__buttons__center">
           <Button
@@ -40,8 +40,9 @@ function DisplayViewHeader(props) {
             辞書
           </Button>
         </div>
-
-        <Button onClick={() => setModalView('edit')}>E</Button>
+        <Button onClick={() => setModalView('edit')}>
+          編集
+        </Button>
       </div>
       )}
       <div role="button" className="display-view-modal-header__text">
