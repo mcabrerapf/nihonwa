@@ -26,14 +26,12 @@ function DisplayViewFooter({
       </div>
       <div className="display-view-actions">
         <div className="arrow-container">
-          {!isFirstItem && (
           <Button
             isDisabled={isFirstItem}
             onClick={() => handleListItemChange()}
           >
             {'<'}
           </Button>
-          )}
         </div>
         <div className="display-view-modal-view-buttons">
           <Button
@@ -61,14 +59,12 @@ function DisplayViewFooter({
           </Button>
         </div>
         <div className="arrow-container">
-          {!isLastItem && (
           <Button
             isDisabled={isLastItem}
             onClick={() => handleListItemChange(true)}
           >
             {'>'}
           </Button>
-          )}
         </div>
       </div>
 

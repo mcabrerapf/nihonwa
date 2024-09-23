@@ -7,12 +7,15 @@
   .display-view-tags {
     display: flex;
     flex-direction: row;
+    overflow-x: auto;
+    box-sizing: border-box;
+    padding: 0.5rem;
     gap: 1rem;
 
     .button {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
+      flex-shrink: 0;
       color: var(--white-color);
-      box-shadow: none !important;
       border: 1px solid var(--white-color);
       user-select: none;
       cursor: auto;
@@ -23,15 +26,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    box-sizing: border-box;
     width: 100%;
-    gap: 1rem;
-    padding-top: 0.3rem;
-    padding-bottom: 0.3rem;
-
-    .arrow-container {
-      height: 3rem;
-      width: 3rem;
-    }
+    padding: 0.5rem;
 
     .display-view-modal-view-buttons {
       display: flex;
