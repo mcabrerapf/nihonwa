@@ -9,11 +9,12 @@ button {
   justify-content: center;
   background-color: var(--button-color);
   color: var(--white-color);
-  min-height: 3rem;
-  min-width: 3rem;
+  min-height: 3.5rem;
+  min-width: 3.5rem;
   border-radius: 5px;
   font-size: 2rem;
   font-weight: 800;
+  padding: 0.3rem 0.5rem;
   border: 1px solid var(--white-color);
   transition: transform 0.2s ease, background-color 0.2s ease;
 

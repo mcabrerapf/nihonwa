@@ -2,6 +2,7 @@ import React from 'react';
 import './EditWord.scss';
 import Button from '../../Button';
 import useEditWord from './useEditWord';
+import Input from '../../Input';
 
 function EditWord(props) {
   const {
@@ -40,11 +41,11 @@ function EditWord(props) {
           className="edit-word-input"
           onSubmit={handleOnSubmit}
         >
-          <input
-            ref={inputRef}
+          <Input
+            inputRef={inputRef}
+            value={currentWord}
             onChange={handleOnChange}
             onKeyDown={handleKeyDown}
-            value={currentWord}
           />
           <div className="edit-word-input-buttons">
             <Button

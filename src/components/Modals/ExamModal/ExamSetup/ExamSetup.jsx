@@ -50,7 +50,7 @@ function ExamSetup(props) {
         </div>
       </div>
       <footer className="exam-modal__footer">
-        <Button onClick={handleBuildQuestions}>o</Button>
+        <Button onClick={handleBuildQuestions}>O</Button>
       </footer>
     </>
   );

@@ -2,6 +2,7 @@ import React from 'react';
 import './EditWordFuri.scss';
 import Button from '../../Button';
 import useEditWordFuri from './useEditWordFuri';
+import Input from '../../Input';
 
 function EditWordFuri(props) {
   const {
@@ -26,14 +27,6 @@ function EditWordFuri(props) {
             key={key}
             className={className}
           >
-            {/* {kanaGroup[1] && (
-            <Button
-              modifier="ghost"
-              onClick={handleDeleteFuri}
-            >
-              x
-            </Button>
-            )} */}
             <span className="furi">{kanaGroup[1]}</span>
             <span
               role="button"
@@ -47,12 +40,18 @@ function EditWordFuri(props) {
         ))}
       </div>
       <form className="edit-word-furi-input" onSubmit={handleOnSubmit}>
-        <input
+        <Input
+          inputRef={inputRef}
+          value={currentString}
+          onChange={handleOnChange}
+          onKeyDown={handleKeyDown}
+        />
+        {/* <input
           ref={inputRef}
           onChange={handleOnChange}
           onKeyDown={handleKeyDown}
           value={currentString}
-        />
+        /> */}
         <div className="edit-word-furi-input-buttons">
           <Button
             isNotSelected={!isHiraganaSelected}

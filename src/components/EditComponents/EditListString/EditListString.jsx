@@ -2,6 +2,7 @@ import React from 'react';
 import './EditListString.scss';
 import Button from '../../Button';
 import useEditListString from './useEditListString';
+import Input from '../../Input';
 
 function EditListString(props) {
   const {
@@ -69,10 +70,10 @@ function EditListString(props) {
       </div>
       )}
       <form className="edit-list-string-input" onSubmit={handleOnSubmit}>
-        <input
-          ref={inputRef}
-          onChange={handleOnChange}
+        <Input
+          inputRef={inputRef}
           value={currentString}
+          onChange={handleOnChange}
         />
         <div className="edit-list-string-input-buttons">
           <Button

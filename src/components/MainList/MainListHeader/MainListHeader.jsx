@@ -2,6 +2,7 @@ import React from 'react';
 import './MainListHeader.scss';
 import Button from '../../Button';
 import useMainListHeader from './useMainListHeader';
+import Input from '../../Input';
 
 function MainListHeader(props) {
   const {
@@ -48,19 +49,12 @@ function MainListHeader(props) {
         <Button onClick={handleJishoNavigate} modifier="jisho-button" isDisabled={!textFilter}>
           探索
         </Button>
-        <div className="main-list-header__search__search-input">
-          <input
-            autoComplete="off"
-            type="text"
-            value={textFilter}
-            onChange={handleSearchTextChange}
-          />
-          {textFilter && (
-          <Button onClick={() => handleSearchTextChange({ target: { value: '' } })} modifier="reset-text-filter">
-            x
-          </Button>
-          )}
-        </div>
+        <Input
+          value={textFilter}
+          showResetButton
+          onChange={handleSearchTextChange}
+          onResetButtonClick={() => handleSearchTextChange({ target: { value: '' } })}
+        />
         <div className="main-list-header__search__kana-buttons">
           <Button
             modifier="kana-button"

@@ -18,7 +18,6 @@
     .edit-list-string-item {
       display: flex;
       align-items: center;
-      // height: 2rem;
 
       button.delete-item-button {
         box-shadow: none;
@@ -37,7 +36,6 @@
 
       .selected-item {
         text-align: left;
-        // box-shadow: 0rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
       }
     }
 
@@ -52,29 +50,21 @@
 
     button {
       font-size: 1.5rem;
-      // width: 7.4rem;
     }
   }
 
   .edit-list-string-input {
     display: flex;
+    justify-content: end;
+    align-items: center;
+    box-sizing: border-box;
     width: 100%;
-    // height: 3rem;
     gap: 1rem;
-    padding-bottom: 1rem;
-
-    input {
-      margin-left: 0.2rem;
-      width: 100%;
-    }
+    padding-left: 0.5rem;
 
     .edit-meaning-input-buttons {
       display: flex;
       gap: 1rem;
     }
   }
-
-
-
-
 }
