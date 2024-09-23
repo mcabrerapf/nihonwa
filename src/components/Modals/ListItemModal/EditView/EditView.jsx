@@ -62,8 +62,8 @@ function EditView({
     <div className="list-item-modal-edit-view">
       <div className="edit-view-header">
         <span>{headerText}</span>
-        <Button className="edit-view-header-close-button" onClick={() => closeModal()}>
-          x
+        <Button onClick={() => closeModal()}>
+          X
         </Button>
       </div>
       <div className="edit-view-content">

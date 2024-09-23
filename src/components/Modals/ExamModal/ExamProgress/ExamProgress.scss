@@ -13,12 +13,12 @@
 
     .progress-bar {
       height: 1rem;
-      background-color: white;
+      background-color: var(--white-color);
       width: 100%;
       border-radius: 0.2rem;
 
       &__fill {
-        background-color: green;
+        background-color: var(--green-color);
         height: 100%;
         border-radius: 0.2rem;
         transition: width 0.5s;
@@ -84,23 +84,27 @@
       width: 100%;
 
       button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
         padding: 1rem;
         height: 5rem;
-        min-height: 5rem;
-        max-height: 5rem;
+        // min-height: 5rem;
+        height: 5rem;
 
         &.small {
           font-size: 1.5rem;
         }
 
         &.hit {
-          background-color: green;
-          color: white;
+          border: 1px solid var(--green-color);
+          color: var(--green-color);
         }
 
         &.miss {
-          background-color: red;
-          color: white;
+          border: 1px solid var(--red-color);
+          color: var(--red-color);
         }
       }
     }

@@ -17,13 +17,13 @@
     align-items: flex-start;
     cursor: pointer;
     box-sizing: border-box;
+    border: 1px solid var(--white-color);
     flex-grow: 0;
     flex-shrink: 0;
-    width: 98%;
+    width: 95%;
     padding: 1rem 1rem;
     border-radius: 0.5rem;
     font-size: 2rem;
-    box-shadow: 0rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
 
     & .load-more {
       width: 1px;

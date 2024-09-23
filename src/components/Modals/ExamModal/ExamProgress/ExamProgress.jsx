@@ -92,18 +92,19 @@ function ExamProgress({
         {showAnswerOptions && (
           <div className="exam-modal-progress__question__answers">
             {answers.map((answer) => {
-              const validatedColor = isQuestionValidated ? getAnswerButtonColor(answer, selectedAnswer, en) : '';
-              const answerFontsize = answer.length > 30 ? 'small' : '';
-              const buttonModifier = `${validatedColor} ${answerFontsize}`;
+              const isSelectedAnswer = answer === selectedAnswer;
+              const answerState = isQuestionValidated ? getAnswerButtonColor(answer, isSelectedAnswer, en) : '';
+              const answerFontsize = answer.length > 30 ? ' small' : '';
+              const buttonModifier = `${answerState}${answerFontsize}`;
 
+              console.log(answerState);
               return (
                 <Button
                   key={answer}
                   modifier={buttonModifier}
-                  isNotSelected={selectedAnswer !== answer}
                   onClick={() => handleUpdateQuestion(answer)}
                 >
-                  {answer}
+                  <span>{answer}</span>
                 </Button>
               );
             })}

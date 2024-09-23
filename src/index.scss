@@ -1,6 +1,24 @@
+:root {
+  --white-color: #ffffff;
+  --green-color: green;
+  --red-color: red;
+  --black-color: #000000;
+
+  --primary-color: #282c34;
+  --lightest-color: #282c34;
+  --light-color: #282c34;
+  --dark-color: #282c34;
+  --darkest-color: #000000;
+
+  --disabled-color: grey;
+  --background-color: var(--darkest-color);
+  --button-color: var(--darkest-color);
+
+}
+
 html {
-  background-color: #282c34;
-  color: white;
+  background-color: var(--background-color);
+  color: var(--white-color);
   margin: 0;
   padding: 0;
   height: 100%;
@@ -10,7 +28,7 @@ html {
 
 body,
 #root {
-  position: fixed;
+  // position: fixed;
   overflow: hidden;
   /* Avoiding overflow */
   margin: 0;
@@ -98,8 +116,6 @@ code {
               height: 4rem;
             }
           }
-
-          span {}
         }
 
         button {

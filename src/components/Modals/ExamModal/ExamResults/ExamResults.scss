@@ -27,7 +27,7 @@
 
       &.miss {
         & span:last-of-type {
-          color: red;
+          color: var(--red-color);
         }
       }
     }

@@ -11,7 +11,9 @@
 
     .button {
       font-size: 1.3rem;
-      color: white;
+      color: var(--white-color);
+      box-shadow: none !important;
+      border: 1px solid var(--white-color);
       user-select: none;
       cursor: auto;
     }

@@ -8,6 +8,10 @@
     display: flex;
     justify-content: flex-end;
     margin-bottom: 0.7rem;
+
+    .button {
+      border: none;
+    }
   }
 
   &__footer {

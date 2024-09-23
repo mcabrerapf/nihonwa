@@ -7,11 +7,12 @@ const getKanaSize = (kana) => {
   return 'big';
 };
 
-const getAnswerButtonColor = (answer, selectedAnswer, answers) => {
+const getAnswerButtonColor = (answer, isSelectedAnswer, answers) => {
   if (answers.includes(answer)) return 'hit';
-  if (selectedAnswer === answer && !answers.includes(answer)) return 'miss';
+  if (isSelectedAnswer && !answers.includes(answer)) return 'miss';
   return '';
 };
+
 const checkIfShouldShow = (questionLanguage, questionKey, showAnswer, isOtherTrue) => {
   if (showAnswer) return true;
   if (isOtherTrue !== undefined) return !isOtherTrue;

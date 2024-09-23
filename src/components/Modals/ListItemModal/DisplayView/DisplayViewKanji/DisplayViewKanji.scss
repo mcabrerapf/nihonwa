@@ -26,7 +26,7 @@
           font-size: 1.4rem;
 
           &.empty-list {
-            color: grey;
+            color: var(--disabled-color);
           }
         }
 
