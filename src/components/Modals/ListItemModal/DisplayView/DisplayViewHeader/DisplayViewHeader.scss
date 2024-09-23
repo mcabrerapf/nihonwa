@@ -1,7 +1,5 @@
 .display-view-modal-header {
-
-
-  .display-view-modal-header-buttons {
+  &__buttons {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -13,7 +11,7 @@
       height: 2rem;
     }
 
-    .display-view-modal-header-buttons-center {
+    &__center {
       display: flex;
       gap: 0.5rem;
 
@@ -21,11 +19,9 @@
         width: 4rem;
       }
     }
-
-
   }
 
-  .display-view-modal-header-text {
+  &__text {
     display: flex;
     align-items: flex-end;
     flex-wrap: wrap;
@@ -62,7 +58,7 @@
     }
   }
 
-  .display-view-modal-header-succes-percentage {
+  &__succes-percentage {
     display: flex;
     justify-content: center;
     align-items: center;

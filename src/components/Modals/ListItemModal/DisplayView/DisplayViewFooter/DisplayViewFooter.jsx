@@ -5,15 +5,13 @@ import Button from '../../../../Button';
 function DisplayViewFooter({
   isLastItem,
   isFirstItem,
-  hasConjugation,
-  hasNotes,
   setView,
   tags,
   handleListItemChange,
 }) {
   return (
     <div className="display-view-modal-footer">
-      <div className="display-view-tags">
+      <div className="display-view-modal-footer__tags">
         {!!tags.length && tags.map((tag) => (
           <Button
             key={tag}
@@ -24,7 +22,7 @@ function DisplayViewFooter({
           </Button>
         ))}
       </div>
-      <div className="display-view-actions">
+      <div className="display-view-modal-footer__actions">
         <div className="arrow-container">
           <Button
             isDisabled={isFirstItem}
@@ -33,29 +31,13 @@ function DisplayViewFooter({
             {'<'}
           </Button>
         </div>
-        <div className="display-view-modal-view-buttons">
-          <Button
-            isDisabled={!hasNotes}
-            onClick={() => {
-              if (hasNotes) setView('notes');
-            }}
-          >
-            N
-          </Button>
+        <div className="display-view-modal-footer__actions__view-buttons">
           <Button
             onClick={() => {
               setView('general');
             }}
           >
             G
-          </Button>
-          <Button
-            isDisabled={!hasConjugation}
-            onClick={() => {
-              setView('conjugation');
-            }}
-          >
-            C
           </Button>
         </div>
         <div className="arrow-container">

@@ -1,49 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './DisplayView.scss';
 import DisplayViewHeader from './DisplayViewHeader';
 import DisplayViewGeneral from './DisplayViewGeneral';
-import DisplayViewNotes from './DisplayViewNotes';
 import DisplayViewFooter from './DisplayViewFooter';
 import DisplayViewKanji from './DisplayViewKanji';
-import { calculateSuccessRate, checkIfCharIsKanji, getKanjiArrayFromString } from '../../../../utils';
-import {
-  GODAN, IADJECTIVE, ICHIDAN, NAADJECTIVE,
-} from '../../../../constants/TAGS';
-import DisplayViewConjugation from './DisplayViewConjugation';
+import useDisplayView from './useDisplayView';
 
-function DisplayView({
-  listItemData,
-  isFirstItem,
-  isLastItem,
-  canDelete,
-  similarWords,
-  modalView,
-  setModalView,
-  handleGoToItem,
-  handleListItemChange,
-}) {
+function DisplayView(props) {
   const {
-    jp, furi, en, tags, notes, hits, misses,
-  } = listItemData;
-  const [view, setView] = useState('general');
-  const [selectedKanji, setSelectedKanji] = useState('');
-  const hasNotes = notes && !!notes.length;
-  const kanjis = [...new Set(getKanjiArrayFromString(jp))];
-  const hasKanji = !!kanjis && !!kanjis.length;
-  const successPercentage = calculateSuccessRate(hits, misses);
-  const conjugation = tags
-    .find((tag) => tag === GODAN
-    || tag === ICHIDAN
-    || tag === IADJECTIVE
-    || tag === NAADJECTIVE
-    || tag === 'verb');
-  const sortedTags = tags.sort((a, b) => a.localeCompare(b));
-
-  useEffect(() => {
-    const newFirstKanji = jp.split('').find((char) => checkIfCharIsKanji(char));
-    setSelectedKanji(newFirstKanji);
-    setView('general');
-  }, [listItemData]);
+    jp,
+    en,
+    furi,
+    tags,
+    notes,
+    isLastItem,
+    isFirstItem,
+    sortedTags,
+    view,
+    similarWords,
+    selectedKanji,
+    hasKanji,
+    canDelete,
+    modalView,
+    successPercentage,
+    setModalView,
+    setSelectedKanji,
+    setView,
+    handleGoToItem,
+    handleListItemChange,
+  } = useDisplayView(props);
 
   return (
     <div className="list-item-modal-display-view">
@@ -60,24 +45,26 @@ function DisplayView({
         setSelectedKanji={setSelectedKanji}
         setView={setView}
       />
-      <div className="list-item-modal-content">
-        {view === 'general' && <DisplayViewGeneral tags={tags} en={en} similarWords={similarWords} similarWordClick={handleGoToItem} />}
-        {view === 'notes' && <DisplayViewNotes notes={notes} />}
-        {view === 'conjugation'
-        && (
-        <DisplayViewConjugation
-          word={jp}
-          conjugation={conjugation}
+      <div className="list-item-modal-display-view__content">
+        {view === 'general' && (
+        <DisplayViewGeneral
+          tags={tags}
+          en={en}
+          notes={notes}
+          similarWords={similarWords}
+          similarWordClick={handleGoToItem}
         />
         )}
-        {view === 'kanji' && <DisplayViewKanji selectedKanji={selectedKanji} />}
+        {view === 'kanji' && (
+        <DisplayViewKanji
+          selectedKanji={selectedKanji}
+        />
+        )}
       </div>
       <DisplayViewFooter
         isLastItem={isLastItem}
         isFirstItem={isFirstItem}
         tags={sortedTags}
-        hasConjugation={!!conjugation}
-        hasNotes={hasNotes}
         handleListItemChange={handleListItemChange}
         setView={setView}
       />

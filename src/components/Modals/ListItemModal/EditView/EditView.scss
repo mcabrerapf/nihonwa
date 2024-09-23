@@ -27,5 +27,11 @@
     height: 30rem;
     font-size: 1.5rem;
     gap: 1rem;
+
+    .list-item-modal-display-view {
+      .display-view-modal-footer {
+        display: none;
+      }
+    }
   }
 }

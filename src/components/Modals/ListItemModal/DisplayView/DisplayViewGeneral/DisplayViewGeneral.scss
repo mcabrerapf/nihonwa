@@ -1,28 +1,43 @@
 .display-view-general {
   display: flex;
   flex-direction: column;
-  // justify-content: space-between;
   height: 100%;
   width: 100%;
+  overflow-y: auto;
 
-  .display-view-content-meanings {
+  &__meanings {
     display: flex;
     flex-direction: column;
     font-size: 1.5rem;
     padding-bottom: 1rem;
   }
 
-  .display-view-content-similar-words {
+  &__notes {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top: 1px dotted var(--white-color);
+  }
+
+  &__similar-words {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     font-size: 1.5rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    border-top: 1px solid white;
+    border-top: 1px dotted var(--white-color);
 
-    .display-view-content-similar-words-meanings {
-      font-size: 1.3rem;
+    &__word {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+
+      &__meanings {}
     }
   }
 }

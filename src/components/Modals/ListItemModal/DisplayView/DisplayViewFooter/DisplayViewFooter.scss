@@ -4,7 +4,7 @@
   width: 100%;
   gap: 0.5rem;
 
-  .display-view-tags {
+  &__tags {
     display: flex;
     flex-direction: row;
     overflow-x: auto;
@@ -13,28 +13,25 @@
     gap: 1rem;
 
     .button {
-      font-size: 1.2rem;
-      flex-shrink: 0;
-      color: var(--white-color);
-      border: 1px solid var(--white-color);
       user-select: none;
       cursor: auto;
+      color: var(--white-color);
+      border: 1px solid var(--white-color);
+      font-size: 1.2rem;
+      flex-shrink: 0;
     }
   }
 
-  .display-view-actions {
+  &__actions {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     box-sizing: border-box;
     width: 100%;
-    padding: 0.5rem;
 
-    .display-view-modal-view-buttons {
+    &__view-buttons {
       display: flex;
       gap: 1rem;
     }
   }
-
-
 }

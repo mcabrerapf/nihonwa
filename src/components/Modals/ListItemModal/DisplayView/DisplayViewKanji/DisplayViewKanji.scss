@@ -7,20 +7,19 @@
   width: 100%;
   height: 100%;
 
-  .kanji {
+  &__kanji {
     width: 100%;
 
-    .kanji-data {
+    &__data {
       display: flex;
       flex-direction: row;
-      // justify-content: space-between;
       width: 100%;
-      height: 10rem;
+      height: 8rem;
 
-      .kanji-data-container {
+      &__container {
         flex: 1;
 
-        .kanji-data-header {
+        &__header {
           font-weight: bold;
           text-decoration: underline;
           font-size: 1.4rem;
@@ -30,7 +29,7 @@
           }
         }
 
-        .kanji-data-list {
+        &__list {
           list-style: circle;
           overflow-y: auto;
           font-size: 1.3rem;
