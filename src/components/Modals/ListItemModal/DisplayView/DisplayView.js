@@ -64,6 +64,7 @@ function DisplayView(props) {
       <DisplayViewFooter
         isLastItem={isLastItem}
         isFirstItem={isFirstItem}
+        view={view}
         tags={sortedTags}
         handleListItemChange={handleListItemChange}
         setView={setView}

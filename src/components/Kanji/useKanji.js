@@ -4,6 +4,7 @@ import { loadKanjiWriter } from './helpers';
 
 function useKanji({ kanji, kanjiId }) {
   const kanjiRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [kanjiWriter, setKanjiWriter] = useState(null);
   const [hasError, setHasError] = useState();
   const idToUse = kanjiId || kanji;
@@ -13,6 +14,7 @@ function useKanji({ kanji, kanjiId }) {
       const loadedWriter = await loadKanjiWriter(kanji, idToUse, setHasError);
       loadedWriter.animateCharacter();
       setKanjiWriter(loadedWriter);
+      setIsLoading(false);
     };
     if (!kanjiRef.current || kanjiWriter !== null) return;
     loadKanji();
@@ -31,6 +33,7 @@ function useKanji({ kanji, kanjiId }) {
     idToUse,
     containerClassName,
     failedToLoad,
+    isLoading,
     handleKanjiClick,
   };
 }

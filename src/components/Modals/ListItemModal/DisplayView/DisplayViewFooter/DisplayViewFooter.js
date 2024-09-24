@@ -5,8 +5,9 @@ import Button from '../../../../Button';
 function DisplayViewFooter({
   isLastItem,
   isFirstItem,
-  setView,
+  view,
   tags,
+  setView,
   handleListItemChange,
 }) {
   return (
@@ -34,11 +35,12 @@ function DisplayViewFooter({
         </div>
         <div className="display-view-modal-footer__actions__view-buttons">
           <Button
+            isDisabled={view === 'general'}
             onClick={() => {
               setView('general');
             }}
           >
-            G
+            情報
           </Button>
         </div>
         <div className="arrow-container">

@@ -2,7 +2,8 @@
   .edit-view-header {
     display: flex;
     justify-content: space-between;
-    height: 3rem;
+    align-items: center;
+    height: 4rem;
 
     span {
       display: block;
@@ -29,8 +30,12 @@
     gap: 1rem;
 
     .list-item-modal-display-view {
+      &__content {
+        height: 15rem !important;
+      }
+
       .display-view-modal-footer {
-        .display-view-modal-footer__actions {
+        &__actions {
           display: none;
         }
 

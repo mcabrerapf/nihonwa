@@ -7,5 +7,10 @@
     justify-content: center;
     align-items: center;
     height: 10rem;
+
+    .button {
+      border: 1px solid var(--red-color);
+      color: var(--red-color);
+    }
   }
 }
