@@ -25,12 +25,12 @@ function EditListString(props) {
 
   return (
     <div className="edit-list-string">
-      <div className="edit-list-string-display">
+      <div className="edit-list-string__display">
         {listValues.map((value, i) => {
           const isItemSelected = i === selectedItemIndex;
 
           return (
-            <div key={`${value}-${i}`} className="edit-list-string-item">
+            <div key={`${value}-${i}`} className="edit-list-string__display__item">
               <Button
                 modifier="delete-item-button"
                 onClick={() => handleDelete(i)}
@@ -53,7 +53,7 @@ function EditListString(props) {
         </div>
       </div>
       {isMeaningsList && (
-      <div className="edit-list-string-nav-buttons">
+      <div className="edit-list-string__nav-buttons">
         <Button
           isDisabled={isListEmpty}
           onClick={handleGoToNotes}
@@ -69,13 +69,13 @@ function EditListString(props) {
         </Button>
       </div>
       )}
-      <form className="edit-list-string-input" onSubmit={handleOnSubmit}>
+      <form className="edit-list-string__input" onSubmit={handleOnSubmit}>
         <Input
           inputRef={inputRef}
           value={currentString}
           onChange={handleOnChange}
         />
-        <div className="edit-list-string-input-buttons">
+        <div className="edit-list-string__input__buttons">
           <Button
             isDisabled={!currentString}
             onClick={handleUpdateItem}

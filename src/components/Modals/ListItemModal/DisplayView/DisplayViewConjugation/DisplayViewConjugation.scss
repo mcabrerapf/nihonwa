@@ -1,24 +1,21 @@
 .display-view-conjugation {
     width: 100%;
+    overflow-y: auto;
+    scrollbar-color: var(--white-color) var(--white-color);
 
-    .display-view-conjugation-list {
-        overflow-y: auto;
-        scrollbar-color: var(--white-color) var(--white-color);
+    &__item {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 1rem;
 
-        .display-view-conjugation-list-item {
+        &__header {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        &__content {
             display: flex;
             flex-direction: column;
-            padding-bottom: 1rem;
-
-            .display-view-conjugation-list-item-header {
-                text-decoration: underline;
-                font-weight: bold;
-            }
-
-            .display-view-conjugation-list-item-content {
-                display: flex;
-                flex-direction: column;
-            }
         }
     }
 }

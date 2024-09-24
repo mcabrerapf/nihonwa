@@ -25,7 +25,7 @@ function EditViewFooter(props) {
       >
         {'<'}
       </Button>
-      <div className="edit-view-step-indicator">
+      <div className="edit-view-footer__steps">
         {stepsArray.map((_, i) => (
           <Button
             key={i}

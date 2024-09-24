@@ -6,7 +6,7 @@
     flex-direction: row;
     justify-content: space-between;
 
-    .edit-view-step-indicator {
+    &__steps {
         display: flex;
         font-size: 2rem;
         align-items: center;

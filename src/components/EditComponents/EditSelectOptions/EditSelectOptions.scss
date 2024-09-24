@@ -1,22 +1,15 @@
 .edit-select-options {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: var(--white-color) var(--white-color);
+  gap: 1rem;
   height: 100%;
-  width: 100%;
 
-  .edit-select-options-options {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-    overflow-y: auto;
-    overflow-x: hidden;
-    scrollbar-color: var(--white-color) var(--white-color);
-    gap: 1rem;
-    height: 100%;
-
-    button {
-      font-size: 1.5rem;
-    }
+  .button {
+    font-size: 1.5rem;
   }
 }

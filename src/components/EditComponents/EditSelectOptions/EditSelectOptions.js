@@ -11,18 +11,16 @@ function EditSelectOptions(props) {
 
   return (
     <div className="edit-select-options">
-      <div className="edit-select-options-options">
-        {options.map(({ value, isSelected }) => (
-          <Button
-            key={value}
-            isNotSelected={!isSelected}
-            value={value}
-            onClick={handleOptionChange}
-          >
-            {value}
-          </Button>
-        ))}
-      </div>
+      {options.map(({ value, isSelected }) => (
+        <Button
+          key={value}
+          isNotSelected={!isSelected}
+          value={value}
+          onClick={handleOptionChange}
+        >
+          {value}
+        </Button>
+      ))}
     </div>
   );
 }

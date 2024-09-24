@@ -21,7 +21,7 @@ function Input({
         onKeyDown={onKeyDown}
       />
       {!!showResetButton && value && (
-      <Button onClick={onResetButtonClick} modifier="reset-text-field">
+      <Button onClick={onResetButtonClick}>
         X
       </Button>
       )}

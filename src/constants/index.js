@@ -9,7 +9,10 @@ import {
   KANA_EN_MATCHES,
 } from './KANAS';
 
+const B_URL = 'https://afternoon-gorge-77049-a1de8dd15ce4.herokuapp.com';
+
 export {
+  B_URL,
   ADJECTIVE_TENSES,
   EN_HIRAGANA_MATCHES,
   EN_KATAKANA_MATCHES,

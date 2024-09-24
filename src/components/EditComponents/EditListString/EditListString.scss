@@ -5,7 +5,7 @@
   height: 100%;
   width: 100%;
 
-  .edit-list-string-display {
+  &__display {
     display: flex;
     flex-direction: column;
     user-select: none;
@@ -15,7 +15,7 @@
     gap: 0.5rem;
 
 
-    .edit-list-string-item {
+    &__item {
       display: flex;
       align-items: center;
 
@@ -41,7 +41,7 @@
 
   }
 
-  .edit-list-string-nav-buttons {
+  &__nav-buttons {
     display: flex;
     justify-content: flex-end;
     margin-bottom: 1rem;
@@ -53,7 +53,7 @@
     }
   }
 
-  .edit-list-string-input {
+  &__input {
     display: flex;
     justify-content: end;
     align-items: center;
@@ -62,7 +62,7 @@
     gap: 1rem;
     padding-left: 0.5rem;
 
-    .edit-meaning-input-buttons {
+    &__buttons {
       display: flex;
       gap: 1rem;
     }

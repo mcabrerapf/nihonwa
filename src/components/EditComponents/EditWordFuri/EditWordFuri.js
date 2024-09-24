@@ -19,7 +19,7 @@ function EditWordFuri(props) {
 
   return (
     <div className="edit-word-furi">
-      <div className="edit-word-furi-display">
+      <div className="edit-word-furi__display">
         {kanaWithFuri.map(({
           key, className, kanaGroup, handleSelectFuri,
         }) => (
@@ -39,7 +39,7 @@ function EditWordFuri(props) {
           </div>
         ))}
       </div>
-      <form className="edit-word-furi-input" onSubmit={handleOnSubmit}>
+      <form className="edit-word-furi__input" onSubmit={handleOnSubmit}>
         <Input
           inputRef={inputRef}
           value={currentString}
@@ -52,7 +52,7 @@ function EditWordFuri(props) {
           onKeyDown={handleKeyDown}
           value={currentString}
         /> */}
-        <div className="edit-word-furi-input-buttons">
+        <div className="edit-word-furi__input__buttons">
           <Button
             isNotSelected={!isHiraganaSelected}
             value="hi"

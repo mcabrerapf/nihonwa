@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { B_URL } from '../../../../../constants';
 
 function useDisplayViewKanji({
   selectedKanji, listData, wordId, handleGoToItem,
@@ -14,7 +15,7 @@ function useDisplayViewKanji({
 
   useEffect(() => {
     const fetchData = async () => {
-      const url = `https://afternoon-gorge-77049-a1de8dd15ce4.herokuapp.com/jisho/kanji/${selectedKanji}`;
+      const url = `${B_URL}/jisho/kanji/${selectedKanji}`;
       await fetch(url)
         .then((res) => res.json())
         .then((data) => {

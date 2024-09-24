@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './JishoMeaningsModal.scss';
 import Loading from '../../Loading';
 import Button from '../../Button';
+import { B_URL } from '../../../constants';
 
 function JishoMeaningsModal({
   filters,
@@ -15,7 +16,7 @@ function JishoMeaningsModal({
 
   useEffect(() => {
     async function fetchData(term) {
-      await fetch(`https://afternoon-gorge-77049-a1de8dd15ce4.herokuapp.com/jisho/word/${term.toLocaleLowerCase()}`)
+      await fetch(`${B_URL}/jisho/word/${term.toLocaleLowerCase()}`)
         .then((res) => res.json())
         .then((json) => {
           setErrorMessage(null);

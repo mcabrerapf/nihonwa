@@ -60,13 +60,13 @@ function EditView({
 
   return (
     <div className="list-item-modal-edit-view">
-      <div className="edit-view-header">
+      <div className="list-item-modal-edit-view__header">
         <span>{headerText}</span>
         <Button onClick={() => closeModal()}>
           X
         </Button>
       </div>
-      <div className="edit-view-content">
+      <div className="list-item-modal-edit-view__content">
         {renderEditStepComponent(
           'word',
           currentEditStep,
