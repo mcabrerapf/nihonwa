@@ -23,6 +23,14 @@ button {
     border-radius: 0px;
   }
 
+  &.dotted-border {
+    border: 1px dotted var(--white-color) !important;
+  }
+
+  &.dashed-border {
+    border: 1px dashed var(--white-color);
+  }
+
   &.no-shadow {
     box-shadow: none;
   }

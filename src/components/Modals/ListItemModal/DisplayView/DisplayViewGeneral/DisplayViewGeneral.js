@@ -7,23 +7,23 @@ function DisplayViewGeneral({
 }) {
   return (
     <div className="display-view-general">
-      <div className="display-view-general__meanings">
+      <ol className="display-view-general__meanings">
         {en.map((meaning, i) => (
-          <span key={`${i}-${meaning}`}>
-            -
-            {meaning}
-          </span>
+          <li key={`${i}-${meaning}`} className="display-view-general__meanings__meaning">
+            <span>-</span>
+            <span>{meaning}</span>
+          </li>
         ))}
-      </div>
+      </ol>
       {!!notes.length && (
-      <div className="display-view-general__notes">
+      <ol className="display-view-general__notes">
         {notes.map((note, i) => (
-          <span key={`${i}-${note}`}>
-            -
-            {note}
-          </span>
+          <li key={`${i}-${note}`} className="display-view-general__notes__note">
+            <span>-</span>
+            <span>{note}</span>
+          </li>
         ))}
-      </div>
+      </ol>
       )}
       {!!similarWords.length && (
       <div className="display-view-general__similar-words">

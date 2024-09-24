@@ -11,6 +11,7 @@
     align-items: flex-start;
     user-select: none;
     overflow-y: auto;
+    scrollbar-color: var(--white-color) var(--white-color);
     height: 100%;
     gap: 1rem;
 
@@ -43,7 +44,7 @@
 
       ul {
         overflow-y: auto;
-
+        scrollbar-color: var(--white-color) var(--white-color);
         // .selected-word {
         //   background-color: red;
         // }

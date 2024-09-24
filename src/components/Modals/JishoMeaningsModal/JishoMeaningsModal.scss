@@ -6,9 +6,10 @@
   gap: 0.5rem;
 
   &__content {
-    overflow-y: auto;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    scrollbar-color: var(--white-color) var(--white-color);
     height: 30rem;
     padding: 0.5rem 1.5rem 1.5rem 0.5rem;
     gap: 2rem;
@@ -45,6 +46,7 @@
       &__jp {
         display: flex;
         align-items: flex-end;
+        flex-wrap: wrap;
 
         &__char {
           display: flex;

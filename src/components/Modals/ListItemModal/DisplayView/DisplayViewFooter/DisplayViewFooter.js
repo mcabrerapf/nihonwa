@@ -15,6 +15,7 @@ function DisplayViewFooter({
         {!!tags.length && tags.map((tag) => (
           <Button
             key={tag}
+            modifier="dotted-border"
             isDisabled
             onClick={() => {}}
           >

@@ -3,6 +3,7 @@
 
     .display-view-conjugation-list {
         overflow-y: auto;
+        scrollbar-color: var(--white-color) var(--white-color);
 
         .display-view-conjugation-list-item {
             display: flex;

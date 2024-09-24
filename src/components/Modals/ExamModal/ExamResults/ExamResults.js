@@ -33,18 +33,33 @@ function ExamResults({
   return (
     <>
       <div className="exam-modal-results">
-        <ol className="exam-modal-results__list" type="1">
+        <ol className="exam-modal-results__list">
           {questions.map((question, i) => {
-            const { jp, id, correct } = question;
+            const {
+              id, jp, en, correct,
+            } = question;
             return (
-              <li key={id} className={`exam-modal-results__list__item${!correct ? ' miss' : ''}`}>
-                <span>
-                  {i + 1}
-                  .
-                </span>
-                <span>{jp}</span>
+              <li
+                key={id}
+                className="exam-modal-results__list__item"
+              >
+                <div className={`exam-modal-results__list__item__word${!correct ? ' miss' : ''}`}>
+                  <span>
+                    {i + 1}
+                    .
+                  </span>
+                  <span>{jp}</span>
+                </div>
+                <div className="exam-modal-results__list__item__meanings">
+                  {en.map((meaning) => (
+                    <span
+                      className="exam-modal-results__list__item__meanings__meaning"
+                    >
+                      {meaning}
+                    </span>
+                  ))}
+                </div>
               </li>
-
             );
           })}
         </ol>

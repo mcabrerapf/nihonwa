@@ -97,7 +97,6 @@ function ExamProgress({
               const answerFontsize = answer.length > 30 ? ' small' : '';
               const buttonModifier = `${answerState}${answerFontsize}`;
 
-              console.log(answerState);
               return (
                 <Button
                   key={answer}
