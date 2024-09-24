@@ -13,7 +13,7 @@ function DisplayViewFooter({
   return (
     <div className="display-view-modal-footer">
       <div className="display-view-modal-footer__tags">
-        {!!tags.length && tags.map((tag) => (
+        {view === 'genera' && !!tags.length && tags.map((tag) => (
           <Button
             key={tag}
             modifier="dotted-border"

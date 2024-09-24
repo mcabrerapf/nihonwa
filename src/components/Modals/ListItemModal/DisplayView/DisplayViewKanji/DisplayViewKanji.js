@@ -3,6 +3,7 @@ import './DisplayViewKanji.scss';
 import Kanji from '../../../../Kanji';
 import Loading from '../../../../Loading';
 import useDisplayViewKanji from './useDisplayViewKanji';
+import Button from '../../../../Button';
 
 function DisplayViewKanji(props) {
   const {
@@ -11,12 +12,14 @@ function DisplayViewKanji(props) {
     meanings,
     kunYomi,
     isLoading,
+    similarWords,
+    handleGoToItem,
   } = useDisplayViewKanji(props);
 
   return (
     <div className="display-view-kanji">
       <Kanji kanji={selectedKanji} kanjiId={selectedKanji} />
-      {isLoading && <Loading />}
+      {isLoading && <div className="display-view-kanji__loading"><Loading /></div>}
       {!isLoading && (
       <div className="display-view-kanji__data">
         <div className="display-view-kanji__data__container">
@@ -63,6 +66,17 @@ function DisplayViewKanji(props) {
         </div>
       </div>
       )}
+      <div className="display-view-kanji__words">
+        {similarWords.map((word) => (
+          <Button
+            key={word.id}
+            onClick={() => handleGoToItem(word)}
+          >
+            {word.jp}
+          </Button>
+        ))}
+
+      </div>
     </div>
   );
 }

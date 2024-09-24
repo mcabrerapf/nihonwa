@@ -38,6 +38,7 @@ function ListItemModal(props) {
         modalView={modalView}
         canDelete={canDelete}
         similarWords={similarWords}
+        listData={listData}
         setModalView={setModalView}
         handleGoToItem={handleGoToItem}
         handleListItemChange={handleListItemChange}

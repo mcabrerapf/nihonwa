@@ -5,6 +5,7 @@ import useDisplayViewHeader from './useDisplayViewHeader';
 
 function DisplayViewHeader(props) {
   const {
+    view,
     headerCharacters,
     kanaClassName,
     successPercentage,
@@ -45,31 +46,34 @@ function DisplayViewHeader(props) {
         </Button>
       </div>
       )}
-      <div role="button" className="display-view-modal-header__text">
-        {headerCharacters.map((headerChar, i) => {
-          const [char, furiChar, enChar] = headerChar;
+      {view === 'general' && (
+      <>
+        <div role="button" className="display-view-modal-header__text">
+          {headerCharacters.map((headerChar, i) => {
+            const [char, furiChar, enChar] = headerChar;
 
-          return (
-            <div
-              role="button"
-              key={`${char}-${i}`}
-              className="kana-with-furi"
-              onClick={() => handleCharClick(char)}
-            >
-              <span className="furi">{furiChar}</span>
-              <span className={kanaClassName}>{char}</span>
-              <span className="furi">{enChar}</span>
-            </div>
-          );
-        })}
-      </div>
-      <div className="display-view-modal-header__succes-percentage">
-        <span>
-          {successPercentage}
-          %
-        </span>
-      </div>
-
+            return (
+              <div
+                role="button"
+                key={`${char}-${i}`}
+                className="kana-with-furi"
+                onClick={() => handleCharClick(char)}
+              >
+                <span className="furi">{furiChar}</span>
+                <span className={kanaClassName}>{char}</span>
+                <span className="furi">{enChar}</span>
+              </div>
+            );
+          })}
+        </div>
+        <div className="display-view-modal-header__succes-percentage">
+          <span>
+            {successPercentage}
+            %
+          </span>
+        </div>
+      </>
+      )}
     </div>
   );
 }

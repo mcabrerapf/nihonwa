@@ -19,10 +19,10 @@ function DisplayView(props) {
     view,
     similarWords,
     selectedKanji,
-    hasKanji,
     canDelete,
     modalView,
     successPercentage,
+    listData,
     setModalView,
     setSelectedKanji,
     setView,
@@ -33,14 +33,12 @@ function DisplayView(props) {
   return (
     <div className="list-item-modal-display-view">
       <DisplayViewHeader
-        successPercentage={successPercentage}
         text={jp}
+        successPercentage={successPercentage}
         furi={furi}
-        isKanjiView={view === 'kanji'}
-        selectedKanji={selectedKanji}
-        hasKanji={hasKanji}
         canDelete={canDelete}
         modalView={modalView}
+        view={view}
         setModalView={setModalView}
         setSelectedKanji={setSelectedKanji}
         setView={setView}
@@ -58,6 +56,8 @@ function DisplayView(props) {
         {view === 'kanji' && (
         <DisplayViewKanji
           selectedKanji={selectedKanji}
+          listData={listData}
+          handleGoToItem={handleGoToItem}
         />
         )}
       </div>
