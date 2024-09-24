@@ -9,6 +9,7 @@ function useDisplayViewHeader({
   canDelete,
   modalView,
   view,
+  selectedKanji,
   setSelectedKanji,
   setModalView,
   setView,
@@ -16,11 +17,11 @@ function useDisplayViewHeader({
   const headerCharacters = getCharWithFuri(text, furi, true);
 
   const handleCharacterCopy = () => {
-    copyToClipboard(text);
+    copyToClipboard(selectedKanji || text);
   };
 
   const handleJishoNavigate = () => {
-    window.open(`https://jisho.org/search/${text}`, '_blank');
+    window.open(`https://jisho.org/search/${selectedKanji || text}`, '_blank');
   };
   // 10 char turn to 2rem
   // 30 char turn to 1.5rem

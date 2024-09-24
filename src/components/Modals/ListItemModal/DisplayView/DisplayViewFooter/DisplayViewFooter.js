@@ -8,12 +8,13 @@ function DisplayViewFooter({
   view,
   tags,
   setView,
+  setSelectedKanji,
   handleListItemChange,
 }) {
   return (
     <div className="display-view-modal-footer">
       <div className="display-view-modal-footer__tags">
-        {view === 'genera' && !!tags.length && tags.map((tag) => (
+        {view === 'general' && !!tags.length && tags.map((tag) => (
           <Button
             key={tag}
             modifier="dotted-border"
@@ -38,6 +39,7 @@ function DisplayViewFooter({
             isDisabled={view === 'general'}
             onClick={() => {
               setView('general');
+              setSelectedKanji('');
             }}
           >
             情報

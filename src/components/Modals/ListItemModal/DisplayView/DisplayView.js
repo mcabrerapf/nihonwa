@@ -8,6 +8,7 @@ import useDisplayView from './useDisplayView';
 
 function DisplayView(props) {
   const {
+    id,
     jp,
     en,
     furi,
@@ -39,6 +40,7 @@ function DisplayView(props) {
         canDelete={canDelete}
         modalView={modalView}
         view={view}
+        selectedKanji={selectedKanji}
         setModalView={setModalView}
         setSelectedKanji={setSelectedKanji}
         setView={setView}
@@ -55,6 +57,7 @@ function DisplayView(props) {
         )}
         {view === 'kanji' && (
         <DisplayViewKanji
+          wordId={id}
           selectedKanji={selectedKanji}
           listData={listData}
           handleGoToItem={handleGoToItem}
@@ -68,6 +71,7 @@ function DisplayView(props) {
         tags={sortedTags}
         handleListItemChange={handleListItemChange}
         setView={setView}
+        setSelectedKanji={setSelectedKanji}
       />
     </div>
   );

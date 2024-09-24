@@ -15,7 +15,7 @@ function useDisplayView({
   handleListItemChange,
 }) {
   const {
-    jp, furi, en, tags, notes, hits, misses,
+    id, jp, furi, en, tags, notes, hits, misses,
   } = listItemData;
   const [view, setView] = useState('general');
   const [selectedKanji, setSelectedKanji] = useState('');
@@ -31,6 +31,7 @@ function useDisplayView({
   }, [listItemData]);
 
   return {
+    id,
     jp,
     en,
     furi,
