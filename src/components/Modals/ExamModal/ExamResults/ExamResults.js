@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 import './ExamResults.scss';
 import Button from '../../../Button';
 import { getServiceToUse } from '../../../../Services';
+import { getScoreColor } from './helpers';
 
 function ExamResults({
   questions, setView, closeModal, updateWordsList,
 }) {
   const [isLoading, setIsLoading] = useState(true);
-
   const correctQuestions = questions.filter((question) => question.correct).length;
   const totalQuestions = questions.length;
   const score = (correctQuestions / totalQuestions) * 100;
+  const scoreColor = getScoreColor(score);
 
   useEffect(() => {
     async function updateQustions() {
@@ -63,16 +64,17 @@ function ExamResults({
             );
           })}
         </ol>
-        <div className="exam-modal-results__score">
-          <span className="exam-modal-results__score__number">
+      </div>
+      <footer className="exam-modal__footer">
+        <div className="exam-modal__footer__score">
+          <span className={`exam-modal__footer__score__number${scoreColor}`}>
             {score}
             %
           </span>
         </div>
-      </div>
-      <footer className="exam-modal__footer">
-        <Button onClick={handleClose} isDisabled={isLoading}>R</Button>
-        <Button onClick={handleClose} isDisabled={isLoading}>O</Button>
+        <Button onClick={handleClose} isDisabled={isLoading}>
+          再挑戦
+        </Button>
       </footer>
     </>
   );

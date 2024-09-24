@@ -24,7 +24,7 @@ function ExamModal(props) {
   return (
     <div className="exam-modal">
       <div className="exam-modal__header">
-        {view !== 'done' && <Button onClick={handleClose}>X</Button>}
+        <Button onClick={handleClose}>X</Button>
       </div>
       <div className="exam-modal__content">
         {view === 'setup' && (
@@ -53,7 +53,6 @@ function ExamModal(props) {
         />
         )}
       </div>
-
     </div>
   );
 }

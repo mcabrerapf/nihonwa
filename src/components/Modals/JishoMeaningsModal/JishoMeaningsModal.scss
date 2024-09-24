@@ -36,13 +36,12 @@
       user-select: none;
       cursor: pointer;
       gap: 0.5rem;
-      border: 1px solid transparent;
-      box-shadow: 0rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+      border: 2px dotted var(--white-color);
       border-radius: 5px;
       padding: 1rem;
 
       &.selected {
-        border: 1px solid white;
+        border: 2px solid var(--white-color);
       }
 
       &__jp {
