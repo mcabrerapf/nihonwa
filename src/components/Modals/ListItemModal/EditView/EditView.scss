@@ -30,7 +30,10 @@
 
     .list-item-modal-display-view {
       .display-view-modal-footer {
-        display: none;
+        .display-view-modal-footer__actions {
+          display: none;
+        }
+
       }
     }
   }
