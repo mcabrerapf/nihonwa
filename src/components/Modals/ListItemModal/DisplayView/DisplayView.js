@@ -35,11 +35,8 @@ function DisplayView(props) {
     <div className="list-item-modal-display-view">
       <DisplayViewHeader
         text={jp}
-        successPercentage={successPercentage}
-        furi={furi}
         canDelete={canDelete}
         modalView={modalView}
-        view={view}
         selectedKanji={selectedKanji}
         setModalView={setModalView}
         setSelectedKanji={setSelectedKanji}
@@ -48,11 +45,16 @@ function DisplayView(props) {
       <div className="list-item-modal-display-view__content">
         {view === 'general' && (
         <DisplayViewGeneral
+          jp={jp}
+          furi={furi}
+          successPercentage={successPercentage}
           tags={tags}
           en={en}
           notes={notes}
           similarWords={similarWords}
           similarWordClick={handleGoToItem}
+          setView={setView}
+          setSelectedKanji={setSelectedKanji}
         />
         )}
         {view === 'kanji' && (

@@ -1,12 +1,54 @@
 import React from 'react';
 import './DisplayViewGeneral.scss';
 import Button from '../../../../Button';
+import { checkIfCharIsKanji, getCharWithFuri } from '../../../../../utils';
+import { getHeaderTextClassName } from '../DisplayViewHeader/helpers';
 
 function DisplayViewGeneral({
-  en = [], notes = [], similarWords = [], similarWordClick,
+  jp,
+  furi = [],
+  en = [],
+  notes = [],
+  similarWords = [],
+  successPercentage,
+  similarWordClick,
+  setView,
+  setSelectedKanji,
 }) {
+  const headerCharacters = getCharWithFuri(jp, furi, true);
+  const kanaClassName = getHeaderTextClassName(headerCharacters);
+
+  const handleCharClick = (char) => {
+    if (checkIfCharIsKanji(char)) {
+      setSelectedKanji(char);
+      setView('kanji');
+    }
+  };
+
   return (
     <div className="display-view-general">
+      <div role="button" className="display-view-general__word">
+        {headerCharacters.map((headerChar, i) => {
+          const [char, furiChar, enChar] = headerChar;
+
+          return (
+            <div
+              key={`${char}-${i}`}
+              role="button"
+              className="kana-with-furi"
+              onClick={() => handleCharClick(char)}
+            >
+              <span className="furi">{furiChar}</span>
+              <span className={kanaClassName}>{char}</span>
+              <span className="furi">{enChar}</span>
+            </div>
+          );
+        })}
+      </div>
+      <div className="display-view-general__succes-percentage">
+        {successPercentage}
+        %
+      </div>
       <ol className="display-view-general__meanings">
         {en.map((meaning, i) => (
           <li key={`${i}-${meaning}`} className="display-view-general__meanings__meaning">
