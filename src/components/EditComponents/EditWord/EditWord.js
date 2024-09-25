@@ -24,7 +24,14 @@ function EditWord(props) {
     <div className="edit-word">
       <div className="edit-word__display">
         <div className="edit-word__display__word">
-          {word.split('').map((char) => <span className="edit-word__display__word__char">{char}</span>)}
+          {word.split('').map((char, i) => (
+            <span
+              key={`${i}-${char}`}
+              className="edit-word__display__word__char"
+            >
+              {char}
+            </span>
+          ))}
         </div>
 
         {itemAlreadyExists && (

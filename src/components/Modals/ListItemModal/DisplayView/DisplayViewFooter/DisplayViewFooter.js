@@ -15,7 +15,9 @@ function DisplayViewFooter({
   handleListItemChange,
   handleGoToItem,
 }) {
-  const similarWords = listData.filter(({ id, jp }) => id !== wordId && jp.includes(selectedKanji));
+  const similarWords = listData
+    ? listData.filter(({ id, jp }) => id !== wordId && jp.includes(selectedKanji)) : [];
+
   return (
     <div className="display-view-modal-footer">
       <div className="display-view-modal-footer__tags">

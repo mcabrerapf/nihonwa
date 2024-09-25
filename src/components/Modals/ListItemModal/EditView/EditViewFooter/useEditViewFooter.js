@@ -1,5 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { checkEditFooterStatus, getEditStepsArray } from '../../helpers';
+
+const checkCanSave = (wordData) => {
+  if (!wordData) return false;
+  const { jp, en } = wordData;
+  if (!jp) return false;
+  if (!en || !en.length) return false;
+  return true;
+};
 
 function useEditViewFooter({
   itemAlreadyExists,
@@ -15,6 +23,12 @@ function useEditViewFooter({
     'word',
     currentData,
   );
+
+  useEffect(() => {
+    if (currentEditStep !== 5) return;
+    const updatedSave = checkCanSave(currentData);
+    setCanSave(updatedSave);
+  }, [currentEditStep]);
 
   const handleChangeEditStep = (newStep) => {
     const updatedData = {};

@@ -1,24 +1,10 @@
-import { useEffect } from 'react';
-import { containsKanji, containsKatakana } from '../../../utils';
-
 function useEditSelectOptions({
   currentData,
   setCurrentData,
   optionKey,
   options,
 }) {
-  const { [optionKey]: selectedOptions, jp } = currentData;
-  useEffect(() => {
-    const hasKanji = containsKanji(jp);
-    const hasKataKana = containsKatakana(jp);
-    if (!hasKanji && !hasKataKana) return;
-    const isKanjiSelected = selectedOptions.includes('kanji');
-    const isKatakanaSelected = selectedOptions.includes('katakana');
-    const updatedOptions = [...selectedOptions];
-    if (!isKanjiSelected && hasKanji)updatedOptions.push('kanji');
-    if (!isKatakanaSelected && hasKataKana)updatedOptions.push('katakana');
-    setCurrentData({ ...currentData, [optionKey]: updatedOptions });
-  }, []);
+  const { [optionKey]: selectedOptions } = currentData;
 
   const handleOptionChange = ({ target: { value } }) => {
     const isSelected = !!selectedOptions.find((slectedOption) => slectedOption === value);

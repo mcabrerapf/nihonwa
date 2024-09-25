@@ -5,13 +5,11 @@ import Button from '../../../Button';
 import { ModalWrapperContext } from '../../../ModalWrapper/ModalWrapperContext';
 import { getServiceToUse } from '../../../../Services';
 import { getEditStepHeaderText, renderEditStepComponent } from './helpers';
-import { deepCompare } from '../../../../utils';
+import { deepCompare, updateWordTags } from '../../../../utils';
 
 function EditView({
   listItemData,
-  // listItemType,
   listData,
-  // sentenceList,
   setModalView,
   updateWordsList,
 }) {
@@ -21,6 +19,21 @@ function EditView({
   const [itemAlreadyExists, setItemAlreadyExists] = useState('');
   const word = currentData.jp;
   const headerText = getEditStepHeaderText('word', currentEditStep, word);
+
+  useEffect(() => {
+    if (!word) setItemAlreadyExists(false);
+    const alreadyExists = !!listData.find((itemToCheck) => {
+      if (itemToCheck.id === currentData.id) return false;
+      return itemToCheck.jp === word;
+    });
+    setItemAlreadyExists(alreadyExists);
+  }, [word]);
+
+  useEffect(() => {
+    if (currentEditStep !== 5) return;
+    const updatedTags = updateWordTags(word, currentData.tags);
+    setCurrentData({ ...currentData, tags: updatedTags });
+  }, [currentEditStep]);
 
   const handleSave = async () => {
     const itemId = listItemData.id;
@@ -33,15 +46,6 @@ function EditView({
     await updateWordsList();
     return itemId ? setModalView('display') : closeModal();
   };
-
-  useEffect(() => {
-    if (!word) setItemAlreadyExists(false);
-    const alreadyExists = !!listData.find((itemToCheck) => {
-      if (itemToCheck.id === currentData.id) return false;
-      return itemToCheck.jp === word;
-    });
-    setItemAlreadyExists(alreadyExists);
-  }, [word]);
 
   const editStepComponentProps = {
     listItemData: currentData,

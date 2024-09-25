@@ -77,7 +77,7 @@ function MainListHeader(props) {
       {!!tagFilters.length && (
       <div className="main-list-header__filters">
         {tagFilters.map((tag) => (
-          <Button onClick={() => handleRemoveTagFilter(tag)}>
+          <Button key={tag} onClick={() => handleRemoveTagFilter(tag)}>
             <span>{tag}</span>
             <span>X</span>
           </Button>

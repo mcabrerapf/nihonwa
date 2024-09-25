@@ -5,11 +5,11 @@ import Button from '../../Button';
 
 function FiltersModal({ filters, sort, handleFiltersChange }) {
   const [selectedFilters, setSelectedFilters] = useState(filters);
-  const [selectedSort, setSelectedSort] = useState(sort);
+  // const [selectedSort, setSelectedSort] = useState(sort);
   const { tags } = selectedFilters;
 
   const handleUpdateListFilters = () => {
-    handleFiltersChange(selectedFilters, selectedSort);
+    handleFiltersChange(selectedFilters, sort);
   };
 
   const updateFilters = (value, key) => {
@@ -26,20 +26,20 @@ function FiltersModal({ filters, sort, handleFiltersChange }) {
     setSelectedFilters({ ...selectedFilters, [key]: updatedTags });
   };
 
-  const updateSortLan = (language) => {
-    if (language === selectedSort[0]) return;
-    setSelectedSort([language, selectedSort[1]]);
-  };
+  // const updateSortLan = (language) => {
+  //   if (language === selectedSort[0]) return;
+  //   setSelectedSort([language, selectedSort[1]]);
+  // };
 
-  const updateSortDir = (direction) => {
-    if (direction === selectedSort[1]) return;
-    setSelectedSort([selectedSort[0], direction]);
-  };
+  // const updateSortDir = (direction) => {
+  //   if (direction === selectedSort[1]) return;
+  //   setSelectedSort([selectedSort[0], direction]);
+  // };
 
   return (
     <div className="filters-modal">
       <div className="filters-modal__content">
-        <div className="filters-modal__content__sort-options">
+        {/* <div className="filters-modal__content__sort-options">
           <div className="filters-modal__content__sort-options__type">
             <Button
               isNotSelected={selectedSort[0] !== 'en'}
@@ -74,7 +74,7 @@ function FiltersModal({ filters, sort, handleFiltersChange }) {
               DSC
             </Button>
           </div>
-        </div>
+        </div> */}
         <div className="filters-modal__content__filters-options">
           {TAGS.map((tag) => {
             const isSelected = tags.find(

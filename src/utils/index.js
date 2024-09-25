@@ -26,6 +26,7 @@ import romajiToKana from './romajiToKana';
 import parseHtml from './parseHtml';
 import parseDicData from './parseDicData';
 import sortBy from './sortBy';
+import updateWordTags from './updateWordTags';
 
 export {
   calculateSuccessRate,
@@ -56,4 +57,5 @@ export {
   parseDicData,
   parseHtml,
   sortBy,
+  updateWordTags,
 };

@@ -3,7 +3,6 @@ import { TAGS } from '../../../../constants';
 import {
   EditListString,
   EditSelectOptions,
-  EditSentence,
   EditWord,
   EditWordFuri,
 } from '../../../EditComponents';
@@ -38,28 +37,8 @@ const getWordEditStepComponent = (step, props) => {
   }
 };
 
-const getSentenceEditStepComponent = (step, props) => {
-  switch (step) {
-    case 0:
-      return <EditSentence {...props} />;
-    case 1:
-      return <EditListString {...props} listKey="en" />;
-    case 2:
-      return <EditListString {...props} listKey="notes" />;
-    case 3:
-      return <EditSelectOptions {...props} optionKey="tags" options={TAGS} />;
-    case 4:
-      return (
-        <DisplayView {...props} modalView="edit" isFirstItem isLastItem />
-      );
-    default:
-      return null;
-  }
-};
-
 const renderEditStepComponent = (type, step, props) => {
   if (type === 'word') return getWordEditStepComponent(step, props);
-  if (type === 'sentence') return getSentenceEditStepComponent(step, props);
   return null;
 };
 
