@@ -10,6 +10,7 @@ function JishoMeaningsModal({
   setJishoWord,
   setSelectedItemIndex,
 }) {
+  const [isLoading, setIsLoading] = useState(true);
   const [jishoData, setJishoData] = useState(null);
   const [selectedWord, setSelectedWord] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
@@ -20,9 +21,13 @@ function JishoMeaningsModal({
         .then((res) => res.json())
         .then((json) => {
           setErrorMessage(null);
+          setIsLoading(false);
           setJishoData(json);
         })
-        .catch((err) => setErrorMessage(err));
+        .catch((err) => {
+          setErrorMessage(err);
+          setIsLoading(false);
+        });
     }
     if (filters && filters.text) fetchData(filters.text);
   }, []);
@@ -44,17 +49,29 @@ function JishoMeaningsModal({
     setSelectedItemIndex(-1);
     handleToggleModal('listItemModal');
   };
+  const noResults = !jishoData || !jishoData.length;
+  const jishoUrl = `https://jisho.org/search/${filters.text.toLocaleLowerCase()}`;
+  const placholder = `Serch for "${filters.text}" in `;
 
   return (
     <div className="jisho-meanings-modal">
       <div className="jisho-meanings-modal__content">
-        {!jishoData && <div className="jisho-meanings-modal__content__loading"><Loading /></div>}
+        {isLoading && <div className="jisho-meanings-modal__content__loading"><Loading /></div>}
         {!!errorMessage && (
           <div className="jisho-meanings-modal__content__error">
             {errorMessage}
           </div>
         )}
-        {!!jishoData && !errorMessage && jishoData.map((data) => (
+        {!isLoading && noResults && (
+        <div className="jisho-meanings-modal__content__fallback">
+          <span>
+            {placholder}
+            <a href={jishoUrl} target="blank">Jisho</a>
+          </span>
+
+        </div>
+        )}
+        {!!jishoData && jishoData.map((data) => (
           <div
             key={data.id}
             className={`jisho-meanings-modal__content__word${selectedWord.id === data.id ? ' selected' : ''}`}
