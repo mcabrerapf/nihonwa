@@ -7,14 +7,19 @@ function DisplayViewFooter({
   isFirstItem,
   view,
   tags,
+  selectedKanji,
+  listData,
+  wordId,
   setView,
   setSelectedKanji,
   handleListItemChange,
+  handleGoToItem,
 }) {
+  const similarWords = listData.filter(({ id, jp }) => id !== wordId && jp.includes(selectedKanji));
   return (
     <div className="display-view-modal-footer">
       <div className="display-view-modal-footer__tags">
-        {view === 'general' && !!tags.length && tags.map((tag) => (
+        {view === 'general' && tags.map((tag) => (
           <Button
             key={tag}
             modifier="dotted-border"
@@ -22,6 +27,14 @@ function DisplayViewFooter({
             onClick={() => {}}
           >
             {tag}
+          </Button>
+        ))}
+        {view === 'kanji' && similarWords.map((word) => (
+          <Button
+            key={word.id}
+            onClick={() => handleGoToItem(word)}
+          >
+            {word.jp}
           </Button>
         ))}
       </div>

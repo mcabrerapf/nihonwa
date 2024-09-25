@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { B_URL } from '../../../../../constants';
 
 function useDisplayViewKanji({
-  selectedKanji, listData, wordId, handleGoToItem,
+  selectedKanji,
 }) {
   const [isLoading, setIsLoading] = useState(true);
   const [kajiData, setKanjiData] = useState({});
@@ -11,7 +11,6 @@ function useDisplayViewKanji({
     onYomi = [],
     kunYomi = [],
   } = kajiData;
-  const similarWords = listData.filter(({ id, jp }) => id !== wordId && jp.includes(selectedKanji));
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,8 +33,6 @@ function useDisplayViewKanji({
     meanings,
     kunYomi,
     isLoading,
-    similarWords,
-    handleGoToItem,
   };
 }
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './DisplayView.scss';
-import { calculateSuccessRate, checkIfCharIsKanji, getKanjiArrayFromString } from '../../../../utils';
+import { calculateSuccessRate, getKanjiArrayFromString } from '../../../../utils';
 
 function useDisplayView({
   listItemData,
@@ -25,8 +25,6 @@ function useDisplayView({
   const sortedTags = tags.sort((a, b) => a.localeCompare(b));
 
   useEffect(() => {
-    const newFirstKanji = jp.split('').find((char) => checkIfCharIsKanji(char));
-    setSelectedKanji(newFirstKanji);
     setView('general');
   }, [listItemData]);
 

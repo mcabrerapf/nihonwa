@@ -5,7 +5,7 @@ import { getServiceToUse } from '../../../../Services';
 import { getScoreColor } from './helpers';
 
 function ExamResults({
-  questions, setView, closeModal, updateWordsList,
+  questions, setView, updateWordsList,
 }) {
   const [isLoading, setIsLoading] = useState(true);
   const correctQuestions = questions.filter((question) => question.correct).length;
@@ -25,10 +25,9 @@ function ExamResults({
     updateQustions();
   }, []);
 
-  const handleClose = async (e) => {
+  const handleRestart = (e) => {
     e.preventDefault();
-    if (e.target.innerText === 'R') setView('setup');
-    else closeModal();
+    setView('setup');
   };
 
   return (
@@ -72,7 +71,7 @@ function ExamResults({
             %
           </span>
         </div>
-        <Button onClick={handleClose} isDisabled={isLoading}>
+        <Button onClick={handleRestart} isDisabled={isLoading}>
           再挑戦
         </Button>
       </footer>

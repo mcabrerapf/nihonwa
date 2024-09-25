@@ -9,6 +9,7 @@ function useEditListString({
 }) {
   const { [listKey]: listValues } = currentData;
   const inputRef = useRef(null);
+  const listRef = useRef(null);
   const [currentString, setCurrentString] = useState('');
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
   const isMeaningsList = listKey === 'en';
@@ -43,11 +44,15 @@ function useEditListString({
     setSelectedItemIndex(updatedListValues.length - 1);
     setCurrentString('');
     if (inputRef.current) inputRef.current.focus();
+    if (listRef.current) {
+      listRef.current.scrollTo({
+        top: listRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
   };
 
   const handleDelete = (valueIndex) => {
-    const hasOnlyOneValue = listValues.filter(Boolean).length < 2;
-    if (hasOnlyOneValue) return;
     const updatedListValues = listValues.filter((_, i) => i !== valueIndex);
     setCurrentData({
       ...currentData,
@@ -83,6 +88,7 @@ function useEditListString({
 
   return {
     inputRef,
+    listRef,
     currentString,
     listValues,
     selectedItemIndex,

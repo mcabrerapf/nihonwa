@@ -18,7 +18,6 @@
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    height: 40rem;
   }
 
   &__footer {
@@ -41,7 +40,7 @@
         position: absolute;
         display: inline-block;
         right: 5rem;
-        font-size: 2rem;
+        font-size: 3.5rem;
         transform: scale(1.5);
         animation: shrink-to-size 0.75s ease-out forwards;
 
@@ -53,10 +52,6 @@
           color: var(--red-color);
         }
       }
-    }
-
-    .button {
-      width: 10rem;
     }
   }
 }

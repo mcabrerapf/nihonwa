@@ -25,7 +25,7 @@ function ListItemModal(props) {
     <div className="list-item-modal">
       {modalView === 'delete' && (
       <div className="list-item-modal__delete-view">
-        <Button isDisabled={!canDelete} onClick={handleDelete}>
+        <Button modifier="danger" isDisabled={!canDelete} onClick={handleDelete}>
           削除
         </Button>
       </div>

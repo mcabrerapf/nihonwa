@@ -57,10 +57,7 @@ function DisplayView(props) {
         )}
         {view === 'kanji' && (
         <DisplayViewKanji
-          wordId={id}
           selectedKanji={selectedKanji}
-          listData={listData}
-          handleGoToItem={handleGoToItem}
         />
         )}
       </div>
@@ -69,7 +66,11 @@ function DisplayView(props) {
         isFirstItem={isFirstItem}
         view={view}
         tags={sortedTags}
+        selectedKanji={selectedKanji}
+        listData={listData}
+        wordId={id}
         handleListItemChange={handleListItemChange}
+        handleGoToItem={handleGoToItem}
         setView={setView}
         setSelectedKanji={setSelectedKanji}
       />

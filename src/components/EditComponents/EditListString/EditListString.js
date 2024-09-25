@@ -7,6 +7,7 @@ import Input from '../../Input';
 function EditListString(props) {
   const {
     inputRef,
+    listRef,
     currentString,
     listValues,
     selectedItemIndex,
@@ -20,27 +21,24 @@ function EditListString(props) {
     handleOnSubmit,
     handleItemClick,
     handleGoToNotes,
-    handleGoToTags,
   } = useEditListString(props);
 
   return (
     <div className="edit-list-string">
-      <div className="edit-list-string__display">
+      <div ref={listRef} className="edit-list-string__display">
         {listValues.map((value, i) => {
           const isItemSelected = i === selectedItemIndex;
 
           return (
             <div key={`${value}-${i}`} className="edit-list-string__display__item">
               <Button
-                modifier="delete-item-button"
                 onClick={() => handleDelete(i)}
               >
                 X
               </Button>
-
               <span
                 role="button"
-                className={`${isItemSelected ? 'selected-item' : ''}`}
+                className={`edit-list-string__display__item__text${isItemSelected ? ' selected' : ''}`}
                 onClick={() => handleItemClick(i, value)}
               >
                 {value}
@@ -48,9 +46,6 @@ function EditListString(props) {
             </div>
           );
         })}
-        <div>
-          {isLastItemEmpty && <Button onClick={handleAddItem}>+</Button>}
-        </div>
       </div>
       {isMeaningsList && (
       <div className="edit-list-string__nav-buttons">
@@ -60,16 +55,10 @@ function EditListString(props) {
         >
           ノート
         </Button>
-        <Button
-          isDisabled={isListEmpty}
-          onClick={handleGoToTags}
-        >
-
-          タグ
-        </Button>
       </div>
       )}
       <form className="edit-list-string__input" onSubmit={handleOnSubmit}>
+        <Button isDisabled={!isLastItemEmpty} onClick={handleAddItem}>+</Button>
         <Input
           inputRef={inputRef}
           value={currentString}

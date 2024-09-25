@@ -36,7 +36,7 @@ function EditViewFooter(props) {
           </Button>
         ))}
       </div>
-      {isLastStep ? <Button isDisabled={!canSave} onClick={handleSaveButtonClick}>O</Button> : (
+      {isLastStep ? <Button modifier="confirm" isDisabled={!canSave} onClick={handleSaveButtonClick}>O</Button> : (
         <Button
           isDisabled={isNextButtonDisabled}
           onClick={handleGoForwardClick}

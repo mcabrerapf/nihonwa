@@ -22,6 +22,7 @@ function DisplayViewHeader(props) {
       {modalView !== 'edit' && (
       <div className="display-view-modal-header__buttons">
         <Button
+          modifier="danger"
           isDisabled={!canDelete}
           onClick={() => setModalView('delete')}
         >
