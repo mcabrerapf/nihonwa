@@ -92,9 +92,14 @@ function JishoMeaningsModal({
             </span>
             <div className="jisho-meanings-modal__content__word__meanings">
               {data.meanings.map((mean) => (
-                <span className="jisho-meanings-modal__content__word__meanings__meaning">
-                  {mean[1]}
-                </span>
+                <div className="jisho-meanings-modal__content__word__meanings__meaning">
+                  <span className="jisho-meanings-modal__content__word__meanings__meaning__type">
+                    {mean[0]}
+                  </span>
+                  <span className="jisho-meanings-modal__content__word__meanings__meaning__text">
+                    {mean[1]}
+                  </span>
+                </div>
               ))}
             </div>
           </div>
