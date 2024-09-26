@@ -28,60 +28,66 @@ function DisplayViewGeneral({
   return (
     <div className="display-view-general">
       <div role="button" className="display-view-general__word">
-        {headerCharacters.map((headerChar, i) => {
-          const [char, furiChar, enChar] = headerChar;
+        <div className="display-view-general__word__characters">
+          {headerCharacters.map((headerChar, i) => {
+            const [char, furiChar, enChar] = headerChar;
 
-          return (
+            return (
+              <div
+                key={`${char}-${i}`}
+                role="button"
+                className="kana-with-furi"
+                onClick={() => handleCharClick(char)}
+              >
+                <span className="furi">{furiChar}</span>
+                <span className={kanaClassName}>{char}</span>
+                <span className="furi">{enChar}</span>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="display-view-general__word__succes-percentage">
+          {successPercentage}
+          %
+        </div>
+      </div>
+      <div className="display-view-general__lists">
+        <ol className="display-view-general__lists__meanings">
+          {en.map((meaning, i) => (
+            <li key={`${i}-${meaning}`} className="display-view-general__lists__meanings__meaning">
+              <span>-</span>
+              <span>{meaning}</span>
+            </li>
+          ))}
+        </ol>
+        {!!notes.length && (
+        <ol className="display-view-general__lists__notes">
+          {notes.map((note, i) => (
+            <li key={`${i}-${note}`} className="display-view-general__lists__notes__note">
+              <span>-</span>
+              <span>{note}</span>
+            </li>
+          ))}
+        </ol>
+        )}
+        {!!similarWords.length && (
+        <div className="display-view-general__lists__similar-words">
+          {similarWords.map((similarWord, i) => (
             <div
-              key={`${char}-${i}`}
-              role="button"
-              className="kana-with-furi"
-              onClick={() => handleCharClick(char)}
+              key={`${i}-${similarWord.jp}`}
+              className="display-view-general__lists__similar-words__word"
             >
-              <span className="furi">{furiChar}</span>
-              <span className={kanaClassName}>{char}</span>
-              <span className="furi">{enChar}</span>
+              <Button onClick={() => similarWordClick(similarWord)}>{similarWord.jp}</Button>
+              <span className="display-view-general__lists__similar-words__word__meanings">
+                {similarWord.en.join('; ')}
+              </span>
             </div>
-          );
-        })}
+          ))}
+        </div>
+        )}
       </div>
-      <div className="display-view-general__succes-percentage">
-        {successPercentage}
-        %
-      </div>
-      <ol className="display-view-general__meanings">
-        {en.map((meaning, i) => (
-          <li key={`${i}-${meaning}`} className="display-view-general__meanings__meaning">
-            <span>-</span>
-            <span>{meaning}</span>
-          </li>
-        ))}
-      </ol>
-      {!!notes.length && (
-      <ol className="display-view-general__notes">
-        {notes.map((note, i) => (
-          <li key={`${i}-${note}`} className="display-view-general__notes__note">
-            <span>-</span>
-            <span>{note}</span>
-          </li>
-        ))}
-      </ol>
-      )}
-      {!!similarWords.length && (
-      <div className="display-view-general__similar-words">
-        {similarWords.map((similarWord, i) => (
-          <div
-            key={`${i}-${similarWord.jp}`}
-            className="display-view-general__similar-words__word"
-          >
-            <Button onClick={() => similarWordClick(similarWord)}>{similarWord.jp}</Button>
-            <span className="display-view-general__similar-words__word__meanings">
-              {similarWord.en.join('; ')}
-            </span>
-          </div>
-        ))}
-      </div>
-      )}
+
     </div>
   );
 }
