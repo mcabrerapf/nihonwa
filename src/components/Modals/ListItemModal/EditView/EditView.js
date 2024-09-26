@@ -6,16 +6,15 @@ import { ModalWrapperContext } from '../../../ModalWrapper/ModalWrapperContext';
 import { getServiceToUse } from '../../../../Services';
 import { getEditStepHeaderText, renderEditStepComponent } from './helpers';
 import { deepCompare, updateWordTags } from '../../../../utils';
+import { ListItemModalContext } from '../ListItemModalContext';
 
 function EditView({
-  listItemData,
   listData,
-  setModalView,
-  updateWordsList,
 }) {
   const { closeModal } = useContext(ModalWrapperContext);
+  const { word: cWord, handleUpdateWordsList, setModalView } = useContext(ListItemModalContext);
   const [currentEditStep, setCurrentEditStep] = useState(0);
-  const [currentData, setCurrentData] = useState(listItemData);
+  const [currentData, setCurrentData] = useState(cWord);
   const [itemAlreadyExists, setItemAlreadyExists] = useState('');
   const word = currentData.jp;
   const headerText = getEditStepHeaderText('word', currentEditStep, word);
@@ -36,41 +35,40 @@ function EditView({
   }, [currentEditStep]);
 
   const handleSave = async () => {
-    const itemId = listItemData.id;
+    const itemId = cWord.id;
     const serviceName = itemId ? 'update' : 'create';
     const serviceToUse = getServiceToUse('word', serviceName);
-    if (deepCompare(listItemData, currentData)) {
+    if (deepCompare(cWord, currentData)) {
       return setModalView('display');
     }
     await serviceToUse({ input: currentData });
-    await updateWordsList();
+    await handleUpdateWordsList();
     return itemId ? setModalView('display') : closeModal();
   };
 
+  const handleClose = () => {
+    if (!cWord.id) closeModal();
+    else setModalView('display');
+  };
+
   const editStepComponentProps = {
-    listItemData: currentData,
     wordList: listData,
     itemAlreadyExists,
-    isFirstItem: true,
-    isLastItem: true,
-    modalView: 'edit',
     currentData,
     currentEditStep,
-    setModalView: () => {},
-    handleListItemChange: () => {},
     setCurrentData,
     setCurrentEditStep,
   };
 
   return (
-    <div className="list-item-modal-edit-view">
-      <div className="list-item-modal-edit-view__header">
+    <div className="edit-view">
+      <div className="edit-view__header">
         <span>{headerText}</span>
-        <Button onClick={() => closeModal()}>
+        <Button onClick={handleClose}>
           X
         </Button>
       </div>
-      <div className="list-item-modal-edit-view__content">
+      <div className="edit-view__content">
         {renderEditStepComponent(
           'word',
           currentEditStep,

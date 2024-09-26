@@ -7,15 +7,14 @@ import { HIRAGANA, KATAKANA } from '../../../constants';
 
 function KanaModal() {
   const { closeModal } = useContext(ModalWrapperContext);
-  const [view, setView] = useState('hi');
-  const isInHiraganaMode = view === 'hi';
-  const kanaModalButtonText = isInHiraganaMode ? 'カ' : 'か';
+  const [view, setView] = useState(0);
 
   const handleKanaToggle = () => {
-    if (view === 'ka') setView('hi');
-    else setView('ka');
+    if (view === 1) setView(0);
+    else setView(1);
   };
-  const kanaToUse = isInHiraganaMode ? HIRAGANA : KATAKANA;
+  const [kanaToUse, buttonText] = view === 0 ? [HIRAGANA, 'カ'] : [KATAKANA, 'か'];
+
   const mainKana = kanaToUse[0];
 
   return (
@@ -38,7 +37,7 @@ function KanaModal() {
           </div>
         </div>
         <div className="kana-modal__footer">
-          <Button onClick={handleKanaToggle}>{kanaModalButtonText}</Button>
+          <Button onClick={handleKanaToggle}>{buttonText}</Button>
         </div>
       </div>
     </ModalWrapper>

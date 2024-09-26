@@ -16,7 +16,7 @@ function ExamModal(props) {
     setTestSetupOptions,
     setView,
     closeModal,
-    updateWordsList,
+    handleUpdateWordsList,
     handleClose,
     handleTestStart,
   } = useExamModal(props);
@@ -47,7 +47,7 @@ function ExamModal(props) {
         {view === 'done' && (
         <ExamResults
           questions={questions}
-          updateWordsList={updateWordsList}
+          handleUpdateWordsList={handleUpdateWordsList}
           setView={setView}
           closeModal={handleClose}
         />

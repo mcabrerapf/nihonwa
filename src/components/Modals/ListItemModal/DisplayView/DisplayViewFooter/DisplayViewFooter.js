@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './DisplayViewFooter.scss';
 import Button from '../../../../Button';
+import { ListItemModalContext } from '../../ListItemModalContext';
 
 function DisplayViewFooter({
-  isLastItem,
-  isFirstItem,
   view,
   tags,
   selectedKanji,
@@ -12,15 +11,16 @@ function DisplayViewFooter({
   wordId,
   setView,
   setSelectedKanji,
-  handleListItemChange,
-  handleGoToItem,
 }) {
+  const {
+    isFirstItem, isLastItem, handleGoToItem, handleListItemChange,
+  } = useContext(ListItemModalContext);
   const similarWords = listData
     ? listData.filter(({ id, jp }) => id !== wordId && jp.includes(selectedKanji)) : [];
 
   return (
-    <div className="display-view-modal-footer">
-      <div className="display-view-modal-footer__tags">
+    <div className="display-view-footer">
+      <div className="display-view-footer__tags">
         {view === 'general' && tags.map((tag) => (
           <Button
             key={tag}
@@ -40,7 +40,7 @@ function DisplayViewFooter({
           </Button>
         ))}
       </div>
-      <div className="display-view-modal-footer__actions">
+      <div className="display-view-footer__actions">
         <div className="arrow-container">
           <Button
             isDisabled={isFirstItem}
@@ -49,7 +49,7 @@ function DisplayViewFooter({
             {'<'}
           </Button>
         </div>
-        <div className="display-view-modal-footer__actions__view-buttons">
+        <div className="display-view-footer__actions__view-buttons">
           <Button
             isDisabled={view === 'general'}
             onClick={() => {

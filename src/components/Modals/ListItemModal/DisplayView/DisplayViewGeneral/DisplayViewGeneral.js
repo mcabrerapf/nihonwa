@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './DisplayViewGeneral.scss';
 import Button from '../../../../Button';
 import { checkIfCharIsKanji, getCharWithFuri } from '../../../../../utils';
 import { getHeaderTextClassName } from '../DisplayViewHeader/helpers';
+import { ListItemModalContext } from '../../ListItemModalContext';
 
 function DisplayViewGeneral({
   jp,
   furi = [],
   en = [],
   notes = [],
-  similarWords = [],
   successPercentage,
-  similarWordClick,
   setView,
   setSelectedKanji,
 }) {
+  const { similarWords, handleGoToItem } = useContext(ListItemModalContext);
   const headerCharacters = getCharWithFuri(jp, furi, true);
   const kanaClassName = getHeaderTextClassName(headerCharacters);
 
@@ -78,7 +78,7 @@ function DisplayViewGeneral({
               key={`${i}-${similarWord.jp}`}
               className="display-view-general__lists__similar-words__word"
             >
-              <Button onClick={() => similarWordClick(similarWord)}>{similarWord.jp}</Button>
+              <Button onClick={() => handleGoToItem(similarWord)}>{similarWord.jp}</Button>
               <span className="display-view-general__lists__similar-words__word__meanings">
                 {similarWord.en.join('; ')}
               </span>

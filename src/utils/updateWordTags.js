@@ -4,7 +4,6 @@ import containsKatakana from './containsKatakana';
 const updateWordTags = (word = '', selectedTags = []) => {
   const hasKanji = containsKanji(word);
   const hasKataKana = containsKatakana(word);
-  if (!hasKanji && !hasKataKana) return selectedTags;
   const isKanjiSelected = selectedTags.includes('kanji');
   const isKatakanaSelected = selectedTags.includes('katakana');
   const updatedTags = [...selectedTags];

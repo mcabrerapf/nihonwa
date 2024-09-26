@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { ModalWrapperContext } from '../../ModalWrapper/ModalWrapperContext';
 import { TEST_SETUP_INIT_STATE } from './constants';
 
-function useExamModal({ wordList, updateWordsList }) {
+function useExamModal({ wordList, handleUpdateWordsList }) {
   const { closeModal, setCloseOnBgClick } = useContext(ModalWrapperContext);
   const [view, setView] = useState('setup');
   const [questions, setQuestions] = useState([]);
@@ -33,7 +33,7 @@ function useExamModal({ wordList, updateWordsList }) {
     setTestSetupOptions,
     setView,
     closeModal,
-    updateWordsList,
+    handleUpdateWordsList,
     handleClose,
     handleTestStart,
   };

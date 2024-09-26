@@ -5,7 +5,7 @@ import { getServiceToUse } from '../../../../Services';
 import { getScoreColor } from './helpers';
 
 function ExamResults({
-  questions, setView, updateWordsList,
+  questions, setView, handleUpdateWordsList,
 }) {
   const [isLoading, setIsLoading] = useState(true);
   const correctQuestions = questions.filter((question) => question.correct).length;
@@ -19,7 +19,7 @@ function ExamResults({
         const serviceToUse = getServiceToUse('word', 'update');
         await serviceToUse({ input: question });
       }));
-      await updateWordsList();
+      await handleUpdateWordsList();
       setIsLoading(false);
     }
     updateQustions();

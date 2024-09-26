@@ -18,8 +18,6 @@ import getWordPronunciation from './getWordPronunciation';
 import getWordSentences from './getWordSentences';
 import hasFilterMatch from './hasFilterMatch';
 import hasTextMatch from './hasTextMatch';
-import initItemData from './initItemData';
-import initSentenceData from './initSentenceData';
 import initWordData from './initWordData';
 import kanaToEnglishChar from './kanaToEnglishChar';
 import romajiToKana from './romajiToKana';
@@ -50,8 +48,6 @@ export {
   getWordSentences,
   hasTextMatch,
   hasFilterMatch,
-  initItemData,
-  initSentenceData,
   initWordData,
   kanaToEnglishChar,
   parseDicData,

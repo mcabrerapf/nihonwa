@@ -1,22 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './DisplayViewHeader.scss';
 import Button from '../../../../Button';
 import useDisplayViewHeader from './useDisplayViewHeader';
+import { ListItemModalContext } from '../../ListItemModalContext';
 
 function DisplayViewHeader(props) {
   const {
-    modalView,
-    canDelete,
-    setModalView,
     handleCharacterCopy,
     handleJishoNavigate,
   } = useDisplayViewHeader(props);
+  const { modalView, setModalView } = useContext(ListItemModalContext);
   if (modalView === 'edit') return null;
+
   return (
     <div role="button" className="display-view-header">
       <Button
         modifier="danger"
-        isDisabled={!canDelete}
         onClick={() => setModalView('delete')}
       >
         削除

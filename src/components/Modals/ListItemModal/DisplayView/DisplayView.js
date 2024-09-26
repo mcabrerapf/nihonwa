@@ -12,47 +12,30 @@ function DisplayView(props) {
     jp,
     en,
     furi,
-    tags,
     notes,
-    isLastItem,
-    isFirstItem,
-    sortedTags,
+    tags,
     view,
-    similarWords,
     selectedKanji,
-    canDelete,
-    modalView,
     successPercentage,
     listData,
-    setModalView,
     setSelectedKanji,
     setView,
-    handleGoToItem,
-    handleListItemChange,
   } = useDisplayView(props);
 
   return (
-    <div className="list-item-modal-display-view">
+    <div className="display-view">
       <DisplayViewHeader
         text={jp}
-        canDelete={canDelete}
-        modalView={modalView}
         selectedKanji={selectedKanji}
-        setModalView={setModalView}
-        setSelectedKanji={setSelectedKanji}
-        setView={setView}
       />
-      <div className="list-item-modal-display-view__content">
+      <div className="display-view__content">
         {view === 'general' && (
         <DisplayViewGeneral
           jp={jp}
           furi={furi}
-          successPercentage={successPercentage}
-          tags={tags}
           en={en}
           notes={notes}
-          similarWords={similarWords}
-          similarWordClick={handleGoToItem}
+          successPercentage={successPercentage}
           setView={setView}
           setSelectedKanji={setSelectedKanji}
         />
@@ -64,15 +47,11 @@ function DisplayView(props) {
         )}
       </div>
       <DisplayViewFooter
-        isLastItem={isLastItem}
-        isFirstItem={isFirstItem}
         view={view}
-        tags={sortedTags}
+        tags={tags}
         selectedKanji={selectedKanji}
         listData={listData}
         wordId={id}
-        handleListItemChange={handleListItemChange}
-        handleGoToItem={handleGoToItem}
         setView={setView}
         setSelectedKanji={setSelectedKanji}
       />

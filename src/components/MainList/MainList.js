@@ -8,7 +8,6 @@ import useMainList from './useMainList';
 
 function MainList(props) {
   const {
-    mainListRef,
     selectedItemIndex,
     sort,
     filters,
@@ -20,13 +19,13 @@ function MainList(props) {
     setJishoWord,
     ModalToUse,
     handleToggleModal,
-    updateWordsList,
+    handleUpdateWordsList,
     handleFiltersChange,
     setSelectedItemIndex,
   } = useMainList(props);
 
   return (
-    <div ref={mainListRef} className="main-list-container">
+    <div className="main-list-container">
       {showModal && (
         <ModalWrapper closeModal={handleToggleModal}>
           <ModalToUse
@@ -38,8 +37,8 @@ function MainList(props) {
             sort={sort}
             jishoWord={jishoWord}
             setJishoWord={setJishoWord}
-            updateWordsList={updateWordsList}
             setSelectedItemIndex={setSelectedItemIndex}
+            handleUpdateWordsList={handleUpdateWordsList}
             handleToggleModal={handleToggleModal}
             handleFiltersChange={handleFiltersChange}
           />
@@ -51,7 +50,6 @@ function MainList(props) {
         orderedListLength={orderedListLength}
         handleFiltersChange={handleFiltersChange}
         handleToggleModal={handleToggleModal}
-        setSelectedItemIndex={setSelectedItemIndex}
       />
       <MainListContent
         mainList={orderedList}

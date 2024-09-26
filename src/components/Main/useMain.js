@@ -17,7 +17,7 @@ function useMain() {
     initMain();
   }, []);
 
-  const updateWordsList = async () => {
+  const handleUpdateWordsList = async () => {
     const { data: allWords } = await getServiceToUse('word', 'getAll')();
     setWordList(allWords);
   };
@@ -25,7 +25,7 @@ function useMain() {
   return {
     wordList,
     loading,
-    updateWordsList,
+    handleUpdateWordsList,
   };
 }
 

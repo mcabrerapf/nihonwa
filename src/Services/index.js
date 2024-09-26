@@ -1,14 +1,11 @@
 import { generateClient } from 'aws-amplify/api';
-import { GET_ALL_WORDS, GET_ALL_SENTENCES } from '../graphql/querys';
+import { GET_ALL_WORDS } from '../graphql/querys';
 import {
   CREATE_WORD,
-  CREATE_SENTENCE,
   UPDATE_WORD,
-  UPDATE_SENTENCE,
   DELETE_WORD,
-  DELETE_SENTENCE,
 } from '../graphql/mutations';
-import { initSentenceData, initWordData } from '../utils';
+import { initWordData } from '../utils';
 // MODELS
 // amplify/backend/api/nihonwa/schema.graphql
 const client = generateClient();
@@ -86,79 +83,6 @@ const deleteWord = async ({ input, callback }) => {
   }
 };
 
-const getAllSentences = async ({ callback } = {}) => {
-  try {
-    const result = await client.graphql({ query: GET_ALL_SENTENCES });
-    const {
-      data: {
-        listSentences: { items },
-      },
-    } = result;
-    const data = { data: items };
-    return callback ? callback(data) : data;
-  } catch (error) {
-    console.log(error);
-    return callback ? callback({ error }) : { error };
-  }
-};
-
-const createSentence = async ({ input, callback } = {}) => {
-  try {
-    const parsedInput = initSentenceData(input);
-    const result = await client.graphql({
-      query: CREATE_SENTENCE,
-      variables: {
-        input: parsedInput,
-      },
-    });
-    const {
-      data: { createSentence: newSentenceData },
-    } = result;
-    const data = { data: newSentenceData };
-    return callback ? callback(data) : data;
-  } catch (error) {
-    console.log(error);
-    return callback ? callback({ error }) : { error };
-  }
-};
-
-const updateSentence = async ({ input, callback }) => {
-  try {
-    const parsedInput = initSentenceData(input);
-    const result = await client.graphql({
-      query: UPDATE_SENTENCE,
-      variables: {
-        input: parsedInput,
-      },
-    });
-    const {
-      data: { updateSentence: updatedSentenceData },
-    } = result;
-    const data = { data: updatedSentenceData };
-    return callback ? callback(data) : data;
-  } catch (error) {
-    console.log(error);
-    return callback ? callback({ error }) : { error };
-  }
-};
-
-const deleteSentence = async ({ input, callback }) => {
-  try {
-    const parsedInput = initSentenceData(input);
-    await client.graphql({
-      query: DELETE_SENTENCE,
-      variables: {
-        input: { id: parsedInput.id },
-      },
-    });
-    const data = { data: { id: parsedInput.id } };
-    return callback ? callback(data) : data;
-  } catch (error) {
-    console.log(error);
-    return callback ? callback({ error }) : { error };
-  }
-};
-
 const getServiceToUse = (itemType, event) => {
   if (itemType === 'word') {
     switch (event) {
@@ -175,33 +99,13 @@ const getServiceToUse = (itemType, event) => {
         return () => {};
     }
   }
-
-  if (itemType === 'sentence') {
-    switch (event) {
-      case 'getAll':
-        return getAllSentences;
-      case 'create':
-        return createSentence;
-      case 'update':
-        return updateSentence;
-      case 'delete':
-        return deleteSentence;
-
-      default:
-        return () => {};
-    }
-  }
   return () => {};
 };
 
 export {
   getServiceToUse,
   getAllWords,
-  getAllSentences,
   createWord,
-  createSentence,
   updateWord,
-  updateSentence,
   deleteWord,
-  deleteSentence,
 };

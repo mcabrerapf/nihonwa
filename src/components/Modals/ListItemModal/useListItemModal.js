@@ -1,30 +1,23 @@
 import { useContext, useEffect, useState } from 'react';
 import { deleteWord } from '../../../Services';
-import { initItemData } from '../../../utils';
+import { initWordData } from '../../../utils';
 import { ModalWrapperContext } from '../../ModalWrapper/ModalWrapperContext';
 import { findSimilarWords } from './helpers';
 
 function useListItemModal({
   listItemIndex,
   listData,
-  updateWordsList,
   jishoWord,
+  handleUpdateWordsList,
 }) {
-  const isNewItem = listItemIndex === -1;
   const { closeModal, setCloseOnBgClick } = useContext(ModalWrapperContext);
   const [selectedItemIndex, setSelectedItemIndex] = useState(listItemIndex);
   const [canDelete, setCanDelete] = useState(true);
-  const [modalView, setModalView] = useState(isNewItem ? 'edit' : 'display');
-  const listLength = listData.length;
-  const listItemData = listData[selectedItemIndex] || jishoWord || {};
-
-  const parsedListItemData = initItemData(
-    'word',
-    listItemData,
-  );
-  const isLastItem = selectedItemIndex + 1 >= listLength;
+  const [modalView, setModalView] = useState(listItemIndex === -1 ? 'edit' : 'display');
+  const isLastItem = selectedItemIndex + 1 >= listData.length;
   const isFirstItem = selectedItemIndex <= 0;
-  const similarWords = findSimilarWords(parsedListItemData, listData);
+  const listItemData = initWordData(jishoWord || listData[selectedItemIndex]);
+  const similarWords = findSimilarWords(listItemData, listData);
 
   useEffect(() => {
     setCloseOnBgClick(modalView !== 'edit');
@@ -55,18 +48,18 @@ function useListItemModal({
 
     window.addEventListener('keydown', handleKeyDown);
 
-    // Cleanup the event listener when the component unmounts
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isLastItem, isFirstItem, selectedItemIndex, modalView, closeModal]);
 
   const handleListItemChange = (next) => {
-    if (next && !isLastItem) {
+    if (next) {
+      if (isLastItem) return;
       setSelectedItemIndex(selectedItemIndex + 1);
       setModalView('display');
-    }
-    if (!next && !isFirstItem) {
+    } else {
+      if (isFirstItem) return;
       setSelectedItemIndex(selectedItemIndex - 1);
       setModalView('display');
     }
@@ -81,22 +74,29 @@ function useListItemModal({
   const handleDelete = async () => {
     setCanDelete(false);
     await deleteWord({ input: listItemData });
-    await updateWordsList();
+    await handleUpdateWordsList();
     closeModal();
   };
 
-  return {
+  const listItemModalContextValue = {
+    word: listItemData,
+    similarWords,
     modalView,
-    canDelete,
-    parsedListItemData,
-    listData,
     isFirstItem,
     isLastItem,
-    similarWords,
+    canDelete,
     setModalView,
-    updateWordsList,
-    handleGoToItem,
     handleListItemChange,
+    handleGoToItem,
+    handleUpdateWordsList,
+    handleDelete,
+  };
+
+  return {
+    listData,
+    modalView,
+    canDelete,
+    listItemModalContextValue,
     handleDelete,
   };
 }

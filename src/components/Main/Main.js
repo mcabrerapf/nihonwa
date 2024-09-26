@@ -8,7 +8,7 @@ function Main() {
   const {
     loading,
     wordList,
-    updateWordsList,
+    handleUpdateWordsList,
   } = useMain();
 
   if (loading) return <div className="main-loading-container"><Loading /></div>;
@@ -16,7 +16,7 @@ function Main() {
   return (
     <MainList
       wordList={wordList}
-      updateWordsList={updateWordsList}
+      handleUpdateWordsList={handleUpdateWordsList}
     />
   );
 }

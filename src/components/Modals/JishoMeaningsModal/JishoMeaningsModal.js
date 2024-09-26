@@ -11,7 +11,7 @@ function JishoMeaningsModal({
   setSelectedItemIndex,
 }) {
   const [isLoading, setIsLoading] = useState(true);
-  const [jishoData, setJishoData] = useState(null);
+  const [jishoData, setJishoData] = useState([]);
   const [selectedWord, setSelectedWord] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -49,6 +49,7 @@ function JishoMeaningsModal({
     setSelectedItemIndex(-1);
     handleToggleModal('listItemModal');
   };
+
   const noResults = !jishoData || !jishoData.length;
   const jishoUrl = `https://jisho.org/search/${filters.text.toLocaleLowerCase()}`;
   const placholder = `Serch for "${filters.text}" in `;
@@ -71,7 +72,7 @@ function JishoMeaningsModal({
 
         </div>
         )}
-        {!!jishoData && jishoData.map((data) => (
+        {jishoData.map((data) => (
           <div
             key={data.id}
             className={`jisho-meanings-modal__content__word${selectedWord.id === data.id ? ' selected' : ''}`}
@@ -80,7 +81,7 @@ function JishoMeaningsModal({
           >
             <span className="jisho-meanings-modal__content__word__jp">
               {data.jp.split('').map((char, index) => (
-                <div className="jisho-meanings-modal__content__word__jp__char">
+                <div key={`${index}-${char}`} className="jisho-meanings-modal__content__word__jp__char">
                   <div className="jisho-meanings-modal__content__word__jp__char__furi">
                     {data.furi[index]}
                   </div>
@@ -91,8 +92,8 @@ function JishoMeaningsModal({
               ))}
             </span>
             <div className="jisho-meanings-modal__content__word__meanings">
-              {data.meanings.map((mean) => (
-                <div className="jisho-meanings-modal__content__word__meanings__meaning">
+              {data.meanings.map((mean, index) => (
+                <div key={`${index}-${mean}`} className="jisho-meanings-modal__content__word__meanings__meaning">
                   <span className="jisho-meanings-modal__content__word__meanings__meaning__type">
                     {mean[0]}
                   </span>

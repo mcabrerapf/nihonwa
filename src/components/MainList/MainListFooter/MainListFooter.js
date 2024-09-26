@@ -25,7 +25,12 @@ function MainListFooter({
   return (
     <footer className="main-list-footer">
       <div className="main-list-footer__buttons__l">
-        <Button onClick={handleOpenRandomListItemModal}>無作為</Button>
+        <Button
+          isDisabled={orderedListLength < 1}
+          onClick={handleOpenRandomListItemModal}
+        >
+          無作為
+        </Button>
       </div>
       <div className="main-list-footer__buttons__c">
         <Button onClick={handleOpenNewItemModal}>+</Button>

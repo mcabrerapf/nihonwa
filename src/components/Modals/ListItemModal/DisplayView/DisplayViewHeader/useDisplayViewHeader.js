@@ -3,10 +3,7 @@ import { copyToClipboard } from '../../../../../utils';
 
 function useDisplayViewHeader({
   text,
-  canDelete,
-  modalView,
   selectedKanji,
-  setModalView,
 }) {
   const handleCharacterCopy = () => {
     copyToClipboard(selectedKanji || text);
@@ -17,9 +14,6 @@ function useDisplayViewHeader({
   };
 
   return {
-    modalView,
-    canDelete,
-    setModalView,
     handleCharacterCopy,
     handleJishoNavigate,
   };

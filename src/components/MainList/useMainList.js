@@ -1,36 +1,21 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { filterBy, sortBy } from '../../utils';
 import { FILTERS_INIT_VAL } from './constants';
 import { getModalToUse } from './helpers';
 
 function useMainList({
   wordList,
-  updateWordsList,
+  handleUpdateWordsList,
 }) {
-  const mainListRef = useRef(null);
   const [sort, setSort] = useState(['jp', 'dsc']);
   const [filters, setFilters] = useState(FILTERS_INIT_VAL);
   const [showModal, setShowModal] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
-  const [jishoWord, setJishoWord] = useState({});
-
-  const scrollToBottom = () => {
-    if (mainListRef.current) mainListRef.current.scrollTop = mainListRef.current.scrollHeight;
-  };
-
-  useEffect(() => {
-    const handleResize = () => scrollToBottom();
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  const [jishoWord, setJishoWord] = useState(null);
 
   const handleToggleModal = (modalKey = null) => {
     setShowModal(modalKey);
-    if (showModal !== 'jishoMeaningsModal') setJishoWord({});
+    if (showModal !== 'jishoMeaningsModal') setJishoWord(null);
   };
 
   const handleFiltersChange = (newFilters, newSort) => {
@@ -43,25 +28,22 @@ function useMainList({
   const filteredList = filterBy(wordList, filters);
   const orderedList = sortBy(filteredList, sort[0], sort[1]);
   const orderedListLength = orderedList.length;
-  const filterSortString = JSON.stringify({ filters, sort });
 
   return {
-    mainListRef,
     selectedItemIndex,
-    filterSortString,
     sort,
     filters,
     orderedList,
     orderedListLength,
     wordList,
-    showModal,
     jishoWord,
+    showModal,
     ModalToUse,
-    handleToggleModal,
     setJishoWord,
-    updateWordsList,
-    handleFiltersChange,
     setSelectedItemIndex,
+    handleToggleModal,
+    handleUpdateWordsList,
+    handleFiltersChange,
   };
 }
 

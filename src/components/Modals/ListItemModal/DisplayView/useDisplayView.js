@@ -1,56 +1,38 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './DisplayView.scss';
-import { calculateSuccessRate, getKanjiArrayFromString } from '../../../../utils';
+import { calculateSuccessRate } from '../../../../utils';
+import { ListItemModalContext } from '../ListItemModalContext';
 
 function useDisplayView({
-  listItemData,
-  isFirstItem,
-  isLastItem,
-  canDelete,
-  similarWords,
-  modalView,
   listData,
-  setModalView,
-  handleGoToItem,
-  handleListItemChange,
+  // TODO eveuntualy remove this
+  currentData,
 }) {
+  const { word } = useContext(ListItemModalContext);
   const {
-    id, jp, furi, en, tags, notes, hits, misses,
-  } = listItemData;
+    id, jp, furi, en, notes, tags, hits, misses,
+  } = currentData || word;
   const [view, setView] = useState('general');
   const [selectedKanji, setSelectedKanji] = useState('');
-  const kanjis = [...new Set(getKanjiArrayFromString(jp))];
-  const hasKanji = !!kanjis && !!kanjis.length;
   const successPercentage = calculateSuccessRate(hits, misses);
-  const sortedTags = tags.sort((a, b) => a.localeCompare(b));
 
   useEffect(() => {
     setView('general');
-  }, [listItemData]);
+  }, [word]);
 
   return {
     id,
     jp,
     en,
     furi,
-    tags,
     notes,
-    isLastItem,
-    isFirstItem,
-    sortedTags,
+    tags,
     view,
-    similarWords,
     selectedKanji,
-    hasKanji,
-    canDelete,
-    modalView,
     successPercentage,
     listData,
-    setModalView,
     setSelectedKanji,
     setView,
-    handleGoToItem,
-    handleListItemChange,
   };
 }
 

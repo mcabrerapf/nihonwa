@@ -30,7 +30,7 @@ const getWordEditStepComponent = (step, props) => {
       return <EditSelectOptions {...props} optionKey="tags" options={TAGS} />;
     case 5:
       return (
-        <DisplayView {...props} modalView="edit" isFirstItem isLastItem />
+        <DisplayView {...props} />
       );
     default:
       return null;
