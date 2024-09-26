@@ -18,6 +18,7 @@ function useDisplayView({
 
   useEffect(() => {
     setView('general');
+    setSelectedKanji('');
   }, [word]);
 
   return {

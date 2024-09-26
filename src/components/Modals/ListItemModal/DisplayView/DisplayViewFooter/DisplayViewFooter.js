@@ -9,11 +9,10 @@ function DisplayViewFooter({
   selectedKanji,
   listData,
   wordId,
-  setView,
   setSelectedKanji,
 }) {
   const {
-    isFirstItem, isLastItem, handleGoToItem, handleListItemChange,
+    isFirstItem, isLastItem, setModalView, handleGoToItem, handleListItemChange,
   } = useContext(ListItemModalContext);
   const similarWords = listData
     ? listData.filter(({ id, jp }) => id !== wordId && jp.includes(selectedKanji)) : [];
@@ -51,13 +50,12 @@ function DisplayViewFooter({
         </div>
         <div className="display-view-footer__actions__view-buttons">
           <Button
-            isDisabled={view === 'general'}
             onClick={() => {
-              setView('general');
               setSelectedKanji('');
+              setModalView('edit');
             }}
           >
-            情報
+            編集
           </Button>
         </div>
         <div className="arrow-container">

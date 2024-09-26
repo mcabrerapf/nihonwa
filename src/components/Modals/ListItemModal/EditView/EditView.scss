@@ -30,15 +30,14 @@
     height: 100%;
     width: 100%;
     height: 30rem;
+  }
 
-    .display-view {
-      height: 30rem;
+  .display-view {
+    height: 30rem;
 
-      .display-view-footer {
-        &__actions {
-          display: none;
-        }
-
+    .display-view-footer {
+      &__actions {
+        display: none;
       }
     }
   }

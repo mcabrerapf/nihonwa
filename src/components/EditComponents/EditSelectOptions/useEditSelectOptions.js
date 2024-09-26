@@ -1,8 +1,8 @@
 function useEditSelectOptions({
-  currentData,
-  setCurrentData,
-  optionKey,
-  options,
+  currentData = {},
+  optionKey = '',
+  options = [],
+  setCurrentData = () => {},
 }) {
   const { [optionKey]: selectedOptions } = currentData;
 

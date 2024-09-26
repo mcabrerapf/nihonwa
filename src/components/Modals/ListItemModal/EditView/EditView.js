@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './EditView.scss';
-import EditViewFooter from './EditViewFooter';
-import Button from '../../../Button';
-import { ModalWrapperContext } from '../../../ModalWrapper/ModalWrapperContext';
 import { getServiceToUse } from '../../../../Services';
-import { getEditStepHeaderText, renderEditStepComponent } from './helpers';
 import { deepCompare, updateWordTags } from '../../../../utils';
+import { ModalWrapperContext } from '../../../ModalWrapper/ModalWrapperContext';
 import { ListItemModalContext } from '../ListItemModalContext';
+import DisplayView from '../DisplayView';
+import Button from '../../../Button';
+import EditViewFooter from './EditViewFooter';
+import { getEditStepHeaderText, getEditStepComponent } from './helpers';
+import { TAGS } from '../../../../constants';
 
 function EditView({
   listData,
@@ -56,9 +58,13 @@ function EditView({
     itemAlreadyExists,
     currentData,
     currentEditStep,
+    listKey: currentEditStep === 2 ? 'en' : 'notes',
+    optionKey: 'tags',
+    options: TAGS,
     setCurrentData,
     setCurrentEditStep,
   };
+  const EditStepComponent = getEditStepComponent(currentEditStep);
 
   return (
     <div className="edit-view">
@@ -69,12 +75,11 @@ function EditView({
         </Button>
       </div>
       <div className="edit-view__content">
-        {renderEditStepComponent(
-          'word',
-          currentEditStep,
-          editStepComponentProps,
-        )}
+        <EditStepComponent
+          {...editStepComponentProps}
+        />
       </div>
+      {currentEditStep === 5 && <DisplayView currentData={currentData} />}
       <EditViewFooter
         itemAlreadyExists={itemAlreadyExists}
         currentData={currentData}

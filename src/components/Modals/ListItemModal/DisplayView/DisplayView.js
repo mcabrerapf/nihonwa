@@ -52,7 +52,6 @@ function DisplayView(props) {
         selectedKanji={selectedKanji}
         listData={listData}
         wordId={id}
-        setView={setView}
         setSelectedKanji={setSelectedKanji}
       />
     </div>

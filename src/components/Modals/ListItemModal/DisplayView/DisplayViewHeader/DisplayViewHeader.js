@@ -3,12 +3,14 @@ import './DisplayViewHeader.scss';
 import Button from '../../../../Button';
 import useDisplayViewHeader from './useDisplayViewHeader';
 import { ListItemModalContext } from '../../ListItemModalContext';
+import { ModalWrapperContext } from '../../../../ModalWrapper/ModalWrapperContext';
 
 function DisplayViewHeader(props) {
   const {
     handleCharacterCopy,
     handleJishoNavigate,
   } = useDisplayViewHeader(props);
+  const { closeModal } = useContext(ModalWrapperContext);
   const { modalView, setModalView } = useContext(ListItemModalContext);
   if (modalView === 'edit') return null;
 
@@ -34,8 +36,8 @@ function DisplayViewHeader(props) {
           辞書
         </Button>
       </div>
-      <Button onClick={() => setModalView('edit')}>
-        編集
+      <Button modifier="close-button" onClick={() => closeModal()}>
+        X
       </Button>
     </div>
 
