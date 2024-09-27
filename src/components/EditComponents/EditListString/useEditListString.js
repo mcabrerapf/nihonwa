@@ -29,15 +29,6 @@ function useEditListString({
     if (inputRef.current) inputRef.current.focus();
   }, [listKey]);
 
-  const handleUpdateItem = () => {
-    if (!currentString) return;
-    const updatedListValues = [...listValues, ''];
-    updatedListValues[selectedItemIndex] = currentString;
-    setCurrentData({ ...currentData, [listKey]: updatedListValues });
-    setSelectedItemIndex(updatedListValues.length - 1);
-    setCurrentString('');
-  };
-
   const handleAddItem = () => {
     const updatedListValues = [...listValues, ''];
     setCurrentData({ ...currentData, [listKey]: updatedListValues });
@@ -50,6 +41,16 @@ function useEditListString({
         behavior: 'smooth',
       });
     }
+  };
+
+  const handleUpdateItem = (e) => {
+    console.log(e.target.value);
+    if (!currentString) return;
+    const updatedListValues = [...listValues, ''];
+    updatedListValues[selectedItemIndex] = currentString;
+    setCurrentData({ ...currentData, [listKey]: updatedListValues });
+    setSelectedItemIndex(updatedListValues.length - 1);
+    setCurrentString('');
   };
 
   const handleDelete = (valueIndex) => {

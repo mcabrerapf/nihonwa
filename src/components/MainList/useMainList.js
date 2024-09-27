@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { filterBy, sortBy } from '../../utils';
+import { filterBy } from '../../utils';
 import { FILTERS_INIT_VAL } from './constants';
 import { getModalToUse } from './helpers';
 
@@ -25,8 +25,7 @@ function useMainList({
   };
 
   const ModalToUse = getModalToUse(showModal);
-  const filteredList = filterBy(wordList, filters);
-  const orderedList = sortBy(filteredList, sort[0], sort[1]);
+  const orderedList = filterBy(wordList, filters);
   const orderedListLength = orderedList.length;
 
   return {

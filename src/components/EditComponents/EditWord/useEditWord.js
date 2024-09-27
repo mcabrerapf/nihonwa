@@ -3,7 +3,6 @@ import { romajiToKana } from '../../../utils';
 
 const useEditWord = ({
   currentData,
-  itemAlreadyExists,
   setCurrentData,
   setCurrentEditStep,
 }) => {
@@ -13,7 +12,7 @@ const useEditWord = ({
   const [selectedKana, setSelectedKana] = useState('hi');
   const isHiraganaSelected = selectedKana === 'hi';
   const isKatakanaSelected = selectedKana === 'ka';
-  const isFuriButtonDisabled = itemAlreadyExists || !word;
+  const isFuriButtonDisabled = !word;
 
   useEffect(() => {
     if (inputRef.current) inputRef.current.focus();
@@ -59,7 +58,6 @@ const useEditWord = ({
 
   return {
     inputRef,
-    itemAlreadyExists,
     word,
     currentWord,
     selectedKana,

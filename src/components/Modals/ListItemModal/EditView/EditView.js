@@ -17,18 +17,8 @@ function EditView({
   const { word: cWord, handleUpdateWordsList, setModalView } = useContext(ListItemModalContext);
   const [currentEditStep, setCurrentEditStep] = useState(0);
   const [currentData, setCurrentData] = useState(cWord);
-  const [itemAlreadyExists, setItemAlreadyExists] = useState('');
   const word = currentData.jp;
   const headerText = getEditStepHeaderText('word', currentEditStep, word);
-
-  useEffect(() => {
-    if (!word) setItemAlreadyExists(false);
-    const alreadyExists = !!listData.find((itemToCheck) => {
-      if (itemToCheck.id === currentData.id) return false;
-      return itemToCheck.jp === word;
-    });
-    setItemAlreadyExists(alreadyExists);
-  }, [word]);
 
   useEffect(() => {
     if (currentEditStep !== 5) return;
@@ -55,7 +45,6 @@ function EditView({
 
   const editStepComponentProps = {
     wordList: listData,
-    itemAlreadyExists,
     currentData,
     currentEditStep,
     listKey: currentEditStep === 2 ? 'en' : 'notes',
@@ -81,7 +70,6 @@ function EditView({
       </div>
       {currentEditStep === 5 && <DisplayView currentData={currentData} />}
       <EditViewFooter
-        itemAlreadyExists={itemAlreadyExists}
         currentData={currentData}
         currentEditStep={currentEditStep}
         setCurrentData={setCurrentData}

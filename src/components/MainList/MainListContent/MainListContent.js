@@ -25,13 +25,13 @@ function MainListContent({
   return (
     <ul className="main-list" ref={listRef}>
       {items.map((listItem, i) => {
-        const { jp, id } = listItem;
+        const { id, jp, match } = listItem;
         if (!jp) return null;
         return (
           <li
             key={id}
             role="button"
-            className="main-list__item"
+            className={`main-list__item${match ? '' : ' no-match'}`}
             onClick={() => handleOpenListItemModal(i)}
           >
             <span>{jp}</span>

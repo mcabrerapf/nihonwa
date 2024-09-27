@@ -10,7 +10,6 @@ const checkCanSave = (wordData) => {
 };
 
 function useEditViewFooter({
-  itemAlreadyExists,
   currentData,
   currentEditStep,
   setCurrentData,
@@ -59,7 +58,7 @@ function useEditViewFooter({
     handleSave();
   };
 
-  const isNextButtonDisabled = !canProceed || itemAlreadyExists;
+  const isNextButtonDisabled = !canProceed;
   const stepsArray = getEditStepsArray('word');
 
   return {

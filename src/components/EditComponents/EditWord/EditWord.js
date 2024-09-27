@@ -7,7 +7,6 @@ import Input from '../../Input';
 function EditWord(props) {
   const {
     inputRef,
-    itemAlreadyExists,
     word,
     currentWord,
     isHiraganaSelected,
@@ -33,10 +32,6 @@ function EditWord(props) {
             </span>
           ))}
         </div>
-
-        {itemAlreadyExists && (
-          <span className="edit-word__display__error-message">Word already exists</span>
-        )}
       </div>
       <div className="edit-word__actions">
         <div className="edit-word__actions__furi-button">

@@ -28,6 +28,11 @@
     border-radius: 0.5rem;
     font-size: 2.5rem;
 
+    &.no-match {
+      border: 1px dashed var(--disabled-color);
+      color: var(--disabled-color);
+    }
+
     & .load-more {
       width: 1px;
     }
