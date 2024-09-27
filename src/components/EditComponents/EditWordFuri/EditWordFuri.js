@@ -3,6 +3,7 @@ import './EditWordFuri.scss';
 import Button from '../../Button';
 import useEditWordFuri from './useEditWordFuri';
 import Input from '../../Input';
+import Kana from '../../Kana';
 
 function EditWordFuri(props) {
   const {
@@ -21,22 +22,16 @@ function EditWordFuri(props) {
     <div className="edit-word-furi">
       <div className="edit-word-furi__display">
         {kanaWithFuri.map(({
-          key, className, kanaGroup, handleSelectFuri,
+          key, modifier, kanaGroup, handleSelectFuri,
         }) => (
-          <div
+          <Kana
             key={key}
-            className={className}
-          >
-            <span className="furi">{kanaGroup[1]}</span>
-            <span
-              role="button"
-              className="kana"
-              onClick={handleSelectFuri}
-            >
-              {kanaGroup[0]}
-            </span>
-            <span className="furi">{kanaGroup[2]}</span>
-          </div>
+            modifier={modifier}
+            kana={kanaGroup[0]}
+            furi={kanaGroup[1]}
+            en={kanaGroup[2]}
+            handleClick={handleSelectFuri}
+          />
         ))}
       </div>
       <form className="edit-word-furi__input" onSubmit={handleOnSubmit}>
@@ -46,12 +41,6 @@ function EditWordFuri(props) {
           onChange={handleOnChange}
           onKeyDown={handleKeyDown}
         />
-        {/* <input
-          ref={inputRef}
-          onChange={handleOnChange}
-          onKeyDown={handleKeyDown}
-          value={currentString}
-        /> */}
         <div className="edit-word-furi__input__buttons">
           <Button
             isNotSelected={!isHiraganaSelected}

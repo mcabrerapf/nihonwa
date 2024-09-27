@@ -66,16 +66,14 @@ function useEditWordFuri({ currentData, setCurrentData }) {
   };
 
   const kanaWithFuri = getCharWithFuri(jp, furi).map((kanaGroup, i) => {
-    const className = `kana-with-furi ${
-      i === selectedCharIndex ? 'selected-kana' : ''
-    }`;
+    const modifier = i === selectedCharIndex ? 'selected' : '';
     const key = `${kanaGroup[0]}-${i}`;
     const handleDeleteFuri = () => handleUpdateFuri('', i);
     const handleSelectFuri = () => handleCharSelect(i, kanaGroup[1]);
 
     return {
       key,
-      className,
+      modifier,
       kanaGroup,
       handleDeleteFuri,
       handleSelectFuri,

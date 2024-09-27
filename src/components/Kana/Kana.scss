@@ -1,0 +1,46 @@
+.kana {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__char {
+        display: flex;
+        align-items: flex-end;
+        font-size: 3rem;
+
+        &.xl {
+            font-size: 4rem;
+        }
+
+        &.l {
+            font-size: 3rem;
+        }
+
+        &.m {
+            font-size: 2rem;
+        }
+
+        &.s {
+            font-size: 2rem;
+        }
+
+        &.xs {
+            font-size: 1.75rem;
+        }
+    }
+
+    &__furi {
+        display: flex;
+        align-items: flex-end;
+        font-size: 1.2rem;
+        height: 1.5rem;
+    }
+
+    &__en {
+        display: flex;
+        align-items: flex-end;
+        font-size: 1.2rem;
+        height: 1.5rem;
+    }
+}

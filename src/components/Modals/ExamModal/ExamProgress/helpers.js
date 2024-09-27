@@ -1,10 +1,10 @@
 import { generateRandomNumber } from '../../../../utils';
 
 const getKanaSize = (kana) => {
-  if (!kana) return 'big';
-  if (kana.length > 10) return 'normal';
-  if (kana.length > 5) return 'medium';
-  return 'big';
+  if (!kana) return 'xl';
+  if (kana.length > 10) return 'l';
+  if (kana.length > 5) return 'm';
+  return 'xl';
 };
 
 const getAnswerButtonColor = (answer, isSelectedAnswer, answers) => {

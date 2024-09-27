@@ -69,6 +69,7 @@ export {
   GODAN,
   ICHIDAN,
   NUMBER,
+  NOUN,
   OCCUPATION,
   PERSON,
   PLACE,
@@ -78,4 +79,5 @@ export {
   THING,
   TIME,
   TRANSPORT,
+  VERB,
 };

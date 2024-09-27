@@ -7,6 +7,7 @@ import {
   getKanaSize,
 } from './helpers';
 import ProgressBar from './PorgressBar';
+import Kana from '../../../Kana';
 
 function ExamProgress({
   questions, setQuestions, setView,
@@ -78,13 +79,17 @@ function ExamProgress({
         <div className="exam-modal-progress__question__jp">
           {questionCharacters.map((questionChar, i) => {
             const [char, furiChar, enChar] = questionChar;
-
+            const key = `${char}-${i}`;
             return (
-              <div className="kana-with-furi" key={`${char}-${i}`}>
-                {showAnswerOptions && <span className="furi">{furiChar}</span>}
-                <span className={`kana ${kanaSize}`}>{char}</span>
-                {showAnswerOptions && <span className="furi">{enChar}</span>}
-              </div>
+              <Kana
+                key={key}
+                kana={char}
+                furi={furiChar}
+                en={enChar}
+                hideFuri={!showAnswerOptions}
+                hideEn={!showAnswerOptions}
+                sizeModifier={kanaSize}
+              />
             );
           })}
         </div>

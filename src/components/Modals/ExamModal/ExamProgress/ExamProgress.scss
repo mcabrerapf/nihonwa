@@ -43,38 +43,6 @@
       margin-bottom: 1.5rem;
       min-height: 10rem;
       width: 100%;
-
-      .kana-with-furi {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        .kana {
-          &.big {
-            font-size: 4rem;
-          }
-
-          &.medium {
-            font-size: 3rem;
-          }
-
-          &.normal {
-            font-size: 2rem;
-          }
-
-          display: flex;
-          align-items: flex-end;
-
-        }
-
-        .furi {
-          display: flex;
-          align-items: flex-end;
-          font-size: 1.2rem;
-          height: 1.5rem;
-        }
-      }
     }
 
     &__answers {

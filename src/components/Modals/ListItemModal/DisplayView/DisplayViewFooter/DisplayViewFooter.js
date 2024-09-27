@@ -33,6 +33,7 @@ function DisplayViewFooter({
         {view === 'kanji' && similarWords.map((word) => (
           <Button
             key={word.id}
+            modifier="kanji"
             onClick={() => handleGoToItem(word)}
           >
             {word.jp}

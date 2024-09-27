@@ -18,7 +18,13 @@
       color: var(--white-color);
       font-size: 1.5rem;
       flex-shrink: 0;
+
+      &.kanji {
+        cursor: pointer;
+      }
     }
+
+
   }
 
   &__actions {

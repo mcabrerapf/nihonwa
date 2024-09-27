@@ -4,6 +4,7 @@ import Button from '../../../../Button';
 import { checkIfCharIsKanji, getCharWithFuri } from '../../../../../utils';
 import { getHeaderTextClassName } from '../DisplayViewHeader/helpers';
 import { ListItemModalContext } from '../../ListItemModalContext';
+import Kana from '../../../../Kana';
 
 function DisplayViewGeneral({
   jp,
@@ -16,7 +17,7 @@ function DisplayViewGeneral({
 }) {
   const { similarWords, handleGoToItem } = useContext(ListItemModalContext);
   const headerCharacters = getCharWithFuri(jp, furi, true);
-  const kanaClassName = getHeaderTextClassName(headerCharacters);
+  const kanaModifier = getHeaderTextClassName(headerCharacters);
 
   const handleCharClick = (char) => {
     if (checkIfCharIsKanji(char)) {
@@ -31,18 +32,17 @@ function DisplayViewGeneral({
         <div className="display-view-general__word__characters">
           {headerCharacters.map((headerChar, i) => {
             const [char, furiChar, enChar] = headerChar;
+            const key = `${char}-${i}`;
 
             return (
-              <div
-                key={`${char}-${i}`}
-                role="button"
-                className="kana-with-furi"
-                onClick={() => handleCharClick(char)}
-              >
-                <span className="furi">{furiChar}</span>
-                <span className={kanaClassName}>{char}</span>
-                <span className="furi">{enChar}</span>
-              </div>
+              <Kana
+                key={key}
+                kana={char}
+                furi={furiChar}
+                en={enChar}
+                sizeModifier={kanaModifier}
+                handleClick={handleCharClick}
+              />
             );
           })}
         </div>
