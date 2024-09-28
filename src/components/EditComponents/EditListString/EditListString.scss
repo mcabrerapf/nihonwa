@@ -33,16 +33,26 @@
 
   &__buttons {
     display: flex;
-    position: relative;
-    justify-content: end;
     align-items: center;
     box-sizing: border-box;
+    justify-content: space-between;
     width: 100%;
-    gap: 1rem;
 
-    .add-list-item {
-      position: absolute;
-      left: calc(50% - 2rem);
+    div {
+      display: flex;
+      width: 7.5rem;
+    }
+
+    &__left {
+      justify-content: flex-start;
+    }
+
+    &__midlle {
+      justify-content: center;
+    }
+
+    &__right {
+      justify-content: flex-end;
     }
   }
 }

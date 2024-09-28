@@ -34,15 +34,21 @@ function EditListString(props) {
         ))}
       </div>
       <div className="edit-list-string__buttons">
-        <Button modifier="add-list-item" onClick={handleAddItem}>+</Button>
-        {isMeaningsList && (
-        <Button
-          isDisabled={isListEmpty}
-          onClick={handleGoToNotes}
-        >
-          ノート
-        </Button>
-        )}
+        <div className="edit-list-string__buttons__left" />
+        <div className="edit-list-string__buttons__midlle">
+          <Button modifier="add-list-item" onClick={handleAddItem}>+</Button>
+        </div>
+        <div className="edit-list-string__buttons__right">
+          {isMeaningsList && (
+          <Button
+            isDisabled={isListEmpty}
+            onClick={handleGoToNotes}
+          >
+            ノート
+          </Button>
+          )}
+        </div>
+
       </div>
     </div>
   );
