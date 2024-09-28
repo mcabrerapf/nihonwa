@@ -42,7 +42,8 @@ function JishoMeaningsModal({
     const en = [];
     const tags = [];
     selectedWord.meanings.forEach((meaning) => {
-      getMeanigTags(meaning[0], tags);
+      console.log(meaning);
+      getMeanigTags(meaning[0] || '', tags);
       if (meaning[0] === 'Notes') {
         notes.push(meaning[1]);
       } else if (meaning[0] === 'Other forms') {

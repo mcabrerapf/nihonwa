@@ -2,20 +2,24 @@ import {
   GODAN, IADJECTIVE, ICHIDAN, NOUN, VERB,
 } from '../../../constants/TAGS';
 
-const getMeanigTags = (meaningTags, tags) => {
-  if (meaningTags.includes('Noun') && !tags.includes(NOUN)) {
+const getMeanigTags = (meaningTag, tags) => {
+  const parsedTag = meaningTag ? meaningTag.toLocaleLowerCase() : '';
+  if (parsedTag.includes('noun') && !tags.includes(NOUN)) {
     tags.push(NOUN);
   }
-  if (meaningTags.includes('Suru verb') && !tags.includes(VERB)) {
+  if (parsedTag.includes('suru') && !tags.includes(VERB)) {
     tags.push(VERB);
   }
-  if (meaningTags.includes('Godan') && !tags.includes(GODAN)) {
+  if (parsedTag.includes('godan') && !tags.includes(GODAN)) {
     tags.push(GODAN);
   }
-  if (meaningTags.includes('Ichidan') && !tags.includes(ICHIDAN)) {
+  if (parsedTag.includes('ichidan') && !tags.includes(ICHIDAN)) {
     tags.push(ICHIDAN);
   }
-  if (meaningTags.includes('I-Adjective') && !tags.includes(IADJECTIVE)) {
+  if (parsedTag.includes('i-') && !tags.includes(IADJECTIVE)) {
+    tags.push(IADJECTIVE);
+  }
+  if (parsedTag.includes('na-') && !tags.includes(IADJECTIVE)) {
     tags.push(IADJECTIVE);
   }
 };
