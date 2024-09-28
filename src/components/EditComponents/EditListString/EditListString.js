@@ -2,77 +2,48 @@ import React from 'react';
 import './EditListString.scss';
 import Button from '../../Button';
 import useEditListString from './useEditListString';
-import Input from '../../Input';
+import AutoResizingInput from '../../AutoResizingInput';
 
 function EditListString(props) {
   const {
-    inputRef,
     listRef,
-    currentString,
     listValues,
-    selectedItemIndex,
-    isLastItemEmpty,
     isMeaningsList,
     isListEmpty,
     handleAddItem,
-    handleUpdateItem,
     handleDelete,
     handleOnChange,
-    handleOnSubmit,
-    handleItemClick,
     handleGoToNotes,
   } = useEditListString(props);
 
   return (
     <div className="edit-list-string">
       <div ref={listRef} className="edit-list-string__display">
-        {listValues.map((value, i) => {
-          const isItemSelected = i === selectedItemIndex;
-
-          return (
-            <div key={`${value}-${i}`} className="edit-list-string__display__item">
-              <Button
-                onClick={() => handleDelete(i)}
-              >
-                X
-              </Button>
-              <span
-                role="button"
-                className={`edit-list-string__display__item__text${isItemSelected ? ' selected' : ''}`}
-                onClick={() => handleItemClick(i, value)}
-              >
-                {value}
-              </span>
-            </div>
-          );
-        })}
+        {listValues.map((value, i) => (
+          <div key={`${value}-${i}`} className="edit-list-string__display__item">
+            <Button
+              onClick={() => handleDelete(i)}
+            >
+              X
+            </Button>
+            <AutoResizingInput
+              initialValue={value}
+              onChange={(eVal) => handleOnChange(eVal, i)}
+            />
+          </div>
+        ))}
       </div>
-      {isMeaningsList && (
-      <div className="edit-list-string__nav-buttons">
+      <div className="edit-list-string__buttons">
+        <Button modifier="add-list-item" onClick={handleAddItem}>+</Button>
+        {isMeaningsList && (
         <Button
           isDisabled={isListEmpty}
           onClick={handleGoToNotes}
         >
           ノート
         </Button>
+        )}
       </div>
-      )}
-      <form className="edit-list-string__input" onSubmit={handleOnSubmit}>
-        <Button isDisabled={!isLastItemEmpty} onClick={handleAddItem}>+</Button>
-        <Input
-          inputRef={inputRef}
-          value={currentString}
-          onChange={handleOnChange}
-        />
-        <div className="edit-list-string__input__buttons">
-          <Button
-            isDisabled={!currentString}
-            onClick={handleUpdateItem}
-          >
-            O
-          </Button>
-        </div>
-      </form>
     </div>
   );
 }
