@@ -43,8 +43,7 @@ function useEditListString({
     }
   };
 
-  const handleUpdateItem = (e) => {
-    console.log(e.target.value);
+  const handleUpdateItem = () => {
     if (!currentString) return;
     const updatedListValues = [...listValues, ''];
     updatedListValues[selectedItemIndex] = currentString;

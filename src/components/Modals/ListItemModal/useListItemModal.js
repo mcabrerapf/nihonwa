@@ -3,6 +3,7 @@ import { deleteWord } from '../../../Services';
 import { initWordData } from '../../../utils';
 import { ModalWrapperContext } from '../../ModalWrapper/ModalWrapperContext';
 import { findSimilarWords } from './helpers';
+import { useToastContext } from '../../ToastContext';
 
 function useListItemModal({
   listItemIndex,
@@ -11,6 +12,7 @@ function useListItemModal({
   handleUpdateWordsList,
 }) {
   const { closeModal, setCloseOnBgClick } = useContext(ModalWrapperContext);
+  const { createToast } = useToastContext();
   const [selectedItemIndex, setSelectedItemIndex] = useState(listItemIndex);
   const [canDelete, setCanDelete] = useState(true);
   const [modalView, setModalView] = useState(listItemIndex === -1 ? 'edit' : 'display');
@@ -73,8 +75,13 @@ function useListItemModal({
 
   const handleDelete = async () => {
     setCanDelete(false);
-    await deleteWord({ input: listItemData });
+    await deleteWord({ input: listItemData })
+      .then((res) => {
+        createToast({ text: res.data.jp, type: 'delete' });
+      })
+      .catch((err) => createToast({ text: err.message || 'ERROR', type: 'error' }));
     await handleUpdateWordsList();
+
     closeModal();
   };
 

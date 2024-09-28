@@ -9,11 +9,13 @@ import Button from '../../../Button';
 import EditViewFooter from './EditViewFooter';
 import { getEditStepHeaderText, getEditStepComponent } from './helpers';
 import { TAGS } from '../../../../constants';
+import { useToastContext } from '../../../ToastContext';
 
 function EditView({
   listData,
 }) {
   const { closeModal } = useContext(ModalWrapperContext);
+  const { createToast } = useToastContext();
   const { word: cWord, handleUpdateWordsList, setModalView } = useContext(ListItemModalContext);
   const [currentEditStep, setCurrentEditStep] = useState(0);
   const [currentData, setCurrentData] = useState(cWord);
@@ -33,7 +35,9 @@ function EditView({
     if (deepCompare(cWord, currentData)) {
       return setModalView('display');
     }
-    await serviceToUse({ input: currentData });
+    await serviceToUse({ input: currentData })
+      .then((res) => createToast({ text: res.data.jp, type: 'success' }))
+      .catch((err) => createToast({ text: err.message || 'ERROR', type: 'error' }));
     await handleUpdateWordsList();
     return itemId ? setModalView('display') : closeModal();
   };

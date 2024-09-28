@@ -75,7 +75,7 @@ const deleteWord = async ({ input, callback }) => {
         input: { id: parsedInput.id },
       },
     });
-    const data = { data: { id: parsedInput.id } };
+    const data = { data: { id: parsedInput.id, jp: parsedInput.jp } };
     return callback ? callback(data) : data;
   } catch (error) {
     console.log(error);
