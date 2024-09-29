@@ -21,6 +21,18 @@ button {
   border: 1px solid var(--white-color);
   transition: transform 0.2s ease, background-color 0.2s ease;
 
+  &:not(:disabled) {
+    &:active {
+      transform: scale(0.95);
+      background-color: var(--disabled-color);
+    }
+
+  }
+
+  &:focus {
+    outline: none;
+  }
+
   &.danger {
     color: var(--red-color);
     border: 2px solid var(--red-color);
@@ -52,17 +64,4 @@ button {
     border: 1px dashed var(--disabled-color);
     color: var(--disabled-color);
   }
-
-  &:not(:disabled) {
-    &:active {
-      transform: scale(0.95);
-      background-color: var(--disabled-color);
-    }
-
-  }
-
-  &:focus {
-    outline: none;
-  }
-
 }
