@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 function useEditListString({
   currentData,
@@ -8,19 +8,14 @@ function useEditListString({
   setCurrentEditStep,
 }) {
   const { [listKey]: listValues } = currentData;
-  const listRef = useRef(null);
   const isMeaningsList = listKey === 'en';
   const isListEmpty = !listValues.filter(Boolean).length;
 
   useEffect(() => {
     if (!listValues.length) {
       setCurrentData({ ...currentData, [listKey]: [''] });
-      // setSelectedItemIndex(0);
-      // setCurrentString('');
     } else {
       setCurrentData({ ...currentData, [listKey]: listValues });
-      // setCurrentString(listValues[listValues.length - 1]);
-      // setSelectedItemIndex(listValues.length - 1);
     }
   }, [listKey]);
 
@@ -49,7 +44,6 @@ function useEditListString({
   };
 
   return {
-    listRef,
     listValues,
     isMeaningsList,
     isListEmpty,

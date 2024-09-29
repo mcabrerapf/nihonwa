@@ -56,7 +56,6 @@ const getWordResult = (word, index) => {
   const furiArray = getWordResultFuriArray(furi);
   const meanings = getWordMeanings(meaningsWrapper);
 
-  // console.log({ furiArray, wordString, meanings });
   return {
     id: `${wordString}-${index}`,
     furi: furiArray,
@@ -74,8 +73,6 @@ const parseHtml = (html) => {
 
   Array.from(words).forEach((word, i) => {
     if (!word) return;
-    // console.log('----- WORD -----');
-    // console.log(word);
     const parsedWord = getWordResult(word, i);
     data.push(parsedWord);
   });

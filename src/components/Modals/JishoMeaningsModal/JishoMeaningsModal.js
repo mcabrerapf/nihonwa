@@ -3,7 +3,7 @@ import './JishoMeaningsModal.scss';
 import Loading from '../../Loading';
 import Button from '../../Button';
 import { B_URL } from '../../../constants';
-import { getMeanigTags } from './helpers';
+import { buildWordFromJisho } from './helpers';
 
 function JishoMeaningsModal({
   filters,
@@ -38,30 +38,8 @@ function JishoMeaningsModal({
   };
 
   const handleConfirmClick = () => {
-    const notes = [];
-    const en = [];
-    const tags = [];
-    selectedWord.meanings.forEach((meaning) => {
-      console.log(meaning);
-      getMeanigTags(meaning[0] || '', tags);
-      if (meaning[0] === 'Notes') {
-        notes.push(meaning[1]);
-      } else if (meaning[0] === 'Other forms') {
-        notes.push(`Other forms: ${meaning[1]}`);
-      } else {
-        en.push(meaning[1]);
-      }
-    });
-
-    const parsedWord = {
-      jp: selectedWord.jp,
-      furi: selectedWord.furi,
-      en,
-      notes,
-      tags,
-    };
-
-    setJishoWord(parsedWord);
+    const newWord = buildWordFromJisho(selectedWord);
+    setJishoWord(newWord);
     setSelectedItemIndex(-1);
     handleToggleModal('listItemModal');
   };

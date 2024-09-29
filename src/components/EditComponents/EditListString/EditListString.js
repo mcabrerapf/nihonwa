@@ -6,7 +6,6 @@ import AutoResizingInput from '../../AutoResizingInput';
 
 function EditListString(props) {
   const {
-    listRef,
     listValues,
     isMeaningsList,
     isListEmpty,
@@ -18,7 +17,7 @@ function EditListString(props) {
 
   return (
     <div className="edit-list-string">
-      <div ref={listRef} className="edit-list-string__display">
+      <div className="edit-list-string__display">
         {listValues.map((value, i) => (
           <div key={`${value}-${i}`} className="edit-list-string__display__item">
             <Button

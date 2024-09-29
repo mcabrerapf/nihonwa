@@ -24,4 +24,28 @@ const getMeanigTags = (meaningTag, tags) => {
   }
 };
 
-export { getMeanigTags };
+const buildWordFromJisho = (jishoWord) => {
+  const newWord = {
+    jp: jishoWord.jp,
+    furi: jishoWord.furi,
+    en: [],
+    notes: [],
+    tags: [],
+  };
+
+  jishoWord.meanings.forEach((meaning) => {
+    const meaningText = meaning[1].trim();
+    getMeanigTags(meaning[0], newWord.tags);
+    if (meaning[0] === 'Notes') {
+      newWord.notes.push(meaningText);
+    } else if (meaning[0] === 'Other forms') {
+      newWord.notes.push(`Other forms: ${meaningText}`);
+    } else {
+      newWord.en.push(meaningText);
+    }
+  });
+
+  return newWord;
+};
+
+export { buildWordFromJisho, getMeanigTags };
