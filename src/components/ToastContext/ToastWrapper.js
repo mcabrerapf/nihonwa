@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ToastWrapper.scss';
 import { ToastContextProvider } from './ToastContext';
 import Toast from './Toast';
 
 function ToastWrapper({ children }) {
   const [toasts, setToasts] = useState([]);
+
+  useEffect(() => {
+    function hideToast() {
+      const toastToPop = [...toasts];
+      toastToPop.shift();
+      setToasts(toastToPop);
+    }
+    const time = 3000;
+    const timeout = setTimeout(hideToast, time);
+
+    return () => clearTimeout(timeout);
+  }, [toasts]);
 
   const createToast = ({ text, type }) => {
     const newToast = { id: Date.now(), text, type };
@@ -18,10 +30,14 @@ function ToastWrapper({ children }) {
   };
 
   return (
-    <div
-      className="toaster"
+    <ToastContextProvider
+      value={{
+        createToast,
+      }}
     >
-      <div className="toaster__toasts">
+      <div
+        className="toast-wrapper"
+      >
         {toasts.map(({ id, text, type }) => (
           <Toast
             key={id}
@@ -33,15 +49,9 @@ function ToastWrapper({ children }) {
         ))}
       </div>
 
-      <ToastContextProvider
-        value={{
-          createToast,
-        }}
-      >
-        {children}
-      </ToastContextProvider>
+      {children}
+    </ToastContextProvider>
 
-    </div>
   );
 }
 
