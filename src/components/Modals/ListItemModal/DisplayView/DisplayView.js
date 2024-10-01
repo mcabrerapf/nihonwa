@@ -15,12 +15,16 @@ function DisplayView(props) {
     notes,
     tags,
     view,
+    listItemView,
     selectedKanji,
     successPercentage,
     listData,
+    forceShow,
     setSelectedKanji,
     setView,
   } = useDisplayView(props);
+
+  if (listItemView !== 'display' && !forceShow) return null;
 
   return (
     <div className="display-view">

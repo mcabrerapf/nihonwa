@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './DisplayViewFooter.scss';
 import Button from '../../../../Button';
-import { ListItemModalContext } from '../../ListItemModalContext';
+import { useListItemContext } from '../../../../../contexts/ListItemContext';
 
 function DisplayViewFooter({
   view,
@@ -12,8 +12,8 @@ function DisplayViewFooter({
   setSelectedKanji,
 }) {
   const {
-    isFirstItem, isLastItem, setModalView, handleGoToItem, handleListItemChange,
-  } = useContext(ListItemModalContext);
+    isFirstItem, isLastItem, setListItemView, handleGoToItem, handleListItemChange,
+  } = useListItemContext();
   const similarWords = listData
     ? listData.filter(({ id, jp }) => id !== wordId && jp.includes(selectedKanji)) : [];
 
@@ -53,7 +53,7 @@ function DisplayViewFooter({
           <Button
             onClick={() => {
               setSelectedKanji('');
-              setModalView('edit');
+              setListItemView('edit');
             }}
           >
             編集

@@ -3,7 +3,7 @@ import './Main.scss';
 import MainList from '../MainList';
 import useMain from './useMain';
 import Loading from '../Loading';
-import { ToastWrapper } from '../ToastContext';
+import { ToastWrapper } from '../../contexts/ToastContext';
 
 function Main() {
   const {

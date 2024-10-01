@@ -18,8 +18,8 @@ function useDisplayViewKanji({
       await fetch(url)
         .then((res) => res.json())
         .then((data) => {
-          if (!data) return;
           setIsLoading(false);
+          if (!data) return;
           setKanjiData(data);
         })
         .catch((err) => console.log(err));

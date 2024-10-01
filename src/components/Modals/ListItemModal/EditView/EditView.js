@@ -1,26 +1,35 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './EditView.scss';
 import { getServiceToUse } from '../../../../Services';
 import { deepCompare, updateWordTags } from '../../../../utils';
-import { ModalWrapperContext } from '../../../ModalWrapper/ModalWrapperContext';
-import { ListItemModalContext } from '../ListItemModalContext';
+import { useToastContext } from '../../../../contexts/ToastContext';
+import { useModalContext } from '../../../../contexts/ModalContext';
 import DisplayView from '../DisplayView';
 import Button from '../../../Button';
 import EditViewFooter from './EditViewFooter';
 import { getEditStepHeaderText, getEditStepComponent } from './helpers';
 import { TAGS } from '../../../../constants';
-import { useToastContext } from '../../../ToastContext';
+import { useListItemContext } from '../../../../contexts/ListItemContext';
 
 function EditView({
   listData,
 }) {
-  const { closeModal } = useContext(ModalWrapperContext);
+  const { closeModal } = useModalContext();
   const { createToast } = useToastContext();
-  const { word: cWord, handleUpdateWordsList, setModalView } = useContext(ListItemModalContext);
+  const {
+    listItemView,
+    word: cWord,
+    handleUpdateWordsList,
+    setListItemView,
+  } = useListItemContext();
   const [currentEditStep, setCurrentEditStep] = useState(0);
   const [currentData, setCurrentData] = useState(cWord);
   const word = currentData.jp;
   const headerText = getEditStepHeaderText('word', currentEditStep, word);
+
+  useEffect(() => {
+    if (currentEditStep !== 0)setCurrentEditStep(0);
+  }, [listItemView]);
 
   useEffect(() => {
     if (currentEditStep !== 5) return;
@@ -33,19 +42,21 @@ function EditView({
     const serviceName = itemId ? 'update' : 'create';
     const serviceToUse = getServiceToUse('word', serviceName);
     if (deepCompare(cWord, currentData)) {
-      return setModalView('display');
+      return setListItemView('display');
     }
     await serviceToUse({ input: currentData })
       .then((res) => createToast({ text: res.data.jp, type: 'success' }))
       .catch((err) => createToast({ text: err.message || 'ERROR', type: 'error' }));
     await handleUpdateWordsList();
-    return itemId ? setModalView('display') : closeModal();
+    return itemId ? setListItemView('display') : closeModal();
   };
 
   const handleClose = () => {
     if (!cWord.id) closeModal();
-    else setModalView('display');
+    else setListItemView('display');
   };
+
+  if (listItemView !== 'edit') return null;
 
   const editStepComponentProps = {
     wordList: listData,
@@ -72,7 +83,7 @@ function EditView({
           {...editStepComponentProps}
         />
       </div>
-      {currentEditStep === 5 && <DisplayView currentData={currentData} />}
+      {currentEditStep === 5 && <DisplayView currentData={currentData} forceShow />}
       <EditViewFooter
         currentData={currentData}
         currentEditStep={currentEditStep}

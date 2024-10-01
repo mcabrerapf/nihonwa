@@ -1,14 +1,15 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './DisplayView.scss';
 import { calculateSuccessRate } from '../../../../utils';
-import { ListItemModalContext } from '../ListItemModalContext';
+import { useListItemContext } from '../../../../contexts/ListItemContext';
 
 function useDisplayView({
   listData,
   // TODO eveuntualy remove this
   currentData,
+  forceShow,
 }) {
-  const { word } = useContext(ListItemModalContext);
+  const { listItemView, word } = useListItemContext();
   const {
     id, jp, furi, en, notes, tags, hits, misses,
   } = currentData || word;
@@ -29,9 +30,11 @@ function useDisplayView({
     notes,
     tags,
     view,
+    listItemView,
     selectedKanji,
     successPercentage,
     listData,
+    forceShow,
     setSelectedKanji,
     setView,
   };

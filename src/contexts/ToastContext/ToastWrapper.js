@@ -8,6 +8,7 @@ function ToastWrapper({ children }) {
 
   useEffect(() => {
     function hideToast() {
+      if (!toasts.length) return;
       const toastToPop = [...toasts];
       toastToPop.shift();
       setToasts(toastToPop);

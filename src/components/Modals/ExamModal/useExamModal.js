@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
-import { ModalWrapperContext } from '../../ModalWrapper/ModalWrapperContext';
+import { useEffect, useState } from 'react';
 import { TEST_SETUP_INIT_STATE } from './constants';
+import { useModalContext } from '../../../contexts/ModalContext';
 
 function useExamModal({ wordList, handleUpdateWordsList }) {
-  const { closeModal, setCloseOnBgClick } = useContext(ModalWrapperContext);
+  const { closeModal, setCloseOnBgClick } = useModalContext();
   const [view, setView] = useState('setup');
   const [questions, setQuestions] = useState([]);
   const [testSetupOptions, setTestSetupOptions] = useState(

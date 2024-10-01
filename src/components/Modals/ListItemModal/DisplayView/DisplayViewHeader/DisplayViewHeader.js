@@ -1,24 +1,24 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './DisplayViewHeader.scss';
 import Button from '../../../../Button';
 import useDisplayViewHeader from './useDisplayViewHeader';
-import { ListItemModalContext } from '../../ListItemModalContext';
-import { ModalWrapperContext } from '../../../../ModalWrapper/ModalWrapperContext';
+import { useModalContext } from '../../../../../contexts/ModalContext';
+import { useListItemContext } from '../../../../../contexts/ListItemContext';
 
 function DisplayViewHeader(props) {
   const {
     handleCharacterCopy,
     handleJishoNavigate,
   } = useDisplayViewHeader(props);
-  const { closeModal } = useContext(ModalWrapperContext);
-  const { modalView, setModalView } = useContext(ListItemModalContext);
-  if (modalView === 'edit') return null;
+  const { closeModal } = useModalContext();
+  const { listItemView, setListItemView } = useListItemContext();
+  if (listItemView === 'edit') return null;
 
   return (
     <div role="button" className="display-view-header">
       <Button
         modifier="danger"
-        onClick={() => setModalView('delete')}
+        onClick={() => setListItemView('delete')}
       >
         削除
       </Button>

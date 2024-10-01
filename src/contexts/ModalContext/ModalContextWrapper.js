@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './ModalWrapper.scss';
-import { ModalWrapperContextProvider } from './ModalWrapperContext';
+import './ModalContextWrapper.scss';
+import { ModalContextProvider } from './ModalContext';
 
-function ModalWrapper({ children, closeModal }) {
+function ModalContextWrapper({ children, closeModal }) {
   const backgroundRef = useRef(null);
   const wrapperRef = useRef(null);
   const [closeOnBgClick, setCloseOnBgClick] = useState(true);
@@ -48,17 +48,17 @@ function ModalWrapper({ children, closeModal }) {
       onTouchEnd={stopPropagation}
     >
       <div ref={wrapperRef} className="modal__bg__wrapper">
-        <ModalWrapperContextProvider
+        <ModalContextProvider
           value={{
             setCloseOnBgClick,
             closeModal,
           }}
         >
           {children}
-        </ModalWrapperContextProvider>
+        </ModalContextProvider>
       </div>
     </div>
   );
 }
 
-export default ModalWrapper;
+export default ModalContextWrapper;

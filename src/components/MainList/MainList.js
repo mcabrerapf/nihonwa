@@ -3,7 +3,7 @@ import './MainList.scss';
 import MainListFooter from './MainListFooter';
 import MainListHeader from './MainListHeader';
 import MainListContent from './MainListContent';
-import ModalWrapper from '../ModalWrapper';
+import { ModalContextWrapper } from '../../contexts/ModalContext';
 import useMainList from './useMainList';
 
 function MainList(props) {
@@ -27,7 +27,7 @@ function MainList(props) {
   return (
     <div className="main-list-container">
       {showModal && (
-        <ModalWrapper closeModal={handleToggleModal}>
+        <ModalContextWrapper closeModal={handleToggleModal}>
           <ModalToUse
             kanaMode={showModal}
             listData={orderedList}
@@ -42,7 +42,7 @@ function MainList(props) {
             handleToggleModal={handleToggleModal}
             handleFiltersChange={handleFiltersChange}
           />
-        </ModalWrapper>
+        </ModalContextWrapper>
       )}
       <MainListHeader
         filters={filters}

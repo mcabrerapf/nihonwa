@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './DisplayViewGeneral.scss';
 import Button from '../../../../Button';
 import { checkIfCharIsKanji, getCharWithFuri } from '../../../../../utils';
 import { getHeaderTextClassName } from '../DisplayViewHeader/helpers';
-import { ListItemModalContext } from '../../ListItemModalContext';
 import Kana from '../../../../Kana';
+import { useListItemContext } from '../../../../../contexts/ListItemContext';
 
 function DisplayViewGeneral({
   jp,
@@ -15,7 +15,7 @@ function DisplayViewGeneral({
   setView,
   setSelectedKanji,
 }) {
-  const { similarWords, handleGoToItem } = useContext(ListItemModalContext);
+  const { similarWords, handleGoToItem } = useListItemContext();
   const headerCharacters = getCharWithFuri(jp, furi, true);
   const kanaModifier = getHeaderTextClassName(headerCharacters);
 

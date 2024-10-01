@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './DeleteView.scss';
 import Button from '../../../Button';
-import { ListItemModalContext } from '../ListItemModalContext';
+import { useListItemContext } from '../../../../contexts/ListItemContext';
 
 function DeleteView() {
-  const { handleDelete, canDelete } = useContext(ListItemModalContext);
+  const { listItemView, handleDelete, canDelete } = useListItemContext();
+  if (listItemView !== 'delete') return null;
 
   return (
     <div className="delete-view">
