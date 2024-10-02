@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import './ToastWrapper.scss';
 import { ToastContextProvider } from './ToastContext';
 import Toast from './Toast';
@@ -6,34 +6,27 @@ import Toast from './Toast';
 function ToastWrapper({ children }) {
   const [toasts, setToasts] = useState([]);
 
-  useEffect(() => {
-    function hideToast() {
-      if (!toasts.length) return;
-      const toastToPop = [...toasts];
-      toastToPop.shift();
-      setToasts(toastToPop);
-    }
-    const time = 3000;
-    const timeout = setTimeout(hideToast, time);
+  const removeToast = useCallback((id) => {
+    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+  }, []);
 
-    return () => clearTimeout(timeout);
-  }, [toasts]);
+  const addToast = useCallback(({ text, type }) => {
+    const id = Date.now();
+    setToasts((prevToasts) => [...prevToasts, { id, text, type }]);
 
-  const createToast = ({ text, type }) => {
-    const newToast = { id: Date.now(), text, type };
-    const updatedToasts = [...toasts, newToast];
-    setToasts(updatedToasts);
-  };
+    setTimeout(() => {
+      removeToast(id);
+    }, 3000);
+  }, []);
 
-  const handleToastClick = (idToRemove) => {
-    const updatedToasts = toasts.filter(({ id }) => id !== idToRemove);
-    setToasts(updatedToasts);
-  };
+  const handleToastClick = useCallback((id) => {
+    setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+  }, []);
 
   return (
     <ToastContextProvider
       value={{
-        createToast,
+        addToast,
       }}
     >
       <div

@@ -26,24 +26,22 @@ function MainList(props) {
 
   return (
     <div className="main-list-container">
-      {showModal && (
-        <ModalContextWrapper closeModal={handleToggleModal}>
-          <ModalToUse
-            kanaMode={showModal}
-            listData={orderedList}
-            wordList={wordList}
-            listItemIndex={selectedItemIndex}
-            filters={filters}
-            sort={sort}
-            jishoWord={jishoWord}
-            setJishoWord={setJishoWord}
-            setSelectedItemIndex={setSelectedItemIndex}
-            handleUpdateWordsList={handleUpdateWordsList}
-            handleToggleModal={handleToggleModal}
-            handleFiltersChange={handleFiltersChange}
-          />
-        </ModalContextWrapper>
-      )}
+      <ModalContextWrapper closeModal={handleToggleModal} showModal={showModal}>
+        <ModalToUse
+          kanaMode={showModal}
+          listData={orderedList}
+          wordList={wordList}
+          listItemIndex={selectedItemIndex}
+          filters={filters}
+          sort={sort}
+          jishoWord={jishoWord}
+          setJishoWord={setJishoWord}
+          setSelectedItemIndex={setSelectedItemIndex}
+          handleUpdateWordsList={handleUpdateWordsList}
+          handleToggleModal={handleToggleModal}
+          handleFiltersChange={handleFiltersChange}
+        />
+      </ModalContextWrapper>
       <MainListHeader
         filters={filters}
         wordList={wordList}

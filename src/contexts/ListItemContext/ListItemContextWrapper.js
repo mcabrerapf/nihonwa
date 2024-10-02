@@ -9,12 +9,12 @@ function ListItemContextWrapper({
   listItemIndex,
   listData,
   jishoWord,
+  children,
   handleUpdateWordsList,
   onViewChange = () => {},
   onEscapeKey = () => {},
   onDelete = () => {},
   onError = () => {},
-  children,
 }) {
   const [selectedItemIndex, setSelectedItemIndex] = useState(listItemIndex);
   const [canDelete, setCanDelete] = useState(true);
@@ -78,10 +78,14 @@ function ListItemContextWrapper({
 
   const handleDelete = async () => {
     setCanDelete(false);
+    let toastData;
     await deleteWord({ input: listItemData })
-      .then((res) => onDelete(res))
+      .then((res) => {
+        toastData = res;
+        handleUpdateWordsList();
+      })
+      .then(() => onDelete(toastData))
       .catch((err) => onError(err));
-    await handleUpdateWordsList();
   };
 
   const listItemModalContextValue = {

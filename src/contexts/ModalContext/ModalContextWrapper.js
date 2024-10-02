@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './ModalContextWrapper.scss';
 import { ModalContextProvider } from './ModalContext';
 
-function ModalContextWrapper({ children, closeModal }) {
+function ModalContextWrapper({ children, showModal, closeModal }) {
   const backgroundRef = useRef(null);
   const wrapperRef = useRef(null);
   const [closeOnBgClick, setCloseOnBgClick] = useState(true);
@@ -38,6 +38,8 @@ function ModalContextWrapper({ children, closeModal }) {
   const stopPropagation = (e) => {
     e.stopPropagation();
   };
+
+  if (!showModal) return null;
 
   return (
     <div

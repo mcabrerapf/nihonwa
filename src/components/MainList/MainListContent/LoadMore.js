@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 
 function LoadMore({
   callback,
-  itemsLength,
-  allItemsLength,
+  limit,
+  listLength,
 }) {
   const targetRef = useRef(null);
 
@@ -12,7 +12,7 @@ function LoadMore({
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            if (itemsLength >= allItemsLength) return;
+            if (limit >= listLength) return;
             callback();
           }
         });
@@ -30,9 +30,9 @@ function LoadMore({
         observer.unobserve(targetElement);
       }
     };
-  }, [itemsLength]);
+  }, [limit]);
 
-  if (itemsLength >= allItemsLength) return null;
+  if (limit >= listLength) return null;
 
   return (
     <div ref={targetRef} className="load-more" />

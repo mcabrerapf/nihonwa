@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-function Toast({
+const Toast = memo(({
   id, text, type, handleToastClick,
-}) {
+}) => {
   const className = ['toast-wrapper__toast', type].filter(Boolean).join(' ');
 
   const handleClick = (e) => {
@@ -20,6 +20,6 @@ function Toast({
       {text}
     </div>
   );
-}
+});
 
 export default Toast;

@@ -8,15 +8,15 @@ function useListItemModal({
   handleUpdateWordsList,
 }) {
   const { closeModal, setCloseOnBgClick } = useModalContext();
-  const { createToast } = useToastContext();
+  const { addToast } = useToastContext();
 
   const onDelete = (res) => {
-    createToast({ text: res.data.jp, type: 'delete' });
+    addToast({ text: res.data.jp, type: 'delete' });
     closeModal();
   };
 
   const onError = (err) => {
-    createToast({ text: err.message || 'ERROR', type: 'error' });
+    addToast({ text: err.message || 'ERROR', type: 'error' });
     closeModal();
   };
 

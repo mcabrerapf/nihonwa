@@ -1,53 +1,43 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {
+  useState, useRef, useCallback,
+  memo,
+} from 'react';
 import './MainListContent.scss';
 import LoadMore from './LoadMore';
+import ListItem from './ListItem';
 
 function MainListContent({
   mainList, handleToggleModal, setSelectedItemIndex,
 }) {
-  const [items, setItems] = useState([]);
+  const [limit, setLimit] = useState(20);
   const listRef = useRef(null);
-
-  useEffect(() => {
-    const numberOfItemsToFetch = !items.length || items.length < 20 ? 20 : items.length;
-    setItems(mainList.slice(0, numberOfItemsToFetch));
-  }, [mainList]);
 
   const handleOpenListItemModal = (i) => {
     setSelectedItemIndex(i);
     handleToggleModal('listItemModal');
   };
 
-  const loadMoreItems = () => {
-    setItems(mainList.slice(0, 20 + items.length));
-  };
+  const loadMoreItems = useCallback(() => {
+    setLimit((oldLimit) => oldLimit + 20);
+  }, [mainList]);
 
   return (
     <ul className="main-list" ref={listRef}>
-      {items.map((listItem, i) => {
-        const { id, jp, match } = listItem;
-        if (!jp) return null;
-        return (
-          <li
-            key={id}
-            role="button"
-            className={`main-list__item${match ? '' : ' no-match'}`}
-            onClick={() => handleOpenListItemModal(i)}
-          >
-            <span>{jp}</span>
-            {i === items.length - 10 && (
-            <LoadMore
-              key={`${id}-load-more`}
-              callback={loadMoreItems}
-              itemsLength={items.length}
-              allItemsLength={mainList.length}
-            />
-            )}
-          </li>
-        );
-      })}
+      {mainList.map((listItem, i) => (
+        <ListItem
+          key={listItem.id}
+          shouldHide={i > limit}
+          listItem={listItem}
+          onItemClick={() => handleOpenListItemModal(i)}
+        />
+      ))}
+      <LoadMore
+        callback={loadMoreItems}
+        limit={limit}
+        listLength={mainList.length}
+      />
     </ul>
   );
 }
 
-export default MainListContent;
+export default memo(MainListContent);

@@ -15,7 +15,7 @@ function EditView({
   listData,
 }) {
   const { closeModal } = useModalContext();
-  const { createToast } = useToastContext();
+  const { addToast } = useToastContext();
   const {
     listItemView,
     word: cWord,
@@ -44,10 +44,17 @@ function EditView({
     if (deepCompare(cWord, currentData)) {
       return setListItemView('display');
     }
+    let toastText;
     await serviceToUse({ input: currentData })
-      .then((res) => createToast({ text: res.data.jp, type: 'success' }))
-      .catch((err) => createToast({ text: err.message || 'ERROR', type: 'error' }));
-    await handleUpdateWordsList();
+      .then((res) => {
+        toastText = res.data.jp;
+        handleUpdateWordsList();
+      })
+      .then(() => {
+        addToast({ text: toastText, type: 'success' });
+      })
+      .catch((err) => addToast({ text: err.message || 'ERROR', type: 'error' }));
+
     return itemId ? setListItemView('display') : closeModal();
   };
 
