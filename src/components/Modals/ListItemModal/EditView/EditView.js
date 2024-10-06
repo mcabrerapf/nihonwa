@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './EditView.scss';
 import { getServiceToUse } from '../../../../Services';
-import { deepCompare, updateWordTags } from '../../../../utils';
+import { updateWordTags } from '../../../../utils';
 import { useToastContext } from '../../../../contexts/ToastContext';
 import { useModalContext } from '../../../../contexts/ModalContext';
 import DisplayView from '../DisplayView';
@@ -41,9 +41,9 @@ function EditView({
     const itemId = cWord.id;
     const serviceName = itemId ? 'update' : 'create';
     const serviceToUse = getServiceToUse('word', serviceName);
-    if (deepCompare(cWord, currentData)) {
-      return setListItemView('display');
-    }
+    // if (deepCompare(cWord, currentData)) {
+    //   return setListItemView('display');
+    // }
     let toastText;
     await serviceToUse({ input: currentData })
       .then((res) => {
