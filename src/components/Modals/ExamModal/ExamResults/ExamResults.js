@@ -3,10 +3,12 @@ import './ExamResults.scss';
 import Button from '../../../Button';
 import { getServiceToUse } from '../../../../Services';
 import { getScoreColor } from './helpers';
+import { useMainContext } from '../../../../contexts/MainContext';
 
 function ExamResults({
-  questions, setView, handleUpdateWordsList,
+  questions, setView,
 }) {
+  const { updateWordsList } = useMainContext();
   const [isLoading, setIsLoading] = useState(true);
   const correctQuestions = questions.filter((question) => question.correct).length;
   const totalQuestions = questions.length;
@@ -19,7 +21,7 @@ function ExamResults({
         const serviceToUse = getServiceToUse('word', 'update');
         await serviceToUse({ input: question });
       }));
-      await handleUpdateWordsList();
+      await updateWordsList();
       setIsLoading(false);
     }
     updateQustions();
@@ -51,8 +53,9 @@ function ExamResults({
                   <span>{jp}</span>
                 </div>
                 <div className="exam-modal-results__list__item__meanings">
-                  {en.map((meaning) => (
+                  {en.map((meaning, mI) => (
                     <span
+                      key={`${id}-${mI}`}
                       className="exam-modal-results__list__item__meanings__meaning"
                     >
                       {meaning}

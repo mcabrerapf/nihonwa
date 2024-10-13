@@ -12,6 +12,7 @@ function DisplayViewHeader(props) {
   } = useDisplayViewHeader(props);
   const { closeModal } = useModalContext();
   const { listItemView, setListItemView } = useListItemContext();
+
   if (listItemView === 'edit') return null;
 
   return (

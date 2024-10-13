@@ -1,47 +1,30 @@
 import { useState } from 'react';
-import { filterBy } from '../../utils';
-import { FILTERS_INIT_VAL } from './constants';
 import { getModalToUse } from './helpers';
+import { useMainContext } from '../../contexts/MainContext';
 
-function useMainList({
-  wordList,
-  handleUpdateWordsList,
-}) {
-  const [sort, setSort] = useState(['jp', 'dsc']);
-  const [filters, setFilters] = useState(FILTERS_INIT_VAL);
+function useMainList() {
+  const {
+    setFilters,
+    setJishoWord,
+  } = useMainContext();
   const [showModal, setShowModal] = useState(false);
-  const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
-  const [jishoWord, setJishoWord] = useState(null);
 
   const handleToggleModal = (modalKey = null) => {
     setShowModal(modalKey);
     if (showModal !== 'jishoMeaningsModal') setJishoWord(null);
   };
 
-  const handleFiltersChange = (newFilters, newSort) => {
+  const handleFiltersChange = (newFilters) => {
     if (newFilters) setFilters(newFilters);
-    if (newSort) setSort(newSort);
     setShowModal(false);
   };
 
-  const ModalToUse = getModalToUse(showModal);
-  const orderedList = filterBy(wordList, filters);
-  const orderedListLength = orderedList.length;
+  const Modal = getModalToUse(showModal);
 
   return {
-    selectedItemIndex,
-    sort,
-    filters,
-    orderedList,
-    orderedListLength,
-    wordList,
-    jishoWord,
     showModal,
-    ModalToUse,
-    setJishoWord,
-    setSelectedItemIndex,
+    Modal,
     handleToggleModal,
-    handleUpdateWordsList,
     handleFiltersChange,
   };
 }

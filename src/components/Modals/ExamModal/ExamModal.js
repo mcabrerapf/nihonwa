@@ -9,14 +9,12 @@ import useExamModal from './useExamModal';
 function ExamModal(props) {
   const {
     view,
-    wordList,
     testSetupOptions,
     questions,
     setQuestions,
     setTestSetupOptions,
     setView,
     closeModal,
-    handleUpdateWordsList,
     handleClose,
     handleTestStart,
   } = useExamModal(props);
@@ -30,7 +28,6 @@ function ExamModal(props) {
         {view === 'setup' && (
         <ExamSetup
           testSetupOptions={testSetupOptions}
-          wordList={wordList}
           setTestSetupOptions={setTestSetupOptions}
           handleTestStart={handleTestStart}
           closeModal={closeModal}
@@ -47,7 +44,6 @@ function ExamModal(props) {
         {view === 'done' && (
         <ExamResults
           questions={questions}
-          handleUpdateWordsList={handleUpdateWordsList}
           setView={setView}
           closeModal={handleClose}
         />

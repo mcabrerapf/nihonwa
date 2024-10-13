@@ -8,7 +8,7 @@ function MainListHeader(props) {
   const {
     textFilter,
     tagFilters,
-    headerCount,
+    orderedListLength,
     handleKanaClick,
     handleJishoNavigate,
     handleSearchTextChange,
@@ -38,7 +38,7 @@ function MainListHeader(props) {
           onMouseLeave={handleMouseLeave}
         >
           <span>辞書</span>
-          <span className="main-list-header__top__header-text__count">{headerCount}</span>
+          <span className="main-list-header__top__header-text__count">{orderedListLength}</span>
         </div>
         <div className="main-list-header__top__kana-buttons">
           <Button onClick={handleKanaButtonClick}>仮名</Button>

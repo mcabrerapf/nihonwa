@@ -5,25 +5,27 @@ import React, {
 import './MainListContent.scss';
 import LoadMore from './LoadMore';
 import ListItem from './ListItem';
+import { useMainContext } from '../../../contexts/MainContext';
 
 function MainListContent({
-  mainList, handleToggleModal, setSelectedItemIndex,
+  handleToggleModal,
 }) {
+  const { orderedList, orderedListLength, setSelectedItemIndex } = useMainContext();
   const [limit, setLimit] = useState(20);
   const listRef = useRef(null);
+
+  const loadMoreItems = useCallback(() => {
+    setLimit((oldLimit) => oldLimit + 20);
+  }, [orderedList]);
 
   const handleOpenListItemModal = (i) => {
     setSelectedItemIndex(i);
     handleToggleModal('listItemModal');
   };
 
-  const loadMoreItems = useCallback(() => {
-    setLimit((oldLimit) => oldLimit + 20);
-  }, [mainList]);
-
   return (
     <ul className="main-list" ref={listRef}>
-      {mainList.map((listItem, i) => (
+      {orderedList.map((listItem, i) => (
         <ListItem
           key={listItem.id}
           shouldHide={i > limit}
@@ -34,7 +36,7 @@ function MainListContent({
       <LoadMore
         callback={loadMoreItems}
         limit={limit}
-        listLength={mainList.length}
+        listLength={orderedListLength}
       />
     </ul>
   );

@@ -18,7 +18,6 @@ function DisplayView(props) {
     listItemView,
     selectedKanji,
     successPercentage,
-    listData,
     forceShow,
     setSelectedKanji,
     setView,
@@ -54,7 +53,6 @@ function DisplayView(props) {
         view={view}
         tags={tags}
         selectedKanji={selectedKanji}
-        listData={listData}
         wordId={id}
         setSelectedKanji={setSelectedKanji}
       />

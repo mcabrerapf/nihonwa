@@ -4,35 +4,34 @@ import { ListItemContextProvider } from './ListItemContext';
 import { initWordData } from '../../utils';
 import { findSimilarWords } from '../../components/Modals/ListItemModal/helpers';
 import { deleteWord } from '../../Services';
+import { useMainContext } from '../MainContext';
+import { useModalContext } from '../ModalContext';
+import { useToastContext } from '../ToastContext';
 
 function ListItemContextWrapper({
-  listItemIndex,
-  listData,
-  jishoWord,
   children,
-  handleUpdateWordsList,
-  onViewChange = () => {},
-  onEscapeKey = () => {},
-  onDelete = () => {},
-  onError = () => {},
 }) {
-  const [selectedItemIndex, setSelectedItemIndex] = useState(listItemIndex);
-  const [canDelete, setCanDelete] = useState(true);
-  const [listItemView, setListItemView] = useState(listItemIndex === -1 ? 'edit' : 'display');
-  const isLastItem = selectedItemIndex + 1 >= listData.length;
+  const {
+    selectedItemIndex, jishoWord, orderedList, setSelectedItemIndex, updateWordsList,
+  } = useMainContext();
+  const { addToast } = useToastContext();
+  const { closeModal, setCloseOnBgClick } = useModalContext();
+
+  const [listItemView, setListItemView] = useState(selectedItemIndex === -1 ? 'edit' : 'display');
+  const isLastItem = selectedItemIndex + 1 >= orderedList.length;
   const isFirstItem = selectedItemIndex <= 0;
-  const listItemData = initWordData(jishoWord || listData[selectedItemIndex]);
-  const similarWords = findSimilarWords(listItemData, listData);
+  const listItemData = initWordData(jishoWord || orderedList[selectedItemIndex]);
+  const similarWords = findSimilarWords(listItemData, orderedList);
 
   useEffect(() => {
-    onViewChange(listItemView !== 'edit');
-  }, [listItemView, onViewChange]);
+    setCloseOnBgClick(listItemView !== 'edit');
+  }, [listItemView, setCloseOnBgClick]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
       const pressedKey = event.key;
       if (pressedKey === 'Escape') {
-        onEscapeKey();
+        closeModal();
       }
       if (listItemView === 'edit') return;
       if (pressedKey === 'e') {
@@ -56,7 +55,7 @@ function ListItemContextWrapper({
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isLastItem, isFirstItem, selectedItemIndex, listItemView, onEscapeKey]);
+  }, [isLastItem, isFirstItem, selectedItemIndex, listItemView, closeModal]);
 
   const handleListItemChange = (next) => {
     if (next) {
@@ -71,21 +70,22 @@ function ListItemContextWrapper({
   };
 
   const handleGoToItem = (newWord) => {
-    const newIndex = listData.findIndex((listWord) => listWord.id === newWord.id);
+    const newIndex = orderedList.findIndex((listWord) => listWord.id === newWord.id);
     setSelectedItemIndex(newIndex);
     setListItemView('display');
   };
 
   const handleDelete = async () => {
-    setCanDelete(false);
-    let toastData;
     await deleteWord({ input: listItemData })
-      .then((res) => {
-        toastData = res;
-        handleUpdateWordsList();
+      .then(async (res) => {
+        await updateWordsList();
+        addToast({ text: res.data.jp, type: 'delete' });
+        closeModal();
       })
-      .then(() => onDelete(toastData))
-      .catch((err) => onError(err));
+      .catch((err) => {
+        addToast({ text: err.message || 'ERROR', type: 'error' });
+        closeModal();
+      });
   };
 
   const listItemModalContextValue = {
@@ -94,11 +94,9 @@ function ListItemContextWrapper({
     listItemView,
     isFirstItem,
     isLastItem,
-    canDelete,
     setListItemView,
     handleListItemChange,
     handleGoToItem,
-    handleUpdateWordsList,
     handleDelete,
   };
 

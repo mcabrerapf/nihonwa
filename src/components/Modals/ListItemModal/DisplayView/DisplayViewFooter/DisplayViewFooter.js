@@ -2,20 +2,21 @@ import React from 'react';
 import './DisplayViewFooter.scss';
 import Button from '../../../../Button';
 import { useListItemContext } from '../../../../../contexts/ListItemContext';
+import { useMainContext } from '../../../../../contexts/MainContext';
 
 function DisplayViewFooter({
   view,
   tags,
   selectedKanji,
-  listData,
   wordId,
   setSelectedKanji,
 }) {
+  const { orderedList } = useMainContext();
   const {
     isFirstItem, isLastItem, setListItemView, handleGoToItem, handleListItemChange,
   } = useListItemContext();
-  const similarWords = listData
-    ? listData.filter(({ id, jp }) => id !== wordId && jp.includes(selectedKanji)) : [];
+  const similarWords = orderedList
+    ? orderedList.filter(({ id, jp }) => id !== wordId && jp.includes(selectedKanji)) : [];
 
   return (
     <div className="display-view-footer">

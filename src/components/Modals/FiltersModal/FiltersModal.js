@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import './FiltersModal.scss';
 import TAGS from '../../../constants/TAGS';
 import Button from '../../Button';
+import { useMainContext } from '../../../contexts/MainContext';
 
-function FiltersModal({ filters, sort, handleFiltersChange }) {
+function FiltersModal({ handleFiltersChange }) {
+  const { filters } = useMainContext();
   const [selectedFilters, setSelectedFilters] = useState(filters);
   // const [selectedSort, setSelectedSort] = useState(sort);
   const { tags } = selectedFilters;
 
   const handleUpdateListFilters = () => {
-    handleFiltersChange(selectedFilters, sort);
+    handleFiltersChange(selectedFilters);
   };
 
   const updateFilters = (value, key) => {

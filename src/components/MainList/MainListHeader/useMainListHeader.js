@@ -1,19 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { copyToClipboard, romajiToKana } from '../../../utils';
+import { useMainContext } from '../../../contexts/MainContext';
 
 const useMainListHeader = ({
-  filters,
-  wordList,
-  orderedListLength,
   handleFiltersChange,
   handleToggleModal,
 }) => {
+  const { filters, wordList, orderedListLength } = useMainContext();
   const pressTimer = useRef(null);
   const [isLongPress, setIsLongPress] = useState(false);
   const { text: textFilter, tags: tagFilters } = filters;
-  const listToFilterLength = wordList.length;
-  const headerCount = orderedListLength < listToFilterLength
-    ? `(${orderedListLength}) ${listToFilterLength}` : orderedListLength;
 
   useEffect(() => {
     if (isLongPress) {
@@ -66,7 +62,7 @@ const useMainListHeader = ({
   return {
     textFilter,
     tagFilters,
-    headerCount,
+    orderedListLength,
     handleKanaClick,
     handleJishoNavigate,
     handleSearchTextChange,

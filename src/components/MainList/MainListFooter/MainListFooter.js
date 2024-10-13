@@ -2,12 +2,13 @@ import React from 'react';
 import './MainListFooter.scss';
 import { generateRandomNumber } from '../../../utils';
 import Button from '../../Button';
+import { useMainContext } from '../../../contexts/MainContext';
 
 function MainListFooter({
-  orderedListLength,
   handleToggleModal,
-  setSelectedItemIndex,
 }) {
+  const { orderedListLength, setSelectedItemIndex } = useMainContext();
+
   const handleOpenRandomListItemModal = () => {
     const randomIndex = generateRandomNumber(0, orderedListLength);
     setSelectedItemIndex(randomIndex);

@@ -10,18 +10,18 @@ import EditViewFooter from './EditViewFooter';
 import { getEditStepHeaderText, getEditStepComponent } from './helpers';
 import { TAGS } from '../../../../constants';
 import { useListItemContext } from '../../../../contexts/ListItemContext';
+import { useMainContext } from '../../../../contexts/MainContext';
 
-function EditView({
-  listData,
-}) {
+function EditView() {
+  const { updateWordsList } = useMainContext();
   const { closeModal } = useModalContext();
   const { addToast } = useToastContext();
   const {
     listItemView,
     word: cWord,
-    handleUpdateWordsList,
     setListItemView,
   } = useListItemContext();
+
   const [currentEditStep, setCurrentEditStep] = useState(0);
   const [currentData, setCurrentData] = useState(cWord);
   const word = currentData.jp;
@@ -44,14 +44,11 @@ function EditView({
     // if (deepCompare(cWord, currentData)) {
     //   return setListItemView('display');
     // }
-    let toastText;
+
     await serviceToUse({ input: currentData })
-      .then((res) => {
-        toastText = res.data.jp;
-        handleUpdateWordsList();
-      })
-      .then(() => {
-        addToast({ text: toastText, type: 'success' });
+      .then(async (res) => {
+        await updateWordsList();
+        addToast({ text: res.data.jp, type: 'success' });
       })
       .catch((err) => addToast({ text: err.message || 'ERROR', type: 'error' }));
 
@@ -66,7 +63,6 @@ function EditView({
   if (listItemView !== 'edit') return null;
 
   const editStepComponentProps = {
-    wordList: listData,
     currentData,
     currentEditStep,
     listKey: currentEditStep === 2 ? 'en' : 'notes',

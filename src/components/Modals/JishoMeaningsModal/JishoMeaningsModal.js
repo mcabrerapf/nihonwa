@@ -4,13 +4,16 @@ import Loading from '../../Loading';
 import Button from '../../Button';
 import { B_URL } from '../../../constants';
 import { buildWordFromJisho } from './helpers';
+import { useMainContext } from '../../../contexts/MainContext';
 
 function JishoMeaningsModal({
-  filters,
   handleToggleModal,
-  setJishoWord,
-  setSelectedItemIndex,
 }) {
+  const {
+    filters,
+    setJishoWord,
+    setSelectedItemIndex,
+  } = useMainContext();
   const [isLoading, setIsLoading] = useState(true);
   const [jishoData, setJishoData] = useState([]);
   const [selectedWord, setSelectedWord] = useState({});

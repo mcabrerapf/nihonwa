@@ -4,7 +4,6 @@ import { calculateSuccessRate } from '../../../../utils';
 import { useListItemContext } from '../../../../contexts/ListItemContext';
 
 function useDisplayView({
-  listData,
   // TODO eveuntualy remove this
   currentData,
   forceShow,
@@ -33,7 +32,6 @@ function useDisplayView({
     listItemView,
     selectedKanji,
     successPercentage,
-    listData,
     forceShow,
     setSelectedKanji,
     setView,

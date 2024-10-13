@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { TEST_SETUP_INIT_STATE } from './constants';
 import { useModalContext } from '../../../contexts/ModalContext';
 
-function useExamModal({ wordList, handleUpdateWordsList }) {
+function useExamModal() {
   const { closeModal, setCloseOnBgClick } = useModalContext();
   const [view, setView] = useState('setup');
   const [questions, setQuestions] = useState([]);
@@ -26,14 +26,12 @@ function useExamModal({ wordList, handleUpdateWordsList }) {
 
   return {
     view,
-    wordList,
     testSetupOptions,
     questions,
     setQuestions,
     setTestSetupOptions,
     setView,
     closeModal,
-    handleUpdateWordsList,
     handleClose,
     handleTestStart,
   };

@@ -4,40 +4,14 @@ import { ListItemContextWrapper } from '../../../contexts/ListItemContext';
 import DisplayView from './DisplayView';
 import EditView from './EditView';
 import DeleteView from './DeleteView';
-import useListItemModal from './useListItemModal';
 
-function ListItemModal(props) {
-  const {
-    listData,
-    listItemIndex,
-    jishoWord,
-    handleUpdateWordsList,
-    setCloseOnBgClick,
-    closeModal,
-    onDelete,
-    onError,
-  } = useListItemModal(props);
-
+function ListItemModal() {
   return (
-    <ListItemContextWrapper
-      listItemIndex={listItemIndex}
-      listData={listData}
-      jishoWord={jishoWord}
-      onViewChange={setCloseOnBgClick}
-      onEscapeKey={closeModal}
-      handleUpdateWordsList={handleUpdateWordsList}
-      onDelete={onDelete}
-      onError={onError}
-
-    >
+    <ListItemContextWrapper>
       <div className="list-item-modal">
         <DeleteView />
-        <DisplayView
-          listData={listData}
-        />
-        <EditView
-          listData={listData}
-        />
+        <DisplayView />
+        <EditView />
       </div>
     </ListItemContextWrapper>
   );

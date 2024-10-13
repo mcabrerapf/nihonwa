@@ -1,11 +1,12 @@
+import { useMainContext } from '../../../../contexts/MainContext';
 import { buildQuestions } from '../helpers';
 
 function useExamSetup({
   testSetupOptions,
-  wordList,
   setTestSetupOptions,
   handleTestStart,
 }) {
+  const { wordList } = useMainContext();
   const { questionLimit, questionTags } = testSetupOptions;
   const reachedMax = questionLimit >= 25;
   const reachedMin = questionLimit <= 5;
