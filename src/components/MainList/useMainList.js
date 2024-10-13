@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { getModalToUse } from './helpers';
 import { useMainContext } from '../../contexts/MainContext';
 
 function useMainList() {
@@ -16,14 +15,11 @@ function useMainList() {
 
   const handleFiltersChange = (newFilters) => {
     if (newFilters) setFilters(newFilters);
-    setShowModal(false);
+    setShowModal(null);
   };
-
-  const Modal = getModalToUse(showModal);
 
   return {
     showModal,
-    Modal,
     handleToggleModal,
     handleFiltersChange,
   };
