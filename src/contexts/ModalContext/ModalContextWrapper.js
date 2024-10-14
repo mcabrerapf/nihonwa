@@ -7,21 +7,6 @@ function ModalContextWrapper({ children, showModal, closeModal }) {
   const wrapperRef = useRef(null);
   const [closeOnBgClick, setCloseOnBgClick] = useState(true);
 
-  const scrollToBottom = () => {
-    if (backgroundRef.current) backgroundRef.current.scrollTop = backgroundRef.current.scrollHeight;
-    if (wrapperRef.current) wrapperRef.current.scrollTop = wrapperRef.current.scrollHeight;
-  };
-
-  useEffect(() => {
-    const handleResize = () => scrollToBottom();
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   useEffect(() => {
     function handleClickOutside({ target }) {
       if (!closeOnBgClick) return;

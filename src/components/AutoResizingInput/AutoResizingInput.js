@@ -7,6 +7,7 @@ function AutoResizingInput({ initialValue = '', onChange = () => {} }) {
   const [textareaSize, setTextareaSize] = useState({ width: 1, height: 1 });
 
   const handleInputChange = (e) => {
+    // TODO check why loses focus on setdata
     setInputValue(e.target.value);
   };
 

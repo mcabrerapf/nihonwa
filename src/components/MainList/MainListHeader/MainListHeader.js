@@ -44,7 +44,6 @@ function MainListHeader(props) {
           <Button onClick={handleKanaButtonClick}>仮名</Button>
         </div>
       </div>
-
       <div className="main-list-header__search">
         <Button onClick={handleJishoNavigate} modifier="jisho-button" isDisabled={!textFilter}>
           探索

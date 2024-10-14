@@ -42,14 +42,12 @@ const useMainListHeader = ({
     handleFiltersChange({ text: textFilter, tags: updatedTags });
   };
 
-  const handleKanaButtonClick = () => {
-    handleToggleModal('kanaModal');
-  };
-
   const handleJishoNavigate = async () => {
     if (!filters || !filters.text) return;
     handleToggleModal('jishoMeaningsModal');
   };
+
+  const handleKanaButtonClick = () => handleToggleModal('kanaModal');
 
   const handleShowFiltersModal = () => handleToggleModal('filtersModal');
 

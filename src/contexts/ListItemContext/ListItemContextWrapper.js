@@ -12,7 +12,11 @@ function ListItemContextWrapper({
   children,
 }) {
   const {
-    selectedItemIndex, jishoWord, orderedList, setSelectedItemIndex, updateWordsList,
+    selectedItemIndex,
+    jishoWord,
+    orderedList,
+    setSelectedItemIndex,
+    updateWordsList,
   } = useMainContext();
   const { addToast } = useToastContext();
   const { closeModal, setCloseOnBgClick } = useModalContext();

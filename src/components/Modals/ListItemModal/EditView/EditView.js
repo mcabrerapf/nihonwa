@@ -41,18 +41,14 @@ function EditView() {
     const itemId = cWord.id;
     const serviceName = itemId ? 'update' : 'create';
     const serviceToUse = getServiceToUse('word', serviceName);
-    // if (deepCompare(cWord, currentData)) {
-    //   return setListItemView('display');
-    // }
 
     await serviceToUse({ input: currentData })
       .then(async (res) => {
-        await updateWordsList();
+        await updateWordsList(res.data.id);
         addToast({ text: res.data.jp, type: 'success' });
+        setListItemView('display');
       })
       .catch((err) => addToast({ text: err.message || 'ERROR', type: 'error' }));
-
-    return itemId ? setListItemView('display') : closeModal();
   };
 
   const handleClose = () => {

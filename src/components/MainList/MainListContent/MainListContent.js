@@ -1,5 +1,7 @@
 import React, {
-  useState, useRef, useCallback,
+  useState,
+  useRef,
+  useCallback,
   memo,
 } from 'react';
 import './MainListContent.scss';
@@ -11,8 +13,8 @@ function MainListContent({
   handleToggleModal,
 }) {
   const { orderedList, orderedListLength, setSelectedItemIndex } = useMainContext();
-  const [limit, setLimit] = useState(20);
   const listRef = useRef(null);
+  const [limit, setLimit] = useState(20);
 
   const loadMoreItems = useCallback(() => {
     setLimit((oldLimit) => oldLimit + 20);

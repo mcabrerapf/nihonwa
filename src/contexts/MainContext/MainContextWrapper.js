@@ -27,9 +27,14 @@ function MainContextWrapper({
     initMain();
   }, []);
 
-  const updateWordsList = async () => getServiceToUse('word', 'getAll')()
+  const updateWordsList = async (newItemId) => getServiceToUse('word', 'getAll')()
     .then((res) => {
       const { data } = res;
+      if (newItemId) {
+        const oList = filterBy(data, filters);
+        const newIndex = oList.findIndex(({ id: oId }) => oId === newItemId);
+        setSelectedItemIndex(newIndex);
+      }
       setWordList(data);
     });
 

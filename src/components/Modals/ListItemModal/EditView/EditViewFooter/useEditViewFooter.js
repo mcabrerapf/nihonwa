@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { checkEditFooterStatus, getEditStepsArray } from '../../helpers';
+import { checkEditFooterStatus } from '../../helpers';
 
 const checkCanSave = (wordData) => {
   if (!wordData) return false;
@@ -19,7 +19,6 @@ function useEditViewFooter({
   const [canSave, setCanSave] = useState(true);
   const [canProceed, isFirstStep, isLastStep] = checkEditFooterStatus(
     currentEditStep,
-    'word',
     currentData,
   );
 
@@ -59,7 +58,7 @@ function useEditViewFooter({
   };
 
   const isNextButtonDisabled = !canProceed;
-  const stepsArray = getEditStepsArray('word');
+  const stepsArray = [0, 1, 2, 3, 4, 5];
 
   return {
     isFirstStep,

@@ -14,6 +14,7 @@ function MainListFooter({
     setSelectedItemIndex(randomIndex);
     handleToggleModal('listItemModal');
   };
+
   const handleOpenNewItemModal = () => {
     setSelectedItemIndex(-1);
     handleToggleModal('listItemModal');
@@ -42,7 +43,6 @@ function MainListFooter({
         >
           試験
         </Button>
-
       </div>
     </footer>
   );
