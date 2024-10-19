@@ -4,7 +4,7 @@ import Button from '../../../Button';
 import { useListItemContext } from '../../../../contexts/ListItemContext';
 
 function DeleteView() {
-  const { listItemView, handleDelete } = useListItemContext();
+  const { word, listItemView, handleDelete } = useListItemContext();
   const [canDelete, setCanDelete] = useState(true);
 
   const handleOnClick = () => {
@@ -17,6 +17,9 @@ function DeleteView() {
 
   return (
     <div className="delete-view">
+      <span className="delete-view__word">
+        {word.jp}
+      </span>
       <Button modifier="danger" isDisabled={!canDelete} onClick={handleOnClick}>
         削除
       </Button>

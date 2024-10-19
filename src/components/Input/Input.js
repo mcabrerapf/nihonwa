@@ -6,10 +6,16 @@ function Input({
   inputRef,
   value,
   showResetButton = false,
+  selectOnClick = false,
   onChange = () => {},
   onKeyDown = () => {},
   onResetButtonClick = () => {},
 }) {
+  const handleOnClick = (e) => {
+    if (!selectOnClick) return;
+    e.target.select();
+  };
+
   return (
     <div className="input-container">
       <input
@@ -17,6 +23,7 @@ function Input({
         autoComplete="off"
         type="text"
         value={value}
+        onClick={handleOnClick}
         onChange={onChange}
         onKeyDown={onKeyDown}
       />

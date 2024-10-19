@@ -84,7 +84,9 @@ function ListItemContextWrapper({
       .then(async (res) => {
         await updateWordsList();
         addToast({ text: res.data.jp, type: 'delete' });
-        closeModal();
+        const newIndex = selectedItemIndex <= 0 ? 0 : selectedItemIndex - 1;
+        setListItemView('display');
+        setSelectedItemIndex(newIndex);
       })
       .catch((err) => {
         addToast({ text: err.message || 'ERROR', type: 'error' });

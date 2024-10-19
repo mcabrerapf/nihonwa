@@ -51,6 +51,7 @@ function MainListHeader(props) {
         <Input
           value={textFilter}
           showResetButton
+          selectOnClick
           onChange={handleSearchTextChange}
           onResetButtonClick={() => handleSearchTextChange({ target: { value: '' } })}
         />
