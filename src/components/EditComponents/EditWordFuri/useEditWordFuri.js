@@ -4,9 +4,10 @@ import { romajiToKana, getCharWithFuri } from '../../../utils';
 function useEditWordFuri({ currentData, setCurrentData }) {
   const { jp, furi } = currentData;
   const inputRef = useRef(null);
-  const [currentString, setCurrentString] = useState('');
-  const [selectedKana, setSelectedKana] = useState('hi');
   const [selectedCharIndex, setSelectedCharIndex] = useState(0);
+  const [currentString, setCurrentString] = useState(furi[selectedCharIndex]);
+  const [selectedKana, setSelectedKana] = useState('hi');
+
   const isHiraganaSelected = selectedKana === 'hi';
   const isKatakanaSelected = selectedKana === 'ka';
 
@@ -14,7 +15,7 @@ function useEditWordFuri({ currentData, setCurrentData }) {
     if (!furi.length) {
       setCurrentData({ ...currentData, furi: jp.split('').fill('') });
     }
-    if (inputRef.current) {
+    if (inputRef.current && !currentString) {
       inputRef.current.focus();
     }
   }, []);

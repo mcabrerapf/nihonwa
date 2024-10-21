@@ -15,7 +15,7 @@ const useEditWord = ({
   const isFuriButtonDisabled = !word;
 
   useEffect(() => {
-    if (inputRef.current) inputRef.current.focus();
+    if (inputRef.current && !currentWord) inputRef.current.focus();
   }, [inputRef]);
 
   const handleParseWord = (kanaKey) => {

@@ -8,7 +8,7 @@ function useDisplayView({
   currentData,
   forceShow,
 }) {
-  const { listItemView, word } = useListItemContext();
+  const { word } = useListItemContext();
   const {
     id, jp, furi, en, notes, tags, hits, misses,
   } = currentData || word;
@@ -29,7 +29,6 @@ function useDisplayView({
     notes,
     tags,
     view,
-    listItemView,
     selectedKanji,
     successPercentage,
     forceShow,

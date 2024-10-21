@@ -28,7 +28,7 @@ function EditView() {
   const headerText = getEditStepHeaderText('word', currentEditStep, word);
 
   useEffect(() => {
-    if (currentEditStep !== 0)setCurrentEditStep(0);
+    if (currentEditStep !== 0) setCurrentEditStep(0);
   }, [listItemView]);
 
   useEffect(() => {
@@ -55,8 +55,6 @@ function EditView() {
     if (!cWord.id) closeModal();
     else setListItemView('display');
   };
-
-  if (listItemView !== 'edit') return null;
 
   const editStepComponentProps = {
     currentData,

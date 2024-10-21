@@ -4,6 +4,7 @@ import MainListFooter from './MainListFooter';
 import MainListHeader from './MainListHeader';
 import MainListContent from './MainListContent';
 import { ModalContextWrapper } from '../../contexts/ModalContext';
+import { ListItemContextWrapper } from '../../contexts/ListItemContext';
 import useMainList from './useMainList';
 import { getModalToUse } from './helpers';
 
@@ -19,10 +20,12 @@ function MainList(props) {
   return (
     <div className="main-list-container">
       <ModalContextWrapper closeModal={handleToggleModal} showModal={showModal}>
-        <Modal
-          handleToggleModal={handleToggleModal}
-          handleFiltersChange={handleFiltersChange}
-        />
+        <ListItemContextWrapper>
+          <Modal
+            handleToggleModal={handleToggleModal}
+            handleFiltersChange={handleFiltersChange}
+          />
+        </ListItemContextWrapper>
       </ModalContextWrapper>
       <MainListHeader
         handleFiltersChange={handleFiltersChange}
