@@ -28,6 +28,10 @@ function ListItemContextWrapper({
   const similarWords = findSimilarWords(listItemData, orderedList);
 
   useEffect(() => {
+    setListItemView(selectedItemIndex === -1 ? 'edit' : 'display');
+  }, [selectedItemIndex]);
+
+  useEffect(() => {
     setCloseOnBgClick(listItemView !== 'edit');
   }, [listItemView, setCloseOnBgClick]);
 
