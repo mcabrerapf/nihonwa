@@ -49,6 +49,8 @@ const useMainListHeader = ({
 
   const handleKanaButtonClick = () => handleToggleModal('kanaModal');
 
+  const handleKanjiButtonClick = () => handleToggleModal('kanjiModal');
+
   const handleShowFiltersModal = () => handleToggleModal('filtersModal');
 
   const handleKanaClick = (e) => {
@@ -65,6 +67,7 @@ const useMainListHeader = ({
     handleJishoNavigate,
     handleSearchTextChange,
     handleKanaButtonClick,
+    handleKanjiButtonClick,
     handleShowFiltersModal,
     handleRemoveTagFilter,
     handleMouseUp,

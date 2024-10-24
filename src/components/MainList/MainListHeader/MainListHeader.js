@@ -13,6 +13,7 @@ function MainListHeader(props) {
     handleJishoNavigate,
     handleSearchTextChange,
     handleKanaButtonClick,
+    handleKanjiButtonClick,
     handleShowFiltersModal,
     handleRemoveTagFilter,
     handleMouseUp,
@@ -42,6 +43,7 @@ function MainListHeader(props) {
         </div>
         <div className="main-list-header__top__kana-buttons">
           <Button onClick={handleKanaButtonClick}>仮名</Button>
+          <Button onClick={handleKanjiButtonClick}>漢字</Button>
         </div>
       </div>
       <div className="main-list-header__search">

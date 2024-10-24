@@ -1,11 +1,18 @@
 import {
-  FiltersModal, KanaModal, ListItemModal, ExamModal, JishoMeaningsModal,
+  FiltersModal,
+  KanaModal,
+  KanjiModal,
+  ListItemModal,
+  ExamModal,
+  JishoMeaningsModal,
 } from '../Modals';
 
 const getModalToUse = (modalKey) => {
   switch (modalKey) {
     case 'kanaModal':
       return KanaModal;
+    case 'kanjiModal':
+      return KanjiModal;
     case 'filtersModal':
       return FiltersModal;
     case 'examModal':
