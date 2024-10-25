@@ -21,11 +21,9 @@ function KanjiModal({ handleToggleModal }) {
 
   return (
     <div className="kanji-modal">
-      {selectedKanji && (
       <div className="kanji-modal__header">
         <Button onClick={onCloseClick}>X</Button>
       </div>
-      )}
       <div className="kanji-modal__content">
         {!selectedKanji && allKanjis.map((kanji) => (
           <div key={kanji.kanji} className="kanji-modal__content__kanji-option" role="button" onClick={() => setSelectedKanji(kanji)}>
