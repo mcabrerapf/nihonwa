@@ -23,6 +23,10 @@
     overflow-y: auto;
     scrollbar-color: var(--white-color) var(--white-color);
 
+    &__kanji-option{
+      font-size: 4rem;
+    }
+
     &__kanji-data {
       width: 100%;
       height: 100%;
