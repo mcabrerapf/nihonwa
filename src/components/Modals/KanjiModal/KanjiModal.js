@@ -2,33 +2,13 @@ import React, { useEffect, useState } from 'react';
 import './KanjiModal.scss';
 import Button from '../../Button';
 import { useMainContext } from '../../../contexts/MainContext';
-import { checkIfCharIsKanji } from '../../../utils';
-import Kanji from '../../Kanji';
+import DisplayViewKanji from '../ListItemModal/DisplayView/DisplayViewKanji';
+import { getKanjis } from './helpers';
 
-const getKanjis = (words) => {
-  const kanjis = [];
-  words.forEach((word) => {
-    const { jp } = word;
-    jp.split('').forEach((char) => {
-      if (checkIfCharIsKanji(char)) {
-        // console.log(char);
-        const addedIndex = kanjis.findIndex((kanji) => kanji?.kanji === char);
-        if (addedIndex !== -1) {
-          kanjis[addedIndex].words.push(word);
-        } else {
-          kanjis.push({ kanji: char, words: [word] });
-        }
-      }
-    });
-  });
-
-  return kanjis;
-};
 function KanjiModal({ handleToggleModal }) {
   const { wordList } = useMainContext();
   const [allKanjis, setAllKanjis] = useState([]);
   const [selectedKanji, setSelectedKanji] = useState(null);
-  console.log(selectedKanji);
 
   useEffect(() => {
     setAllKanjis(getKanjis(wordList));
@@ -41,9 +21,11 @@ function KanjiModal({ handleToggleModal }) {
 
   return (
     <div className="kanji-modal">
+      {selectedKanji && (
       <div className="kanji-modal__header">
         <Button onClick={onCloseClick}>X</Button>
       </div>
+      )}
       <div className="kanji-modal__content">
         {!selectedKanji && allKanjis.map((kanji) => (
           <div key={kanji.kanji} className="kanji-modal__content__kanji-option" role="button" onClick={() => setSelectedKanji(kanji)}>
@@ -52,9 +34,32 @@ function KanjiModal({ handleToggleModal }) {
         ))}
         {selectedKanji && (
         <div className="kanji-modal__content__kanji-data">
-          <Kanji kanji={selectedKanji.kanji} kanjiId={selectedKanji.kanji} />
+          <DisplayViewKanji selectedKanji={selectedKanji.kanji} />
           <ul className="kanji-modal__content__kanji-data__words">
-            {selectedKanji.words.map((word) => <li key={word.id}>{word.jp}</li>)}
+            {selectedKanji.words.map((word) => (
+              <li key={word.id} className="kanji-modal__content__kanji-data__words__word">
+                <div className="kanji-modal__content__kanji-data__words__word__with-furi">
+                  {word.jp.split('').map((char, index) => (
+                    <div key={`${index}-${char}`} className="kanji-modal__content__kanji-data__words__word__with-furi__jp">
+                      <div className="kanji-modal__content__kanji-data__words__word__with-furi__jp__furi">
+                        {word.furi[index]}
+                      </div>
+                      <div className="kanji-modal__content__kanji-data__words__word__with-furi__jp__kana">
+                        {char}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <ul className="kanji-modal__content__kanji-data__words__word__meanings">
+                  {word.en.map((meaning) => (
+                    <li className="kanji-modal__content__kanji-data__words__word__meanings__meaning">
+                      <span>{meaning}</span>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
           </ul>
         </div>
         )}
