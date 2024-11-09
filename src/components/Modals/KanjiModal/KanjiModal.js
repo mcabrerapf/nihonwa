@@ -5,7 +5,7 @@ import { useMainContext } from '../../../contexts/MainContext';
 import DisplayViewKanji from '../ListItemModal/DisplayView/DisplayViewKanji';
 import { getKanjis } from './helpers';
 
-function KanjiModal({ handleToggleModal }) {
+function KanjiModal() {
   const { wordList } = useMainContext();
   const [allKanjis, setAllKanjis] = useState([]);
   const [selectedKanji, setSelectedKanji] = useState(null);
@@ -15,15 +15,16 @@ function KanjiModal({ handleToggleModal }) {
   }, []);
 
   const onCloseClick = () => {
-    if (!selectedKanji) handleToggleModal();
-    else setSelectedKanji(null);
+    setSelectedKanji(null);
   };
 
   return (
     <div className="kanji-modal">
+      {selectedKanji && (
       <div className="kanji-modal__header">
         <Button onClick={onCloseClick}>X</Button>
       </div>
+      )}
       <div className="kanji-modal__content">
         {!selectedKanji && allKanjis.map((kanji) => (
           <div key={kanji.kanji} className="kanji-modal__content__kanji-option" role="button" onClick={() => setSelectedKanji(kanji)}>

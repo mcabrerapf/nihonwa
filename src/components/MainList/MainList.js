@@ -20,12 +20,19 @@ function MainList(props) {
   return (
     <div className="main-list-container">
       <ModalContextWrapper closeModal={handleToggleModal} showModal={showModal}>
-        <ListItemContextWrapper>
+        {showModal === 'listItemModal' ? (
+          <ListItemContextWrapper>
+            <Modal
+              handleToggleModal={handleToggleModal}
+              handleFiltersChange={handleFiltersChange}
+            />
+          </ListItemContextWrapper>
+        ) : (
           <Modal
             handleToggleModal={handleToggleModal}
             handleFiltersChange={handleFiltersChange}
           />
-        </ListItemContextWrapper>
+        )}
       </ModalContextWrapper>
       <MainListHeader
         handleFiltersChange={handleFiltersChange}
