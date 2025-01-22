@@ -1,8 +1,7 @@
 import React from 'react';
 import './DisplayViewGeneral.scss';
 import Button from '../../../../Button';
-import { checkIfCharIsKanji, getCharWithFuri } from '../../../../../utils';
-import { getHeaderTextClassName } from '../DisplayViewHeader/helpers';
+import { checkIfCharIsKanji, getCharWithFuri, getHeaderTextClassname } from '../../../../../utils';
 import Kana from '../../../../Kana';
 import { useListItemContext } from '../../../../../contexts/ListItemContext';
 
@@ -17,7 +16,7 @@ function DisplayViewGeneral({
 }) {
   const { similarWords, handleGoToItem } = useListItemContext();
   const headerCharacters = getCharWithFuri(jp, furi, true);
-  const kanaModifier = getHeaderTextClassName(headerCharacters);
+  const kanaModifier = getHeaderTextClassname(headerCharacters);
 
   const handleCharClick = (char) => {
     if (checkIfCharIsKanji(char)) {

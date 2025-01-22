@@ -25,6 +25,7 @@ import parseHtml from './parseHtml';
 import parseDicData from './parseDicData';
 import sortBy from './sortBy';
 import updateWordTags from './updateWordTags';
+import getHeaderTextClassname from './getHeaderTextClassname';
 
 export {
   calculateSuccessRate,
@@ -42,6 +43,7 @@ export {
   filterBy,
   generateRandomNumber,
   getCharWithFuri,
+  getHeaderTextClassname,
   getKanjiArrayFromString,
   getEnglishCharacters,
   getWordPronunciation,

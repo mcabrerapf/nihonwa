@@ -5,12 +5,14 @@ import ExamModal from './ExamModal';
 import ListItemModal from './ListItemModal';
 import JishoMeaningsModal from './JishoMeaningsModal';
 import RandomKanjiModal from './RandomKanjiModal';
+import RandomWordModal from './RandomWordModal';
 
 export {
   FiltersModal,
   KanaModal,
   KanjiModal,
   RandomKanjiModal,
+  RandomWordModal,
   ListItemModal,
   ExamModal,
   JishoMeaningsModal,

@@ -12,13 +12,13 @@ function MainListFooter({
   const handleOpenRandomListItemModal = () => {
     const randomIndex = generateRandomNumber(0, orderedListLength);
     setSelectedItemIndex(randomIndex);
-    handleToggleModal('listItemModal');
+    handleToggleModal('randomWordModal');
   };
 
   const handleOpenRandomKanji = () => {
     const randomIndex = generateRandomNumber(0, orderedListLength);
     setSelectedItemIndex(randomIndex);
-    handleToggleModal('RandomKanjiModal');
+    handleToggleModal('randomKanjiModal');
   };
 
   const handleOpenNewItemModal = () => {
