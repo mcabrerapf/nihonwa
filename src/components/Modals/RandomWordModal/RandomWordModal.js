@@ -4,7 +4,9 @@ import Button from '../../Button';
 import Kana from '../../Kana';
 import { useMainContext } from '../../../contexts/MainContext';
 import { useModalContext } from '../../../contexts/ModalContext';
-import { generateRandomNumber, getCharWithFuri, getHeaderTextClassname } from '../../../utils';
+import {
+  generateRandomNumber, getCharWithFuri, getHeaderTextClassname, getTodayDate,
+} from '../../../utils';
 
 function RandomWordModal() {
   const { wordList } = useMainContext();
@@ -14,7 +16,17 @@ function RandomWordModal() {
   const [viewStep, setViewStep] = useState(0);
 
   useEffect(() => {
-    const randomIndex = generateRandomNumber(0, wordList.length);
+    const localData = localStorage.getItem('daily-word');
+    const parsedData = JSON.parse(localData);
+    const date = getTodayDate();
+    const dataToUse = parsedData && parsedData.date === date ? parsedData : { date, indexes: [] };
+
+    const randomIndex = dataToUse.indexes.length
+      ? dataToUse.indexes[0] : generateRandomNumber(0, wordList.length);
+    if (!parsedData || parsedData.date !== date) {
+      dataToUse.indexes.push(randomIndex);
+      localStorage.setItem('daily-word', JSON.stringify(dataToUse));
+    }
     setSelectedIndex(randomIndex);
     setUsedIndexes([...usedIndexes, randomIndex]);
   }, []);

@@ -26,6 +26,7 @@ import parseDicData from './parseDicData';
 import sortBy from './sortBy';
 import updateWordTags from './updateWordTags';
 import getHeaderTextClassname from './getHeaderTextClassname';
+import getTodayDate from './getTodayDate';
 
 export {
   calculateSuccessRate,
@@ -46,6 +47,7 @@ export {
   getHeaderTextClassname,
   getKanjiArrayFromString,
   getEnglishCharacters,
+  getTodayDate,
   getWordPronunciation,
   getWordSentences,
   hasTextMatch,

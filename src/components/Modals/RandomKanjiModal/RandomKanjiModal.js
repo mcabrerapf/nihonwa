@@ -5,7 +5,7 @@ import { useMainContext } from '../../../contexts/MainContext';
 import { useModalContext } from '../../../contexts/ModalContext';
 import DisplayViewKanji from '../ListItemModal/DisplayView/DisplayViewKanji';
 import { getKanjis } from './helpers';
-import { generateRandomNumber } from '../../../utils';
+import { generateRandomNumber, getTodayDate } from '../../../utils';
 
 function RandomKanjiModal() {
   const { wordList } = useMainContext();
@@ -16,18 +16,28 @@ function RandomKanjiModal() {
   const [viewStep, setViewStep] = useState(0);
 
   useEffect(() => {
+    const localData = localStorage.getItem('daily-kanji');
+    const parsedData = JSON.parse(localData);
+    const date = getTodayDate();
+    const dataToUse = parsedData && parsedData.date === date ? parsedData : { date, indexes: [] };
     const initialKanjis = getKanjis(wordList);
-    const randomIndex = generateRandomNumber(0, initialKanjis.length);
+    const randomIndex = dataToUse.indexes.length
+      ? dataToUse.indexes[0] : generateRandomNumber(0, initialKanjis.length);
+    if (!parsedData || parsedData.date !== date) {
+      dataToUse.indexes.push(randomIndex);
+      localStorage.setItem('daily-kanji', JSON.stringify(dataToUse));
+    }
+
     setAllKanjis(initialKanjis);
     setSelectedIndex(randomIndex);
-    setUsedIndexes([...usedIndexes, randomIndex]);
+    setUsedIndexes([randomIndex]);
   }, []);
 
   const generateNewIndex = () => {
-    const randomIndex = generateRandomNumber(0, allKanjis.length, usedIndexes);
+    const newIndex = generateRandomNumber(0, allKanjis.length, usedIndexes);
     setViewStep(0);
-    setSelectedIndex(randomIndex);
-    setUsedIndexes([...usedIndexes, randomIndex]);
+    setSelectedIndex(newIndex);
+    setUsedIndexes([...usedIndexes, newIndex]);
   };
 
   const handleContentClick = () => {
@@ -37,6 +47,7 @@ function RandomKanjiModal() {
   const onCloseClick = () => {
     closeModal();
   };
+
   if (!selectedIndex) return null;
 
   const selectedKanji = allKanjis[selectedIndex];
