@@ -15,6 +15,12 @@ function MainListFooter({
     handleToggleModal('listItemModal');
   };
 
+  const handleOpenRandomKanji = () => {
+    const randomIndex = generateRandomNumber(0, orderedListLength);
+    setSelectedItemIndex(randomIndex);
+    handleToggleModal('RandomKanjiModal');
+  };
+
   const handleOpenNewItemModal = () => {
     setSelectedItemIndex(-1);
     handleToggleModal('listItemModal');
@@ -31,7 +37,13 @@ function MainListFooter({
           isDisabled={orderedListLength < 1}
           onClick={handleOpenRandomListItemModal}
         >
-          無作為
+          単語
+        </Button>
+        <Button
+          isDisabled={orderedListLength < 1}
+          onClick={handleOpenRandomKanji}
+        >
+          漢字
         </Button>
       </div>
       <div className="main-list-footer__buttons__c">

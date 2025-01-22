@@ -2,6 +2,7 @@ import {
   FiltersModal,
   KanaModal,
   KanjiModal,
+  RandomKanjiModal,
   ListItemModal,
   ExamModal,
   JishoMeaningsModal,
@@ -13,6 +14,8 @@ const getModalToUse = (modalKey) => {
       return KanaModal;
     case 'kanjiModal':
       return KanjiModal;
+    case 'RandomKanjiModal':
+      return RandomKanjiModal;
     case 'filtersModal':
       return FiltersModal;
     case 'examModal':

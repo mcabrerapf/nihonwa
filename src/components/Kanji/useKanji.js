@@ -18,7 +18,7 @@ function useKanji({ kanji, kanjiId }) {
     };
     if (!kanjiRef.current || kanjiWriter !== null) return;
     loadKanji();
-  }, [kanjiRef, kanjiWriter]);
+  }, [kanji]);
 
   const handleKanjiClick = () => {
     if (kanjiWriter) kanjiWriter.animateCharacter();

@@ -3,6 +3,7 @@ import { B_URL } from '../../../../../constants';
 
 function useDisplayViewKanji({
   selectedKanji,
+  hideReadings = false,
 }) {
   const [isLoading, setIsLoading] = useState(true);
   const [kajiData, setKanjiData] = useState({});
@@ -15,6 +16,7 @@ function useDisplayViewKanji({
   useEffect(() => {
     const fetchData = async () => {
       const url = `${B_URL}/jisho/kanji/${selectedKanji}`;
+      setIsLoading(true);
       await fetch(url)
         .then((res) => res.json())
         .then((data) => {
@@ -32,6 +34,7 @@ function useDisplayViewKanji({
     onYomi,
     meanings,
     kunYomi,
+    hideReadings,
     isLoading,
   };
 }

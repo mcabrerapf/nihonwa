@@ -10,14 +10,16 @@ function DisplayViewKanji(props) {
     onYomi,
     meanings,
     kunYomi,
+    hideReadings,
     isLoading,
   } = useDisplayViewKanji(props);
 
   return (
     <div className="display-view-kanji">
-      <Kanji kanji={selectedKanji} kanjiId={selectedKanji} />
+
       {isLoading && <div className="display-view-kanji__loading"><Loading /></div>}
-      {!isLoading && (
+      {!isLoading && <Kanji kanji={selectedKanji} kanjiId={selectedKanji} />}
+      {!isLoading && !hideReadings && (
       <div className="display-view-kanji__data">
         <div className="display-view-kanji__data__container">
           <span
