@@ -6,13 +6,14 @@ function useKanji({
   kanji, kanjiId, animateOnLoad = false, disableAnimation = false,
 }) {
   const kanjiRef = useRef(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [kanjiWriter, setKanjiWriter] = useState(null);
   const [hasError, setHasError] = useState(null);
   const idToUse = kanjiId || kanji;
 
   useEffect(() => {
     const loadKanji = async () => {
+      setIsLoading(true);
       const loadedWriter = await loadKanjiWriter(kanji, idToUse, setHasError);
       if (animateOnLoad) loadedWriter.animateCharacter();
       setKanjiWriter(loadedWriter);

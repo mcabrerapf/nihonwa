@@ -6,7 +6,7 @@ import { useModalContext } from '../../../contexts/ModalContext';
 import Kanji from '../../Kanji';
 import { getKanjis } from './helpers';
 import { generateRandomNumber, getTodayDate } from '../../../utils';
-import KanjiInfo from '../../KanjiInfo/KanjiInfo';
+import KanjiReadings from '../../KanjiReadings';
 import KanjiWords from '../../KanjiWords/KanjiWords';
 
 function RandomKanjiModal() {
@@ -64,7 +64,7 @@ function RandomKanjiModal() {
       <div className="random-kanji-modal__content" onClick={handleContentClick} role="button">
         <div className="random-kanji-modal__content__kanji-data">
           <Kanji kanji={kanji} kanjiId={kanji} />
-          {showReadings && <KanjiInfo kanji={kanji} />}
+          {showReadings && <KanjiReadings kanji={kanji} />}
           {showWords && (
           <KanjiWords words={words} showMeanings={showReadings} />
           )}

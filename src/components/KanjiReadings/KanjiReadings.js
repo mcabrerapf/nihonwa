@@ -1,28 +1,28 @@
 import React from 'react';
-import './KanjiInfo.scss';
-import useKanjiInfo from './useKanjiInfo';
+import './KanjiReadings.scss';
+import useKanjiReadings from './useKanjiReadings';
 import Loading from '../Loading';
 
 // TODO: rename to kanjireadings
 
-function KanjiInfo(props) {
+function KanjiReadings(props) {
   const {
     onYomi,
     meanings,
     kunYomi,
     isLoading,
-  } = useKanjiInfo(props);
+  } = useKanjiReadings(props);
 
   return (
     <Loading isLoading={isLoading}>
-      <div className="kanji-info">
-        <div className="kanji-info__container">
+      <div className="kanji-readings">
+        <div className="kanji-readings__container">
           <span
-            className={`kanji-info__container__header${onYomi.length ? '' : ' empty-list'}`}
+            className={`kanji-readings__container__header${onYomi.length ? '' : ' empty-list'}`}
           >
             音読み
           </span>
-          <ul className="kanji-info__container__list">
+          <ul className="kanji-readings__container__list">
             {onYomi.map((yomi) => (
               <li key={yomi}>
                 {yomi}
@@ -30,13 +30,13 @@ function KanjiInfo(props) {
             ))}
           </ul>
         </div>
-        <div className="kanji-info__container">
+        <div className="kanji-readings__container">
           <span
-            className={`kanji-info__container__header${meanings.length ? '' : ' empty-list'}`}
+            className={`kanji-readings__container__header${meanings.length ? '' : ' empty-list'}`}
           >
             Meanings
           </span>
-          <ul className="kanji-info__container__list">
+          <ul className="kanji-readings__container__list">
             {meanings.map((meaning) => (
               <li key={meaning}>
                 {meaning}
@@ -44,13 +44,13 @@ function KanjiInfo(props) {
             ))}
           </ul>
         </div>
-        <div className="kanji-info__container">
+        <div className="kanji-readings__container">
           <span
-            className={`kanji-info__container__header${kunYomi.length ? '' : ' empty-list'}`}
+            className={`kanji-readings__container__header${kunYomi.length ? '' : ' empty-list'}`}
           >
             訓読み
           </span>
-          <ul className="kanji-info__container__list">
+          <ul className="kanji-readings__container__list">
             {kunYomi.map((yomi) => (
               <li key={yomi}>
                 {yomi}
@@ -64,4 +64,4 @@ function KanjiInfo(props) {
   );
 }
 
-export default KanjiInfo;
+export default KanjiReadings;

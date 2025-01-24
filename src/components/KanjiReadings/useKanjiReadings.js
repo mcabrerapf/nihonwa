@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import './KanjiInfo.scss';
 import { B_URL } from '../../constants';
 
-function useKanjiInfo({
+function useKanjiReadings({
   kanji,
   hideReadings = false,
 }) {
@@ -40,4 +39,4 @@ function useKanjiInfo({
   };
 }
 
-export default useKanjiInfo;
+export default useKanjiReadings;

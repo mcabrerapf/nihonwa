@@ -31,13 +31,12 @@
     &__kanji-data {
       width: 100%;
       height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
       .loading-component {
         height: 15rem;
-      }
-
-      .display-view-kanji {
-        height: 27rem;
       }
     }
   }
