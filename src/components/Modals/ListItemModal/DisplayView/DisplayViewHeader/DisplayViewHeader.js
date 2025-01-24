@@ -8,7 +8,7 @@ import { useListItemContext } from '../../../../../contexts/ListItemContext';
 function DisplayViewHeader(props) {
   const {
     handleCharacterCopy,
-    handleJishoNavigate,
+    // handleJishoNavigate,
   } = useDisplayViewHeader(props);
   const { closeModal } = useModalContext();
   const { listItemView, setListItemView } = useListItemContext();
@@ -30,12 +30,12 @@ function DisplayViewHeader(props) {
         >
           写す
         </Button>
-        <Button
+        {/* <Button
           modifier="kanji-header-button"
           onClick={handleJishoNavigate}
         >
           辞書
-        </Button>
+        </Button> */}
       </div>
       <Button modifier="close-button" onClick={() => closeModal()}>
         X
