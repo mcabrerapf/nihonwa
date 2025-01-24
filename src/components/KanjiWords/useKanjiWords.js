@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { B_URL } from '../../../../../constants';
+import './KanjiWords.scss';
+import { B_URL } from '../../constants';
 
-function useDisplayViewKanji({
-  selectedKanji,
+function useKanjiWords({
+  kanji,
   hideReadings = false,
 }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,7 +16,7 @@ function useDisplayViewKanji({
 
   useEffect(() => {
     const fetchData = async () => {
-      const url = `${B_URL}/jisho/kanji/${selectedKanji}`;
+      const url = `${B_URL}/jisho/kanji/${kanji}`;
       setIsLoading(true);
       await fetch(url)
         .then((res) => res.json())
@@ -27,10 +28,10 @@ function useDisplayViewKanji({
         .catch((err) => console.log(err));
     };
     fetchData();
-  }, [selectedKanji]);
+  }, [kanji]);
 
   return {
-    selectedKanji,
+    kanji,
     onYomi,
     meanings,
     kunYomi,
@@ -39,4 +40,4 @@ function useDisplayViewKanji({
   };
 }
 
-export default useDisplayViewKanji;
+export default useKanjiWords;

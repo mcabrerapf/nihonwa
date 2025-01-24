@@ -1,0 +1,40 @@
+.kanji-words {
+  height: 14rem;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-color: var(--white-color) var(--white-color);
+
+  &__word {
+    &.separator {
+      border-top: 1px dashed var(--white-color);
+    }
+    
+    &__with-furi {
+      display: flex;
+      
+      &__jp {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+
+        &__furi {
+          font-size: 1.2rem;
+          text-align: center;
+        }
+
+        &__kana {
+
+        }
+      }
+    }
+
+    &__meanings {
+      font-size: 1.2rem;
+      gap: 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

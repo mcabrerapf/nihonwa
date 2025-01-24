@@ -10,9 +10,11 @@ function Main() {
     loading,
   } = useMainContext();
 
-  if (loading) return <div className="main-loading-container"><Loading /></div>;
-
-  return <MainList />;
+  return (
+    <Loading isLoading={loading}>
+      <MainList />
+    </Loading>
+  );
 }
 
 export default Main;

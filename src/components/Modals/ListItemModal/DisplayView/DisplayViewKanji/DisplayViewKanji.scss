@@ -3,49 +3,4 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-
-  &__loading {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 13rem;
-  }
-
-  &__data {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 15rem;
-
-    &__container {
-      flex: 1;
-
-      &__header {
-        font-weight: bold;
-        text-decoration: underline;
-        font-size: 1.4rem;
-
-        &.empty-list {
-          color: var(--disabled-color);
-        }
-      }
-
-      &__list {
-        list-style: circle;
-        overflow-y: auto;
-        box-sizing: border-box;
-        scrollbar-color: var(--white-color) var(--white-color);
-        font-size: 1.3rem;
-        height: 13rem;
-        padding-right: 0.5rem;
-        padding-left: 1.3rem;
-
-        li {
-          list-style: circle;
-        }
-      }
-    }
-  }
 }

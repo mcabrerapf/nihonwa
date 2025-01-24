@@ -53,56 +53,58 @@ function JishoMeaningsModal({
 
   return (
     <div className="jisho-meanings-modal">
-      <div className="jisho-meanings-modal__content">
-        {isLoading && <div className="jisho-meanings-modal__content__loading"><Loading /></div>}
-        {!!errorMessage && (
+      <Loading isLoading={isLoading}>
+        <div className="jisho-meanings-modal__content">
+          {!!errorMessage && (
           <div className="jisho-meanings-modal__content__error">
             {errorMessage}
           </div>
-        )}
-        {!isLoading && noResults && (
-        <div className="jisho-meanings-modal__content__fallback">
-          <span>
-            {placholder}
-            <a href={jishoUrl} target="blank">Jisho</a>
-          </span>
-
-        </div>
-        )}
-        {jishoData.map((data) => (
-          <div
-            key={data.id}
-            className={`jisho-meanings-modal__content__word${selectedWord.id === data.id ? ' selected' : ''}`}
-            role="button"
-            onClick={() => handleWordClick(data)}
-          >
-            <span className="jisho-meanings-modal__content__word__jp">
-              {data.jp.split('').map((char, index) => (
-                <div key={`${index}-${char}`} className="jisho-meanings-modal__content__word__jp__char">
-                  <div className="jisho-meanings-modal__content__word__jp__char__furi">
-                    {data.furi[index]}
-                  </div>
-                  <div className="jisho-meanings-modal__content__word__jp__char__kana">
-                    {char}
-                  </div>
-                </div>
-              ))}
+          )}
+          {noResults && (
+          <div className="jisho-meanings-modal__content__fallback">
+            <span>
+              {placholder}
+              <a href={jishoUrl} target="blank">Jisho</a>
             </span>
-            <div className="jisho-meanings-modal__content__word__meanings">
-              {data.meanings.map((mean, index) => (
-                <div key={`${index}-${mean}`} className="jisho-meanings-modal__content__word__meanings__meaning">
-                  <span className="jisho-meanings-modal__content__word__meanings__meaning__type">
-                    {mean[0]}
-                  </span>
-                  <span className="jisho-meanings-modal__content__word__meanings__meaning__text">
-                    {mean[1]}
-                  </span>
-                </div>
-              ))}
-            </div>
+
           </div>
-        ))}
-      </div>
+          )}
+          {jishoData.map((data) => (
+            <div
+              key={data.id}
+              className={`jisho-meanings-modal__content__word${selectedWord.id === data.id ? ' selected' : ''}`}
+              role="button"
+              onClick={() => handleWordClick(data)}
+            >
+              <span className="jisho-meanings-modal__content__word__jp">
+                {data.jp.split('').map((char, index) => (
+                  <div key={`${index}-${char}`} className="jisho-meanings-modal__content__word__jp__char">
+                    <div className="jisho-meanings-modal__content__word__jp__char__furi">
+                      {data.furi[index]}
+                    </div>
+                    <div className="jisho-meanings-modal__content__word__jp__char__kana">
+                      {char}
+                    </div>
+                  </div>
+                ))}
+              </span>
+              <div className="jisho-meanings-modal__content__word__meanings">
+                {data.meanings.map((mean, index) => (
+                  <div key={`${index}-${mean}`} className="jisho-meanings-modal__content__word__meanings__meaning">
+                    <span className="jisho-meanings-modal__content__word__meanings__meaning__type">
+                      {mean[0]}
+                    </span>
+                    <span className="jisho-meanings-modal__content__word__meanings__meaning__text">
+                      {mean[1]}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </Loading>
+
       <div className="jisho-meanings-modal__footer">
         <Button onClick={handleConfirmClick} isDisabled={!selectedWord.id}>O</Button>
       </div>

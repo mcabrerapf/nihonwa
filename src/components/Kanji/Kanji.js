@@ -12,17 +12,17 @@ function Kanji(props) {
     handleKanjiClick,
   } = useKanji(props);
 
+  if (failedToLoad) return <div className="kanji-failsafe">{kanji}</div>;
+
   return (
-    <>
-      <div
-        role="button"
-        ref={kanjiRef}
-        id={idToUse}
-        className={containerClassName}
-        onClick={handleKanjiClick}
-      />
-      {failedToLoad && <div className="kanji-failsafe">{kanji}</div>}
-    </>
+    <div
+      role="button"
+      ref={kanjiRef}
+      id={idToUse}
+      className={containerClassName}
+      onClick={handleKanjiClick}
+    />
+
   );
 }
 

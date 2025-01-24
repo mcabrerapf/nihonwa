@@ -8,17 +8,17 @@ function useKanji({
   const kanjiRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
   const [kanjiWriter, setKanjiWriter] = useState(null);
-  const [hasError, setHasError] = useState();
+  const [hasError, setHasError] = useState(null);
   const idToUse = kanjiId || kanji;
 
   useEffect(() => {
     const loadKanji = async () => {
       const loadedWriter = await loadKanjiWriter(kanji, idToUse, setHasError);
-      if (animateOnLoad)loadedWriter.animateCharacter();
+      if (animateOnLoad) loadedWriter.animateCharacter();
       setKanjiWriter(loadedWriter);
       setIsLoading(false);
     };
-    if (!kanjiRef.current || kanjiWriter !== null) return;
+    if (!kanjiRef.current) return;
     loadKanji();
   }, [kanji]);
 
@@ -27,7 +27,7 @@ function useKanji({
     if (kanjiWriter) kanjiWriter.animateCharacter();
   };
 
-  const failedToLoad = !!kanjiWriter && hasError;
+  const failedToLoad = hasError;
   const containerClassName = failedToLoad ? 'hidden' : 'kanji-container';
 
   return {

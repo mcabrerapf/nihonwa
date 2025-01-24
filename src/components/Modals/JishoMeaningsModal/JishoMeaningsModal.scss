@@ -3,6 +3,10 @@
   flex-direction: column;
   width: 30rem;
   gap: 0.5rem;
+  
+  .loading-component {
+    height: 50rem;
+  }
 
   &__content {
     display: flex;
@@ -12,14 +16,6 @@
     max-height: 50rem;
     padding: 0.5rem 1.5rem 1.5rem 0.5rem;
     gap: 2rem;
-
-    &__loading {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-    }
 
     &__error {
       display: flex;

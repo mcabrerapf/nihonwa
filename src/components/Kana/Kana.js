@@ -20,9 +20,9 @@ function Kana({
       className={kanaClassName}
       onClick={() => handleClick(kana)}
     >
-      {!hideFuri && <span className="kana__furi">{furi}</span>}
+      <span className="kana__furi">{!hideFuri && furi}</span>
       <span className={kanaCharClasname}>{kana}</span>
-      {!hideEn && <span className="kana__en">{en}</span>}
+      <span className="kana__en">{!hideEn && en}</span>
     </div>
   );
 }
