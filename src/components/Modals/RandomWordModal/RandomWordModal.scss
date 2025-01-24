@@ -39,6 +39,12 @@
         display: flex;
         justify-content: center;
         flex-direction: row;
+
+        & .kana {
+          &__char {
+            font-size: 3.5rem;
+          }
+        }
       }
     }
 

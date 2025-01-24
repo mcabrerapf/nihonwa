@@ -31,6 +31,13 @@ function RandomWordModal() {
     setUsedIndexes([...usedIndexes, randomIndex]);
   }, []);
 
+  if (!selectedIndex) return null;
+
+  const selectedWord = wordList[selectedIndex];
+  const {
+    jp, furi, en, notes,
+  } = selectedWord;
+
   const generateNewIndex = () => {
     const randomIndex = generateRandomNumber(0, wordList.length, usedIndexes);
     setViewStep(0);
@@ -39,18 +46,14 @@ function RandomWordModal() {
   };
 
   const handleContentClick = () => {
-    if (viewStep < 2) setViewStep(viewStep + 1);
+    if (viewStep >= 2) return;
+    if (!furi || !furi.length) setViewStep(2);
+    else setViewStep(viewStep + 1);
   };
 
   const onCloseClick = () => {
     closeModal();
   };
-  if (!selectedIndex) return null;
-
-  const selectedWord = wordList[selectedIndex];
-  const {
-    jp, furi, en, notes,
-  } = selectedWord;
 
   const showFuri = viewStep > 0;
   const showMeanings = viewStep > 1;

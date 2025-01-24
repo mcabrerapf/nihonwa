@@ -35,6 +35,10 @@ function RandomKanjiModal() {
     setUsedIndexes([randomIndex]);
   }, []);
 
+  if (!selectedIndex) return null;
+
+  const { kanji, words } = allKanjis[selectedIndex];
+
   const generateNewIndex = () => {
     const newIndex = generateRandomNumber(0, allKanjis.length, usedIndexes);
     setViewStep(0);
@@ -43,16 +47,15 @@ function RandomKanjiModal() {
   };
 
   const handleContentClick = () => {
-    if (viewStep < 2) setViewStep(viewStep + 1);
+    if (viewStep >= 2) return;
+    if (!words || !words.length) setViewStep(2);
+    else setViewStep(viewStep + 1);
   };
 
   const onCloseClick = () => {
     closeModal();
   };
 
-  if (!selectedIndex) return null;
-
-  const { kanji, words } = allKanjis[selectedIndex];
   const showReadings = viewStep > 1;
   const showWords = viewStep > 0;
 
@@ -61,7 +64,11 @@ function RandomKanjiModal() {
       <div className="random-kanji-modal__header">
         <Button onClick={onCloseClick}>X</Button>
       </div>
-      <div className="random-kanji-modal__content" onClick={handleContentClick} role="button">
+      <div
+        className={`random-kanji-modal__content ${viewStep === 1 && 'first-step'}`}
+        onClick={handleContentClick}
+        role="button"
+      >
         <div className="random-kanji-modal__content__kanji-data">
           <Kanji kanji={kanji} kanjiId={kanji} />
           {showReadings && <KanjiReadings kanji={kanji} />}
