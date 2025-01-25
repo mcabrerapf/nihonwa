@@ -7,8 +7,8 @@ import { useMainContext } from '../../../../../contexts/MainContext';
 function DisplayViewFooter({
   view,
   tags,
+  setView,
   selectedKanji,
-  wordId,
   setSelectedKanji,
 }) {
   const { orderedList } = useMainContext();
@@ -16,7 +16,12 @@ function DisplayViewFooter({
     isFirstItem, isLastItem, setListItemView, handleGoToItem, handleListItemChange,
   } = useListItemContext();
   const similarWords = orderedList
-    ? orderedList.filter(({ id, jp }) => id !== wordId && jp.includes(selectedKanji)) : [];
+    ? orderedList.filter(({ jp }) => jp.includes(selectedKanji)) : [];
+
+  const kanjiWordClick = (word) => {
+    handleGoToItem(word);
+    setView('general');
+  };
 
   return (
     <div className="display-view-footer">
@@ -35,7 +40,7 @@ function DisplayViewFooter({
           <Button
             key={word.id}
             modifier="kanji"
-            onClick={() => handleGoToItem(word)}
+            onClick={() => kanjiWordClick(word)}
           >
             {word.jp}
           </Button>

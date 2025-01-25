@@ -50,6 +50,7 @@ function DisplayView(props) {
         tags={tags}
         selectedKanji={selectedKanji}
         wordId={id}
+        setView={setView}
         setSelectedKanji={setSelectedKanji}
       />
     </div>

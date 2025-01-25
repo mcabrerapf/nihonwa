@@ -13,7 +13,7 @@ import { useListItemContext } from '../../../../contexts/ListItemContext';
 import { useMainContext } from '../../../../contexts/MainContext';
 
 function EditView() {
-  const { updateWordsList } = useMainContext();
+  const { updateWordsList, jishoWord } = useMainContext();
   const { closeModal } = useModalContext();
   const { addToast } = useToastContext();
   const {
@@ -22,13 +22,13 @@ function EditView() {
     setListItemView,
   } = useListItemContext();
 
-  const [currentEditStep, setCurrentEditStep] = useState(0);
+  const [currentEditStep, setCurrentEditStep] = useState(jishoWord ? 5 : 0);
   const [currentData, setCurrentData] = useState(cWord);
   const word = currentData.jp;
   const headerText = getEditStepHeaderText('word', currentEditStep, word);
 
   useEffect(() => {
-    if (currentEditStep !== 0) setCurrentEditStep(0);
+    if (currentEditStep !== 0 && !jishoWord) setCurrentEditStep(0);
   }, [listItemView]);
 
   useEffect(() => {
