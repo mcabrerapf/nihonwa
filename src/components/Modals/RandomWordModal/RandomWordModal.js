@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './RandomWordModal.scss';
 import Button from '../../Button';
-import Kana from '../../Kana';
+import JPChar from '../../JPChar';
 import { useMainContext } from '../../../contexts/MainContext';
 import { useModalContext } from '../../../contexts/ModalContext';
 import {
@@ -74,7 +74,7 @@ function RandomWordModal() {
               const key = `${char}-${i}`;
 
               return (
-                <Kana
+                <JPChar
                   key={key}
                   kana={char}
                   furi={furiChar}

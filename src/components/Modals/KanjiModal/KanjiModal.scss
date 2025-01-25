@@ -6,17 +6,21 @@
     display: flex;
     justify-content: end;
     width: 100%;
+
+    .button {
+      border: transparent;
+    }
   }
 
   &__content {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
     width: 100%;
-    max-height: 45rem;
+    max-height: 49rem;
     font-size: 2.5rem;
     gap: 1rem;
     padding: 0.5rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;  
     flex-wrap: wrap;
@@ -25,51 +29,19 @@
 
     &__kanji-option{
       font-size: 4rem;
+      cursor: pointer;
     }
 
     &__kanji-data {
       width: 100%;
       height: 100%;
 
-      .display-view-kanji {
-        height: 27rem;
+      .loading-component {
+        height: 15rem;
       }
 
-      &__words {
-        height: 17rem;
-        gap: 1rem;
-        display: flex;
-        flex-direction: column;
-        overflow-y: auto;
-        scrollbar-color: var(--white-color) var(--white-color);
-
-        &__word {
-          &__with-furi {
-            display: flex;
-            
-            &__jp {
-              display: flex;
-              flex-direction: column;
-              justify-content: end;
-
-              &__furi {
-                font-size: 1.2rem;
-                text-align: center;
-              }
-    
-              &__kana {
-    
-              }
-            }
-          }
-
-          &__meanings {
-            font-size: 1.2rem;
-            gap: 1rem;
-            display: flex;
-            flex-direction: column;
-          }
-        }
+      .kanji-words {
+        height: 19rem;
       }
     }
   }

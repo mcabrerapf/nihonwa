@@ -7,7 +7,7 @@ import {
   getKanaSize,
 } from './helpers';
 import ProgressBar from './PorgressBar';
-import Kana from '../../../Kana';
+import JPChar from '../../../JPChar';
 
 function ExamProgress({
   questions, setQuestions, setView,
@@ -81,7 +81,7 @@ function ExamProgress({
             const [char, furiChar, enChar] = questionChar;
             const key = `${char}-${i}`;
             return (
-              <Kana
+              <JPChar
                 key={key}
                 kana={char}
                 furi={furiChar}

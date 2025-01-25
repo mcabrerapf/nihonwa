@@ -4,10 +4,9 @@ import Button from '../../Button';
 import { useMainContext } from '../../../contexts/MainContext';
 import { useModalContext } from '../../../contexts/ModalContext';
 import Kanji from '../../Kanji';
-import { getKanjis } from './helpers';
-import { generateRandomNumber, getTodayDate } from '../../../utils';
+import { generateRandomNumber, getAllKanjis, getTodayDate } from '../../../utils';
 import KanjiReadings from '../../KanjiReadings';
-import KanjiWords from '../../KanjiWords/KanjiWords';
+import KanjiWords from '../../KanjiWords';
 
 function RandomKanjiModal() {
   const { wordList } = useMainContext();
@@ -22,7 +21,7 @@ function RandomKanjiModal() {
     const parsedData = JSON.parse(localData);
     const date = getTodayDate();
     const dataToUse = parsedData && parsedData.date === date ? parsedData : { date, indexes: [] };
-    const initialKanjis = getKanjis(wordList);
+    const initialKanjis = getAllKanjis(wordList);
     const randomIndex = dataToUse.indexes.length
       ? dataToUse.indexes[0] : generateRandomNumber(0, initialKanjis.length);
     if (!parsedData || parsedData.date !== date) {

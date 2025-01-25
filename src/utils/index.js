@@ -27,6 +27,7 @@ import sortBy from './sortBy';
 import updateWordTags from './updateWordTags';
 import getHeaderTextClassname from './getHeaderTextClassname';
 import getTodayDate from './getTodayDate';
+import getAllKanjis from './getAllKanjis';
 
 export {
   calculateSuccessRate,
@@ -43,6 +44,7 @@ export {
   romajiToKana,
   filterBy,
   generateRandomNumber,
+  getAllKanjis,
   getCharWithFuri,
   getHeaderTextClassname,
   getKanjiArrayFromString,

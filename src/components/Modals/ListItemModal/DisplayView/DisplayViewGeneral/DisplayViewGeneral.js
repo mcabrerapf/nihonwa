@@ -2,7 +2,7 @@ import React from 'react';
 import './DisplayViewGeneral.scss';
 import Button from '../../../../Button';
 import { checkIfCharIsKanji, getCharWithFuri, getHeaderTextClassname } from '../../../../../utils';
-import Kana from '../../../../Kana';
+import JPChar from '../../../../JPChar';
 import { useListItemContext } from '../../../../../contexts/ListItemContext';
 
 function DisplayViewGeneral({
@@ -34,7 +34,7 @@ function DisplayViewGeneral({
             const key = `${char}-${i}`;
 
             return (
-              <Kana
+              <JPChar
                 key={key}
                 kana={char}
                 furi={furiChar}

@@ -3,8 +3,6 @@ import './KanjiReadings.scss';
 import useKanjiReadings from './useKanjiReadings';
 import Loading from '../Loading';
 
-// TODO: rename to kanjireadings
-
 function KanjiReadings(props) {
   const {
     onYomi,

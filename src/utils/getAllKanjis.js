@@ -1,6 +1,6 @@
-import { checkIfCharIsKanji } from '../../../utils';
+import checkIfCharIsKanji from './checkIfCharIsKanji';
 
-const getKanjis = (words) => {
+const getAllKanjis = (words) => {
   const kanjis = [];
   words.forEach((word) => {
     const { jp } = word;
@@ -18,6 +18,4 @@ const getKanjis = (words) => {
   return kanjis;
 };
 
-export {
-  getKanjis,
-};
+export default getAllKanjis;

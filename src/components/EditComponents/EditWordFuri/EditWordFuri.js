@@ -3,7 +3,7 @@ import './EditWordFuri.scss';
 import Button from '../../Button';
 import useEditWordFuri from './useEditWordFuri';
 import Input from '../../Input';
-import Kana from '../../Kana';
+import JPChar from '../../JPChar';
 
 function EditWordFuri(props) {
   const {
@@ -24,7 +24,7 @@ function EditWordFuri(props) {
         {kanaWithFuri.map(({
           key, modifier, kanaGroup, handleSelectFuri,
         }) => (
-          <Kana
+          <JPChar
             key={key}
             modifier={modifier}
             kana={kanaGroup[0]}

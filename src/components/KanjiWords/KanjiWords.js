@@ -2,6 +2,8 @@ import React from 'react';
 import './KanjiWords.scss';
 
 function KanjiWords({ words, showMeanings = true }) {
+  if (!words || !words.length) return null;
+
   return (
     <ul className="kanji-words">
       {words.map((word, index) => (
