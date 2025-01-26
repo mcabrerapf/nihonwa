@@ -83,7 +83,7 @@ function EditView() {
         />
       </div>
       )}
-      {currentEditStep === 5 && <DisplayView currentData={currentData} forceShow />}
+      {currentEditStep === 5 && <DisplayView currentData={currentData} hideFooter />}
       <EditViewFooter
         currentData={currentData}
         currentEditStep={currentEditStep}

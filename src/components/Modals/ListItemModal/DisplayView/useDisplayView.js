@@ -5,7 +5,7 @@ import { useListItemContext } from '../../../../contexts/ListItemContext';
 function useDisplayView({
   // TODO eveuntualy remove this
   currentData,
-  forceShow,
+  hideFooter,
 }) {
   const { word } = useListItemContext();
   const {
@@ -30,7 +30,7 @@ function useDisplayView({
     displayView,
     selectedKanji,
     successPercentage,
-    forceShow,
+    hideFooter,
     setSelectedKanji,
     setDisplayView,
   };

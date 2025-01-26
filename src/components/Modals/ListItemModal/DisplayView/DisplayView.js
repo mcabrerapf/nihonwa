@@ -16,6 +16,7 @@ function DisplayView(props) {
     displayView,
     selectedKanji,
     successPercentage,
+    hideFooter,
     setSelectedKanji,
     setDisplayView,
   } = useDisplayView(props);
@@ -46,9 +47,11 @@ function DisplayView(props) {
         />
         )}
       </div>
+      {!hideFooter && (
       <DisplayViewFooter
         setSelectedKanji={setSelectedKanji}
       />
+      )}
     </div>
   );
 }
