@@ -7,13 +7,9 @@
   scrollbar-color: var(--white-color) var(--white-color);
 
   &__word {
-    &.separator {
-      border-top: 1px dotted var(--white-color);
-    }
-    
     &__with-furi {
       display: flex;
-      
+
       &__jp {
         display: flex;
         flex-direction: column;
@@ -24,9 +20,7 @@
           text-align: center;
         }
 
-        &__kana {
-
-        }
+        &__kana {}
       }
     }
 

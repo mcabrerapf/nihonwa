@@ -10,7 +10,13 @@ function Button({
   const className = buttonClassNames.join(' ');
 
   return (
-    <button type="button" className={className} value={value} disabled={isDisabled} onClick={onClick}>
+    <button
+      type="button"
+      className={className}
+      value={value}
+      disabled={isDisabled}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

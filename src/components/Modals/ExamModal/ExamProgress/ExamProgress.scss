@@ -10,20 +10,6 @@
   &__top {
     height: 1rem;
     width: 100%;
-
-    .progress-bar {
-      height: 1rem;
-      background-color: var(--white-color);
-      width: 100%;
-      border-radius: 0.2rem;
-
-      &__fill {
-        background-color: var(--green-color);
-        height: 100%;
-        border-radius: 0.2rem;
-        transition: width 0.5s;
-      }
-    }
   }
 
   &__question {

@@ -1,7 +1,7 @@
 import React from 'react';
-import './DisplayViewHeader.scss';
 import Button from '../../../../Button';
 import useDisplayViewHeader from './useDisplayViewHeader';
+import ModalHeader from '../../../ModalHeader';
 import { useModalContext } from '../../../../../contexts/ModalContext';
 import { useListItemContext } from '../../../../../contexts/ListItemContext';
 
@@ -16,7 +16,7 @@ function DisplayViewHeader(props) {
   if (listItemView === 'edit') return null;
 
   return (
-    <div role="button" className="display-view-header">
+    <ModalHeader childrenAlign="m">
       <Button
         modifier="danger"
         onClick={() => setListItemView('delete')}
@@ -37,11 +37,10 @@ function DisplayViewHeader(props) {
           辞書
         </Button> */}
       </div>
-      <Button modifier="close-button" onClick={() => closeModal()}>
+      <Button modifier="no-border" onClick={() => closeModal()}>
         X
       </Button>
-    </div>
-
+    </ModalHeader>
   );
 }
 

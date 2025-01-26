@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './ExamResults.scss';
 import Button from '../../../Button';
+import ModalFooter from '../../ModalFooter';
 import { getServiceToUse } from '../../../../Services';
-import { getScoreColor } from './helpers';
 import { useMainContext } from '../../../../contexts/MainContext';
+import Score from '../../../Score';
 
 function ExamResults({
   questions, setView,
@@ -13,7 +14,6 @@ function ExamResults({
   const correctQuestions = questions.filter((question) => question.correct).length;
   const totalQuestions = questions.length;
   const score = (correctQuestions / totalQuestions) * 100;
-  const scoreColor = getScoreColor(score);
 
   useEffect(() => {
     async function updateQustions() {
@@ -67,17 +67,12 @@ function ExamResults({
           })}
         </ol>
       </div>
-      <footer className="exam-modal__footer">
-        <div className="exam-modal__footer__score">
-          <span className={`exam-modal__footer__score__number${scoreColor}`}>
-            {score}
-            %
-          </span>
-        </div>
+      <ModalFooter childrenAlign="r">
+        <Score score={score} />
         <Button onClick={handleRestart} isDisabled={isLoading}>
           再挑戦
         </Button>
-      </footer>
+      </ModalFooter>
     </>
   );
 }

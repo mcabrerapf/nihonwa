@@ -1,67 +1,45 @@
-.random-word-modal {
+.random-word-modal-content {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
   width: 30rem;
   height: 50rem;
+  font-size: 2.5rem;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  scrollbar-color: var(--white-color) var(--white-color);
 
-  &__header {
-    display: flex;
-    justify-content: end;
-    width: 100%;
-
-    .button {
-      border: 1px solid transparent;
+  &__word {
+    &.full {
+      height: 100%;
     }
-  }
 
-  &__content {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
     width: 100%;
-    height: 84%;
-    font-size: 2.5rem;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    scrollbar-color: var(--white-color) var(--white-color);
+    display: flex;
+    flex-direction: row;
 
-    &__word {
-
-      &.full {
-        height: 100%;
-      }
-
+    &__characters {
       width: 100%;
       display: flex;
+      justify-content: center;
       flex-direction: row;
 
-      &__characters {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        flex-direction: row;
-
-        & .jp-char {
-          &__char {
-            font-size: 3.5rem;
-          }
+      & .jp-char {
+        &__char {
+          font-size: 3.5rem;
         }
       }
     }
-
-    &__meanings {
-      font-size: 1.5rem;
-      width: 100%;
-    }
-  
-    &__notes {
-      font-size: 1.5rem;
-      width: 100%;
-    }
- 
   }
 
-  &__footer {
-    display: flex;
-    justify-self: center;
+  &__meanings {
+    font-size: 1.5rem;
+    width: 100%;
+  }
+
+  &__notes {
+    font-size: 1.5rem;
+    width: 100%;
   }
 }

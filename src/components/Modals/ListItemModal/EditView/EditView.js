@@ -7,6 +7,7 @@ import { useModalContext } from '../../../../contexts/ModalContext';
 import DisplayView from '../DisplayView';
 import Button from '../../../Button';
 import EditViewFooter from './EditViewFooter';
+import ModalHeader from '../../ModalHeader';
 import { getEditStepHeaderText, getEditStepComponent } from './helpers';
 import { TAGS } from '../../../../constants';
 import { useListItemContext } from '../../../../contexts/ListItemContext';
@@ -69,17 +70,19 @@ function EditView() {
 
   return (
     <div className="edit-view">
-      <div className="edit-view__header">
+      <ModalHeader childrenAlign="m">
         <span>{headerText}</span>
-        <Button onClick={handleClose}>
+        <Button modifier="no-border" onClick={handleClose}>
           X
         </Button>
-      </div>
+      </ModalHeader>
+      {currentEditStep !== 5 && (
       <div className="edit-view__content">
         <EditStepComponent
           {...editStepComponentProps}
         />
       </div>
+      )}
       {currentEditStep === 5 && <DisplayView currentData={currentData} forceShow />}
       <EditViewFooter
         currentData={currentData}

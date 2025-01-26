@@ -1,4 +1,3 @@
-import './DisplayViewHeader.scss';
 import { copyToClipboard } from '../../../../../utils';
 
 function useDisplayViewHeader({

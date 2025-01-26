@@ -1,23 +1,8 @@
 .edit-view-footer {
-    width: 100%;
-    gap: 1rem;
-    margin-top: 0.5rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
     &__steps {
         display: flex;
-        font-size: 2rem;
-        align-items: center;
 
         .button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            user-select: none;
-            border: none;
-            min-height: 3rem;
             min-width: 3rem;
         }
     }

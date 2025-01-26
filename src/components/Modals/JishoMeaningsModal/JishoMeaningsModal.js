@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 import './JishoMeaningsModal.scss';
 import Loading from '../../Loading';
 import Button from '../../Button';
+import Modal from '../Modal';
+import ModalHeader from '../ModalHeader';
+import ModalFooter from '../ModalFooter';
+import { useMainContext } from '../../../contexts/MainContext';
+import { useModalContext } from '../../../contexts/ModalContext';
 import { B_URL } from '../../../constants';
 import { buildWordFromJisho } from './helpers';
-import { useMainContext } from '../../../contexts/MainContext';
 
 function JishoMeaningsModal({
   handleToggleModal,
@@ -14,6 +18,7 @@ function JishoMeaningsModal({
     setJishoWord,
     setSelectedItemIndex,
   } = useMainContext();
+  const { closeModal } = useModalContext();
   const [isLoading, setIsLoading] = useState(true);
   const [jishoData, setJishoData] = useState([]);
   const [selectedWord, setSelectedWord] = useState({});
@@ -36,6 +41,11 @@ function JishoMeaningsModal({
     if (filters && filters.text) fetchData(filters.text);
   }, []);
 
+  const handleClose = async (e) => {
+    if (e) e.preventDefault();
+    closeModal();
+  };
+
   const handleWordClick = (word) => {
     setSelectedWord(word);
   };
@@ -52,7 +62,10 @@ function JishoMeaningsModal({
   const placholder = `Serch for "${filters.text}" in `;
 
   return (
-    <div className="jisho-meanings-modal">
+    <Modal modifier="jisho-meanings-modal">
+      <ModalHeader childrenAlign="r">
+        <Button modifier="no-border" onClick={handleClose}>X</Button>
+      </ModalHeader>
       <Loading isLoading={isLoading}>
         <div className="jisho-meanings-modal__content">
           {!!errorMessage && (
@@ -104,11 +117,10 @@ function JishoMeaningsModal({
           ))}
         </div>
       </Loading>
-
-      <div className="jisho-meanings-modal__footer">
+      <ModalFooter childrenAlign="r">
         <Button onClick={handleConfirmClick} isDisabled={!selectedWord.id}>O</Button>
-      </div>
-    </div>
+      </ModalFooter>
+    </Modal>
   );
 }
 

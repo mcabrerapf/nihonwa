@@ -1,50 +1,21 @@
-.filters-modal {
+.filters-modal-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   width: 30rem;
+  font-size: 2rem;
+  gap: 1rem;
 
-  &__content {
+  &__filters-options {
     display: flex;
-    flex-direction: column;
-    height: 100%;
-    font-size: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
     gap: 1rem;
 
-    &__sort-options {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      margin-bottom: 0.5rem;
-
-      &__type {
-        display: flex;
-        gap: 1rem;
-      }
-
-      &__dir {
-        display: flex;
-        gap: 1rem;
-      }
+    button {
+      font-size: 1.5rem;
     }
-
-    &__filters-options {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      padding-top: 0.5rem;
-      padding-bottom: 1rem;
-      gap: 1rem;
-
-      button {
-        font-size: 1.5rem;
-      }
-    }
-
-  }
-
-  &__footer {
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    height: 4rem;
-    width: 100%;
   }
 }

@@ -8,17 +8,16 @@ import useDisplayView from './useDisplayView';
 
 function DisplayView(props) {
   const {
-    id,
     jp,
     en,
     furi,
     notes,
     tags,
-    view,
+    displayView,
     selectedKanji,
     successPercentage,
     setSelectedKanji,
-    setView,
+    setDisplayView,
   } = useDisplayView(props);
 
   return (
@@ -28,29 +27,26 @@ function DisplayView(props) {
         selectedKanji={selectedKanji}
       />
       <div className="display-view__content">
-        {view === 'general' && (
+        {displayView === 'general' && (
         <DisplayViewGeneral
           jp={jp}
           furi={furi}
           en={en}
           notes={notes}
+          tags={tags}
           successPercentage={successPercentage}
-          setView={setView}
+          setDisplayView={setDisplayView}
           setSelectedKanji={setSelectedKanji}
         />
         )}
-        {view === 'kanji' && (
+        {displayView === 'kanji' && (
         <DisplayViewKanji
+          setDisplayView={setDisplayView}
           selectedKanji={selectedKanji}
         />
         )}
       </div>
       <DisplayViewFooter
-        view={view}
-        tags={tags}
-        selectedKanji={selectedKanji}
-        wordId={id}
-        setView={setView}
         setSelectedKanji={setSelectedKanji}
       />
     </div>

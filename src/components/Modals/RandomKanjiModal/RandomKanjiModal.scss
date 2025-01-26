@@ -2,16 +2,6 @@
   width: 30rem;
   height: 50rem;
 
-  &__header {
-    display: flex;
-    justify-content: end;
-    width: 100%;
-
-    .button {
-      border: 1px solid transparent;
-    }
-  }
-
   &__content {
     box-sizing: border-box;
     display: flex;
@@ -23,16 +13,16 @@
     gap: 1rem;
     padding: 0.5rem;
     align-items: center;
-    justify-content: center;  
+    justify-content: center;
     flex-wrap: wrap;
     overflow-y: auto;
     scrollbar-color: var(--white-color) var(--white-color);
 
-     &.first-step {
+    &.first-step {
       .kanji-words {
-        height: 100%
+        height: 30rem;
       }
-     }
+    }
 
     &__kanji-data {
       width: 100%;
@@ -42,13 +32,8 @@
       justify-content: center;
 
       .loading-component {
-        height: 15rem;
+        height: 16rem;
       }
     }
-  }
-
-  &__footer {
-    display: flex;
-    justify-self: center;
   }
 }

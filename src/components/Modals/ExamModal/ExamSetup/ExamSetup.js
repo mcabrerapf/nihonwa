@@ -1,6 +1,7 @@
 import React from 'react';
 import './ExamSetup.scss';
 import Button from '../../../Button';
+import ModalFooter from '../../ModalFooter';
 import useExamSetup from './useExamSetup';
 import { TAGS } from '../../../../constants';
 
@@ -30,28 +31,29 @@ function ExamSetup(props) {
               </Button>
             ))}
           </div>
-          <div className="exam-modal-setup__options-group__question-limit">
-            <div className="exam-modal-setup__options-group__question-limit__container">
-              <Button
-                isDisabled={reachedMin}
-                onClick={() => handleQuestionLimitChange()}
-              >
-                -
-              </Button>
-              <span>{questionLimit}</span>
-              <Button
-                isDisabled={reachedMax}
-                onClick={() => handleQuestionLimitChange(true)}
-              >
-                +
-              </Button>
-            </div>
-          </div>
+
         </div>
       </div>
-      <footer className="exam-modal__footer">
+      <ModalFooter childrenAlign="r">
+        <div className="exam-modal-setup__options-group__question-limit">
+          <div className="exam-modal-setup__options-group__question-limit__container">
+            <Button
+              isDisabled={reachedMin}
+              onClick={() => handleQuestionLimitChange()}
+            >
+              -
+            </Button>
+            <span>{questionLimit}</span>
+            <Button
+              isDisabled={reachedMax}
+              onClick={() => handleQuestionLimitChange(true)}
+            >
+              +
+            </Button>
+          </div>
+        </div>
         <Button onClick={handleBuildQuestions}>O</Button>
-      </footer>
+      </ModalFooter>
     </>
   );
 }

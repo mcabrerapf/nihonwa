@@ -1,6 +1,7 @@
 import React from 'react';
 import './EditViewFooter.scss';
 import Button from '../../../../Button';
+import ModalFooter from '../../../ModalFooter';
 import useEditViewFooter from './useEditViewFooter';
 
 function EditViewFooter(props) {
@@ -18,7 +19,7 @@ function EditViewFooter(props) {
   } = useEditViewFooter(props);
 
   return (
-    <footer className="edit-view-footer">
+    <ModalFooter childrenAlign="m">
       <Button
         isDisabled={isFirstStep}
         onClick={() => handleChangeEditStep(currentEditStep - 1)}
@@ -29,7 +30,7 @@ function EditViewFooter(props) {
         {stepsArray.map((_, i) => (
           <Button
             key={i}
-            modifier="ghost"
+            modifier="no-border"
             onClick={() => handleStepIndicatorClick(i)}
           >
             {i === currentEditStep ? 'o' : '.'}
@@ -53,7 +54,7 @@ function EditViewFooter(props) {
             {'>'}
           </Button>
         )}
-    </footer>
+    </ModalFooter>
   );
 }
 

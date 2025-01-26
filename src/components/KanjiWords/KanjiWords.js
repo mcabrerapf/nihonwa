@@ -1,5 +1,6 @@
 import React from 'react';
 import './KanjiWords.scss';
+import Separator from '../Separator';
 
 function KanjiWords({ words, showMeanings = true }) {
   if (!words || !words.length) return null;
@@ -7,7 +8,8 @@ function KanjiWords({ words, showMeanings = true }) {
   return (
     <ul className="kanji-words">
       {words.map((word, index) => (
-        <li key={word.id} className={`kanji-words__word ${index !== 0 && 'separator'}`}>
+        <li key={word.id} className="kanji-words__word">
+          {index !== 0 && <Separator />}
           <div className="kanji-words__word__with-furi">
             {word.jp.split('').map((char, cIndex) => (
               <div key={`${cIndex}-${char}`} className="kanji-words__word__with-furi__jp">
@@ -31,7 +33,9 @@ function KanjiWords({ words, showMeanings = true }) {
               </li>
             ))}
           </ul>
+
         </li>
+
       ))}
     </ul>
   );

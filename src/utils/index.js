@@ -28,6 +28,7 @@ import updateWordTags from './updateWordTags';
 import getHeaderTextClassname from './getHeaderTextClassname';
 import getTodayDate from './getTodayDate';
 import getAllKanjis from './getAllKanjis';
+import getChildrenAligmentClass from './getChildrenAligmentClass';
 
 export {
   calculateSuccessRate,
@@ -46,6 +47,7 @@ export {
   generateRandomNumber,
   getAllKanjis,
   getCharWithFuri,
+  getChildrenAligmentClass,
   getHeaderTextClassname,
   getKanjiArrayFromString,
   getEnglishCharacters,

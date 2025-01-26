@@ -35,6 +35,14 @@
   .display-view {
     height: 30rem;
 
+    .display-view-general {
+      &__top {
+        &__lists {
+          height: 18rem;
+        }
+      }
+    }
+
     .display-view-footer {
       &__actions {
         display: none;

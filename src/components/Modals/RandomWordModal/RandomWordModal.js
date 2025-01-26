@@ -2,10 +2,16 @@ import React, { useEffect, useState } from 'react';
 import './RandomWordModal.scss';
 import Button from '../../Button';
 import JPChar from '../../JPChar';
+import Modal from '../Modal';
+import ModalHeader from '../ModalHeader';
+import ModalFooter from '../ModalFooter';
 import { useMainContext } from '../../../contexts/MainContext';
 import { useModalContext } from '../../../contexts/ModalContext';
 import {
-  generateRandomNumber, getCharWithFuri, getHeaderTextClassname, getTodayDate,
+  generateRandomNumber,
+  getCharWithFuri,
+  getHeaderTextClassname,
+  getTodayDate,
 } from '../../../utils';
 
 function RandomWordModal() {
@@ -59,16 +65,16 @@ function RandomWordModal() {
   const showMeanings = viewStep > 1;
   const headerCharacters = getCharWithFuri(jp, furi, true);
   const kanaModifier = getHeaderTextClassname(headerCharacters);
-  const wordModifier = !showMeanings ? 'full' : '';
+  const wordModifier = !showMeanings ? ' full' : '';
 
   return (
-    <div className="random-word-modal">
-      <div className="random-word-modal__header">
-        <Button onClick={onCloseClick}>X</Button>
-      </div>
-      <div className="random-word-modal__content" onClick={handleContentClick} role="button">
-        <div role="button" className={`random-word-modal__content__word ${wordModifier}`}>
-          <div className="random-word-modal__content__word__characters">
+    <Modal modifier="random-word-modal">
+      <ModalHeader childrenAlign="r">
+        <Button modifier="no-border" onClick={onCloseClick}>X</Button>
+      </ModalHeader>
+      <div className="random-word-modal-content" onClick={handleContentClick} role="button">
+        <div role="button" className={`random-word-modal-content__word${wordModifier}`}>
+          <div className="random-word-modal-content__word__characters">
             {headerCharacters.map((headerChar, i) => {
               const [char, furiChar, enChar] = headerChar;
               const key = `${char}-${i}`;
@@ -88,31 +94,32 @@ function RandomWordModal() {
           </div>
         </div>
         {showMeanings && (
-        <ol className="random-word-modal__content__meanings">
-          {en.map((meaning, i) => (
-            <li key={`${i}-${meaning}`} className="random-word-modal__content__meanings__meaning">
-              <span>-</span>
-              <span>{meaning}</span>
-            </li>
-          ))}
-        </ol>
+          <ol className="random-word-modal-content__meanings">
+            {en.map((meaning, i) => (
+              <li key={`${i}-${meaning}`} className="random-word-modal-content__meanings__meaning">
+                <span>-</span>
+                <span>{meaning}</span>
+              </li>
+            ))}
+          </ol>
         )}
         {showMeanings && !!notes.length && (
-        <ol className="random-word-modal__content__notes">
-          {notes.map((note, i) => (
-            <li key={`${i}-${note}`} className="random-word-modal__content__notes__note">
-              <span>-</span>
-              <span>{note}</span>
-            </li>
-          ))}
-        </ol>
+          <ol className="random-word-modal-content__notes">
+            {notes.map((note, i) => (
+              <li key={`${i}-${note}`} className="random-word-modal-content__notes__note">
+                <span>-</span>
+                <span>{note}</span>
+              </li>
+            ))}
+          </ol>
         )}
 
       </div>
-      <div className="random-word-modal__footer">
+      <ModalFooter childrenAlign="r">
         {viewStep > 1 && <Button onClick={generateNewIndex}>別個</Button>}
-      </div>
-    </div>
+      </ModalFooter>
+
+    </Modal>
   );
 }
 

@@ -4,6 +4,8 @@ import ExamSetup from './ExamSetup';
 import ExamProgress from './ExamProgress';
 import ExamResults from './ExamResults';
 import Button from '../../Button';
+import Modal from '../Modal';
+import ModalHeader from '../ModalHeader';
 import useExamModal from './useExamModal';
 
 function ExamModal(props) {
@@ -20,10 +22,10 @@ function ExamModal(props) {
   } = useExamModal(props);
 
   return (
-    <div className="exam-modal">
-      <div className="exam-modal__header">
-        <Button onClick={handleClose}>X</Button>
-      </div>
+    <Modal modifier="exam-modal">
+      <ModalHeader childrenAlign="r">
+        <Button modifier="no-border" onClick={handleClose}>X</Button>
+      </ModalHeader>
       <div className="exam-modal__content">
         {view === 'setup' && (
         <ExamSetup
@@ -49,7 +51,7 @@ function ExamModal(props) {
         />
         )}
       </div>
-    </div>
+    </Modal>
   );
 }
 

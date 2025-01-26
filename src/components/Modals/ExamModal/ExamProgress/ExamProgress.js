@@ -6,7 +6,7 @@ import {
   getAnswerButtonColor,
   getKanaSize,
 } from './helpers';
-import ProgressBar from './PorgressBar';
+import ProgressBar from '../../../ProgressBar';
 import JPChar from '../../../JPChar';
 
 function ExamProgress({
@@ -101,6 +101,8 @@ function ExamProgress({
               const answerState = isQuestionValidated ? getAnswerButtonColor(answer, isSelectedAnswer, en) : '';
               const answerFontsize = answer.length > 30 ? ' small' : '';
               const buttonModifier = `${answerState}${answerFontsize}`;
+              const truncatedAnswer = answer.length > 60
+                ? `${answer.substr(0, 70)}...` : answer;
 
               return (
                 <Button
@@ -108,7 +110,7 @@ function ExamProgress({
                   modifier={buttonModifier}
                   onClick={() => handleUpdateQuestion(answer)}
                 >
-                  <span>{answer}</span>
+                  <span>{truncatedAnswer}</span>
                 </Button>
               );
             })}

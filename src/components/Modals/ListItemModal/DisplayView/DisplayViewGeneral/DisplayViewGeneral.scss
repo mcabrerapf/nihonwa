@@ -1,74 +1,55 @@
 .display-view-general {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   scrollbar-color: var(--white-color) var(--white-color);
-  height: 25rem;
   width: 100%;
+  height: 100%;
 
-  &__word {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    user-select: none;
-
-    &__characters {
+  &__top {
+    &__word {
       display: flex;
-    }
-
-    &__succes-percentage {
-      display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      font-weight: 600;
-    }
-  }
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
 
-  &__lists {
-    overflow-y: auto;
-
-    &__meanings {
-      display: flex;
-      flex-direction: column;
-      font-size: 1.5rem;
-      padding: 1rem 0rem;
-
-      &__meaning {
+      &__characters {
         display: flex;
-        gap: 0.5rem;
+      }
+
+      &__succes-percentage {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 600;
       }
     }
 
-    &__notes {
+    &__lists {
       display: flex;
       flex-direction: column;
-      font-size: 1.5rem;
-      padding: 1rem 0rem;
-      border-top: 1px dotted var(--white-color);
+      overflow-y: auto;
+      height: 30rem;
+      gap: 1rem;
 
-      &__note {
-        display: flex;
-        gap: 0.5rem;
-      }
-    }
-
-    &__similar-words {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      font-size: 1.5rem;
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-      border-top: 1px dotted var(--white-color);
-
-      &__word {
+      &__similar-words {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
+        gap: 2rem;
+        font-size: 1.5rem;
+        padding-top: 1rem;
+        border-top: 1px dotted var(--white-color);
 
-        &__meanings {}
+        &__word {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
+
+          &__meanings {}
+        }
       }
     }
   }

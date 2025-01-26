@@ -49,7 +49,7 @@ const useMainListHeader = ({
 
   const handleKanaButtonClick = () => handleToggleModal('kanaModal');
 
-  const handleKanjiButtonClick = () => handleToggleModal('kanjiModal');
+  const handleKanjiButtonClick = () => handleToggleModal('allKanjisModal');
 
   const handleShowFiltersModal = () => handleToggleModal('filtersModal');
 

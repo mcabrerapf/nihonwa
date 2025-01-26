@@ -1,0 +1,20 @@
+.button-list {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scrollbar-color: var(--white-color) var(--white-color);
+    box-sizing: border-box;
+    gap: 1rem;
+    padding: 0.5rem 0rem;
+
+    .button {
+        cursor: auto;
+        color: var(--white-color);
+        font-size: 1.5rem;
+        flex-shrink: 0;
+
+        &.kanji {
+            cursor: pointer;
+        }
+    }
+}

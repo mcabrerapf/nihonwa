@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './RandomKanjiModal.scss';
 import Button from '../../Button';
+import Kanji from '../../Kanji';
+import Modal from '../Modal';
+import ModalHeader from '../ModalHeader';
+import ModalFooter from '../ModalFooter';
 import { useMainContext } from '../../../contexts/MainContext';
 import { useModalContext } from '../../../contexts/ModalContext';
-import Kanji from '../../Kanji';
 import { generateRandomNumber, getAllKanjis, getTodayDate } from '../../../utils';
 import KanjiReadings from '../../KanjiReadings';
 import KanjiWords from '../../KanjiWords';
@@ -59,12 +62,12 @@ function RandomKanjiModal() {
   const showWords = viewStep > 0;
 
   return (
-    <div className="random-kanji-modal">
-      <div className="random-kanji-modal__header">
-        <Button onClick={onCloseClick}>X</Button>
-      </div>
+    <Modal modifier="random-kanji-modal">
+      <ModalHeader childrenAlign="r">
+        <Button modifier="no-border" onClick={onCloseClick}>X</Button>
+      </ModalHeader>
       <div
-        className={`random-kanji-modal__content ${viewStep === 1 && 'first-step'}`}
+        className={`random-kanji-modal__content${viewStep === 1 ? ' first-step' : ''}`}
         onClick={handleContentClick}
         role="button"
       >
@@ -77,10 +80,10 @@ function RandomKanjiModal() {
         </div>
 
       </div>
-      <div className="random-kanji-modal__footer">
+      <ModalFooter childrenAlign="r">
         {viewStep > 1 && <Button onClick={generateNewIndex}>別個</Button>}
-      </div>
-    </div>
+      </ModalFooter>
+    </Modal>
   );
 }
 

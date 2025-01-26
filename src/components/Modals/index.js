@@ -1,6 +1,6 @@
 import FiltersModal from './FiltersModal';
 import KanaModal from './KanaModal';
-import KanjiModal from './KanjiModal';
+import AllKanjisModal from './AllKanjisModal';
 import ExamModal from './ExamModal';
 import ListItemModal from './ListItemModal';
 import JishoMeaningsModal from './JishoMeaningsModal';
@@ -11,7 +11,7 @@ import RandomWordModal from './RandomWordModal';
 export {
   FiltersModal,
   KanaModal,
-  KanjiModal,
+  AllKanjisModal,
   RandomKanjiModal,
   RandomWordModal,
   ListItemModal,
