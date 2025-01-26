@@ -16,7 +16,7 @@ function KanjiReadings(props) {
     <Loading isLoading={isLoading}>
       <div className="kanji-readings">
         <SimpleList list={onYomi} header="音読み" />
-        <SimpleList list={meanings} header="Meanings" />
+        <SimpleList list={meanings} header="語義" />
         <SimpleList list={kunYomi} header="訓読み" />
       </div>
     </Loading>

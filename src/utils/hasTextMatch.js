@@ -20,6 +20,7 @@ const hasTextMatch = (text, item) => {
   const hasNotesMatch = parsedNotes.indexOf(text.toLowerCase()) !== -1;
   // const hasTagsMatch = parsedTags.indexOf(text.toLowerCase()) !== -1;
   // const hasPronunciationMarch = parsedPronunciation.indexOf(text.toLowerCase()) !== -1;
+
   // TODO improve this
   return (
     hasJpMatch

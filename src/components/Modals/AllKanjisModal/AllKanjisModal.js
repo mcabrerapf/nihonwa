@@ -5,16 +5,17 @@ import Kanji from '../../Kanji';
 import KanjiReadings from '../../KanjiReadings';
 import KanjiWords from '../../KanjiWords';
 import Modal from '../Modal';
+import ModalHeader from '../ModalHeader';
+import ModalFooter from '../ModalFooter';
 import { useMainContext } from '../../../contexts/MainContext';
 import { useModalContext } from '../../../contexts/ModalContext';
 import { getAllKanjis } from '../../../utils';
-import ModalHeader from '../ModalHeader';
 
 function AllKanjisModal() {
   const { wordList } = useMainContext();
   const { closeModal } = useModalContext();
   const [allKanjis, setAllKanjis] = useState([]);
-  const [selectedKanji, setSelectedKanji] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
   useEffect(() => {
     setAllKanjis(getAllKanjis(wordList));
@@ -22,9 +23,12 @@ function AllKanjisModal() {
 
   const onCloseClick = (e) => {
     e.preventDefault();
-    setSelectedKanji(null);
-    if (!selectedKanji) closeModal();
+    if (selectedIndex === null) closeModal();
+    else setSelectedIndex(null);
   };
+
+  const selectedKanji = allKanjis[selectedIndex];
+  const isLastItem = allKanjis.length === selectedIndex + 1;
 
   return (
     <Modal modifier="all-kanjis-modal">
@@ -32,8 +36,13 @@ function AllKanjisModal() {
         <Button modifier="no-border" onClick={onCloseClick}>X</Button>
       </ModalHeader>
       <div className="all-kanjis-modal-content">
-        {!selectedKanji && allKanjis.map((kanji) => (
-          <div key={kanji.kanji} className="all-kanjis-modal-content__kanji-option" role="button" onClick={() => setSelectedKanji(kanji)}>
+        {selectedIndex === null && allKanjis.map((kanji, index) => (
+          <div
+            key={kanji.kanji}
+            role="button"
+            className="all-kanjis-modal-content__kanji-option"
+            onClick={() => setSelectedIndex(index)}
+          >
             {kanji.kanji}
           </div>
         ))}
@@ -45,6 +54,22 @@ function AllKanjisModal() {
         </div>
         )}
       </div>
+      {selectedIndex !== null && (
+      <ModalFooter childrenAlign="m">
+        <Button
+          isDisabled={selectedIndex === 0}
+          onClick={() => setSelectedIndex(selectedIndex - 1)}
+        >
+          {'<'}
+        </Button>
+        <Button
+          isDisabled={isLastItem}
+          onClick={() => setSelectedIndex(selectedIndex + 1)}
+        >
+          {'>'}
+        </Button>
+      </ModalFooter>
+      )}
     </Modal>
 
   );

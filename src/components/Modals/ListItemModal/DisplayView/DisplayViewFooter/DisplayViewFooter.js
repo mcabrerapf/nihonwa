@@ -13,35 +13,28 @@ function DisplayViewFooter({
 
   return (
     <ModalFooter childrenAlign="m">
-      <div className="display-view-footer__actions">
-        <div className="arrow-container">
-          <Button
-            isDisabled={isFirstItem}
-            onClick={() => handleListItemChange()}
-          >
-            {'<'}
-          </Button>
-        </div>
-        <div className="display-view-footer__actions__view-buttons">
-          <Button
-            onClick={() => {
-              setSelectedKanji('');
-              setListItemView('edit');
-            }}
-          >
-            編集
-          </Button>
-        </div>
-        <div className="arrow-container">
-          <Button
-            isDisabled={isLastItem}
-            onClick={() => handleListItemChange(true)}
-          >
-            {'>'}
-          </Button>
-        </div>
-      </div>
+      <Button
+        isDisabled={isFirstItem}
+        onClick={() => handleListItemChange()}
+      >
+        {'<'}
+      </Button>
 
+      <Button
+        onClick={() => {
+          setSelectedKanji('');
+          setListItemView('edit');
+        }}
+      >
+        編集
+      </Button>
+
+      <Button
+        isDisabled={isLastItem}
+        onClick={() => handleListItemChange(true)}
+      >
+        {'>'}
+      </Button>
     </ModalFooter>
   );
 }

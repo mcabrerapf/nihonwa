@@ -12,15 +12,25 @@ function useKanji({
 
   useEffect(() => {
     const loadKanji = async () => {
-      setIsLoading(true);
-      const loadedWriter = await loadKanjiWriter(kanji, idToUse, setHasError);
-      if (animateOnLoad) loadedWriter.animateCharacter();
-      setKanjiWriter(loadedWriter);
-      setIsLoading(false);
+      await loadKanjiWriter(kanji, idToUse, setHasError)
+        .then((loadedWriter) => {
+          if (animateOnLoad) loadedWriter.animateCharacter();
+          setKanjiWriter(loadedWriter);
+          setIsLoading(false);
+        });
     };
     if (!kanjiRef.current) return;
+    setIsLoading(true);
     loadKanji();
-  }, [kanji]);
+  }, []);
+
+  // TODO: fix this
+  useEffect(
+    () => {
+      setHasError(true);
+    },
+    [kanji, kanji],
+  );
 
   const handleKanjiClick = () => {
     if (disableAnimation) return;

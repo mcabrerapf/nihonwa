@@ -7,7 +7,6 @@ import JishoMeaningsModal from './JishoMeaningsModal';
 import RandomKanjiModal from './RandomKanjiModal';
 import RandomWordModal from './RandomWordModal';
 
-// TODO: add headers to ALL modals
 export {
   FiltersModal,
   KanaModal,

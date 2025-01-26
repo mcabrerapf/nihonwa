@@ -10,17 +10,23 @@
     &__header {
         font-weight: bold;
         text-decoration: underline;
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 
     &__list {
         display: flex;
         flex-direction: column;
         list-style-type: disc;
+        list-style-position: inside;
         text-align: left;
         font-size: 1.5rem;
         gap: 0.5rem;
-        padding-left: 2rem;
         overflow-y: auto;
+
+        &__item {
+            span {
+                margin-left: -1rem;
+            }
+        }
     }
 }
