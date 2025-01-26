@@ -1,9 +1,26 @@
 .simple-list {
     display: flex;
     flex-direction: column;
-    list-style-type: disc;
     text-align: left;
-    font-size: 1.5rem;
-    gap: 0.5rem;
-    padding-left: 2rem;
+
+    &.empty {
+        color: var(--disabled-color);
+    }
+
+    &__header {
+        font-weight: bold;
+        text-decoration: underline;
+        font-size: 1.5rem;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        list-style-type: disc;
+        text-align: left;
+        font-size: 1.5rem;
+        gap: 0.5rem;
+        padding-left: 2rem;
+        overflow-y: auto;
+    }
 }

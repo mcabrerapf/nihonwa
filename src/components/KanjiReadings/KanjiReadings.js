@@ -2,6 +2,7 @@ import React from 'react';
 import './KanjiReadings.scss';
 import useKanjiReadings from './useKanjiReadings';
 import Loading from '../Loading';
+import SimpleList from '../SimpleList/SimpleList';
 
 function KanjiReadings(props) {
   const {
@@ -14,48 +15,9 @@ function KanjiReadings(props) {
   return (
     <Loading isLoading={isLoading}>
       <div className="kanji-readings">
-        <div className="kanji-readings__container">
-          <span
-            className={`kanji-readings__container__header${onYomi.length ? '' : ' empty-list'}`}
-          >
-            音読み
-          </span>
-          <ul className="kanji-readings__container__list">
-            {onYomi.map((yomi) => (
-              <li key={yomi}>
-                {yomi}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="kanji-readings__container">
-          <span
-            className={`kanji-readings__container__header${meanings.length ? '' : ' empty-list'}`}
-          >
-            Meanings
-          </span>
-          <ul className="kanji-readings__container__list">
-            {meanings.map((meaning) => (
-              <li key={meaning}>
-                {meaning}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="kanji-readings__container">
-          <span
-            className={`kanji-readings__container__header${kunYomi.length ? '' : ' empty-list'}`}
-          >
-            訓読み
-          </span>
-          <ul className="kanji-readings__container__list">
-            {kunYomi.map((yomi) => (
-              <li key={yomi}>
-                {yomi}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <SimpleList list={onYomi} header="音読み" />
+        <SimpleList list={meanings} header="Meanings" />
+        <SimpleList list={kunYomi} header="訓読み" />
       </div>
     </Loading>
 

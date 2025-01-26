@@ -1,19 +1,24 @@
 import React from 'react';
 import './SimpleList.scss';
 
-function SimpleList({ list, modifier }) {
-  if (!list || !list.length) return null;
-
-  const className = ['simple-list', modifier].filter(Boolean).join(' ');
+function SimpleList({ list = [], header, modifier }) {
+  const isEmptyClass = !list.length ? ' empty' : '';
+  const className = ['simple-list', modifier, isEmptyClass].filter(Boolean).join(' ');
 
   return (
-    <ul className={className}>
-      {list.map((listItem, i) => (
-        <li key={`${i}-${listItem}`} className="simple-list__item">
-          <span>{listItem}</span>
-        </li>
-      ))}
-    </ul>
+
+    <div className={className}>
+      {!!header && <span className="simple-list__header">{header}</span>}
+      <ul className="simple-list__list">
+
+        {list.map((listItem, i) => (
+          <li key={`${i}-${listItem}`} className="simple-list__list__item">
+            <span>{listItem}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
   );
 }
 
