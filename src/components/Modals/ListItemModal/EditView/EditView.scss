@@ -33,7 +33,9 @@
   }
 
   .display-view {
-    height: 30rem;
+    &__content {
+      height: 30rem;
+    }
 
     .display-view-general {
       &__top {
@@ -43,10 +45,8 @@
       }
     }
 
-    .display-view-footer {
-      &__actions {
-        display: none;
-      }
+    .modal-footer {
+      display: none;
     }
   }
 }
